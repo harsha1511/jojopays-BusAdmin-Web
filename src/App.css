@@ -1,0 +1,18 @@
+/* toggle button in components */
+#toggleInput:checked + #toggleSpan::before {
+    transform: translateX(26px);
+    background-image: linear-gradient(to bottom, #6C50FF, #0095E2);
+    border: 2px solid #6C50FF;
+}
+#toggleInput:checked + #toggleSpan {
+    background-color: #2F3142;
+    border: 1px solid #6C50FF;
+    bottom: 0px;
+    right: 2px;
+}
+#toggleInput {
+    transition: 0.5s;
+}
+#toggleSpan::before {
+    background-image: linear-gradient(to bottom, #FF5050, #FF0783);
+}

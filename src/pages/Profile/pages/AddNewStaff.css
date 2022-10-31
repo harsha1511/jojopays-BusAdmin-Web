@@ -1,0 +1,254 @@
+.Login-box {
+    margin: 0 30px 0 70px;
+    width: 100%;
+    padding: 50;
+}
+
+.ful-box {
+    width: 76%;
+    max-width: 76%;
+    margin: 60px;
+    background-color: #2e2e3d;
+    border-radius: 30px;
+    float: lefts;
+    padding: 20px 5px;
+    height: 500px;
+    margin: 27px 30px 0 237px;
+}
+
+.header-box {
+    width: 300px;
+    float: left;
+    height: 60px;
+    background-color: #465462;
+    margin: 0 305px 0 320px;
+    border-radius: 0 0 30px 30px;
+
+}
+
+.header-box h2 {
+    color: #3973FF;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    padding: 10px 15px 14px 15px;
+    text-align: center;
+}
+
+.user-form {
+    text-align: right;
+    width: 150px;
+    color: #3973FF;
+
+    margin-bottom: 30px;
+    padding: 10px 10px 10px 30px;
+    font-size: 15px;
+}
+
+.user {
+
+    border-radius: 50%;
+    width: 65%;
+    background-color: #465462;
+    padding: 10px;
+    color: black;
+    font-size: 25px;
+    margin: 35px 0 25px 24px;
+}
+
+#upload {
+    width: 13%;
+    background-color: #465462;
+    padding: 10px;
+    color: black;
+    font-size: 25px;
+}
+
+#input-file {
+
+
+    margin: 49px 0 0 33px;
+}
+
+.add-name {
+    margin-left: 75px;
+}
+
+.add-license {
+    margin-left: 60px;
+}
+
+
+.cord {
+    border-radius: 50%;
+    width: 70%;
+    background-color: #465462;
+    padding: 10px;
+    color: black;
+    font-size: 25px;
+    margin: 37px 0 25px 24px;
+}
+
+#input-cord {
+    margin: 47px 0 0 40px;
+
+}
+
+.resume {
+    border-radius: 50%;
+    width: 68%;
+    background-color: #465462;
+    padding: 10px;
+    color: black;
+    font-size: 25px;
+    margin: 37px 0 25px 24px;
+
+}
+
+#input-resume {
+    margin: 50px 0 0 37px;
+}
+
+.add-resume {
+    margin-top: 10px;
+    margin-left: 190px;
+}
+
+.add-cord {
+
+    margin-left: 225px;
+
+}
+
+.id-cord {
+    border-radius: 50%;
+    width: 68%;
+    background-color: #465462;
+    padding: 10px;
+    color: black;
+    font-size: 25px;
+    margin: 37px 0 25px 24px;
+
+
+}
+
+#input-id {
+    margin: 50px 0 0 37px;
+
+}
+
+.dob {
+
+    margin-right: 30px;
+    padding-bottom: 8px;
+}
+
+.birthday {
+    margin: 10px 0 0 25px;
+    background: #465462;
+
+
+
+}
+
+.aa {
+    width: 350px;
+    float: right;
+
+}
+
+.leading {
+    width: 140%;
+    float: right;
+    height: 2px;
+    background: red;
+    margin-right: -47px;
+
+
+}
+
+.leading-3 {
+    width: 195%;
+    float: right;
+    height: 2px;
+    background: red;
+    margin: 0 -55px 0 1px;
+
+}
+
+.leading-2 {
+    width: 130%;
+    float: right;
+    height: 2px;
+    background: red;
+    margin-right: -45px;
+}
+
+.leading-4 {
+    width: 145%;
+    float: right;
+    height: 2px;
+    background: red;
+    margin-right: -47px;
+}
+
+.name {
+    width: 27.33%;
+    float: left;
+    margin: 40px 3%;
+    position: relative;
+}
+
+.upload-file {
+    background: red;
+    width: 80px;
+    padding: 6px 13px 5px 5px;
+}
+
+.bg-green-200 {
+
+    padding: 10px 20px 32px 10px;
+    margin: 51px 10px 10px 37px;
+    width: 92px;
+    float: right;
+    align-content: center;
+    height: 10px;
+    border-radius: 25px 2px 25px 2px;
+    color: red;
+    background: #465462;
+
+}
+
+.upload-resume {
+
+    padding: 10px 20px 32px 10px;
+    margin: 51px 10px 10px 10px;
+    width: 92px;
+    float: right;
+    align-content: center;
+    height: 10px;
+
+}
+
+.input {
+    border: 0;
+    padding: 10px;
+    font-size: 1.3em;
+    font-family: "Ubuntu Light", "Ubuntu", "Ubuntu Mono", "Segoe Print", "Segoe UI";
+    color: #ccc;
+    border: solid 1px #ccc;
+    margin: 0 0 20px;
+    width: 300px;
+    -moz-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+    box-shadow: inner 0 0 4px rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+input:focus {
+    outline: none !important;
+    border-bottom: 1px solid #719ECE;
+
+}
