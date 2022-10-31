@@ -5,6 +5,13 @@ import BackButton from '../../../components/BackButton'
 import { FaPhoneAlt } from "react-icons/fa"
 import {GrMail} from "react-icons/gr"
 import { PowerButton } from '../../../components/PowerButton'
+import EditButton from '../../../components/EditButton'
+import { DeleteButton } from '../../../components/DeleteButton'
+
+import {HiDocument} from "react-icons/hi"
+import {FaAddressCard} from "react-icons/fa"
+import {BiIdCard} from "react-icons/bi"
+import { EditLogin } from '../components/EditLogin'
 
 
 export const EditStaffProfile = () => {
@@ -40,7 +47,7 @@ export const EditStaffProfile = () => {
         </section>
         <section className='flex'>
             <form className='w-[50%] h-[600px]'>
-                <div className='flex flex-col w-[80%] mt-10 pl-6 py-6 ml-8 bg-secondary rounded-3xl'>
+                <div className='flex flex-col w-[80%] mt-10 pl-6 py-6 ml-10 bg-secondary rounded-3xl'>
                     <div className='flex justify-around w-[90%]'>
                         <label className='w-[20%]'>Name: </label>
                         <input
@@ -73,7 +80,7 @@ export const EditStaffProfile = () => {
                         />
                     </div>
             </div>
-            <div className='flex w-[80%] mt-10 pl-6 py-4 ml-8 bg-secondary rounded-3xl'>
+            <div className='flex w-[80%] mt-10 pl-6 py-4 ml-10 bg-secondary rounded-3xl'>
                 <div className='flex items-center w-[50%]'>
                         <label className='mr-4'><FaPhoneAlt className="scale-125" /> </label>
                         <input
@@ -94,12 +101,44 @@ export const EditStaffProfile = () => {
             <div className='flex justify-center items-center w-[100%] mt-20'>
                 <button className='py-2 px-10 text-lg font-semibold tracking-wide text-quaternaryText bg-tertiary rounded-3xl drop-shadow-lg'>Update</button>
             </div>
-                
             <PowerButton />
             </form>
-            <div>
-                
+            <div>   
             </div>
+        <div className='flex flex-col items-center w-[50%] h-[600px] overflow-y-scroll'>
+            <div className="flex justify-between w-[580px] h-48 py-10 bg-secondary mt-8 rounded-3xl">
+                <div className='flex justify-center items-center m-2 w-40'>
+                    <div className='flex flex-col mr-2 gap-2'>
+                        <EditButton isEdit={true} className=""/>
+                        <DeleteButton />
+                    </div>
+                    <div className='flex justify-center items-center w-24 h-24 ml-2 rounded-xl bg-primary'>
+                    <HiDocument className='w-12 h-12 text-primaryText' />
+                    </div>
+                </div>
+                <div className='flex flex-col justify-center items-center w-40'>
+                    <div className='flex -mt-8 mb-2 gap-2'>
+                        <EditButton isEdit={true} className=""/>
+                        <DeleteButton />
+                    </div>
+                    <div className='flex justify-center items-center w-24 h-24 ml-2 rounded-xl bg-primary'>
+                    <BiIdCard className='w-12 h-12 text-primaryText' />
+                    </div>
+                </div>
+                <div className='flex justify-center items-center w-40'>
+                    <div className='flex justify-center items-center w-24 h-24 ml-2 rounded-xl bg-primary'>
+                    <FaAddressCard className='w-12 h-12 text-primaryText' />
+                    </div>
+                    <div className='flex flex-col ml-2 gap-2'>
+                        <EditButton isEdit={true} className=""/>
+                        <DeleteButton />
+                    </div>
+                </div>
+            </div>
+            <div className='mt-2 ml-24 mb-20'>
+                <EditLogin />
+            </div>
+        </div>
         </section>
     </div>
   )

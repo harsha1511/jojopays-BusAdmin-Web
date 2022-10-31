@@ -17,11 +17,11 @@ export const EditLogin = () => {
   return (
       <div className='relative w-[80%]'>
         {openEdit && 
-        <div className='absolute w-[100%] h-[100%] bg-primary z-10 opacity-50'>
+        <div className='absolute  w-[580px] -right-12  h-[100%] rounded-3xl bg-primary z-10 opacity-50'>
         </div>        
         }
-        <form action="" className='relative mt-10'>
-            <div className='rounded-3xl bg-secondary shadow-3xl p-12'>
+        <form action="" className='relative flex flex-col items-center mt-10'>
+            <div className='w-[480px] rounded-3xl bg-secondary shadow-3xl p-12'>
             <div className='flex items-center justify-center '>
                 <label htmlFor="" className='flex items-center'>Login:
                     <p className='bg-tertiary ml-4 p-2 w-60 rounded-full px-4'>user12837</p> 
