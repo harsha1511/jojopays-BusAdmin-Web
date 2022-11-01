@@ -44,14 +44,14 @@ export const Attendance = () => {
                 />
             </div>
         </div>
-        <div className='w-[80%] pt-2 pb-2'>
+        <div className='w-[80%] pt-2 pb-2 mr-2'>
           <Calendar className={['c1','c2']}
           selectRange={true}
           />
         </div>
     </div>
     {/* download attendance */}
-        <div className='w-[450px] h-12 m-4 bg-tertiary rounded-3xl'>
+        <div className='w-[450px] h-12 m-4 bg-tertiary rounded-3xl drop-shadow-xl'>
           <form action="submit" className='flex items-center'>
             <div className='h-12 flex items-center ml-4'>
             <input className='w-20 bg-secondary border-r-2 border-tertiary rounded-l-2xl py-1 pl-2 text-sm outline-none' 

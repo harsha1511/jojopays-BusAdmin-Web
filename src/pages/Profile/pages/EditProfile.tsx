@@ -32,6 +32,8 @@ export const EditProfile= () => {
       const image= e.target.files
       setPicture(image)
   }
+  console.log(picture);
+  
   
  const [formData, setFormData] = useState(defaultFormData);
   const { companyName,
