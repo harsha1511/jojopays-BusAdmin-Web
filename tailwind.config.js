@@ -14,6 +14,7 @@ module.exports = {
         quaternaryText: "#50FF84",
         quinaryText: "#EFFF50",
         greyText : "#A8A8A8",
+        yellowText: "#E0FF40",
         pinkText : "#FF4188",
         redText : "#FF5050",
       },

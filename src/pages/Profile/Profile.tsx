@@ -21,7 +21,7 @@ import './profile.css'
 
 const Profile = () => {
 
-  const [rating, setRating] = useState(4)
+  const [rating, setRating] = useState(2)
 
 
   
@@ -65,11 +65,8 @@ const Profile = () => {
               </div>
             </div>
 {/* Ratings */}
-          <Link to="/rating"
-          className= "flex justify-center items-center flex-col mr-2 text-quinaryText cursor-pointer">
-            <p className="text-lg sm:text-2xl font-bold">Rating</p> 
+          <Link to="/rating">
             <Rating star={rating} />
-            <p className="text-2xl sm:text-3xl font-bold">{rating}</p>
           </Link>
       </div>
     </div>
