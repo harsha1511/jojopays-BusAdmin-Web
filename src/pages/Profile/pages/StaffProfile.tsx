@@ -45,6 +45,10 @@ export const StaffProfile = () => {
     setStaffId(result.data)
     console.log(staffId);
   }
+  const handleClick = () => {
+    console.log("hello world");
+    
+  }
 
 
   return (
@@ -112,7 +116,7 @@ export const StaffProfile = () => {
               </div>
               <div className='flex items-center mt-2'>
                 <p className='w-40 text-primaryText text-lg font-semibold'>Assign Trip</p>
-                <div className='mt-1'><ToggleButton className='' isBig={false} /></div>
+                <div className='mt-1'><ToggleButton className='' isBig={false} ToggleSwitch={handleClick} /></div>
               </div>
           </div>
         </section>

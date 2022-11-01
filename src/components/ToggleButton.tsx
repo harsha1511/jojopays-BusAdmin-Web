@@ -12,7 +12,7 @@ export const ToggleButton = ({className, ToggleSwitch, isBig}:ToggleButtonProps)
     const buttonStyle = isBig ? "before:h-[24px] before:w-[24px]" : "before:h-[14px] before:w-[14px] before:right-4"
 
   return (
-        <div className=''>
+        <div className='' onClick={ToggleSwitch}>
         <label className={`${inputStyle} relative inline-block w-[60px] h-8 bg-primary rounded-full cursor-pointer`}>
           <input className='opacity-0 w-0 h-0'
           type="checkbox"
