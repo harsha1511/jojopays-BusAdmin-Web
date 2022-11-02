@@ -20,6 +20,8 @@ import { Ratings } from "../pages/Profile/pages/Ratings";
 import { EditStaffProfile } from "../pages/Profile/pages/EditStaffProfile";
 import AddNewLogin from "../pages/Profile/pages/AddNewStaff";
 import AssignTask from "../pages/Profile/pages/AssignTask";
+import CreateLogin from "../pages/Profile/pages/CreateLogin";
+import Loader from "../components/Loader";
 
 const routes: { path: string; Element: () => JSX.Element }[] = [
   { path: "/assign-drivers", Element: AssignDrivers },
@@ -45,6 +47,8 @@ const routes: { path: string; Element: () => JSX.Element }[] = [
   {path: "/rating", Element: Ratings},
   {path: "/add-new-staff", Element: AddNewLogin},
   {path: "/assign-task", Element: AssignTask},
+  {path: "/create-login", Element: CreateLogin},
+  {path: "/loader", Element:Loader}
 ];
 
 export default routes;
