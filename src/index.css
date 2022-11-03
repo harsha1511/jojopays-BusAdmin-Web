@@ -295,3 +295,25 @@ input[type="range"]:focus::-moz-range-thumb {
 .highlight {
   background-color: #888;
 }
+
+
+/* Date input Edit */
+
+#assignDriver::-webkit-calendar-picker-indicator {
+  /* display: none; */
+  color: #3973FF;
+}
+
+#assignDriver::-webkit-datetime-edit-fields-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+#assignDriver::-webkit-datetime-edit-ampm-field {
+  display: none;
+}
+
+#assignDriver::-webkit-datetime-edit-fields-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
