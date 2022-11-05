@@ -1,12 +1,14 @@
 import React,{useState} from 'react'
 import {MdClose} from 'react-icons/md'
+import {Dispatch, FunctionComponent} from 'react'
 
 interface CardProps {
     title: string
     isUpdate: boolean
     ifResume: boolean
     className?: string
-    image: string
+    image?: string
+    closeCard: () => void
 }
 
 export const Card = ({
@@ -15,23 +17,21 @@ export const Card = ({
     ifResume,
     className,
     image = "",
+    closeCard
 }:CardProps) => {
 
-    const [close, setClose] = useState<boolean>(false)
+    // const [close, setClose] = useState<boolean>(true)
 
 
     const styleResume = ifResume ? `h-[480px]` : `h-96`
-    const styleClose = close ? `block` : `hidden`
 
-    const closeCard = () => {
-        setClose(!close)
-        // console.log("close card clicked");
-        
-    }
+    // const closeCard = () => {
+    //     setClose(!close)
+    // }
 
     return (
-    <div className={`${styleClose} fixed z-30 flex flex-col w-[95vw] h-screen items-center mt-24`} onClick={closeCard}>
-        <div className={`${styleResume} relative w-[67%] bg-quaternary rounded-t-2xl`}>
+    <div>
+        <div className={`${styleResume} relative w-[870px] bg-quaternary rounded-t-2xl`}>
             <div className='absolute flex items-center w-full h-12 bg-primaryText rounded-t-2xl'>
                 <p className='w-full flex justify-center text-xl text-primary font-bold'>{title}</p>
                 < MdClose className='w-8 h-10 mr-4 skew-y-12 text-primary' onClick={closeCard}/>
@@ -54,7 +54,7 @@ export const Card = ({
             </div>
             }
         </div>
-        <div className='relative flex justify-center items-center w-[67%] h-12'>
+        <div className='relative flex justify-center items-center w-[870px] h-12'>
             <div className='bg-white opacity-50 w-full h-full rounded-b-2xl'>
             </div>
             { isUpdate ?
@@ -64,5 +64,6 @@ export const Card = ({
             }
         </div>
     </div>
-  )
+
+           )
 }

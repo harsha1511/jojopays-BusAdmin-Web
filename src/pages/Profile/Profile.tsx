@@ -2,6 +2,9 @@ import React,{ useState } from "react";
 import { Link } from "react-router-dom";
 
 
+
+
+
 import EditButton from "../../components/EditButton";
 import { Rating } from "./components/Rating";
 import StaffList from "./components/StaffList";
@@ -18,35 +21,28 @@ import './profile.css'
 import { Card } from "../../components/Card";
 
 
-
-
 const Profile = () => {
 
-  const [rating, setRating] = useState(2)
-  const [card, setCard] = useState<boolean>(false)
+  const [modal, setModal] = useState(false)
 
-  console.log(card, "carddddd")
-  const handleCard = (name: string) => {
-    if (card === false){
-      setCard(true)
-    }
+  const [rating, setRating] = useState(2)
+
+  const handleModal = () => {
+    setModal(!modal)
   }
 
+console.log("what to see",modal)
 
   
-  return <div>
+  return <div className="relative h-screen w-[96vw]">
 {/* Top layer cover profile */}
+  { modal &&
+        <div className="absolute flex items-center justify-center z-30 h-full w-full">
+         <div className="absolute w-full h-full" onClick={()=>setModal(!modal)}></div>
+          <Card title="Company Document" isUpdate={true} ifResume={false}  closeCard={handleModal} />
+        </div>
+  }
     <div className="relative w-screen h-[140px] left-[-72px]">
-      <div className="top-0 left-0" onClick={() => setCard(false)}>
-      </div>
-      {card ? 
-        <Card image="https://img.freepik.com/premium-vector/dark-resume-template_23-2147539950.jpg"
-         isUpdate={false}
-         title={`${handleCard.name === "company" ? "Company" : "ID Proof"}`} 
-         ifResume={false}/> 
-      : 
-      <div className="hidden"></div>
-        }
       <div>
       <img src="https://wallpaperaccess.com/full/1628619.jpg" alt="" className="absolute w-full h-full object-cover rounded-b-3xl"/>
       <div className="absolute w-[100%] h-full bg-tertiary opacity-70 rounded-b-3xl">
@@ -96,8 +92,9 @@ const Profile = () => {
       <div className="w-[60%] h-[580px] overflow-y-auto" id="noScrollBar">
         {/* document button */}
         <div className=" flex justify-center flex-row mt-4">
-          <p className="p-[6px] px-8 text-[14px] font-semibold shadow-md  text-primaryText rounded-l-full bg-secondary" onClick={() => handleCard("company")}>Company Document</p>
-          <p className="p-[6px] px-8 text-[14px] font-semibold shadow-md border-l-2 border-quaternary text-primaryText rounded-r-full bg-secondary" onClick={() => handleCard("id")}>Your ID Proof</p>
+          <p className="p-[6px] px-8 text-[14px] font-semibold shadow-md  text-primaryText rounded-l-full bg-secondary"
+          onClick={handleModal}>Company Document</p>
+          <p className="p-[6px] px-8 text-[14px] font-semibold shadow-md border-l-2 border-quaternary text-primaryText rounded-r-full bg-secondary">Your ID Proof</p>
         </div>
         {/* Bio and other details */}
         <div className="ml-10 mt-14">

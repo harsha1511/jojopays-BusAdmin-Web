@@ -6,6 +6,7 @@ import { BsSearch } from "react-icons/bs";
 
 import CustomForm from "../../components/Form";
 import { TripBar } from "./components/TripBar";
+import { Link } from "react-router-dom";
 
 
 const AssignDrivers = () => {
@@ -75,7 +76,9 @@ const AssignDrivers = () => {
         <div className="flex flex-col items-center w-[25%] h-full bg-secondary">
           <p className=" mt-10 text-lg font-bold tracking-wider text-primaryText">Add New trip Plan</p>
           <button className="mt-8 -ml-14 w-56 h-12 bg-quaternary rounded-3xl drop-shadow-lg text-lg text-primaryText font-bold hover:text-white tracking-wide">One Time Trip</button>
-          <button className="mt-6 -ml-14 w-56 h-12 bg-quaternary rounded-3xl drop-shadow-lg text-lg text-primaryText font-bold hover:text-white tracking-wide">Assign Trip</button>
+          <Link to={"/assign-trip"}>
+            <button className="mt-6 -ml-14 w-56 h-12 bg-quaternary rounded-3xl drop-shadow-lg text-lg text-primaryText font-bold hover:text-white tracking-wide">Assign Trip</button>
+          </Link>
           <div className="h-[1px] -ml-20 mt-8 w-60 bg-greyText/50"></div>
           <button className="mt-6 -ml-14 w-56 h-12 bg-quaternary rounded-3xl drop-shadow-lg text-lg text-pinkText font-bold hover:text-white tracking-wide">Assigned Trip</button>
         </div>

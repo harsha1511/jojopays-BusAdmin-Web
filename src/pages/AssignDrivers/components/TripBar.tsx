@@ -30,14 +30,14 @@ export const TripBar = ({pilot, copilot, id}:DriverProps) => {
         },
     ]
     const [list, setList] = useState({
-        ActiveObject: null,
+        // ActiveObject: null,
         object: DriverName
     })
     const [openEdit, setOpenEdit] =useState(false)
 
     const handleOpen = (index:number) => {
         // if(index === object[index]){
-        //     console.log(index);
+            console.log(index);
         // }
         
             // setOpenEdit(!openEdit) 

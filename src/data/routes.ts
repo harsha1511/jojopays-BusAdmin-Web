@@ -22,6 +22,9 @@ import AddNewLogin from "../pages/Profile/pages/AddNewStaff";
 import AssignTask from "../pages/Profile/pages/AssignTask";
 import CreateLogin from "../pages/Profile/pages/CreateLogin";
 import Loader from "../components/Loader";
+import { AssignTrip } from "../pages/AssignDrivers/pages/AssignTrip";
+import { TravelRoute } from "../pages/AssignDrivers/pages/TravelRoute";
+import { AssignTime } from "../pages/AssignDrivers/pages/AssignTime";
 
 const routes: { path: string; Element: () => JSX.Element }[] = [
   { path: "/assign-drivers", Element: AssignDrivers },
@@ -48,7 +51,10 @@ const routes: { path: string; Element: () => JSX.Element }[] = [
   {path: "/add-new-staff", Element: AddNewLogin},
   {path: "/assign-task", Element: AssignTask},
   {path: "/create-login", Element: CreateLogin},
-  {path: "/loader", Element:Loader}
+  {path: "/loader", Element:Loader},
+  {path: "/assign-trip", Element:AssignTrip},
+  {path: "/travel-route", Element: TravelRoute},
+  {path: "/assign-time", Element:AssignTime}
 ];
 
 export default routes;

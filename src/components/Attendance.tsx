@@ -5,11 +5,12 @@ import Calendar from 'react-calendar';
 import {BsDownload} from 'react-icons/bs'
 
 
-interface Dateprops {
-  date: Date
-  view: any
+interface AttendanceProps {
+  isDownload:  boolean
 }
-export const Attendance = () => {
+
+
+export const Attendance = ({isDownload}:AttendanceProps) => {
 
 // const datesToAddClassTo = [tomorrow, in3Days, in5Days];
 
@@ -51,6 +52,7 @@ export const Attendance = () => {
         </div>
     </div>
     {/* download attendance */}
+    {isDownload && 
         <div className='w-[450px] h-12 m-4 bg-tertiary rounded-3xl drop-shadow-xl'>
           <form action="submit" className='flex items-center'>
             <div className='h-12 flex items-center ml-4'>
@@ -69,6 +71,7 @@ export const Attendance = () => {
             <button className='ml-6 bg-pinkText p-2 rounded-full font-bolder'><BsDownload/></button>
           </form>
         </div>
+      }
 </div>)
 }
 

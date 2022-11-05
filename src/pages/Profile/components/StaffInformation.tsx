@@ -83,7 +83,7 @@ export const StaffInformation = () => {
                     </div>
                 </div>
                 <div className='w-[50%] z-10'>
-                    <Attendance />
+                    <Attendance isDownload={true} />
                 </div>
             </section>
     </div>

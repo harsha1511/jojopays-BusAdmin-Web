@@ -313,7 +313,23 @@ input[type="range"]:focus::-moz-range-thumb {
   display: none;
 }
 
+#busStartTime::-webkit-datetime-edit-ampm-field {
+  display: none;
+}
+
 #assignDriver::-webkit-datetime-edit-fields-wrapper {
   display: flex;
   justify-content: space-around;
+}
+
+#clicking {
+    margin: 0;
+    margin-right: 2px;
+      -webkit-appearance: none;
+      /* -moz-appearance: none; */
+      /* background-image: url("https: //cdn-icons-png.flaticon.com/512/60/60995.png?w=360"); */
+      /* background-position: center; */
+      /* z-index: 10; */
+      background: url('/src/assets/images/Icon\ ionic-md-arrow-dropdown.png') 85% 50% no-repeat #2f3142;
+      background-size: 20px;
 }
