@@ -39,7 +39,7 @@ console.log("what to see",modal)
   { modal &&
         <div className="absolute flex items-center justify-center z-30 h-full w-full">
          <div className="absolute w-full h-full" onClick={()=>setModal(!modal)}></div>
-          <Card title="Company Document" isUpdate={true} ifResume={false}  closeCard={handleModal} />
+          <Card title="Company Document" isUpdate={false} ifResume={false}  closeCard={handleModal} />
         </div>
   }
     <div className="relative w-screen h-[140px] left-[-72px]">

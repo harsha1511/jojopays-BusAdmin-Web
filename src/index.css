@@ -304,6 +304,13 @@ input[type="range"]:focus::-moz-range-thumb {
   color: #3973FF;
 }
 
+#assignDriver::-webkit-datetime-edit-text,
+#assignDriver::-webkit-datetime-edit-month-field,
+#assignDriver::-webkit-datetime-edit-day-field,
+#assignDriver::-webkit-datetime-edit-year-field {
+  color: white;
+}
+
 #assignDriver::-webkit-datetime-edit-fields-wrapper {
   display: flex;
   justify-content: space-between;

@@ -87,7 +87,7 @@ export const AssignTrip = () => {
                         <div>
                             <div className='m-8 justify-start items-start flex bg-quaternary'>
                                 <img 
-                                className='w-24 h-32 rounded-2xl'
+                                className='w-24 h-32 rounded-2xl '
                                 src="https://st.depositphotos.com/1019192/4338/i/950/depositphotos_43389909-stock-photo-tourist-bus-traveling-on-road.jpg" alt="BusImage" />
                                 <div className='ml-5'>
                                     <p className='text-primaryText'>{busName}</p>

@@ -3,7 +3,8 @@ import React,{useState} from 'react'
 import BackButton from '../../../components/BackButton'
 
 import {MdLocationPin} from "react-icons/md"
-import {AiFillDelete} from "react-icons/ai"
+import {MdDeleteForever} from 'react-icons/md'
+
 import { Link } from 'react-router-dom'
 
 export const TravelRoute = () => {
@@ -71,7 +72,7 @@ export const TravelRoute = () => {
                               className='w-[90%] h-8 ml-3 rounded-xl pl-3 bg-primary focus:border-none' 
                               type="text" name="" id="" />
                             </div>
-                            <p className='mr-4 scale-125 text-redText' onClick={RemovePoint}><AiFillDelete /></p>
+                            <p className='mr-6 scale-150 text-redText' onClick={RemovePoint}><MdDeleteForever /></p>
                           </div>
                           ))}
                             {/* NEw Intermediate Point */}
