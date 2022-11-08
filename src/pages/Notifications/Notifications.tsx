@@ -63,8 +63,7 @@ const Notifications = () => {
 
   return (
     <>
-    Notification
-      {/* <section className="bg-secondary h-44 p-4" id="search-and-filter">
+      <section className="bg-secondary h-44 p-4" id="search-and-filter">
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-7">
             <CustomForm
@@ -157,7 +156,7 @@ const Notifications = () => {
           </div>
         </div>
         {renderNotificationTypes()}
-      </section> */}
+      </section>
       
     </>
   );
