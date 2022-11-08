@@ -7,6 +7,8 @@ type RatingProps = {
   yellow?: string
   red?: string
 }
+
+
 export const Rating = ({star, yellow = "#EFFF50" , red = "#1e1e2c"}:RatingProps) => {
   return (
       <div className='flex h-full justify-center items-center flex-col mr-2 text-quinaryText cursor-pointer'>

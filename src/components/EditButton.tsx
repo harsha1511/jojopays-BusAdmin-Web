@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { FaPen } from "react-icons/fa"
 
 type EditButtonProps = {
-    className: string
+    className?: string
     isEdit?: boolean
     handleEdit?: () => void
 }

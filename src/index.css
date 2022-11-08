@@ -324,6 +324,13 @@ input[type="range"]:focus::-moz-range-thumb {
   display: none;
 }
 
+
+#busStartDate::-webkit-datetime-edit-text,
+#busStartDate::-webkit-datetime-edit-month-field,
+#busStartDate::-webkit-datetime-edit-day-field,
+#busStartDate::-webkit-datetime-edit-year-field {
+  color: white;
+}
 #assignDriver::-webkit-datetime-edit-fields-wrapper {
   display: flex;
   justify-content: space-around;

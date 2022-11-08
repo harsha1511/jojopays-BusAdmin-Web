@@ -1,18 +1,17 @@
-import React from "react";
+import React from 'react'
 import * as yup from "yup";
+import { Link } from "react-router-dom";
+import CustomForm from '../../../components/Form';
+
 
 import { BsSearch } from "react-icons/bs";
 
-
-import CustomForm from "../../components/Form";
-import { TripBar } from "./components/TripBar";
-import { Link } from "react-router-dom";
+import { TripBar } from "../components/TripBar";
+import BackButton from '../../../components/BackButton';
 
 
-const AssignDrivers = () => {
+export const AssignedTrips = () => {
 
-
-  
   const searchSchema = yup.object().shape({
     search: yup.string(),  
   });
@@ -21,11 +20,15 @@ const AssignDrivers = () => {
   };
 
 
-  return <div>
+  return (
+    <div>
     <div className="flex w-[96vw]">
       <section className="w-[65%] h-screen">
         {/* filter */}
         <section className="h-48 bg-quaternary">
+        <div className='absolute flex w-[62%] justify-end mt-3'>
+            <BackButton />
+        </div>
           <form action="">
             <div className="realtive ml-8 w-32 h-20">
               <button className="absolute z-10 mt-2 w-28 h-10 bg-primary rounded-lg">All Plan</button>
@@ -71,25 +74,11 @@ const AssignDrivers = () => {
           </form>
         </section>
         {/* body */}
-        <section className="h-full flex">
-        {/* Add New trip */}
-        <div className="flex flex-col items-center w-[25%] h-full bg-secondary">
-          <p className=" mt-10 text-lg font-bold tracking-wider text-primaryText">Add New trip Plan</p>
-          <Link to={'/onetime-trip'}>
-          <button className="mt-8 -ml-14 w-56 h-12 bg-quaternary rounded-3xl drop-shadow-lg text-lg text-primaryText font-bold hover:text-white tracking-wide">One Time Trip</button>
-          </Link>
-          <Link to={"/assign-trip"}>
-            <button className="mt-6 -ml-14 w-56 h-12 bg-quaternary rounded-3xl drop-shadow-lg text-lg text-primaryText font-bold hover:text-white tracking-wide">Assign Trip</button>
-          </Link>
-          <div className="h-[1px] -ml-20 mt-8 w-60 bg-greyText/50"></div>
-          <Link to="/assigned-trip">
-          <button className="mt-6 -ml-14 w-56 h-12 bg-quaternary rounded-3xl drop-shadow-lg text-lg text-pinkText font-bold hover:text-white tracking-wide">Assigned Trip</button>
-          </Link>
-        </div>
-        <div className="flex flex-col items-center mt-2 w-[75%] h-full">
-          <p className="text-greyText mb-4">Upcoming Trips</p>
-          <TripBar />
-        </div>
+        <section className="flex justify-center items-start pt-4 h-[500px] overflow-x-hidden overflow-y-auto">
+            <div className='flex flex-col items-center w-[75%]'>
+                <p className="text-greyText mb-4">Assigned Trips</p>
+                <TripBar />
+            </div>
         </section>
       </section>
       <section className="flex w-[35%] h-screen">
@@ -157,7 +146,6 @@ const AssignDrivers = () => {
         </div>
       </section>
     </div>
-    </div>;
-};
-
-export default AssignDrivers;
+    </div>
+  )
+}

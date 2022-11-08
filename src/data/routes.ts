@@ -25,6 +25,9 @@ import Loader from "../components/Loader";
 import { AssignTrip } from "../pages/AssignDrivers/pages/AssignTrip";
 import { TravelRoute } from "../pages/AssignDrivers/pages/TravelRoute";
 import { AssignTime } from "../pages/AssignDrivers/pages/AssignTime";
+import { AssignedTrips } from "../pages/AssignDrivers/pages/AssignedTrips";
+import { EditAssignedTrip } from "../pages/AssignDrivers/pages/EditAssignedTrip";
+import { OneTimeTrip } from "../pages/AssignDrivers/pages/OneTimeTrip";
 
 const routes: { path: string; Element: () => JSX.Element }[] = [
   { path: "/assign-drivers", Element: AssignDrivers },
@@ -54,7 +57,10 @@ const routes: { path: string; Element: () => JSX.Element }[] = [
   {path: "/loader", Element:Loader},
   {path: "/assign-trip", Element:AssignTrip},
   {path: "/travel-route", Element: TravelRoute},
-  {path: "/assign-time", Element:AssignTime}
+  {path: "/assign-time", Element:AssignTime},
+  {path: "/assigned-trip", Element:AssignedTrips},
+  {path: "/edit-assigned-trip", Element: EditAssignedTrip},
+  {path: "/onetime-trip", Element:OneTimeTrip}
 ];
 
 export default routes;
