@@ -17,7 +17,8 @@ module.exports = {
         yellowText: "#E0FF40",
         pinkText : "#FF4188",
         redText : "#FF5050",
-        violetText: "#6C50FF"
+        violetText: "#6C50FF",
+        blueText: "#0095E2"
       },
       backgroundImage: {
         "signin-cover": "url(./assets/images/signin-cover.png)",

@@ -1,160 +1,99 @@
-import React, { useState } from "react";
+import React, {useCallback, useState } from "react";
+
+import {FiChevronRight} from 'react-icons/fi'
+import {BiWallet} from "react-icons/bi"
 
 
-import {IoFilterSharp} from 'react-icons/io5'
-import {TiArrowUnsorted} from 'react-icons/ti'
-import {BsFillFileEarmarkWordFill} from 'react-icons/bs'
-import { AiOutlineFilePdf } from "react-icons/ai";
-import { RiFileExcel2Fill } from "react-icons/ri";
-import {TiArrowSortedDown} from "react-icons/ti"
-import { TransferList } from "./components/TransferList";
+import { MyTransaction } from "./components/MyTransaction";
+import { SendMoney } from "./components/SendMoney";
+import { ScheduleSend } from "./components/ScheduleSend";
+import { TopupWallet } from "./components/TopupWallet";
+import { Withdraw } from "./components/Withdraw";
 
 
 const Wallet = () => {
 
-  const ReceivedFilter = [
-    {label: "All", value: "All"},
-    {label: "From Jojopay", value: "From Jojopay"},
-    {label: "Other", value: "Other"},
-  ];
-  const SentFilter = [
-    {label: "All", value:"All"},
-    {label: "Food", value:"Food"},
-    {label: "Fuel", value:"Fuel"},
-    {label: "Maintenance", value:"Maintenance"},
-    {label: "Other", value:"Other"},
+  const WalletOptions = [
+    {name: "Send" , value: "Send"},
+    {name: "My Transactions" , value: "My Transactions"},
+    {name: "Pilot's Transactions" , value: "Pilot's Transactions"},
+    {name: "Schedule Send" , value: "Schedule Send"},
   ]
 
-  const [overall, setOverall] = useState<boolean>(true);
-  const [received, setReceived] = useState<string>("")
-  const [sent, setSent] = useState<string>("")
-  const [date, setDate] =useState<number>(0)
-  const [sort, setSort] =useState<number>(0)
+  const [options, setOptions] = useState<string>("My Transactions")
+  const [hover, setHover] = useState<number>(0)
 
-  const handleOverall = () => {
-    setReceived("")
-    setSent("")
-    if(received || sent !== ""){
-      setOverall(true)
+
+  const renderWalletOptions = useCallback(
+    () => {
+    switch (options) {
+      case "My Transactions":
+        return <MyTransaction />
+      case "Send":
+        return <SendMoney />
+      case "Pilot's Transactions":
+        return <MyTransaction />
+      case "Schedule Send":
+        return <ScheduleSend />
+      case "Topup":
+        return <TopupWallet />
+      case "Withdraw":
+        return <Withdraw />
     }
-  }
-  const handleReceived = (value:string) => {
-    setReceived(value);
-    setOverall(false);
-    setSent("")
-    if(received === value){
-      setReceived("");
-      setOverall(true);
-    }
-  }
-  const handleSent = (value:string) => {
-    setSent(value)
-    setReceived("")
-    setOverall(false)
-    if(sent === value){
-      setSent("");
-      setOverall(true);
-    }
-  }
+    },
+    [options],
+  )
+  
 
   return <div>
     <div className="flex w-[96vw] h-screen">
       <section className="w-[80%]">
-        {/* Filter */}
-        <div className="flex w-[90%] h-48 ml-8 bg-secondary rounded-b-md rounded-tr-3xl drop-shadow-xl">
-          <div className="flex flex-col items-center w-[50%] h-full border-r-2 border-greyText/5">
-            <div className=" flex justify-between items-center pl-4 w-full h-[33%]">
-              <label className="font-semibold text-lg text-greyText">All Transaction:
-                <span className={`ml-3 font-normal  bg-primary py-1 px-3 rounded-md ${overall ? "text-primaryText" : "" }`}
-                onClick={handleOverall}>
-                  Overall
-                </span>
-              </label>
-              <IoFilterSharp className="w-6 h-6 mr-4 text-primaryText" />
-            </div>
-            <div className="w-[80%] h-[1px] bg-greyText/50"></div>
-            <div className=" flex items-center pl-4 w-full h-[33%]">
-              <label className="font-semibold text-lg text-greyText">Received:
-              {ReceivedFilter.map(({label, value}) => (
-                <span className={`${received === value ? "text-primaryText" : ""} ml-3 font-normal text- bg-primary py-1 px-3 rounded-md`} 
-                onClick={() => handleReceived(value)}>
-                  {label}
-                </span>
-              ))}
-              </label>
-            </div>
-            <div className="w-[80%] h-[1px] bg-greyText/50"></div>
-            <div className=" flex items-center pl-4 w-full h-[33%]">
-              <label className="font-semibold text-lg text-greyText">Sent:
-              {SentFilter.map(({label, value}) => (
-                <span className={`${sent === value ? "text-primaryText" : ""} ml-3 font-normal text- bg-primary py-1 px-3 rounded-md`}
-                onClick={() => handleSent(value)}>
-                  {label}
-                </span>
-              ))}
-                </label>
-            </div>
-          </div>
-          <div className="w-[25%] h-full border-r-2 border-greyText/5">
-            {}
-            <div className=" flex justify-between items-center pl-4 w-full h-[33%]">
-                <label className="font-semibold text-lg text-greyText">Day: 
-                  <span className={`ml-3 font-normal  bg-primary py-1 px-3 rounded-md ${date === 0 ? "text-primaryText" : "" }`}
-                  onClick={() => setDate(0)}>
-                    All
-                  </span>
-                </label>
-              <IoFilterSharp className="w-6 h-6 mr-4 text-primaryText" />
-            </div>     
-            <div onClick={() => setDate(1)}>
-                <label className="relative font-semibold text-lg text-greyText pl-4">From:
-                  <input type="date"  className="datepicker-input bg-primary ml-4 px-2 py-2 text-sm rounded focus:border-none" />
-                </label>
-                <div className="w-[80%] h-[1px] my-3 ml-6 bg-greyText/50"></div>
-                <label className="relative font-semibold text-lg text-greyText pl-4">To:
-                  <input type="date"  className="datepicker-input bg-primary ml-4 px-2 py-2 text-sm rounded focus:border-none" />
-                </label>
-            </div>
-          </div>
-          <div className="w-[25%] h-full">
-            <div className=" flex justify-between items-center pl-4 w-full h-[33%]">
-                <label className="relative font-semibold text-lg text-greyText pl-4">
-                  From:
-                </label>
-                <TiArrowUnsorted className="mr-4 w-6 h-6 text-primaryText"/>
-            </div>
-            <div className="pl-6 pt-3">
-              <p className={`${sort === 1 ? "text-primaryText": "text-greyText"} flex justify-center items-center bg-primary w-36 h-10 rounded-lg`}
-              onClick={() => setSort(1)}>
-                Ascending
-              </p>
-              <p className={`${sort === 2 ? "text-primaryText": "text-greyText"} flex justify-center items-center bg-primary w-36 h-10 rounded-lg mt-4`}
-              onClick={() => setSort(2)}>
-                Decending
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="flex  m-3">
-          {/* DOwnload button */}
-          <div className="flex flex-col items-center w-[100px] h-[500px]">
-            <p className="text-greyText pt-4">Download As</p>
-            <BsFillFileEarmarkWordFill className="mt-4 w-8 h-8 bg-quaternary p-2 scale-150 rounded-lg text-primaryText"/>
-            <RiFileExcel2Fill className="mt-8 w-8 h-8 bg-quaternary p-2 scale-150 rounded-lg text-[#FFC5E2]"/>
-            <AiOutlineFilePdf className="mt-8 w-8 h-8 bg-quaternary p-2 scale-150 rounded-lg text-[#FFC5E2]"/>
-            <p className="mt-6 tect-greyText">Note:</p>
-            <div className="flex items-center text-quaternaryText mt-2"><TiArrowSortedDown className="scale-125 rotate-180 mr-1"/><span className="text-sm font-thin">Credited</span></div>
-            <div className="flex items-center text-redText mt-1"><TiArrowSortedDown className="scale-125 mr-1"/><span className="text-sm font-thin">Dedited</span></div>
-            <div className="flex items-center text-primaryText mt-1"><TiArrowSortedDown className="scale-125 rotate-180 mr-1"/><span className="text-sm font-thin">Deposited</span></div>
-            <div className="flex items-center text-[#FFC5E2] mt-1"><TiArrowSortedDown className="scale-125 mr-1"/><span className="text-sm font-thin">Withdrawn</span></div>
-          </div>
-          <div className="mt-4 ml-3">
-            <TransferList />
-          </div>
-        </div>
+       {renderWalletOptions()}
       </section>
-      <section className="w-[20%] bg-yellow-200">
-        profile
+
+      {/* SIDE BAR */}
+      <section className="w-[20%] bg-secondary drop-shadow-xl">
+        <div className='flex flex-col items-center'>
+        <div className="flex items-center justify-center flex-col mt-10">
+          <p className="mb-2 text-greyText font-semibold tracking-wide">Admin</p>
+          <img
+            src="https://blog-pixomatic.s3.appcnt.com/image/22/01/26/61f166dfdf8c4/_orig/photo-1507679799987-c73779587ccf-1024x683.jpeg"
+            alt="profile"
+            className="w-28 h-28 rounded-full border-2 border-primaryText border-dashed p-2"
+          />
+        </div>
+        <div className='flex flex-col items-center'>
+            <p className='mt-8 text-greyText font-semibold tracking-wide'>My Wallet Balance</p>
+            <p className='text-3xl tracking-wider mt-2'>12,566$</p>
+            <div className='relative mt-6 mr-40' 
+            onMouseEnter={() => setHover(1)} 
+            onMouseLeave={() =>setHover(0)} 
+            onClick={() => setOptions("Topup")}>
+                <div className={`absolute z-0 w-44 h-14 bg-primaryText rounded-2xl ${hover === 1 ? "blur-[6px]" : ""}`}></div>
+                <div className='absolute z-10 flex items-center w-44 h-14 bg-quaternary rounded-xl hover:drop-shadow-3xl'>
+                   <BiWallet className='scale-150 text-primaryText mr-3 ml-4'/><p>Top up Wallet</p><FiChevronRight className='scale-125 mt-[3px] ml-1' />
+                </div>
+            </div>
+            <div className='relative mt-20 mr-32' 
+            onMouseEnter={() => setHover(2)} 
+            onMouseLeave={() =>setHover(0)}
+            onClick={() => setOptions("Withdraw")}>
+                <div className={`absolute z-0 w-36 h-14 bg-primaryText rounded-2xl ${hover === 2 ? "blur-[6px]" : ""}`}></div>
+                <div className='absolute z-10 flex items-center w-36 h-14 bg-quaternary rounded-xl hover:drop-shadow-3xl'>
+                   <BiWallet className='scale-150 text-primaryText mr-3 ml-4'/><p>Withdraw</p><FiChevronRight className='scale-125 mt-[3px] ml-1' />
+                </div>
+            </div>
+        </div>
+        <div className='flex flex-col items-center pt-6 mt-20 w-[270px] h-[290px] mr-24 bg-quaternary rounded-xl'>
+            {WalletOptions.map(({name, value}) => (
+                <p
+                onClick={() => setOptions(value)}
+                className={`flex justify-center  mb-2 w-[70%] pb-2 border-b-[2px] border-greyText/25 ${options === value ? "text-primaryText" : ""}`}>
+                    {name}
+                </p>
+            ))}
+        </div>
+        </div>
       </section>
     </div>
   </div>;

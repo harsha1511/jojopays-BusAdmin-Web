@@ -31,8 +31,9 @@ const BankDetails = () => {
             </div>
             <div className="flex justify-center py-8">
               {bank=== 1 ? 
-              <button className="px-10 py-[5px] rounded-tl-xl rounded-br-xl rounded-bl-sm rounded-tr-sm bg-primaryText">Add New UPI</button> : 
-              <button className="px-10 py-[5px] rounded-tl-xl rounded-br-xl rounded-bl-sm rounded-tr-sm bg-primaryText">Add New Card</button>
+              <button className="px-10 py-[5px] rounded-tl-xl rounded-br-xl rounded-bl-sm rounded-tr-sm bg-primaryText">Add New UPI</button> : bank ===2 ?
+              <button className="px-10 py-[5px] rounded-tl-xl rounded-br-xl rounded-bl-sm rounded-tr-sm bg-primaryText">Add New Card</button> :
+              <button className="px-10 py-[5px] rounded-tl-xl rounded-br-xl rounded-bl-sm rounded-tr-sm bg-primaryText">Add new Credit Card</button>
               }
             </div>
     </div>
