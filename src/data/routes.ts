@@ -28,6 +28,16 @@ import { AssignTime } from "../pages/AssignDrivers/pages/AssignTime";
 import { AssignedTrips } from "../pages/AssignDrivers/pages/AssignedTrips";
 import { EditAssignedTrip } from "../pages/AssignDrivers/pages/EditAssignedTrip";
 import { OneTimeTrip } from "../pages/AssignDrivers/pages/OneTimeTrip";
+import { SendAmount } from "../pages/Wallet/pages/SendAmount";
+import { Send } from "../pages/Wallet/pages/Send";
+import { PilotsTransaction } from "../pages/Wallet/pages/PilotsTransaction";
+import { ScheduleSend } from "../pages/Wallet/pages/ScheduleSend";
+import { TopupWallet } from "../pages/Wallet/pages/TopupWallet";
+import { Withdraw } from "../pages/Wallet/pages/Withdraw";
+import { AddNewSchedule } from "../pages/Wallet/pages/AddNewSchedule";
+import { ScheduleAmount } from "../pages/Wallet/pages/ScheduleAmount";
+import { ScheduleDate } from "../pages/Wallet/pages/ScheduleDate";
+import { ScheduleConfirm } from "../pages/Wallet/pages/ScheduleConfirm";
 
 const routes: { path: string; Element: () => JSX.Element }[] = [
   { path: "/assign-drivers", Element: AssignDrivers },
@@ -60,7 +70,18 @@ const routes: { path: string; Element: () => JSX.Element }[] = [
   {path: "/assign-time", Element:AssignTime},
   {path: "/assigned-trip", Element:AssignedTrips},
   {path: "/edit-assigned-trip", Element: EditAssignedTrip},
-  {path: "/onetime-trip", Element:OneTimeTrip}
+  {path: "/onetime-trip", Element:OneTimeTrip},
+  {path: "/send", Element:Send},
+  {path: "/pilots-transactions", Element:PilotsTransaction},
+  {path: "/schedule-send", Element:ScheduleSend},
+  {path:"/topup-wallet", Element:TopupWallet},
+  {path:"/withdraw", Element:Withdraw},
+  {path: "/send-amount" , Element:SendAmount},
+  {path: '/add-new-schedule' , Element:AddNewSchedule},
+  {path: "/schedule-amount" , Element:ScheduleAmount},
+  {path: "/schedule-date", Element:ScheduleDate},
+  {path:"/schedule-confirm", Element:ScheduleConfirm},
+  
 ];
 
 export default routes;

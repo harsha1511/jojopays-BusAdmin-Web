@@ -88,7 +88,7 @@ const AssignDrivers = () => {
         </div>
         <div className="flex flex-col items-center mt-2 w-[75%] h-full">
           <p className="text-greyText mb-4">Upcoming Trips</p>
-          <TripBar />
+          <TripBar pageName="AssignDriver" />
         </div>
         </section>
       </section>

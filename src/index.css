@@ -343,3 +343,9 @@ input[type="range"]:focus::-moz-range-thumb {
       background: url('/src/assets/images/Icon\ ionic-md-arrow-dropdown.png') 85% 50% no-repeat #2f3142;
       background-size: 20px;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

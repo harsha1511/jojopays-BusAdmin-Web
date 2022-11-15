@@ -62,7 +62,7 @@ export const TripBar = ({pilot, copilot, id, pageName}:DriverProps) => {
         <div className={`relative flex flex-col items-center w-full mb-6`}>
         <div className='z-10 flex justify-between items-center px-3 w-[93%] h-16 bg-quaternary rounded-2xl text-sm cursor-pointer'
         onClick={() => {handleOpen(index);}}>
-            <Link to ="/edit-assigned-trip"><BiTimeFive key={index} className='w-8 h-8 text-primaryText ml-2' /></Link>
+            <Link to ={pageName === "AssignDriver" ?  "" : "/edit-assigned-trip"}><BiTimeFive key={index} className='w-8 h-8 text-primaryText ml-2' /></Link>
             <div className='h-[99%] w-48 bg-primary rounded-xl'>
                 <div className="flex justify-between items-center px-3 pt-1">
                   <label htmlFor="" className="text-[10px] text-primaryText flex flex-col items-center">Day <span className='font-bold text-sm text-white'>12 <span className='ml-1 text-primaryText'>-</span></span></label>

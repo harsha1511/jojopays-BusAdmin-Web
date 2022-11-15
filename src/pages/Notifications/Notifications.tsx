@@ -62,7 +62,7 @@ const Notifications = () => {
   }, [showType]);
 
   return (
-    <>
+    <div className="w-[96vw]">
       <section className="bg-secondary h-44 p-4" id="search-and-filter">
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-7">
@@ -138,7 +138,7 @@ const Notifications = () => {
           </div>
         </div>
       </section>
-      <section className="p-4">
+      <section className="p-4 w-[98%]">
         <div className="bg-primary -mt-16 p-3 w-96 rounded-lg mb-2">
           <div className="bg-tertiary  flex items-center justify-center gap-4 p-4 rounded-lg">
             {notificationTypes.map(({ label, value }) => (
@@ -158,7 +158,7 @@ const Notifications = () => {
         {renderNotificationTypes()}
       </section>
       
-    </>
+    </div>
   );
 };
 

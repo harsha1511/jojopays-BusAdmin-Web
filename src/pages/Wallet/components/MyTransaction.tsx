@@ -7,6 +7,8 @@ import {BsFillFileEarmarkWordFill} from 'react-icons/bs'
 import { AiOutlineFilePdf } from "react-icons/ai";
 import { RiFileExcel2Fill } from "react-icons/ri";
 import {TiArrowSortedDown} from "react-icons/ti"
+import {IoIosPeople} from 'react-icons/io'
+import { BsSearch } from "react-icons/bs";
 
 import { TransferList } from "./TransferList";
 
@@ -31,7 +33,7 @@ export const MyTransaction = () => {
   const [sent, setSent] = useState<string>("")
   const [date, setDate] =useState<number>(0)
   const [sort, setSort] =useState<number>(0)
-  const [transferType, setTransferType] = useState<string>("")
+  const [transferType, setTransferType] = useState<string>("all")
 
   const handleOverall = () => {
     setReceived("")
@@ -150,8 +152,34 @@ export const MyTransaction = () => {
             <div className="flex items-center text-primaryText mt-1"><TiArrowSortedDown className="scale-125 rotate-180 mr-1"/><span className="text-sm font-thin">Deposited</span></div>
             <div className="flex items-center text-[#FFC5E2] mt-1"><TiArrowSortedDown className="scale-125 mr-1"/><span className="text-sm font-thin">Withdrawn</span></div>
           </div>
-          <div className="mt-4 ml-3">
+          <div className="mt-4 ml-12 z-10">
             <TransferList type={transferType}/>
+          </div>
+          <div className="flex flex-col items-center w-[400px] bg-quaternary h-[600px] -ml-4 -mt-8">
+            <p className="mt-10 text-greyText tracking-wider">Transaction Between</p>
+            <div className="flex items-center w-[90%] ml-10">
+                <div className="flex justify-center items-center w-14 h-14 rounded-full bg-white">
+                  <IoIosPeople className="text-pinkText/50 w-12 h-12" />
+                </div>
+                <p className="text-primaryText font-semibold text-lg tracking-wide ml-4">All Transactions</p>
+            </div>
+              <div className="flex items-center border-2 border-primaryText my-4 mx-3 rounded-full px-3 w-[80%]">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  className="bg-transparent border-none py-2 px-4 text-white outline-none w-full focus:border-none"
+                />
+                <button className="" type="submit">
+                  <BsSearch className="text-primaryText" />
+                </button>
+              </div>
+              <div className="flex items-center w-[83%]">
+                <img
+                className="w-10 h-10 rounded-full"
+                src="https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8&w=1000&q=80" alt=""
+                />
+                <p className="font-semibold tracking-wide ml-4">Name</p>
+              </div>
           </div>
         </div>
     </div>

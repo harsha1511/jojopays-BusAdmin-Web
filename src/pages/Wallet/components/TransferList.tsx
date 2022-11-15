@@ -17,7 +17,7 @@ interface ListProps {
 export const TransferList = ({type}:TYPPP) => {
     
     const List:ListProps[] = [
-        {name: "jack" , amount: 56 , transcation:"Rec"},
+        {name: "jack" , amount: 56 , transcation:"all"},
         {name: "Mervin" , amount: 52, transcation:"Rec"},
         {name: "Joel" , amount: 33, transcation:"Sent"},
         {name: "Leo" , amount: 5, transcation:"Sent"},

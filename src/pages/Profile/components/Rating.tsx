@@ -16,7 +16,6 @@ export const Rating = ({star, yellow = "#EFFF50" , red = "#1e1e2c"}:RatingProps)
         <div className='flex'>
         {[...Array(5)].map((_,i) => {
           const ratingValue = i;
-          const yellow = "#E0FF40"
           return (
             <div>
                 <AiFillStar  className='sm:text-3xl'  color={ratingValue+1 <= star ? yellow : red }/>
