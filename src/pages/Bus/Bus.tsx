@@ -4,8 +4,20 @@ import BackButton from "../../components/BackButton";
 
 const Bus = () => {
 
-  const Box = [1,2,3,4,6,7,9,10,11,12,13,14,15]
-  const [boxValue, setBoxValue] = useState<number[]>()
+  const Box:number[] = [1,2,3,4,5,6,7,9,10,11,12,13,14,15]
+  const [boxValue, setBoxValue] = useState<number[] | any>()
+
+
+  const AddSeat = (box:any) => {
+    if((i:any) => i !== boxValue){
+      
+      setBoxValue((prevState:number[]) => [...(prevState || []), box])
+    }
+    // console.log(newSeat)
+  }
+
+
+
   return <div>
     <div className="flex flex-col justify-start items-center w-[96vw] h-screen">
       <div className='z-10 flex justify-center items-center w-[600px] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
@@ -26,9 +38,12 @@ const Bus = () => {
               {Box.map((box) => (
                   <div 
                   key={box} 
-                  onClick={() => {
-                      setBoxValue(prevState => [...(prevState || []), box])
-                  }}
+                  // onClick={() => {
+                  //     setBoxValue(prevState => [...(prevState || []), box])
+                  //     console.log(boxValue);
+                      
+                  // }}
+                  onClick={() =>AddSeat(box)}
                   className='w-4 h-4 bg-blueText ml-3 mt-2 rounded-sm'></div>
                   ))}
               </div>

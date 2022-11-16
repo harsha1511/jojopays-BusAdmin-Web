@@ -20,11 +20,11 @@ export const AutoPriceChange = () => {
         {[...Array(showPrice)].map((s, index) => (
             <div className='flex justify-between w-[95%] mt-4 h-24 bg-quaternary rounded-2xl'>
                 <div className='flex items-center h-full w-[65%]'>
-                    <div className='flex flex-col items-center justify-center w-36  h-[80px]  rounded-xl shadow-inner bg-primary ml-8'>
+                    <div className='flex flex-col items-center justify-center w-36  h-[80px]  rounded-xl shadow-inner bg-primary ml-8 my-2'>
                         <input 
                         className='bg-secondary focus:border-none py-1 px-3 rounded-lg drop-shadow-lg' 
                         type="time" name="" id=""
-                        onChange={(e) => handleForm}
+                        onChange={handleForm}
                         />
                         <p className='text-primaryText font-semibold mt-1'>From</p>
                     </div>
