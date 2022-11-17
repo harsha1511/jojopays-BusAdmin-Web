@@ -1,40 +1,36 @@
 import React,{useState} from 'react'
 import {MdClose} from 'react-icons/md'
-import {Dispatch, FunctionComponent} from 'react'
+import {useDispatch, useSelector} from 'react-redux';
+import { closeModal } from '../store/reducers/modal.reducer';
 
 interface CardProps {
     title: string
     isUpdate: boolean
     ifResume: boolean
-    className?: string
     image?: string
-    closeCard: () => void
 }
 
 export const Card = ({
     title = "",
     isUpdate,
     ifResume,
-    className,
     image = "",
-    closeCard
 }:CardProps) => {
 
-    // const [close, setClose] = useState<boolean>(true)
+    const dispatch = useDispatch();
+
 
 
     const styleResume = ifResume ? `h-[480px]` : `h-96`
 
-    // const closeCard = () => {
-    //     setClose(!close)
-    // }
+
 
     return (
-    <div>
+        <div>
         <div className={`${styleResume} relative w-[870px] bg-quaternary rounded-t-2xl`}>
             <div className='absolute flex items-center w-full h-12 bg-primaryText rounded-t-2xl'>
                 <p className='w-full flex justify-center text-xl text-primary font-bold'>{title}</p>
-                < MdClose className='w-8 h-10 mr-4 skew-y-12 text-primary' onClick={closeCard}/>
+                < MdClose className='w-8 h-10 mr-4 skew-y-12 text-primary' onClick={() => {dispatch(closeModal(closeModal))}}/>
             </div>
             {/* Image container */}
             { ifResume ? 
@@ -63,7 +59,6 @@ export const Card = ({
             </button>  : <div></div> 
             }
         </div>
-    </div>
-
+            </div>
            )
 }

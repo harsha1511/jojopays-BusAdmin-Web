@@ -14,6 +14,8 @@ import { EditLogin } from '../components/EditLogin'
 
 
 export const EditProfile= () => {
+
+    const imageRef = useRef<any>()
     
     const defaultFormData = {
       companyName: "",
@@ -29,7 +31,7 @@ export const EditProfile= () => {
   const [picture, setPicture] = useState<FileList | any>();
 
   const uploadImage = (e:React.ChangeEvent<HTMLInputElement>) => {
-      const image= e.target.files
+      const image= e.target.files?.[0]
       setPicture(image)
   }
   console.log(picture);
@@ -62,12 +64,12 @@ export const EditProfile= () => {
     <div className='realtive w-full h-[100vh]'>
 
    <div className="relative w-screen h-[140px] left-[-72px]">
-        <img src="https://wallpaperaccess.com/full/1628619.jpg" alt="" className="absolute w-full h-full object-cover rounded-b-3xl"/>
+        <img src="https://www.worldatlas.com/img/flag/ke-flag.jpg" alt="" className="absolute w-full h-full object-cover rounded-b-3xl"/>
         <div className="absolute w-[100%] h-full bg-tertiary opacity-70 rounded-b-3xl">
         </div>
-            <div className='z-10 absolute flex justify-end w-full'>
+            <div className='absolute flex justify-end w-full'>
             <label htmlFor='imgs'>
-                <input id='imgs' onChange={uploadImage} type="file" className='absolute hidden'/>
+                <input id='imgs' onChange={uploadImage} ref={imageRef}  type="file" accept='images/*' className='absolute hidden'/>
                 <p  className='flex justify-center items-center w-7 h-7 mt-6 mr-10 bg-quaternaryText rounded-full cursor-pointer'><FaPen /></p>
             </label>
             </div>

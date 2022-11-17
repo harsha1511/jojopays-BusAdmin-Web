@@ -1,9 +1,6 @@
-import React,{ useState } from "react";
+import React,{ useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
-
-
-
+import { openModal, closeModal } from "../../store/reducers/modal.reducer";
 
 import EditButton from "../../components/EditButton";
 import { Rating } from "./components/Rating";
@@ -19,29 +16,30 @@ import {GrMail} from "react-icons/gr"
 
 import './profile.css'
 import { Card } from "../../components/Card";
+import { useDispatch, useSelector,RootStateOrAny } from "react-redux";
 
 
 const Profile = () => {
 
   
   const [rating, setRating] = useState(2)
-  
-  const [modal, setModal] = useState(false)
-  const handleModal = () => {
-    setModal(!modal)
-  }
 
-console.log("what to see",modal)
+  const {isOpen} = useSelector((store:RootStateOrAny) => store.modal);
+  const dispatch = useDispatch()
+
+  
+
+// console.log("what to see",modal)
 
   
   return <div className="relative h-screen w-[96vw]">
+      {isOpen &&
+      <div className="z-10 absolute h-full w-full flex justify-center items-center">
+      <div className="absolute h-full w-full" onClick={() => dispatch((closeModal(false)))}></div>
+      <Card isUpdate={false} ifResume={false} title="Company Document" image="" />
+      </div> 
+      }
 {/* Top layer cover profile */}
-  { modal &&
-        <div className="absolute flex items-center justify-center z-30 h-full w-full">
-         <div className="absolute w-full h-full" onClick={()=>setModal(!modal)}></div>
-          <Card title="ID Proof" isUpdate={false} ifResume={false}  closeCard={handleModal} />
-        </div>
-  }
     <div className="relative w-screen h-[140px] left-[-72px]">
       <div>
       <img src="https://wallpaperaccess.com/full/1628619.jpg" alt="" className="absolute w-full h-full object-cover rounded-b-3xl"/>
@@ -93,7 +91,7 @@ console.log("what to see",modal)
         {/* document button */}
         <div className=" flex justify-center flex-row mt-4">
           <p className="p-[6px] px-8 text-[14px] font-semibold shadow-md  text-primaryText rounded-l-full bg-secondary"
-          onClick={handleModal}>Company Document</p>
+          onClick={() => { dispatch(openModal(true))}}>Company Document</p>
           <p className="p-[6px] px-8 text-[14px] font-semibold shadow-md border-l-2 border-quaternary text-primaryText rounded-r-full bg-secondary">Your ID Proof</p>
         </div>
         {/* Bio and other details */}

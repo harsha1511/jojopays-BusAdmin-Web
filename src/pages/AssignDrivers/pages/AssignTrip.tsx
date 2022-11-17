@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 export const AssignTrip = () => {
 
-    const [busName, setBusName] = useState()
+    const [busName, setBusName] = useState("5")
 
     const BusName = [
         {name: "SRV" , pilot: "andrew" , copilot: "sugan"},

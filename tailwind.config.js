@@ -29,6 +29,9 @@ module.exports = {
       },
       screens: {
         "mb" : "500px"
+      },
+      gridColumnEnd: {
+        "15" : "15"
       }
 
     },
