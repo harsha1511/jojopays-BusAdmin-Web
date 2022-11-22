@@ -4,23 +4,22 @@ import BackButton from "../../components/BackButton";
 
 const Bus = () => {
 
-  // const Box:number[] = [1,2,3,4,5,6,7,9,10,11,12,13,14,15]
+  const Box:number[] = [1,2,3,4,5,6,7,9,10,11,12,13,14,15,16]
+  // const box = 
 
 
   const [boxValue, setBoxValue] = useState<number>(15)
   const [add, setAdd] = useState<number[]>([])
 
-  const uniqueIndex:number[] = []
 
 
-  const handleAdd = (index:number) => {   
-    if(add.filter((i:number) => i === index)){
-      setAdd((_add:any) => [..._add, index]);
-    }    
+  const handleAdd = (i:number) => {   
+    // const newArr = add.filter((w:any) => w !== add).setAdd([...add, i])
+    // console.log("hello", newArr);
+    // console.log(a, "aaaa");  
   }
 
   
-  console.log(add, "old")
 
 
 
@@ -43,9 +42,9 @@ const Bus = () => {
             <div className="w-[85%] h-[200px] bg-primary rounded-xl -mt-2 rounded-l-[60px] shadow-inner">
               <div className="flex flex-col items-end ml-24 mt-6">
                   <div className="flex gap-1 mr-4 -mt-2">
-                  {[...Array(boxValue)].map((i, index) => (
+                  {Box.map((i, index) => (
                     <div className='w-4 h-4 bg-greyText ml-3 mt-2 rounded-sm hover:bg-blueText'
-                    onClick={() => handleAdd(index)}>
+                    onClick={() => handleAdd(i)}>
                     </div>
                   ))}
                   </div>

@@ -58,9 +58,9 @@ const AssignDrivers = () => {
               </div>
               {/* toggle button type from 4 types of trip */}
               <div className="mt-2 text-primaryText">
-                <div>
-                  <button className="bg-primary w-36 py-[6px] rounded-l-2xl">Casual Trip</button>
-                  <button className="bg-primary w-36 py-[6px] border-l-2 border-greyText/[.5] rounded-r-2xl">Pre-booked Trip</button>
+                <div className="flex justify-around w-68 py-2 bg-primary rounded-2xl">
+                  <p className="flex justify-center w-[50%] border-r-2 border-greyText">Casual Trip</p>
+                  <p className="flex justify-center w-[50%]">Pre-booked Trip</p>
                 </div>
                 <div className="mt-3">
                   <button className="bg-primary w-36 py-[6px] rounded-l-2xl">One Way Trip</button>
