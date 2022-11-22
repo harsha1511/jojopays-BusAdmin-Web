@@ -1,124 +1,67 @@
-import React from "react";
+import React,{useState} from "react";
 
 import './AssignTask.css'
 import { Link } from "react-router-dom";
 import BackButton from "../../../components/BackButton";
 
+import BusIcon from '../../../assets/images/BusIcon.png';
+
 
 export const AssignTask = () => {
-    return (
 
 
+  const Tasks = [
+    {name: "Assign Drivers"},
+    {name: "Ticket Price"},
+    {name: "Chat"},
+    {name: "Wallet"},
+    {name: "Notification"},
+    {name: "Bus"},
+    {name: "Driver"},
+    {name: "Profile"},
+  ]
 
-    <div className="h-[100%] flex-grid  grid-flow-row w-[100%] p-0">
-      <div className=" flex fixed text-primaryText font-bold z-10  text-4xl ml-[33%] items-center h-[80px] w-[30%] justify-around rounded-b-[40px] bg-[#2F3142] shadow-xl">
-        <h1>Add New Login</h1>
-      </div>
-      <div className='flex justify-center items-center w-[96vw] h-screen'>
-        <div className='flex flex-col items-center w-[1300px] h-[600px] rounded-3xl bg-secondary bg-add-driver-cover bg-cover bg-center bg-no-repeat'>
-            <div className="flex justify-end items-center mt-4 pr-8 w-[100%] h-20">
-                <BackButton />
-            </div>
-      {/* <div className='flex justify-center items-center w-[96vw] h-screen'>
-      <div className='flex  w-[1300px] h-[600px] bg-add-driver-cover bg-secondary rounded-2xl'> */}
-
-
-
-<div className="closediv">
-      <div className="pic">
-        <img  className="pic-img" src="https://images.pexels.com/photos/38554/girl-people-landscape-sun-38554.jpeg?cs=srgb&dl=pexels-pixabay-38554.jpg&fm=jpg" alt="userphoto" />
-        
-
-</div>
-
-<div className="task">
-
-    <div className="from">
-      <div className="task-text">
-
-      <h2>Tasks</h2>
-      </div>
-   
-    
-    <div className="Assign-Drivers">
-    
-   <label >Assign Drivers</label><label className="switch">
-  <input type="checkbox"/>
-  <span className="slider round"></span>
-</label>
-   <br/>
-   </div>
-   <div className="Price">
-   <label >Ticket Price</label><label className="switch">
-  <input type="checkbox"/>
-  <span className="slider round"></span>
-</label>
-   <br/>
-   </div>
-   <div className="Chats">
-   <label >Chats</label><label className="switch">
-  <input type="checkbox"/>
-  <span className="slider round"></span>
-</label>
-   <br/>
-   </div>
-   <div className="Wallet">
-   <label >Wallet</label><label className="switch">
-  <input type="checkbox"/>
-  <span className="slider round"></span>
-</label>
-   <br/>
-   </div>
-   <div className="Notification">
-   <label >Notification</label><label className="switch">
-  <input type="checkbox"/>
-  <span className="slider round"></span>
-</label>
-   <br/>
-   </div>
-   <div className="Bus">
-   
-   <label>Bus</label><label className="switch">
-  <input type="checkbox"/>
-  <span className="slider round"></span>
-  </label>
-  <br/>
-   </div>
-   <div className="Drivers">
-   <label >Drivers</label><label className="switch">
-  <input type="checkbox"/>
-  <span className="slider round"></span>
-  </label>
-  <br/>
-  </div>
-   <div className="profi">
-   <label >profile</label><label className="switch">
-  <input type="checkbox"/>
-  <span className="slider round"></span>
-  </label>
-  <br/>
-  </div>
-
-
+  const [addTask, setAddTask] = useState<string | number>()
+  console.log(addTask);
   
-                 </div>
-              <div className="aaa">
-    < Link to ="/create-login">
-              <button className=" text-white ml-[880px] -mt-14  mr-[5px] bg-primaryText text-primaryText font-bold w-[140px] py-2 px-4 rounded-full">
-                    Next
-                  </button>
-                  </Link>
-                 
-                 </div>
-                 </div>
-                 </div>
-                 
-                 </div>
-                 
-                 </div>
-                
-                 </div>
-
+    return (
+      <div>
+          <div className="flex flex-col items-center w-[96vw] h-screen">
+            <div className="flex justify-around w-full h-32 bg-secondary rounded-br-2xl drop-shadow-xl z-10">
+              <div className="flex flex-col justify-center items-center w-40 mt-24">
+                <img 
+                className="w-28 h-28 rounded-full"
+                src="https://images.pexels.com/photos/38554/girl-people-landscape-sun-38554.jpeg?cs=srgb&dl=pexels-pixabay-38554.jpg&fm=jpg"
+                alt="" />
+                <p className="mt-2 text-greyText">Eric</p>
+              </div>
+              <div className="flex justify-center items-center h-[80px] w-[30%] rounded-b-[40px] bg-[#2F3142] drop-shadow-xl">
+                <p className="text-4xl text-primaryText font-bold tracking-widest">Add New Login</p>
+              </div>
+              <div className="mt-16">
+                <BackButton />
+              </div>
+            </div>
+              <div className="relative flex justify-center items-center  w-[1300px] h-[600px] bg-secondary -mt-20 rounded-b-2xl">
+                <div className="absolute">
+                  <img src={BusIcon} alt="" className="w-96 h-[450px]" />
+                </div>
+                <div className="flex flex-col items-center justify-center w-80 h-[420px] mt-4 z-10">
+                  <p className="text-2xl font-semibold tracking-wider mb-4">Task</p>
+                  <form action="">
+                    {Tasks.map(({name}, index) => (
+                      <div className="flex items-center mb-4">
+                        <label htmlFor="" className="flex justify-end  w-36 text-xl text-primaryText font-semibold">{name}</label>
+                        <div className="w-10 h-4 bg-pinkText ml-4"
+                        onClick={() => setAddTask(name)}></div>
+                      </div>
+                    ))
+                    }
+                  </form>
+                </div>
+              </div>
+          </div>
+      </div>
   );
 }
 
