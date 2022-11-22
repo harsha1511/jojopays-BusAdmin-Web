@@ -15,7 +15,7 @@ import { TransferList } from "./TransferList";
 
 export const MyTransaction = () => {
 
-     const ReceivedFilter = [
+  const ReceivedFilter = [
     {label: "All", value: "All"},
     {label: "From Jojopay", value: "From Jojopay"},
     {label: "Other", value: "Other"},
@@ -32,8 +32,11 @@ export const MyTransaction = () => {
   const [received, setReceived] = useState<string>("")
   const [sent, setSent] = useState<string>("")
   const [date, setDate] =useState<number>(0)
-  const [sort, setSort] =useState<number>(0)
+  const [sort, setSort] =useState<number>(1)
   const [transferType, setTransferType] = useState<string>("all")
+  const [dateFilter, setDateFilter] = useState()
+
+  console.log("REC", received)
 
   const handleOverall = () => {
     setReceived("")
@@ -112,11 +115,13 @@ export const MyTransaction = () => {
             </div>     
             <div onClick={() => setDate(1)}>
                 <label className="relative font-semibold text-lg text-greyText pl-4">From:
-                  <input type="date"  className="datepicker-input bg-primary ml-4 px-2 py-2 text-sm rounded focus:border-none" />
+                  <input type="date"  className="pl-2 bg-primary ml-4 p-1 rounded-lg w-[150px] cursor-pointer"
+                   />
                 </label>
                 <div className="w-[80%] h-[1px] my-3 ml-6 bg-greyText/50"></div>
                 <label className="relative font-semibold text-lg text-greyText pl-4">To:
-                  <input type="date"  className="datepicker-input bg-primary ml-4 px-2 py-2 text-sm rounded focus:border-none" />
+                  <input type="date"  className="pl-2 bg-primary ml-4 p-1 rounded-lg w-[150px] cursor-pointer"
+                  onChange={(e:any) => setDateFilter(e.target.value)} />
                 </label>
             </div>
           </div>
@@ -152,7 +157,7 @@ export const MyTransaction = () => {
             <div className="flex items-center text-primaryText mt-1"><TiArrowSortedDown className="scale-125 rotate-180 mr-1"/><span className="text-sm font-thin">Deposited</span></div>
             <div className="flex items-center text-[#FFC5E2] mt-1"><TiArrowSortedDown className="scale-125 mr-1"/><span className="text-sm font-thin">Withdrawn</span></div>
           </div>
-          <div className="mt-4 ml-12 z-10">
+          <div className=" flex mt-4 ml-12 z-10">
             <TransferList type={transferType}/>
           </div>
           <div className="flex flex-col items-center w-[400px] bg-quaternary h-[600px] -ml-4 -mt-8">

@@ -8,12 +8,19 @@ const Bus = () => {
 
 
   const [boxValue, setBoxValue] = useState<number>(15)
-  const [add, setAdd] = useState([])
+  const [add, setAdd] = useState<number[]>([])
 
-  const AddSeat = (index:any) => {
-    // setAdd([...add], index)
+  const uniqueIndex:number[] = []
+
+
+  const handleAdd = (index:number) => {   
+    if(add.filter((i:number) => i === index)){
+      setAdd((_add:any) => [..._add, index]);
+    }    
   }
-  console.log(add)
+
+  
+  console.log(add, "old")
 
 
 
@@ -35,54 +42,13 @@ const Bus = () => {
             </div>
             <div className="w-[85%] h-[200px] bg-primary rounded-xl -mt-2 rounded-l-[60px] shadow-inner">
               <div className="flex flex-col items-end ml-24 mt-6">
-              {/* {Box.map((box) => (
-                  <div 
-                  key={box} 
-                  onClick={() =>AddSeat(box)}
-                  className='w-4 h-4 bg-blueText ml-3 mt-2 rounded-sm'></div>
-                  ))} */}
                   <div className="flex gap-1 mr-4 -mt-2">
                   {[...Array(boxValue)].map((i, index) => (
-                    <div className='w-4 h-4 bg-blueText ml-3 mt-2 rounded-sm'
-                    onClick={() =>AddSeat(index)}>
+                    <div className='w-4 h-4 bg-greyText ml-3 mt-2 rounded-sm hover:bg-blueText'
+                    onClick={() => handleAdd(index)}>
                     </div>
                   ))}
                   </div>
-                  <div className="flex gap-1 mr-4 mt-1">
-                  {[...Array(boxValue)].map((i, index) => (
-                    <div className='w-4 h-4 bg-blueText ml-3 mt-2 rounded-sm'
-                    onClick={() => console.log(index)}>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex gap-1 mr-4 mt-1">
-                  {[...Array(boxValue)].map((i, index) => (
-                    <div className='w-4 h-4 bg-blueText ml-3 mt-2 rounded-sm'
-                    onClick={() => console.log(index)}>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex gap-1 mr-4 mt-1">
-                  {[...Array(boxValue)].map((i, index) => (
-                    <div className='w-4 h-4 bg-blueText ml-3 mt-2 rounded-sm'
-                    onClick={() => console.log(index)}>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex gap-1 mr-4 mt-1">
-                  {[...Array(boxValue)].map((i, index) => (
-                    <div className='w-4 h-4 bg-blueText ml-3 mt-2 rounded-sm'
-                    onClick={() => console.log(index)}>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex gap-1 mr-4 mt-1">
-                  {[...Array(boxValue)].map((i, index) => (
-                    <div className='w-4 h-4 bg-blueText ml-3 mt-2 rounded-sm'
-                    onClick={() => console.log(index)}>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
             <div className="flex justify-around items-center h-10 -mt-2 w-full">

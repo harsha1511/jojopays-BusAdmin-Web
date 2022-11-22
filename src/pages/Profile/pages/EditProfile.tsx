@@ -1,4 +1,6 @@
 import React, {useState, useRef} from 'react'
+import axios from 'axios';
+
 
 import { FaPen } from "react-icons/fa"
 import { FaPhoneAlt } from "react-icons/fa"
@@ -37,7 +39,7 @@ export const EditProfile= () => {
   console.log(picture);
   
   
- const [formData, setFormData] = useState(defaultFormData);
+ const [formData, setFormData] = useState<any>(defaultFormData);
   const { companyName,
     ownerName,
     bio,
@@ -47,19 +49,28 @@ export const EditProfile= () => {
     mail,
     Personalmail, } = formData;
 
+//    const Data:any = {
+//     refID:"hii",
+//     Name:"Harsha"
+//    }
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((prevState) => ({
+    setFormData((prevState:any) => ({
       ...prevState,
       [e.target.id]: e.target.value,
     }));
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit =async  (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
     setFormData(defaultFormData);
-  };
+    const result = await axios.post("http://192.168.1.18:80/2", formData);
+    console.log(result, "respppppp");   
+};
 
+
+
+console.log("data",formData);
   return (
     <div className='realtive w-full h-[100vh]'>
 

@@ -231,7 +231,7 @@ input[type="range"]:focus::-moz-range-thumb {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 25px;
   padding: 5px;
   font-size: 16px;
   font-weight: bolder;
@@ -285,7 +285,7 @@ input[type="range"]:focus::-moz-range-thumb {
   cursor: context-menu;
 }
 
-.react-calendar__tile--now {
+.react-calendar__tile--active {
   width: 25px;
   height: 40px;
   border-radius: 90%;

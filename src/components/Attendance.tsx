@@ -12,17 +12,12 @@ interface AttendanceProps {
 
 export const Attendance = ({isDownload}:AttendanceProps) => {
 
-// const datesToAddClassTo = [tomorrow, in3Days, in5Days];
+  const [state , setState ]= useState({
+    date: [new Date(2022,11,24),
+    new Date(2022,11,14)],
+  })
+  const dateChange = (date:any) => setState({date})
 
-// function tileClassName({ date, view }:Dateprops) {
-//   // Add class to tiles in month view only
-//   if (view === 'month') {
-//     // Check if a date React-Calendar wants to check is on the list of dates to add class to
-//     if (datesToAddClassTo.find(dDate => isSameDay(dDate, date))) {
-//       return 'myClassName';
-//     }
-//   }
-// }
 
   return (<div>
     <div className='realtive flex flex-col items-center bg-quaternary -mt-4 mr-4 pl-2 rounded-2xl drop-shadow-2xl'>
@@ -47,7 +42,9 @@ export const Attendance = ({isDownload}:AttendanceProps) => {
         </div>
         <div className='w-[80%] pt-2 pb-2 mr-2'>
           <Calendar className={['c1','c2']}
-          selectRange={true}
+          selectRange={false}
+          onChange={dateChange}
+          defaultValue={state.date}
           />
         </div>
     </div>

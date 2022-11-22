@@ -41,7 +41,7 @@ export const StaffProfile = () => {
   
   const GetData = async (e:any) => {
     e.preventDefault();
-    const result = await axios.get("http://192.168.1.11:80/");
+    const result = await axios.get("http://192.168.1.18:80");
     setStaffId(result.data)
     console.log(staffId);
   }

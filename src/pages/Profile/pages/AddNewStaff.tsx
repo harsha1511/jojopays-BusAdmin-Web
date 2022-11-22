@@ -45,7 +45,7 @@ export const AddNewStaff=()=> {
         </label> <label> Address: <input type="text"
         name="emailid"
         className="ml-3 w-[80%] p-[5px] appearance-none bg-transparent leading-tight focus:outline-none focus:line focus:border-border-blue-500  text-white border-none"/> 
-        {" "}
+        {" "} 
         </label> <div className="aa" > <label className="dob" > DOB: <input type="date" className="birthday" name="birthday" ></input> </label> </div> <div className="line" >
              <div className=" grid grid-flow-col " > 
              <label className="add-name" >Add Photo: 

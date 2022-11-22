@@ -1,6 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
+import { openModal, closeModal } from '../../../store/reducers/modal.reducer'
 
 import {TiArrowSortedDown} from "react-icons/ti"
+import { TransferDetails } from './TransferDetails'
+import axios from 'axios'
+import  constants  from '../../../API/constants'
 
 interface TYPPP {
     type: string
@@ -27,34 +32,56 @@ export const TransferList = ({type}:TYPPP) => {
         {name: "Oscar" , amount: 44, transcation:"Rec"},
     ]
 
+    const {isOpen} = useSelector((store:RootStateOrAny) => store.modal);
+    const dispatch = useDispatch()
 
-    const [typee, setTypee] = useState(type)
+    const [details, setDetails] = useState<any>({
+        List,
+        activeList: null,
+    })
+    const [names, setName] = useState<any>()
+
+    useEffect(() => {
+        const getNames = async () => {
+            const response = await axios.get('http://192.168.1.17:80');
+            console.log(response.data, "OBJECTTTT")
+            setName(response.data)
+        };
+        getNames()
+    }, []);
+    console.log(names?.map((i:any) => (i.image)),"namesss");
+    
 
   return (
     <div>
-        <div className='w-[510px] h-[480px] bg-secondary rounded-2xl overflow-y-auto overflow-x-hidden'>
-            {List.map(({name, amount, transcation}) => {
-                return transcation === type ? (
-                <div className='flex justify-between items-center mt-6 ml-6'>
+        <div className='z-10 w-[510px] h-[468px] bg-secondary rounded-2xl overflow-y-auto overflow-x-hidden'>
+                {names?.map((data:any) => (
+
+                    <div className='flex justify-between items-center mt-6 ml-6'>
                 <div className='flex items-center'>
-                    <img src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                    <img src={data.image}
                     alt=""
-                    className='w-12 h-12 rounded-full' />
+                    className='w-12 h-12 rounded-full'
+                    onClick={
+                        () =>dispatch(isOpen(true))}
+                        />
                     <div className='w-32'>
-                    <p className='pl-3 tracking-wide font-semibold'>{name}</p>
-                    <p className='pl-3 -mt-1 font-thin text-greyText'>Food</p>
+                    <p className='pl-3 tracking-wide font-semibold'>{data.Name}</p>
+                    <p className='pl-3 -mt-1 font-thin text-greyText'>{data.from}</p>
                     </div>
                 </div>
-                <div className={`mr-10 flex ${transcation === "Rec" ? "text-quaternaryText" : "text-redText"} `}>
-                    <p className='text-2xl'>{amount}$</p>
+                <div className={`mr-10 flex ${data.status === "true" ? "text-quaternaryText" : "text-redText"} `}>
+                    <p className='text-2xl'>{data.time}$</p>
                     <TiArrowSortedDown />
                 </div>
                 <div className='text-greyText mr-6'>
                     <p>20.11.2022</p>
                     <p>12.55 pm</p>
                 </div>
-            </div> ) : ("") }
-            )}
+                </div>
+                    ))}
+            {/* // </div> ) : ("") } */}
+             {/* )} */}
         </div>
     </div>
   )
