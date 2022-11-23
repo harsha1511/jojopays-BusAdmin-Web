@@ -49,10 +49,6 @@ export const EditProfile= () => {
     mail,
     Personalmail, } = formData;
 
-//    const Data:any = {
-//     refID:"hii",
-//     Name:"Harsha"
-//    }
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prevState:any) => ({
@@ -64,8 +60,8 @@ export const EditProfile= () => {
   const onSubmit =async  (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormData(defaultFormData);
-    const result = await axios.post("http://192.168.1.18:80/2", formData);
-    console.log(result, "respppppp");   
+    // const result = await axios.post("http://192.168.1.18:80/2", formData);
+    // console.log(result, "respppppp");   
 };
 
 

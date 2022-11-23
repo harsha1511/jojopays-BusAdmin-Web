@@ -5,24 +5,40 @@ import { Link } from "react-router-dom";
 import BackButton from "../../../components/BackButton";
 
 import BusIcon from '../../../assets/images/BusIcon.png';
+import { ToggleButton } from "../../../components/ToggleButton";
 
 
 export const AssignTask = () => {
 
 
-  const Tasks = [
-    {name: "Assign Drivers"},
-    {name: "Ticket Price"},
-    {name: "Chat"},
-    {name: "Wallet"},
-    {name: "Notification"},
-    {name: "Bus"},
-    {name: "Driver"},
-    {name: "Profile"},
+  interface TaskProps {
+    name: string
+    id: number
+  }
+
+  const Tasks:TaskProps[] = [
+    {name: "Assign Drivers", id: 1},
+    {name: "Ticket Price", id: 2},
+    {name: "Chat", id: 3},
+    {name: "Wallet", id: 4},
+    {name: "Notification", id: 5},
+    {name: "Bus", id: 6},
+    {name: "Driver", id: 7},
+    {name: "Profile", id: 8},
   ]
 
-  const [addTask, setAddTask] = useState<string | number>()
+  const [addTask, setAddTask] = useState<string[]>([])
   console.log(addTask);
+
+  const handleTask = (name:string) => {
+    if(addTask.includes(name)){
+      setAddTask(addTask.filter((n:string) => n !== name))
+    }else {
+      setAddTask(addTask => [...addTask, name])
+    }
+  }
+
+  console.log("task assigned", addTask)
   
     return (
       <div>
@@ -44,21 +60,23 @@ export const AssignTask = () => {
             </div>
               <div className="relative flex justify-center items-center  w-[1300px] h-[600px] bg-secondary -mt-20 rounded-b-2xl">
                 <div className="absolute">
-                  <img src={BusIcon} alt="" className="w-96 h-[450px]" />
+                  <img src={BusIcon} alt="" className="w-96 h-[450px] mt-10" />
                 </div>
-                <div className="flex flex-col items-center justify-center w-80 h-[420px] mt-4 z-10">
-                  <p className="text-2xl font-semibold tracking-wider mb-4">Task</p>
-                  <form action="">
-                    {Tasks.map(({name}, index) => (
-                      <div className="flex items-center mb-4">
+                <form action="" className="flex flex-col items-center z-10 w-full">
+                <div className="flex flex-col items-center justify-center w-80 h-[420px] mt-4">
+                  <p className="text-2xl font-semibold tracking-wider mb-4 mt-6">Task</p>
+                    {Tasks.map(({name, id}, index) => (
+                      <div className="flex items-center justify-center mb-4">
                         <label htmlFor="" className="flex justify-end  w-36 text-xl text-primaryText font-semibold">{name}</label>
-                        <div className="w-10 h-4 bg-pinkText ml-4"
-                        onClick={() => setAddTask(name)}></div>
+                        <ToggleButton className="ml-8 mt-1" isBig={true} ToggleSwitch={() => handleTask(name)} />
                       </div>
                     ))
                     }
-                  </form>
                 </div>
+                <div className="flex justify-end w-full">
+                  <Link to={'/create-login'} className=" bg-primaryText -mb-4 mr-40 px-8 py-2 rounded-3xl text-xl font-semibold" >Next</Link>
+                </div>
+                </form>
               </div>
           </div>
       </div>

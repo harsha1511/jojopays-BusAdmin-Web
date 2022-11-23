@@ -1,26 +1,77 @@
 import React,{useState} from "react";
 import BackButton from "../../components/BackButton";
+import axios from 'axios'
 
 
 const Bus = () => {
 
   const Box:number[] = [1,2,3,4,5,6,7,9,10,11,12,13,14,15,16]
-  // const box = 
+  const SeatClass = [
+    {name: "Normal"},
+    {name: "VIP"},
+  ]
 
 
   const [boxValue, setBoxValue] = useState<number>(15)
   const [add, setAdd] = useState<number[]>([])
+  const [addVip, setAddVip] = useState<number[]>([])
 
-
-
-  const handleAdd = (i:number) => {   
-    // const newArr = add.filter((w:any) => w !== add).setAdd([...add, i])
-    // console.log("hello", newArr);
-    // console.log(a, "aaaa");  
-  }
+  const [type, setType] = useState<string>("Normal")
 
   
+  
 
+  const Conrtol = (i:any) => {
+    switch(type){
+      case "Normal":
+        return handleAdd(i);
+      case "VIP":
+        return handleNewAdd(i);
+    }
+  }
+
+  const handleAdd = (i:any) => {
+        if(add?.includes(i) || addVip?.includes(i)){
+          setAdd(add.filter((w:any) => w !== i ))
+        } else{
+          setAdd(add => [...add, i])
+        };
+  }
+
+  const handleNewAdd = (i:any) => {
+      if(addVip.includes(i) || add.includes(i)){
+        setAddVip(addVip.filter((b:any) => b !== i ))
+        } else{
+          setAddVip(addVip => [...addVip, i])
+        };
+      } 
+      
+  const busSeats = {
+    normalSeats: add,
+    VIPSeats: addVip
+  }
+    
+  console.log("ADDED BUSES", busSeats);
+    
+  const send =async () => {
+    const resp = await axios.post('http://192.168.1.11:80/summa', busSeats);
+    console.log(resp.status);
+    
+  }
+  
+  
+
+  const changeColor = (i:any, type:any) => {
+    let backgroundColor = ""
+    switch(type){
+      case "Normal":
+        return backgroundColor = (add.includes(i) ? "bg-primaryText" : addVip.includes(i) ? "bg-yellowText" : "bg-greyText hover:bg-primaryText");
+      case "VIP":
+        return backgroundColor = (addVip.includes(i) ? "bg-yellowText" : add.includes(i) ? "bg-primaryText" : "bg-greyText hover:bg-yellowText");
+        // default:
+          // return backgroundColor = "bg-greyText";
+    }
+  }
 
 
 
@@ -34,8 +85,16 @@ const Bus = () => {
           <BackButton />
         </div>
         <div className="flex flex-col items-center w-[700px] h-96 mt-8">
-            <p className="text-primaryText pt-4 font-semibold">Select Seating Arrangement</p>
-            <div className="flex justify-around items-center h-10 mt-8 w-full">
+            <p className="text-primaryText pt-4 font-semibold" onClick={send}>Select Seating Arrangement</p>
+            <div className="flex justify-around w-40 rounded-3xl bg-primary py-2 mt-4">
+              {SeatClass.map(({name}) => (
+                <p className={`flex justify-center w-[50%] font-semibold cursor-pointer ${type === name ? "text-primaryText" : ""}`}
+                onClick={() =>setType(name)}>
+                  {name}
+                </p>
+              ))}
+            </div>
+            <div className="flex justify-around items-center h-10 mt-4 w-full">
                 <div className="w-10 h-3 rounded-3xl bg-primary"></div>
                 <div className="w-10 h-3 rounded-3xl bg-primary"></div>
             </div>
@@ -43,8 +102,8 @@ const Bus = () => {
               <div className="flex flex-col items-end ml-24 mt-6">
                   <div className="flex gap-1 mr-4 -mt-2">
                   {Box.map((i, index) => (
-                    <div className='w-4 h-4 bg-greyText ml-3 mt-2 rounded-sm hover:bg-blueText'
-                    onClick={() => handleAdd(i)}>
+                    <div className={`w-4 h-4 ${changeColor(i,type)} ml-3 mt-2 rounded-sm`}
+                      onClick={() => Conrtol(i)}>
                     </div>
                   ))}
                   </div>

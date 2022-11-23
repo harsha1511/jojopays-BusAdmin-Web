@@ -7,7 +7,7 @@ import ActiveLink from "./ActiveLink";
 const Sidebar = () => {
   return (
     <nav className="z-10 h-[100vh] hover:h-[100vh] flex-4 w-[72px] group pt-8 hover:w-60 hover:fixed hover:top-0 hover:left-0 hover:z-20 bg-primary transition-all hover:duration-500 shadow-lg shadow-slate-900">
-      <div className="h-20 flex justify-center flex-col items-center ">
+      <div className="h-20 flex justify-center flex-col items-center">
         <img
           src={logo}
           alt="JoJoPay Logo"
