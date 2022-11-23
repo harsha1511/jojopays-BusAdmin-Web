@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const Bus = () => {
 
-  const Box:number[] = [1,2,3,4,5,6,7,9,10,11,12,13,14,15,16]
+  const Box:number[] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
   const SeatClass = [
     {name: "Normal"},
     {name: "VIP"},
@@ -68,8 +68,6 @@ const Bus = () => {
         return backgroundColor = (add.includes(i) ? "bg-primaryText" : addVip.includes(i) ? "bg-yellowText" : "bg-greyText hover:bg-primaryText");
       case "VIP":
         return backgroundColor = (addVip.includes(i) ? "bg-yellowText" : add.includes(i) ? "bg-primaryText" : "bg-greyText hover:bg-yellowText");
-        // default:
-          // return backgroundColor = "bg-greyText";
     }
   }
 
