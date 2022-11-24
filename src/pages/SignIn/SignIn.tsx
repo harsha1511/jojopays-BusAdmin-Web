@@ -9,9 +9,10 @@ import Button from "../../components/Button";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { LOGIN_SUCCESS } from "../../store/reducers/auth.reducer";
+import axios from "axios";
 
 const validationSchema = yup.object().shape({
-  userId: yup.string().label("user id"),
+  userId: yup.string().required("enter a name").label("user id"),
   // .required("User ID is required"),
   password: yup.string().label("Password"),
   // .required("Password is required"),
@@ -36,9 +37,12 @@ const SignIn = () => {
 
   const handleSubmit = async (values: SignInProps) => {
     setIsLoading(true);
-    dispatch(LOGIN_SUCCESS({ name: "demo", password: "demo" }));
+    // const Login = await axios.post("http://192.168.1.17:80/login", values)
+    dispatch(LOGIN_SUCCESS(values));
     setIsLoading(false);
   };
+
+  
   return (
     <div className="bg-white w-screen h-screen bg-signin-cover bg-right bg-cover bg-no-repeat flex items-center justify-center">
       <div className="w-2/3 h-[500px] shadow rounded-xl grid grid-cols-2 overflow-hidden">

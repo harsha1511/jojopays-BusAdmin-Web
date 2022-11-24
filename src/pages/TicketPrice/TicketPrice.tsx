@@ -10,6 +10,7 @@ const TicketPrice = () => {
     {name: "Auto Price-Routes"},
     {name: "Custom Price"}
   ]
+ 
   const [ticketFilter, setTicketFIlter] = useState("Auto Price Change")
 
   const renderTicketPrice = useCallback(() => {
@@ -28,29 +29,6 @@ const TicketPrice = () => {
     <div className="flex w-[96vw] h-screen">
       <div className="flex flex-col items-center w-[73%] h-full">
         <div className="flex mt-10 w-[94%] h-40">
-          <div className="w-[63%] border-t-[1px] border-greyText/50">
-            <p className="text-2xl text-primaryText font-bold pt-4">Manual Overwrite</p>
-            <div className="flex justify-around w-full h-28 pt-3">
-              <div className="flex flex-col items-center w-[20%]">
-                <div className="flex justify-center items-center w-full h-16 bg-secondary rounded-xl">
-                  <input type="number" className="pl-4 w-[90%] h-10 bg-primary rounded-lg drop-shadow-lg focus:border-none" name="" id="" />
-                </div>
-                <p className="text-primaryText">Ticket / Km</p>
-              </div>
-              <div className="flex flex-col items-center w-[20%]">
-                <div className="flex justify-center items-center w-full h-16 bg-secondary rounded-xl">
-                  <input type="time" className="pl-4 w-[90%] h-10 bg-primary rounded-lg drop-shadow-lg focus:border-none" name="" id="" />
-                </div>
-                <p className="text-primaryText">From</p>
-              </div>
-              <div className="flex flex-col items-center w-[20%]">
-                <div className="flex justify-center items-center w-full h-16 bg-secondary rounded-xl">
-                  <input type="time" className="pl-4 w-[90%] h-10 bg-primary rounded-lg drop-shadow-lg focus:border-none" name="" id="" />
-                </div>
-                <p className="text-primaryText">To</p>
-              </div>
-            </div>
-          </div>
           <div className="w-[37%] border-t-[1px] border-l-[1px] border-greyText/50">
             <p className="text-2xl text-primaryText font-bold pt-4 pl-4">Default Price</p>
             <p className="flex justify-center items-center mt-4 ml-4 w-32 h-12 bg-quaternary rounded-xl text-xl font-bold">5.00 $</p>

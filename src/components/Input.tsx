@@ -12,17 +12,23 @@ interface InputProps {
   labelClassName?: string;
   inputContainerClassName?: string;
   checked?: boolean;
+  accept?: string;
+  readonly?: boolean
+  value?: string
 }
 
 const Input = ({
   type,
   name,
+  accept,
   placeholder,
   className = "",
   label = "",
   labelClassName = "",
   inputContainerClassName = "",
   checked,
+  readonly,
+  value,
 }: InputProps) => {
   const {
     errors,
@@ -38,12 +44,14 @@ const Input = ({
         <input
           type={type}
           name={name}
+          accept={accept}
           placeholder={placeholder}
           value={values[name]}
           onChange={handleChange}
           onBlur={handleBlur}
           className={`rounded-full px-4 py-2 ${className}`}
           checked={checked}
+          readOnly={readonly}
         />
         {label && <label className={labelClassName}>{label}</label>}
       </div>

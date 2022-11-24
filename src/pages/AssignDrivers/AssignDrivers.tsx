@@ -34,37 +34,36 @@ const AssignDrivers = () => {
             <div className="w-48 -mt-2 h-[1px] ml-2 bg-greyText"></div>
             <div className="flex justify-around">
             {/* Date */}
-              <div className="w-72 h-[105px] mt-2 bg-primary rounded-2xl">
-                <div className="h-6 flex justify-between items-center px-3 pt-1">
-                  <label htmlFor="" className="text-sm text-primaryText">Day</label>
-                  <label htmlFor="" className="text-sm text-primaryText">Month</label>
-                  <label htmlFor="" className="text-sm text-primaryText">Year</label>
-                  <label htmlFor="" className="text-sm text-primaryText">hours</label>
-                  <label htmlFor="" className="text-sm text-primaryText">Min</label>
-                </div>
-                <div className="pt-2 px-3">
-                <input type="date" className="bg-primary text-white w-40 tracking-wider" id="assignDriver"/>
-                <input type="time" className="bg-primary ml-6 w-[80px] " id="assignDriver" />
-                <input type="date" className="bg-primary text-white w-40" id="assignDriver"/>
-                <input type="time" className="bg-primary ml-6 w-[80px]" id="assignDriver"/>
+              <div className="w-80 h-[105px] mt-2 bg-primary rounded-2xl">
+                <div className="pt-2 px-3 mt-1">
+                  <div className="flex items-center">
+                    <p className="text-primaryText w-10">From</p>
+                    <input type="date" className="pl-2 bg-tertiary ml-4 p-1 rounded-lg w-[150px] cursor-text focus:border-0 text-white" name="" id="" />
+                    <input type="time" className="pl-2 bg-tertiary ml-4 p-1 rounded-lg w-[120px] cursor-text focus:border-0" name="" id="" />
+                  </div>
+                  <div className="flex items-center mt-3">
+                    <p className="text-primaryText w-10">To</p>
+                    <input type="date" className="pl-2 bg-tertiary ml-4 p-1 rounded-lg w-[150px] cursor-text focus:border-0 text-white" name="" id="" />
+                    <input type="time" className="pl-2 bg-tertiary ml-4 p-1 rounded-lg w-[120px] cursor-text focus:border-0" name="" id="" />
+                  </div>
                 </div>
               </div>
               {/* from to point */}
               <div className="mt-4">
                 <div><label htmlFor="" className="text-primaryText font-semibold">Point 1</label>
-                <input type="text" className="bg-primary p-1 ml-2 w-40 rounded-lg drop-shadow-md focus:border-0 pl-2" /></div>
+                <input type="text" className="bg-primary p-1 ml-2 w-40 rounded-lg drop-shadow-md focus:border-0 pl-4" /></div>
                 <div className="mt-4"><label htmlFor="" className="text-primaryText font-semibold">Point 2</label>
-                <input type="text" className="bg-primary p-1 ml-2 w-40 rounded-lg drop-shadow-md focus:border-0 pl-2" /></div>
+                <input type="text" className="bg-primary p-1 ml-2 w-40 rounded-lg drop-shadow-md focus:border-0 pl-4" /></div>
               </div>
               {/* toggle button type from 4 types of trip */}
-              <div className="mt-2 text-primaryText">
+              <div className="w-72 mt-2 text-primaryText cursor-pointer">
                 <div className="flex justify-around w-68 py-2 bg-primary rounded-2xl">
-                  <p className="flex justify-center w-[50%] border-r-2 border-greyText">Casual Trip</p>
+                  <p className="flex justify-center w-[50%] border-r-2 border-greyText/50">Casual Trip</p>
                   <p className="flex justify-center w-[50%]">Pre-booked Trip</p>
                 </div>
-                <div className="mt-3">
-                  <button className="bg-primary w-36 py-[6px] rounded-l-2xl">One Way Trip</button>
-                  <button className="bg-primary w-36 py-[6px] border-l-2 border-greyText/[0.5] rounded-r-2xl">Round Trip</button>
+                 <div className="flex justify-around w-68 py-2 bg-primary rounded-2xl mt-3 cursor-pointer">
+                  <p className="flex justify-center w-[50%] border-r-2 border-greyText/50">One way Trip</p>
+                  <p className="flex justify-center w-[50%]">Round Trip</p>
                 </div>
               </div>
             </div>

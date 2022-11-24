@@ -1,127 +1,300 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
+import axios from "axios";
 
 import logo from "../../assets/images/logo.svg";
 import heroImage from "../../assets/images/signup-hero-image.png";
 import Button from "../../components/Button";
 import CustomForm from "../../components/Form";
 import Input from "../../components/Input";
+import { useDispatch } from "react-redux";
+import { LOGIN_SUCCESS } from "../../store/reducers/auth.reducer";
+
+import {BiUpload} from 'react-icons/bi'
 
 const validationSchema = yup.object().shape({
-  name: yup.string().required("Name is required").label("Name"),
-  companyName: yup
+  ownerName: yup
     .string()
-    .required("Company name is required")
+    .required("Owner name is required")
     .label("Company Name"),
-  phoneNumber: yup
+  ownerAddress: yup
     .string()
-    .required("Phone number is required")
-    .label("Phone Number"),
-  email: yup
+    .required("Owner Address is required")
+    .label("Owner Address"),
+  ownerPhone: yup 
     .string()
-    .email("Please enter valid email address")
-    .required("Email address is required")
-    .label("Email Address"),
+    .required("Owner Phone Number is required")
+    .label("Owner Phone"),
+  ownerMail: yup
+    .string()
+    .required("Owner Mail Id is required")
+    .label("Owner Mail"),
+  companyName: yup  
+    .string()
+    .required("Company Name is required")
+    .label("Company Name"),
+  companyAddress: yup
+    .string()
+    .required("Company Address is required")
+    .label("Company Address"),
+  companyPhone: yup 
+    .string()
+    .required("Company Phone Number is required")
+    .label("Company Phone"),
+  companyMail: yup
+    .string()
+    .required("Company Mail Id is required")
+    .label("Company Mail"),
+  companyBio: yup
+    .string()
+    .required("Company Bio is required")
+    .label("Company Bio"),
+  companyDocument: yup
+    .string()
+    .required("Company Documeent is required")
+    .label("Company Document"),
+  ownerIdProof: yup
+    .string()
+    .required("Owner Id Proof is required")
+    .label("Owner Id Proof")
 });
 
+const validateUser = yup.object().shape({
+  password: yup
+    .string()
+    .required("Enter Password").label("password"),
+  confirmPassword: yup
+    .string()
+    .required("Please type password once again")
+
+})
+
 interface SignUpProps {
-  name: string;
+  ownerName: string;
+  ownerAddress:string;
+  ownerPhone: string;
+  ownerMail: string;
   companyName: string;
-  phoneNumber: string;
-  email: string;
+  companyAddress: string;
+  companyPhone:string;
+  companyMail:string;
+  companyBio:string;
+  companyDocument?:any;
+  ownerIdProof?:any;
 }
 
-const initialState: SignUpProps = {
-  name: "",
-  companyName: "",
-  phoneNumber: "",
-  email: "",
-};
-const SignUp = () => {
-  const [isLoading, setIsLoading] = useState(false);
+interface NewUserProps {
+  jojoId: string;
+  password: string;
+  confirmPassword: string;
+}
 
-  const handleSubmit = (values: SignUpProps) => {
+const initialState: SignUpProps = ({
+  ownerName: "",
+  ownerAddress:"",
+  ownerMail: "",
+  ownerPhone: "",
+  companyName: "",
+  companyAddress: "",
+  companyMail:"",
+  companyPhone:"",
+  companyBio:"",
+  companyDocument: "",
+  ownerIdProof: "",
+});
+
+
+
+const SignUp = () => {
+
+  const dispatch = useDispatch();
+
+
+  
+  const [isLoading, setIsLoading] = useState(false);
+  const [login, setLogin] = useState(false);
+  const [userId, setUserId] = useState<string>("name")
+  
+  const newUser: NewUserProps = ({
+    jojoId: userId,
+    password:"",
+    confirmPassword:"",
+  })
+  
+  const handleSubmit = async (values: SignUpProps) => {
     setIsLoading(true);
     console.log(values);
+    // const Response = await axios.post("http://192.168.1.17:80/register", values)
+    // .then( resp => {
+    //   console.log(resp);
+    //   setUserId(resp.data); 
+    //   if(resp.status === 200){
+        setLogin(true)
+        // setUserId("hello")  
+    //   }
+    // });
     setIsLoading(false);
   };
+  
+  
+  const CreateUser = async (data: NewUserProps) => {
+    console.log(data.password, "password");
+    // if(value.password === value.confirmPassword){
+    //   const Response = await axios.post("http://192.168.1.17:80/registerCreds", value)
+    // }
+
+
+    
+  }
 
   return (
-    <div className="bg-white w-screen h-screen bg-signup-cover bg-right bg-cover bg-no-repeat flex items-center justify-center">
-      <div className="w-2/3 h-[500px] shadow rounded-xl grid grid-cols-2 overflow-hidden">
-        <div className="bg-white col-span-1 p-5 flex flex-col items-center">
-          <img
-            src={logo}
-            alt="JoJoPay Logo"
-            className="w-10 h-10 object-contain"
-          />
-          <h4 className="text-black font-bold text-xl">JoJoPay.com</h4>
-          <p className="text-gray-300 text-xs">
-            All your bread and butter in one place
-          </p>
-          <img
-            src={heroImage}
-            alt="JoJoPay sign in"
-            className="w-60 h-60 m-10 object-cover"
-          />
-          <h1 className="text-2xl text-black font-bold">
-            Join as a Partner with JoJoPay
-          </h1>
-        </div>
-        <div className="col-span-1 flex items-center justify-center flex-col p-5 bg-opacity-50 backdrop-blur">
+
+    <div className="bg-white w-screen h-screen bg-signup-cover bg-cover bg-no-repeat flex items-center justify-center">
+      <div className="flex justify-center w-[90%] h-[500px] shadow rounded-xl overflow-hidden  bg-opacity-50 backdrop-blur">
+        <div className="w-full col-span-1 flex items-center justify-center flex-col p-5">
           <h5 className="text-black capitalize mb-5">
             Welcome To JoJoPay Family
           </h5>
+          {!login ?
+          <div className="w-[980px] h-[85%] bg-white px-4 py-8 rounded-lg rounded-tr-3xl shadow-md">
           <CustomForm
             initialValues={initialState}
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
-            <div className="bg-white px-4 py-8 rounded-lg rounded-tr-3xl shadow-md">
+            <div className="grid grid-cols-2 gap-1 ml-14">
               <Input
                 type="text"
-                name="name"
-                placeholder="Name"
-                className="border-none text-black outline-none shadow-lg w-96"
+                name="ownerName"
+                placeholder="Owner Name"
+                className="border-none text-black outline-none shadow-md w-96"
+                inputContainerClassName="mb-3"
+              />
+              <Input
+                type="text"
+                name="ownerAddress"
+                placeholder="Owner Address"
+                className="border-none text-black outline-none shadow-md w-96"
+                inputContainerClassName="mb-3"
+              />
+              <Input
+                type="email"
+                name="ownerMail"
+                placeholder="Owner Mail Id"
+                className="border-none text-black outline-none shadow-md w-96"
+                inputContainerClassName="mb-3"
+              />
+              <Input
+                type="string"
+                name="ownerPhone"
+                placeholder="Owner Phone Number"
+                className="border-none text-black outline-none shadow-md w-96"
                 inputContainerClassName="mb-3"
               />
               <Input
                 type="text"
                 name="companyName"
                 placeholder="Company Name"
-                className="border-none text-black outline-none shadow-lg w-96"
+                className="border-none text-black outline-none shadow-md w-96"
                 inputContainerClassName="mb-3"
               />
               <Input
                 type="text"
-                name="phoneNumber"
-                placeholder="Phone Number"
-                className="border-none text-black outline-none shadow-lg w-96"
+                name="companyAddress"
+                placeholder="Company Address"
+                className="border-none text-black outline-none shadow-md w-96"
                 inputContainerClassName="mb-3"
               />
               <Input
                 type="email"
-                name="email"
-                placeholder="Email ID"
-                className="border-none text-black outline-none shadow-lg w-96"
+                name="companyMail"
+                placeholder="Company Mail Id"
+                className="border-none text-black outline-none shadow-md w-96"
+                inputContainerClassName="mb-3"
               />
+              <Input
+                type="text"
+                name="companyPhone"
+                placeholder="Company Phone Number"
+                className="border-none text-black outline-none shadow-md w-96"
+                inputContainerClassName="mb-3"
+              />
+              <Input
+                type="text"
+                name="companyBio"
+                placeholder="Company Bio"
+                className="border-none text-black outline-none shadow-md w-96"
+              />
+              <div className="flex items-center">
+                <label className="cursor-pointer">
+                  <Input 
+                  className="hidden ml-20" 
+                  type="file"
+                  accept="image/*"
+                  name="companyDocument" /> 
+                  <p className='flex flex-col items-center bg-tertiary shadow-md text-white py-2 px-4 rounded-2xl w-44'>company document<span><BiUpload /></span></p> 
+                </label>
+                <label className="cursor-pointer">
+                  <Input 
+                  className="hidden" 
+                  type="file"
+                  accept="image/*"
+                  name="ownerIdProof" /> 
+                  <p className='flex flex-col items-center bg-tertiary shadow-md text-white py-2 px-4 ml-6 rounded-2xl w-48'>Owner ID <span><BiUpload /></span></p> 
+                </label>
+              </div>
             </div>
-            <div className="flex flex-col gap-3 mt-5">
+            <div className="w-full flex justify-end">
               <Button
                 type="submit"
-                title="Join"
+                title="Next"
                 isLoading={isLoading}
-                className="bg-secondaryText text-white p-2 px-9 w-36 m-auto transform transition-all hover:scale-95"
+                className="bg-secondaryText text-white p-2 px-9 w-36 m-auto mt-6 transform transition-all hover:scale-95"
               />
             </div>
-            <div className="flex items-center justify-end mt-3">
-              <Link to="/sign-in" className="text-black underline">
-                Already a member?{" "}
-                <span className="text-secondaryText underline">Signin</span>
-              </Link>
-            </div>
           </CustomForm>
+            </div>
+          :
+          <div className="w-[500px] h-[500px] bg-white rounded-lg shadow-md">
+            <CustomForm
+            initialValues={newUser}
+            validationSchema={validateUser}
+            onSubmit={CreateUser}>
+              <div className="flex flex-col items-center mt-8 w-ful">
+                <p className="text-greyText text-sm">Jojo pays User Id</p>
+              <p className="flex justify-center py-2 text-black outline-none shadow-md w-96 mb-6 rounded-2xl font-semibold">
+                {userId}
+              </p>
+              <Input
+              type="text"
+              readonly={true}
+              value="hi"
+              placeholder="jojoId"
+              className="border-none text-black outline-none shadow-md w-96 mt-10"
+              name="jojoId" />
+              <Input
+              type="text"
+              name="password"
+              placeholder="Password"
+              className="border-none text-black outline-none shadow-md w-96 mt-10" />
+              <Input
+              type="text"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              className="border-none text-black outline-none shadow-md w-96 mt-6" />
+              </div>
+              <div className="flex justify-center w-full">
+              <Button
+                type="submit"
+                title="Next"
+                isLoading={isLoading}
+                className="flex justify-center bg-secondaryText text-white p-2 px-9 w-36 m-auto mt-6 transform transition-all hover:scale-95"
+                />
+                </div>
+            </CustomForm>
+          </div>  
+          }
         </div>
       </div>
     </div>

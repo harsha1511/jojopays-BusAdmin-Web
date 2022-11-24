@@ -32,9 +32,9 @@ const Bus = () => {
 
   const handleAdd = (i:any) => {
         if(add?.includes(i) || addVip?.includes(i)){
-          setAdd(add.filter((w:any) => w !== i ))
+          setAdd(add.filter((w:any) => w !== i ));
         } else{
-          setAdd(add => [...add, i])
+          setAdd(add => [...add, i]);
         };
   }
 
@@ -45,7 +45,7 @@ const Bus = () => {
           setAddVip(addVip => [...addVip, i])
         };
       } 
-      
+    
   const busSeats = {
     normalSeats: add,
     VIPSeats: addVip
@@ -55,8 +55,7 @@ const Bus = () => {
     
   const send =async () => {
     const resp = await axios.post('http://192.168.1.11:80/summa', busSeats);
-    console.log(resp.status);
-    
+    console.log(resp.status); 
   }
   
   

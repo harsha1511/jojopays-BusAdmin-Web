@@ -150,7 +150,8 @@ code {
 input[type="date"]::-webkit-datetime-edit-text,
 input[type="date"]::-webkit-datetime-edit-month-field,
 input[type="date"]::-webkit-datetime-edit-day-field,
-input[type="date"]::-webkit-datetime-edit-year-field {
+input[type="date"]::-webkit-datetime-edit-year-field,
+input[type="time"] {
   color: #888;
 }
 
@@ -302,6 +303,9 @@ input[type="range"]:focus::-moz-range-thumb {
 #assignDriver::-webkit-calendar-picker-indicator {
   /* display: none; */
   color: #3973FF;
+}
+input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
 }
 
 #assignDriver::-webkit-datetime-edit-text,
