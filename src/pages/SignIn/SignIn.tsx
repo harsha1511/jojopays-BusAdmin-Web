@@ -12,7 +12,7 @@ import { LOGIN_SUCCESS } from "../../store/reducers/auth.reducer";
 import axios from "axios";
 
 const validationSchema = yup.object().shape({
-  userId: yup.string().required("enter a name").label("user id"),
+  userId: yup.string().label("user id"),
   // .required("User ID is required"),
   password: yup.string().label("Password"),
   // .required("Password is required"),

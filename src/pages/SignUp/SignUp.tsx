@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { LOGIN_SUCCESS } from "../../store/reducers/auth.reducer";
 
 import {BiUpload} from 'react-icons/bi'
+import { CreateUser } from "./components/CreateUser";
 
 const validationSchema = yup.object().shape({
   ownerName: yup
@@ -60,15 +61,15 @@ const validationSchema = yup.object().shape({
     .label("Owner Id Proof")
 });
 
-const validateUser = yup.object().shape({
-  password: yup
-    .string()
-    .required("Enter Password").label("password"),
-  confirmPassword: yup
-    .string()
-    .required("Please type password once again")
+// const validateUser = yup.object().shape({
+//   password: yup
+//     .string()
+//     .required("Enter Password").label("password"),
+//   confirmPassword: yup
+//     .string()
+//     .required("Please type password once again")
 
-})
+// })
 
 interface SignUpProps {
   ownerName: string;
@@ -84,11 +85,11 @@ interface SignUpProps {
   ownerIdProof?:any;
 }
 
-interface NewUserProps {
-  jojoId: string;
-  password: string;
-  confirmPassword: string;
-}
+// interface NewUserProps {
+//   jojoId: string;
+//   password: string;
+//   confirmPassword: string;
+// }
 
 const initialState: SignUpProps = ({
   ownerName: "",
@@ -114,13 +115,13 @@ const SignUp = () => {
   
   const [isLoading, setIsLoading] = useState(false);
   const [login, setLogin] = useState(false);
-  const [userId, setUserId] = useState<string>("name")
+  const [userId, setUserId] = useState<string>("nam")
   
-  const newUser: NewUserProps = ({
-    jojoId: userId,
-    password:"",
-    confirmPassword:"",
-  })
+  // const newUser: NewUserProps = ({
+  //   jojoId: userId,
+  //   password:"",
+  //   confirmPassword:"",
+  // })
   
   const handleSubmit = async (values: SignUpProps) => {
     setIsLoading(true);
@@ -138,15 +139,15 @@ const SignUp = () => {
   };
   
   
-  const CreateUser = async (data: NewUserProps) => {
-    console.log(data.password, "password");
-    // if(value.password === value.confirmPassword){
-    //   const Response = await axios.post("http://192.168.1.17:80/registerCreds", value)
-    // }
+  // const CreateUser = async (data: NewUserProps) => {
+  //   console.log(data.password, "password");
+  //    if(value.password === value.confirmPassword){
+  //      const Response = await axios.post("http://192.168.1.17:80/registerCreds", value)
+  //    }
 
 
     
-  }
+  // }
 
   return (
 
@@ -257,42 +258,7 @@ const SignUp = () => {
             </div>
           :
           <div className="w-[500px] h-[500px] bg-white rounded-lg shadow-md">
-            <CustomForm
-            initialValues={newUser}
-            validationSchema={validateUser}
-            onSubmit={CreateUser}>
-              <div className="flex flex-col items-center mt-8 w-ful">
-                <p className="text-greyText text-sm">Jojo pays User Id</p>
-              <p className="flex justify-center py-2 text-black outline-none shadow-md w-96 mb-6 rounded-2xl font-semibold">
-                {userId}
-              </p>
-              <Input
-              type="text"
-              readonly={true}
-              value="hi"
-              placeholder="jojoId"
-              className="border-none text-black outline-none shadow-md w-96 mt-10"
-              name="jojoId" />
-              <Input
-              type="text"
-              name="password"
-              placeholder="Password"
-              className="border-none text-black outline-none shadow-md w-96 mt-10" />
-              <Input
-              type="text"
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              className="border-none text-black outline-none shadow-md w-96 mt-6" />
-              </div>
-              <div className="flex justify-center w-full">
-              <Button
-                type="submit"
-                title="Next"
-                isLoading={isLoading}
-                className="flex justify-center bg-secondaryText text-white p-2 px-9 w-36 m-auto mt-6 transform transition-all hover:scale-95"
-                />
-                </div>
-            </CustomForm>
+            <CreateUser jojoId={userId} />
           </div>  
           }
         </div>
