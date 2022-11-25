@@ -117,12 +117,7 @@ const SignUp = () => {
   const [login, setLogin] = useState(false);
   const [userId, setUserId] = useState<string>("nam")
   
-  // const newUser: NewUserProps = ({
-  //   jojoId: userId,
-  //   password:"",
-  //   confirmPassword:"",
-  // })
-  
+
   const handleSubmit = async (values: SignUpProps) => {
     setIsLoading(true);
     console.log(values);
@@ -132,7 +127,6 @@ const SignUp = () => {
     //   setUserId(resp.data); 
     //   if(resp.status === 200){
         setLogin(true)
-        // setUserId("hello")  
     //   }
     // });
     setIsLoading(false);
@@ -144,9 +138,6 @@ const SignUp = () => {
   //    if(value.password === value.confirmPassword){
   //      const Response = await axios.post("http://192.168.1.17:80/registerCreds", value)
   //    }
-
-
-    
   // }
 
   return (
