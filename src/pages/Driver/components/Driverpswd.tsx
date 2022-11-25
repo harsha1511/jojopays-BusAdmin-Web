@@ -3,7 +3,7 @@ import BackButton from "../../../components/BackButton";
 import { Link } from "react-router-dom";
 
 // import './DriverLogin.css'
-export const  DriverCredsConfirm = () => {
+export const  Driverpswd = () => {
 
     const [loading, setLoading] =useState(true);
     const Startloading = () => {
@@ -39,7 +39,7 @@ export const  DriverCredsConfirm = () => {
                             className="mt-8 px-8 py-4 rounded-3xl text-2xl font-bold tracking-wider bg-primaryText"
                             onClick={Startloading}
                             >
-                                Update
+                                Create
                             </button>
                         </Link>
                 </div>
@@ -56,4 +56,4 @@ export const  DriverCredsConfirm = () => {
   );
 }
 
-export default DriverCredsConfirm;
+export default Driverpswd;

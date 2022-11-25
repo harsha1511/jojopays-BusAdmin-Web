@@ -8,7 +8,7 @@ function DriverCreds() {
         <h1>ADD NEW DRIVER</h1>
       </div>
       <div className="p-2 h-[900px]">
-        <div className="  bg-contain bg-center bg-no-repeat mt-[30px] p-10 bg-adddriver-cover  h-[80%]  ">
+        <div className="   bg-contain bg-center bg-no-repeat mt-[30px] p-10 bg-adddriver-cover    h-[80%]  ">
           <form className=" mt-20  justify-center text-primaryText grid grid-flow-row gap-8 p-2 text-xl">
             <img src="profile.png" alt="missing" />
             <label className="grid grid-flow-row gap-4">

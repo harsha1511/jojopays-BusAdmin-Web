@@ -3,7 +3,7 @@ import Chats from "../pages/Chats/Chats";
 import TicketPrice from "../pages/TicketPrice/TicketPrice";
 import Wallet from "../pages/Wallet/Wallet";
 import Notifications from "../pages/Notifications/Notifications";
-import Bus from "../pages/Bus/Bus";
+import  Bus from "../pages/Bus/Bus";
 import Drivers from "../pages/Driver/Driver";
 import Profile from "../pages/Profile/Profile";
 import DriverInfo from "../pages/Driver/components/DriverInfo";
@@ -38,6 +38,20 @@ import { AddNewSchedule } from "../pages/Wallet/pages/AddNewSchedule";
 import { ScheduleAmount } from "../pages/Wallet/pages/ScheduleAmount";
 import { ScheduleDate } from "../pages/Wallet/pages/ScheduleDate";
 import { ScheduleConfirm } from "../pages/Wallet/pages/ScheduleConfirm";
+import DriverLogin from "../pages/Driver/components/DriverLogin";
+import Driverpswd from "../pages/Driver/components/Driverpswd";
+import Driverdetail from "../pages/Driver/components/Driverdetail";
+import { Driverrating } from "../pages/Driver/components/Driverrating";
+import Tripdetails from "../pages/Driver/components/Tripdetails";
+import Drivercomment from "../pages/Driver/components/Drivercomment";
+import Newbuscreate from "../pages/Bus/components/Newbuscreate";
+import Busviewdetails from "../pages/Bus/components/Busviewdetails";
+import Tripstatus from "../pages/Bus/components/Tripstatus";
+import Busicon from "../pages/Bus/components/Busicon";
+import Generateqr from "../pages/Bus/components/Generateqr";
+import Createnewqr from "../pages/Bus/components/Createnewqr";
+import Busqr from "../pages/Bus/components/Busqr";
+import Rfid from "../pages/Bus/components/Rfid";
 
 const routes: { path: string; Element: () => JSX.Element }[] = [
   { path: "/assign-drivers", Element: AssignDrivers },
@@ -80,7 +94,22 @@ const routes: { path: string; Element: () => JSX.Element }[] = [
   {path: '/add-new-schedule' , Element:AddNewSchedule},
   {path: "/schedule-amount" , Element:ScheduleAmount},
   {path: "/schedule-date", Element:ScheduleDate},
-  {path:"/schedule-confirm", Element:ScheduleConfirm},
+  {path:"/schedule-confirm", Element:ScheduleConfirm}, 
+  {path: "/Driver-login", Element: DriverLogin},
+  {path:"/Driver-pswd", Element: Driverpswd},
+  {path:"/Driver-detail", Element: Driverdetail},
+  {path:"/Driver-rating", Element: Driverrating},
+  {path:"/Driver-upcomingtrip", Element: UpcomingTrips},
+  {path:"/Driver-Tripdetails", Element: Tripdetails},
+  {path:"/Driver-comment", Element: Drivercomment},
+  {path:"/Bus-newbuscreate", Element: Newbuscreate},
+  {path:"/bus-viewdetails", Element: Busviewdetails},
+  {path:"/bus-tripstatus", Element: Tripstatus},
+  {path:"/bus-icon", Element: Busicon},
+  {path:"/bus-generateqr", Element:Generateqr },
+  {path:"/createnew-qr", Element: Createnewqr},
+  {path:"/bus-detailsqr", Element: Busqr},
+  {path:"/bus-rfidqr", Element:Rfid},
   
 ];
 
