@@ -1,22 +1,37 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 
 
 import {IoIosPersonAdd} from "react-icons/io"
+import axios from 'axios';
 
 
 
 const StaffList = () => {
     const [showList, setShowList] =useState<number>(5);
+    const [staffNames, setStaffNames] = useState<any>()
 
     const members = [
-        { name : "Harsha"},
+        { name : "sha"},
         { name : "Muthu"},
         { name : "Bin"},
         { name : "Adnrew"},
         { name : "Stephen"},
         { name : "Marc"},
     ]
+    useEffect(()=> {
+        const getStaffNames = async () => {
+           try{               
+               const response = await axios.get("http://192.168.1.17:80/getProfileData")
+               console.log(response, "ress");
+               setStaffNames(response.data.staff)
+            }
+            catch (err) {
+                console.log(err);
+            }
+        };
+        getStaffNames()
+    },[])
 
     return (
     
@@ -26,10 +41,10 @@ const StaffList = () => {
                     <IoIosPersonAdd className='scale-125 mr-2'/><p className='font-semibold'>Add New On-Desk Staff</p>
                 </Link>
                 <div>
-                    {members.slice(0, showList).map(({name}) => (
+                    {staffNames?.slice(0, showList).map((i:any) => (
                             <div className='flex mt-4 mb-6 w-full items-center'>
-                                <img className="w-8 h-8 rounded-full ml-4" src="https://miro.medium.com/max/785/0*Ggt-XwliwAO6QURi.jpg" alt="" />
-                                <p className='text-quinary font-bold ml-4'>{name}</p>
+                                <img className="w-8 h-8 rounded-full ml-4" src={i?.staffImage} alt="" />
+                                <p className='text-quinary font-bold ml-4'>{i?.staffName}</p>
                             </div>
                     ))}
                 </div>

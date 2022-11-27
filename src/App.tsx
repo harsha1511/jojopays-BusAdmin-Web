@@ -10,6 +10,7 @@ import routes from "./data/routes";
 import PublicRoute from "./routes/PublicRoute";
 import { RootState } from "./store";
 
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -19,7 +20,9 @@ function App() {
 
   const handleAutoLogin = () => {
     try {
+      setIsLoading(true)
       if (localStorage.getItem("token")) {
+        console.log("LOGGEDDD INNN");  
       }
       setIsLoading(false);
     } catch (err) {
@@ -27,6 +30,9 @@ function App() {
       setIsLoading(false);
     }
   };
+
+  // console.log(process.env.REACT_APP_API_URL);
+  
 
   useEffect(() => handleAutoLogin(), []);
 

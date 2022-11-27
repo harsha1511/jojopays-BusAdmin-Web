@@ -1,12 +1,14 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
 import DriverList from "./components/DriverList";
 import DriverOptions from "./components/DriverOptions";
 import Chart from "./components/Chats";
-// import { Driverrating } from "./components/Driverrating";
+import axios from "axios";
 
 import { BsSearch } from "react-icons/bs";
 
+
 const Driver = () => {
+
   return (
     <div className="h-[100vh]  bg-driver-cover  bg-[length:60vw_100vh] bg-top  bg-no-repeat flex items-center justify-center ">
       <div className="w-[80vw] h-[90vh] ml-[130px] shadow rounded-[5vh] overflow-hidden bg-[#242636]/[0.3] ">
@@ -25,11 +27,9 @@ const Driver = () => {
             <div className="bg-auto bg-no-repeat bg-center m-3 p-3">
               <DriverList />
               {/* <Driverrating/> */}
-            </div>
-            
+            </div>           
             </div>
           </div>
-
           <div className="bg-auto bg-no-repeat bg-center grid grid-flow-col  gap-4">
             <div className="bg-auto bg-no-repeat bg-center ">
               <div className="bg-auto bg-no-repeat bg-center m-3 p-3">

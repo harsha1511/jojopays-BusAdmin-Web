@@ -1,3 +1,7 @@
 #noScrollBar::-webkit-scrollbar {
     width: 0;
 }
+.companyDoc {
+    color: black;
+    background-color: red;
+}

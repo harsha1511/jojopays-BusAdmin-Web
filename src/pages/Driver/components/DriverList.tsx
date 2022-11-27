@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { FiPower } from "react-icons/fi";
 import { FaCircle } from "react-icons/fa";
@@ -7,6 +7,8 @@ import { BsFillEyeFill } from "react-icons/bs";
 import { FiEdit2 } from "react-icons/fi";
 import { MdDeleteForever } from "react-icons/md";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
 
 import Profile from "../../../assets/images/profile.png";
 
@@ -18,23 +20,30 @@ const DriverList = () => {
 
   const [showList, setShowList] =useState<number>(7);
 
-    const members = [
-        { name : "Harsha"},
-        { name : "Muthu"},
-        { name : "Bin"},
-        { name : "Adnrew"},
-        { name : "Stephen"},
-        { name : "Marc"},
-        { name : "Muthu"},
-        { name : "Adnrew"},
-    ]
 
+  const [driver, setDriver] = useState<object[]>()
+
+  
+  useEffect(() => {
+  const getDriverData = async () => {
+    try {
+      const response = await axios.get("http://192.168.1.17:80/getDriverData");
+      console.log(response.data);
+      setDriver(response.data) 
+    }
+    catch(err) {
+      console.log(err);
+      
+    }
+  }
+  getDriverData(); 
+}, []);
 
   return (
    
      <div>
      
-      {members.slice(0, showList).map(({name}) => (
+      {driver?.map((d:any) => (
      
          <section className="grid p-4 grid-cols-12 gap-4 rounded-tl-[20px] ">
       
@@ -52,14 +61,14 @@ const DriverList = () => {
           </div>
           <div> 
           
-            <p>{name}</p>
+            <p>{d.driverName}</p>
           </div>
           
           <div className="grid grid-flow-col gap-4">
             
           
           {/* <FaCircle  className='  text-quaternaryText  cursor-pointer'/> */}
-          <FaCircle  className={`  ${color ? "text-quaternaryText": "text-redText" }`} onClick={() => setcolor(!color)} />
+          <FaCircle  className={` ${color ? "text-quaternaryText": "text-redText" }`} onClick={() => setcolor(!color)} />
 
                    
               <Link to="/driver-info"> 

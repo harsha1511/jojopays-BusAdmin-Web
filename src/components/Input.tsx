@@ -59,7 +59,7 @@ const Input = ({
         <ErrorMessage
           message={errors[name]}
           visible={touched[name]}
-          className="transform translate-x-2 mt-1"
+          className="transform translate-x-2 mt-1 text-black"
         />
       )}
     </div>

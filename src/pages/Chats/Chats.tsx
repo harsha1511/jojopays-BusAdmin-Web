@@ -1,5 +1,6 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState, useEffect} from "react";
 import * as yup from "yup";
+import axios from "axios";
 import {
   BsSearch,
   BsCameraFill,
@@ -32,6 +33,7 @@ const messageSchema = yup.object().shape({
 const Chats = () => {
   const [showMoreOptions, setShowMoreOptions] = useState(false);
   const [openFeatures, setOpenFeatures] = useState(false);
+  const [chat, setChat] = useState<any>();
 
   const chatRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 
@@ -56,6 +58,21 @@ const Chats = () => {
   const handleSendMessage = (values: any) => {
     console.log(values);
   };
+
+useEffect(() => {
+  const getChatData = async () => {
+    try {
+      const response = await axios.get("http://192.168.1.17:80/getChatData");
+      console.log(response.data, "HELLO");
+      setChat(response.data) 
+    }
+    catch(err) {
+      console.log(err); 
+    }
+  }
+  getChatData(); 
+}, []);
+
 
   return (
     <div className="grid grid-cols-6">
@@ -94,12 +111,14 @@ const Chats = () => {
       </section>
       <section className="col-span-4 flex flex-col h-screen">
         <div className="flex-90 overflow-y-auto overflow-x-hidden p-5 pt-7 flex flex-col">
-          <Chat
-            isYours={true}
-            message="sdjfhjk kjhfkjsdhfkj klsakgscyaukchaskhdjcvakjh idbcvudsugyvsvuyvuy ibsdiljb hksdhfkhsdfkjhsdkfh kshdfkjhsdkfjhsdkfhskdjfhk hkjdfshkjdsfhkjfdhkj"
+          {chat?.map((c:any) => (
+            <Chat
+            isYours={c?.senderID}
+            message={c?.message}
             status="delivered"
-          />
-          <Chat
+            />
+            ))}
+          {/* <Chat
             isYours={false}
             message="sdjfhjk kjhfkjsdhfkj hksdhfkhskjabjhcvas ghvdchakjds ibdcuvsabiulvb iubdiocvuasbv iohnopvajfpo poijsd0ifj sdfkjhsdkfh kshdfkjhsdkfjhsdkfhskdjfhk hkjdfshkjdsfhkjfdhkj"
           />
@@ -116,7 +135,7 @@ const Chats = () => {
             isYours={true}
             message="sdjfhjk kjhfkjsdhfkj hksdhfkhsdfkjhsdkfh kshdfkjhsdkfjhsdkfhskdjfhk hkjdfshkjdsfhkjfdhkj"
             status="sent"
-          />
+          /> */}
           <div ref={chatRef}></div>
         </div>
         <div className="pt-3 flex-12">

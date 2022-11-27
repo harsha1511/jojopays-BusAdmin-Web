@@ -61,15 +61,6 @@ const validationSchema = yup.object().shape({
     .label("Owner Id Proof")
 });
 
-// const validateUser = yup.object().shape({
-//   password: yup
-//     .string()
-//     .required("Enter Password").label("password"),
-//   confirmPassword: yup
-//     .string()
-//     .required("Please type password once again")
-
-// })
 
 interface SignUpProps {
   ownerName: string;
@@ -85,11 +76,6 @@ interface SignUpProps {
   ownerIdProof?:any;
 }
 
-// interface NewUserProps {
-//   jojoId: string;
-//   password: string;
-//   confirmPassword: string;
-// }
 
 const initialState: SignUpProps = ({
   ownerName: "",
@@ -115,31 +101,25 @@ const SignUp = () => {
   
   const [isLoading, setIsLoading] = useState(false);
   const [login, setLogin] = useState(false);
-  const [userId, setUserId] = useState<string>("nam")
+  const [userId, setUserId] = useState<any>()
   
 
   const handleSubmit = async (values: SignUpProps) => {
     setIsLoading(true);
     console.log(values);
-    // const Response = await axios.post("http://192.168.1.17:80/register", values)
-    // .then( resp => {
-    //   console.log(resp);
-    //   setUserId(resp.data); 
-    //   if(resp.status === 200){
+    const Response = await axios.post("http://192.168.1.17:80/register", values)
+    .then( resp => {
+      console.log(resp);
+      setUserId(resp); 
+      if(resp.status === 200){
         setLogin(true)
-    //   }
-    // });
+      }
+    });
     setIsLoading(false);
   };
-  
-  
-  // const CreateUser = async (data: NewUserProps) => {
-  //   console.log(data.password, "password");
-  //    if(value.password === value.confirmPassword){
-  //      const Response = await axios.post("http://192.168.1.17:80/registerCreds", value)
-  //    }
-  // }
+console.log("USERIID", userId);
 
+  
   return (
 
     <div className="bg-white w-screen h-screen bg-signup-cover bg-cover bg-no-repeat flex items-center justify-center">
@@ -249,7 +229,7 @@ const SignUp = () => {
             </div>
           :
           <div className="w-[500px] h-[500px] bg-white rounded-lg shadow-md">
-            <CreateUser jojoId={userId} />
+            <CreateUser jojoUserId={userId} />
           </div>  
           }
         </div>

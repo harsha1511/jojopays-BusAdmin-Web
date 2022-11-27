@@ -1,6 +1,5 @@
 import React,{useState} from "react";
 
-import './AssignTask.css'
 import { Link } from "react-router-dom";
 import BackButton from "../../../components/BackButton";
 

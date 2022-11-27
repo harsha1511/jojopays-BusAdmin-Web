@@ -7,10 +7,11 @@ import {BsDownload} from 'react-icons/bs'
 
 interface AttendanceProps {
   isDownload:  boolean
+  value?: number
 }
 
 
-export const Attendance = ({isDownload}:AttendanceProps) => {
+export const Attendance = ({isDownload, value}:AttendanceProps) => {
 
   const [state , setState ]= useState({
     date: [new Date(2022,11,24),
@@ -24,7 +25,7 @@ export const Attendance = ({isDownload}:AttendanceProps) => {
         <div className='flex'>
             <div className='flex flex-col justify-start items-center -mt-2'>
                 <p className='pt-8 pb-2 px-4 text-2xl text-primaryText font-bold tracking-wide'>Attendance</p>
-                <p className='flex justify-center bg-secondary shadow-inner w-28 p-2 rounded-xl font-bold text-lg'>15.3 / 30</p>
+                <p className='flex justify-center bg-secondary shadow-inner w-28 p-2 rounded-xl font-bold text-lg'>{value} / 30</p>
                 <p className='text-primaryText text-sm font-semibold'>Days</p>
             </div>
             <div className='relative flex justify-center items-center -mt-2 p-8'>

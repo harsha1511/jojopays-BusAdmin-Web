@@ -1,20 +1,68 @@
-import React from 'react'
-import { FaPen } from "react-icons/fa"
-import BackButton from '../../../components/BackButton'
+import React, {useState, useEffect} from 'react'
+import * as yup from "yup";
+import axios from 'axios';
 
-import { FaPhoneAlt } from "react-icons/fa"
-import {GrMail} from "react-icons/gr"
-import { PowerButton } from '../../../components/PowerButton'
+
+import BackButton from '../../../components/BackButton'
+import CustomForm from '../../../components/Form'
+import Input from "../../../components/Input"
 import EditButton from '../../../components/EditButton'
+import { PowerButton } from '../../../components/PowerButton'
+import { EditLogin } from '../components/EditLogin'
 import { DeleteButton } from '../../../components/DeleteButton'
 
+import { FaPen } from "react-icons/fa"
+import { FaPhoneAlt } from "react-icons/fa"
+import {GrMail} from "react-icons/gr"
 import {HiDocument} from "react-icons/hi"
 import {FaAddressCard} from "react-icons/fa"
 import {BiIdCard} from "react-icons/bi"
-import { EditLogin } from '../components/EditLogin'
 
+const validateStaff = yup.object().shape({
+    staffName: yup
+    .string()
+    .label("staffName"),
+  jojoId: yup
+    .string()
+    .label("jojoId"),
+  staffPhone: yup
+    .string()
+    .label("staffPhone"),
+  staffAddress: yup 
+    .string()
+    .label("staffAddress"),
+  staffAddPhone: yup  
+    .string()
+    .label("staffAddPhone"),
+  staffMail: yup
+    .string()
+    .label("staffMail"),
+}) 
+
+interface StaffDetailsProps {
+    staffName: string;
+    jojoId: string;
+    staffPhone: string;
+    staffAddress: string;
+    staffAddPhone: string;
+    staffMail: string;
+}
 
 export const EditStaffProfile = () => {
+
+    const initialState: StaffDetailsProps = {
+        staffName: "",
+        jojoId: "",
+        staffPhone: "",
+        staffAddress: "",
+        staffAddPhone: "",
+        staffMail: "",
+}
+    
+const handleSubmit = (values: StaffDetailsProps) => {
+    console.log(values);
+    
+}
   return (
     <div>
         {/* topbar with date of joining and DOB */}
@@ -46,63 +94,75 @@ export const EditStaffProfile = () => {
             </div>
         </section>
         <section className='flex'>
-            <form className='w-[50%] h-[600px]'>
+            <div className='w-[50%] h-[600px]'>
+            <CustomForm
+            initialValues={initialState}
+            validationSchema={validateStaff}
+            onSubmit={handleSubmit}>
                 <div className='flex flex-col w-[80%] mt-10 pl-6 py-6 ml-10 bg-secondary rounded-3xl'>
-                    <div className='flex justify-around w-[90%]'>
-                        <label className='w-[20%]'>Name: </label>
-                        <input
-                        id="companyName"
-                        type="text" 
-                        className='w-[70%] bg-tertiary ml-4 pl-4 outline-none rounded-xl'
-                        />
+                    <div className='flex items-center justify-around w-[90%]'>
+                        <label className='w-[20%]'>Name:</label>
+                        <Input
+                        type='text'
+                        name='staffName'
+                        placeholder='Name'
+                        className='w-[400px] bg-tertiary -ml-6 pl-4 outline-none rounded-xl'
+                         />
                     </div>
                     <div className='flex justify-around w-[90%] mt-4'>
                         <label className='w-[20%]'>Jojopays ID: </label>
-                        <input
-                        id="companyName"
-                        type="text" 
-                        className='w-[70%] bg-tertiary ml-4 pl-4 outline-none rounded-xl'
-                        />
+                        <Input
+                        type='text'
+                        name='jojoId'
+                        placeholder='Jojo Pays Id'
+                        className='w-[400px] bg-tertiary -ml-6 pl-4 outline-none rounded-xl'
+                         />
                     </div>
                     <div className='flex justify-around w-[90%] mt-4'>
                         <label className='w-[20%]'>Ph, No.2: </label>
-                        <input
-                        id="companyName"
-                        type="text" 
-                        className='w-[70%] bg-tertiary ml-4 pl-4 outline-none rounded-xl'
-                        />
+                        <Input
+                        type='text'
+                        name='staffPhone'
+                        placeholder='Phone NUmber'
+                        className='w-[400px] bg-tertiary -ml-6 pl-4 outline-none rounded-xl'
+                         />
                     </div>
                     <div className='flex justify-around w-[90%] mt-4'>
                         <label className='w-[20%]'>Address: </label>
-                        <textarea
-                        id="companyName"
-                        className='w-[70%] p-2 h-20 bg-tertiary ml-4 pl-4 outline-none rounded-xl resize-none'
-                        />
+                        <Input
+                        type='text'
+                        name='staffAddress'
+                        placeholder='Address'
+                        className='w-[400px] bg-tertiary -ml-6 pl-4 outline-none rounded-xl'
+                         />
                     </div>
             </div>
             <div className='flex w-[80%] mt-10 pl-6 py-4 ml-10 bg-secondary rounded-3xl'>
                 <div className='flex items-center w-[50%]'>
                         <label className='mr-4'><FaPhoneAlt className="scale-125" /> </label>
-                        <input
-                        id="companyName"
+                        <Input
+                        name="staffAddPhone"
                         type="text" 
-                        className='w-[80%] bg-tertiary pl-4 outline-none rounded-xl'
+                        className='w-[200px] h-8 bg-tertiary pl-4 outline-none rounded-xl'
                         />
                     </div>
                     <div className='flex items-center w-[50%]'>
                         <label className='mr-4'><GrMail className="scale-125" /> </label>
-                        <input
-                        id="companyName"
+                        <Input
+                        name="staffMail"
                         type="text" 
-                        className='w-[80%] bg-tertiary pl-4 outline-none rounded-xl'
+                        className='w-[200px] h-8 bg-tertiary pl-4 outline-none rounded-xl'
                         />
                     </div>
             </div>
             <div className='flex justify-center items-center w-[100%] mt-20'>
-                <button className='py-2 px-10 text-lg font-semibold tracking-wide text-quaternaryText bg-tertiary rounded-3xl drop-shadow-lg'>Update</button>
+                <button
+                type='submit'
+                className='py-2 px-10 text-lg font-semibold tracking-wide text-quaternaryText bg-tertiary rounded-3xl drop-shadow-lg'>Update</button>
             </div>
             <PowerButton />
-            </form>
+            </CustomForm>
+            </div>
             <div>   
             </div>
         <div className='flex flex-col items-center w-[50%] h-[600px] overflow-y-scroll'>

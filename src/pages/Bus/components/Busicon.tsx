@@ -57,9 +57,6 @@ export const Busicon = () => {
                 <div className="ml-6 text-[#FF5050]">Inactive Busses</div>
             </div>
         </div>
-
-        
-
     </div>
     </div>
          

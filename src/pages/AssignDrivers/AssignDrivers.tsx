@@ -1,24 +1,54 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import * as yup from "yup";
 
 import { BsSearch } from "react-icons/bs";
 
 
-import CustomForm from "../../components/Form";
+import {  nameShrinker } from "../../utils/helpers";
+
+
 import { TripBar } from "./components/TripBar";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 
 const AssignDrivers = () => {
 
 
-  
-  const searchSchema = yup.object().shape({
-    search: yup.string(),  
-  });
-  const handleSearch = (values: any) => {
-    console.log(values);
-  };
+  const [bus, setBus] = useState<object[]>()
+  const [driver, setDriver] = useState<object[]>()
+
+useEffect(() => {
+  const getBusData = async () => {
+    try {
+      const response = await axios.get("http://192.168.1.17:80/getBusData");
+      console.log(response.data);
+      setBus(response.data) 
+    }
+    catch(err) {
+      console.log(err);
+      
+    }
+  }
+  getBusData(); 
+}, []);
+
+useEffect(() => {
+  const getDriverData = async () => {
+    try {
+      const response = await axios.get("http://192.168.1.17:80/getDriverData");
+      console.log(response.data);
+      setDriver(response.data) 
+    }
+    catch(err) {
+      console.log(err);
+      
+    }
+  }
+  getDriverData(); 
+}, []);
+
+
 
 
   return <div>
@@ -93,17 +123,12 @@ const AssignDrivers = () => {
       </section>
       <section className="flex w-[35%] h-screen">
         {/* Bus list */}
-        <div className="w-[50%] flex flex-col h-full bg-secondary drop-shadow-xl">
+          <div className="w-[50%] flex flex-col h-full bg-secondary drop-shadow-xl">
           <div className="realtive flex justify-between items-center h-16 mt-8 -ml-2 rounded-l-3xl bg-gradient-to-b from-tertiaryText to-redText">
             <div className="flex justify-center items-center h-[50px] w-[90%] ml-4 bg-primary rounded-l-3xl rounded-r-lg text-lg font-bold">All Bus</div>
             <div className="w-[5%] bg-primary h-[50px] ml-2 rounded-l-"></div>
           </div>
           <div className="pt-8">
-            <CustomForm
-              initialValues={{ search: "" }}
-              validationSchema={searchSchema}
-              onSubmit={handleSearch}
-              >
               <div className="flex items-center border-2 border-redText mb-6 mx-4 rounded-full px-3">
                 <input
                   type="text"
@@ -114,14 +139,15 @@ const AssignDrivers = () => {
                   <BsSearch className="text-redText" />
                 </button>
               </div>
-            </CustomForm>
           </div>
           <div>
+        {bus?.map((b:any) => (
           <div className="flex items-center mt-6 ml-4 h-10 w-[80%]">
             <img className="w-10 h-10 rounded-lg"
-            src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80" alt="" />
-            <p className="ml-4 text-md text-greyText font-bold">Mark</p>
+            src={b?.busPhoto} alt="" />
+            <p className="ml-4 text-md text-greyText font-bold">{nameShrinker(b?.busName, 12)}</p>
           </div>
+            ))}
             </div>
         </div>
         {/* Driver list */}
@@ -131,11 +157,6 @@ const AssignDrivers = () => {
             <div className="w-[5%] bg-primary h-[50px] ml-2 rounded-l-"></div>
           </div>
           <div className="pt-8">
-            <CustomForm
-              initialValues={{ search: "" }}
-              validationSchema={searchSchema}
-              onSubmit={handleSearch}
-              >
               <div className="flex items-center border-2 border-primaryText mb-6 mx-4 rounded-full px-3">
                 <input
                   type="text"
@@ -146,13 +167,14 @@ const AssignDrivers = () => {
                   <BsSearch className="text-primaryText" />
                 </button>
               </div>
-            </CustomForm>
           </div>
-          <div className="flex items-center mt-6 ml-4 h-10 w-[80%]">
+          {driver?.map((d:any) => (
+            <div className="flex items-center mt-6 ml-4 h-10 w-[80%]">
             <img className="w-10 h-10 rounded-full"
-            src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80" alt="" />
-            <p className="ml-4 text-md text-greyText font-bold">Mark</p>
+            src={d?.addPhoto} alt="" />
+            <p className="ml-4 text-md text-greyText font-bold">{d?.driverName}</p>
           </div>
+            ))}
         </div>
       </section>
     </div>

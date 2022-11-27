@@ -1,6 +1,5 @@
 {
   "name": "jojopay--bus",
-  "homepage": "http://harsha1511.github.io/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,7 +8,6 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.0.3",
-    "@types/node": "^17.0.5",
     "@types/react-calendar": "^3.5.3",
     "axios": "^0.24.0",
     "formik": "^2.2.9",
@@ -34,8 +32,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -59,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "@types/node": "^18.11.9",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "@types/react-redux": "^7.1.21",

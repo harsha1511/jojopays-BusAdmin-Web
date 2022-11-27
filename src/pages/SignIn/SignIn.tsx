@@ -10,9 +10,10 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { LOGIN_SUCCESS } from "../../store/reducers/auth.reducer";
 import axios from "axios";
+import constants from "../../API/constants";
 
 const validationSchema = yup.object().shape({
-  userId: yup.string().label("user id"),
+  jojoId: yup.string().label("user id"),
   // .required("User ID is required"),
   password: yup.string().label("Password"),
   // .required("Password is required"),
@@ -20,14 +21,14 @@ const validationSchema = yup.object().shape({
 });
 
 interface SignInProps {
-  userId: string;
+  jojoId: string;
   password: string;
   keepMeLogin: boolean;
 }
 
 const SignIn = () => {
   const initialState: SignInProps = {
-    userId: "",
+    jojoId: "",
     password: "",
     keepMeLogin: false,
   };
@@ -37,11 +38,28 @@ const SignIn = () => {
 
   const handleSubmit = async (values: SignInProps) => {
     setIsLoading(true);
-    // const Login = await axios.post("http://192.168.1.17:80/login", values)
-    dispatch(LOGIN_SUCCESS(values));
+    console.log(values);
+    try {
+      dispatch(LOGIN_SUCCESS(values));
+      const Response = await axios.post("http://192.168.1.17:80/login", values)
+      .then( resp => {
+        const token = resp.data.token
+        localStorage.setItem("token",token);
+        console.log(token, "TOKENNNN");
+        
+        if(token){
+        }
+      })
+      setIsLoading(false)
+    }
+    catch(err) {
+        console.log(err)
+        setIsLoading(false)
+      }
     setIsLoading(false);
   };
 
+  
   
   return (
     <div className="bg-white w-screen h-screen bg-signin-cover bg-right bg-cover bg-no-repeat flex items-center justify-center">
@@ -75,7 +93,7 @@ const SignIn = () => {
             <div className="bg-white px-4 py-8 rounded-lg rounded-tr-3xl">
               <Input
                 type="text"
-                name="userId"
+                name="jojoId"
                 placeholder="User Id"
                 className="border-none text-black outline-none shadow-lg w-96"
                 inputContainerClassName="mb-3"

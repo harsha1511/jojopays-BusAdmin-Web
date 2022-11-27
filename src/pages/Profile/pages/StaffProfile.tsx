@@ -9,25 +9,21 @@ import { StaffInformation } from '../components/StaffInformation';
 import BackButton from '../../../components/BackButton';
 import axios from 'axios';
 import { ToggleButton } from '../../../components/ToggleButton';
+import { Link } from "react-router-dom";
+
+import { Attendance } from '../../../components/Attendance'
+import { DeleteButton } from '../../../components/DeleteButton'
+import EditButton from '../../../components/EditButton'
+import  {PowerButton}  from '../../../components/PowerButton'
 
 
-const StaffList = [
-    {id: 1, name: "Harsha", isActive: true},
-    {id: 2, name: "Muthu", isActive: false},
-    {id: 3, name: "Joshua", isActive: true},
-]
-interface DataType {
-  age:number
-  equipmrnt: number[]
-  name: string
-}
+
 
 export const StaffProfile = () => {
 
-    const [showList, setShowList] =useState<number>(11);
-    const [showStaff, setShowStaff] =useState<any[]>(StaffList);
-    const [staffId, setStaffId] = useState<DataType>()
-    console.log(staffId);
+    const [selectStaff, setSelectStaff] =useState<any>();
+    const [singleStaff, setSingleStaff] =useState<any>();
+    const [staffId, setStaffId] = useState<any>()
     
 
 
@@ -39,13 +35,37 @@ export const StaffProfile = () => {
   };
 
   
-  const GetData = async (e:any) => {
-    e.preventDefault();
-    const result = await axios.get("http://192.168.1.18:80");
-    setStaffId(result.data)
-    console.log(staffId);
-  }
-  const handleClick = () => {
+ useEffect(()=> {
+        const getStaffNames = async () => {
+           try{               
+              const response = await axios.get("http://192.168.1.17:80/getDeskStaffData")
+              console.log(response, "staff");
+              setStaffId(response?.data)
+            }
+            catch (err) {
+              console.log(err);
+            }
+        };
+        getStaffNames()
+    },[])
+
+
+    const getStaffData = async (staff:React.MouseEventHandler<HTMLDivElement>) => {
+      try{
+        setSelectStaff(staff)
+        console.log(selectStaff,"HHHH");
+        const SendData = await axios.post("http://192.168.1.17:80/getSingleStaffData", selectStaff)
+        .then( resp => {
+          console.log(resp.data);
+          setSingleStaff(resp?.data)
+        })
+        }catch (err) {
+          console.log(err); 
+        }
+    }
+
+
+  const handleClick = (staff:any) => {
     console.log("hello world");
     
   }
@@ -70,27 +90,102 @@ export const StaffProfile = () => {
                 </button>
               </div>
             </CustomForm>
-            {showStaff.slice(0, showList).map(({id, name, isActive, index}) => (
-              <div className="overflow-y-auto overflow-x-hidden" onClick={GetData}>
-              <div className="bg-primary h-14 mx-4 rounded-lg flex items-center p-2 justify-between mb-2 cursor-pointer">
+            {staffId?.map((staff:any) => (
+              <div className="overflow-y-auto overflow-x-hidden">
+              <div className="bg-primary h-14 mx-4 rounded-lg flex items-center p-2 justify-between mb-2 cursor-pointer"
+              onClick={() => getStaffData(staff.addId)}>
                 <div className="flex items-center gap-2">
                   <img
-                    src="https://media.istockphoto.com/photos/rendered-classic-sculpture-metaverse-avatar-with-network-of-lowpoly-picture-id1401980646?b=1&k=20&m=1401980646&s=170667a&w=0&h=KxgnhtW2_Q3LUOCwJXYlj27vVlkrfcBk789d-cNZURk="
+                    src={staff.addPhoto}
                     alt="profile"
                     className="rounded-full bg-secondary w-10 h-10 object-cover overflow-hidden"
                     />
-                  <h2 key={index} className="truncate">{nameShrinker(name, 12)}</h2>
+                  <h2 className="truncate">{nameShrinker(staff.staffName, 12)}</h2>
                 </div>
-                {isActive === true ? 
-                  <div key={index} className='w-3 h-3 mr-4 rounded-full bg-quaternaryText'></div>
-                  : <div key={index} className='w-3 h-3 mr-4 rounded-full bg-redText'></div> 
+                {staff.staffStatus !== null ? 
+                  <div className='w-3 h-3 mr-4 rounded-full bg-quaternaryText'></div>
+                  : <div className='w-3 h-3 mr-4 rounded-full bg-redText'></div> 
                 }
               </div>
             </div>
             ))}
         </section>
         <section className='w-[50%]'>
-            <StaffInformation />
+            <div className='realtive w-full h-screen'>
+        <section className='flex justify-between h-32 bg-secondary'>
+           {/* company Documents and profile pic */}
+            <div className=''> 
+                <div className='ml-24 mt-6 bg-quaternary px-3 py-1 rounded-2xl drop-shadow-sm text-sm text-primaryText'>
+                    <button className='pl-4 pr-2'>Govt. ID</button>
+                    <button className='pl-4 pr-2 border-l-2 border-tertiary'>Company ID </button>
+                    <button className='pl-4 border-l-2 border-tertiary'>Resume</button>
+                </div>
+                <div className='flex items-center'>
+                    <img src="https://media.istockphoto.com/photos/rendered-classic-sculpture-metaverse-avatar-with-network-of-lowpoly-picture-id1401980646?b=1&k=20&m=1401980646&s=170667a&w=0&h=KxgnhtW2_Q3LUOCwJXYlj27vVlkrfcBk789d-cNZURk=" 
+                    alt=""
+                    className="rounded-full bg-secondary w-24 h-24 mt-3 ml-20 object-cover overflow-hidden" />
+                    <p className='text-2xl font-semibold ml-6 tracking-[.3rem]'>{singleStaff?.staffName}</p>
+                </div>
+            </div>
+            {/* login ID and Password */}
+            {/* <div className='m-4 mr-10 bg-quaternary rounded-xl drop-shadow-lg'>
+                <label className='flex items-center m-4 text-primaryText'>Login ID:
+                <p className='ml-2 w-40 py-1 pl-3 bg-secondary text-sm text-white font-semibold rounded-xl'>age</p>
+                </label>
+                <label className='flex m-4 text-primaryText'>Password:
+                <p className='ml-2 w-40 py-1 pl-3 bg-secondary text-sm text-white font-semibold rounded-xl'>********</p>
+                </label>
+            </div> */}
+        </section>
+            {/* informations and calendar */}
+            <section className='flex mt-10'>
+                <div className='w-[50%] mt-10'>
+                    <form className='tracking-wider ml-10'>
+                        <div className='flex items-center'>
+                            <label className='flex justify-end w-32 text-primaryText text-lg font-bold'>Jojopay ID:</label>
+                            <p className='text-white text-sm font-light pl-4'>{singleStaff?.companyId}</p>
+                        </div>
+                        <div className='flex items-center mt-3'>
+                            <label className='flex justify-end w-32 text-primaryText text-lg font-bold'>Email ID:</label>
+                            <p className='text-white text-sm font-light pl-4'>{singleStaff?.staffEmailId}</p>
+                        </div>
+                        <div className='flex items-center mt-3'>
+                            <label className='flex justify-end w-32 text-primaryText text-lg font-bold'>Main ph, No.:</label>
+                            <p className='text-white text-sm font-light pl-4'>{singleStaff?.staffMobileNo}</p>
+                        </div>
+                        <div className='flex items-center mt-3'>
+                            <label className='flex justify-end w-32 text-primaryText text-lg font-bold'>Ph, No.:</label>
+                            <p className='text-white text-sm font-light pl-4'>{singleStaff?.staffSecMobileNo}</p>
+                        </div>
+                        <div className='flex mt-3'>
+                            <label className='flex justify-end w-32 text-primaryText text-lg font-bold'>Address:</label>
+                            <p className='w-56 text-white text-sm font-light pl-4'>{singleStaff?.staffAddress}</p>
+                        </div>
+
+                    </form>
+                    <div className='flex items-center flex-col mt-8 pt-2 pb-4 mx-8 bg-secondary rounded-2xl'>
+                        <p className='text-primaryText font-bold'>Notes</p>
+                        <textarea name=""
+                        className='w-[90%] h-24 bg-tertiary pl-4 pt-2 mt-1 outline-none rounded-xl resize-none'>
+                        </textarea>
+                    </div>
+                    <div>
+                        <PowerButton status={singleStaff?.staffStatus} />
+                            <div className='ml-24 mt-4'>
+                                <Link to="/edit-staff-profile">
+                                    <EditButton isEdit={true} className=""/>
+                                </Link>
+                                <div className='ml-4 mt-2'>
+                                    <DeleteButton />
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div className='w-[50%] z-10'>
+                    <Attendance isDownload={true} value={singleStaff?.attendance} />
+                </div>
+            </section>
+    </div>
         </section>
         <section className='w-[30%] h-screen bg-secondary drop-shadow-2xl'>
           <div className='flex justify-end w-[70%] m-8'>
@@ -99,11 +194,11 @@ export const StaffProfile = () => {
           <div className='flex flex-col items-center mr-20'>
             <p className='text-md -mt-4 text-primaryText'>Working Since</p>
             <div className='relative flex justify-center items-center w-60 h-[1px] mt-4 bg-primaryText'>
-              <p className='px-6 bg-secondary font-bold'>5/06/2022</p>
+              <p className='px-6 bg-secondary font-bold'>{singleStaff?.joiningDate}</p>
             </div>
           </div>
           <label className='flex items-center justify-center mr-20 mt-8 text-sm text-primaryText pt-4'>D.O.B: 
-            <span className='text-white ml-4 px-6 py-2 bg-primary rounded-xl'>28/10/2022</span>
+            <span className='text-white ml-4 px-6 py-2 bg-primary rounded-xl'>{singleStaff?.attendance}</span>
           </label>
           <div className='flex items-center flex-col mr-20 mt-10'>
               <div className='flex items-center'>
@@ -116,7 +211,7 @@ export const StaffProfile = () => {
               </div>
               <div className='flex items-center mt-2'>
                 <p className='w-40 text-primaryText text-lg font-semibold'>Assign Trip</p>
-                <div className='mt-1'><ToggleButton className='' isBig={false} ToggleSwitch={handleClick} /></div>
+                <div className='mt-1'><ToggleButton className='' isBig={false} /></div>
               </div>
           </div>
         </section>

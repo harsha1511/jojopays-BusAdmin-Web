@@ -7,17 +7,17 @@ import EditButton from './EditButton'
 
 interface PowerButtonProps {
     className?: string
+    status?: string
 
 }
-export const PowerButton = ({className}:PowerButtonProps) => {
+export const PowerButton = ({className, status}:PowerButtonProps) => {
 
-    const [powerOn, setPowerOn] =useState(true)
 
   return (
     <div className={`flex absolute bottom-0 cursor-pointer`} >
-        <div onClick={() => setPowerOn(!powerOn)}
+        <div
         className={`relative flex justify-center items-center w-28 h-28 bg-tertiary rounded-tr-full`}>
-            <MdPowerSettingsNew className={`absolute w-12 h-12 mr-6 mt-4 blur-sm ${powerOn ? "text-quaternaryText" : "text-redText"}`}/>
+            <MdPowerSettingsNew className={`absolute w-12 h-12 mr-6 mt-4 blur-sm ${status === "active" ? "text-quaternaryText" : "text-redText"}`}/>
             <MdPowerSettingsNew className='absolute w-12 h-12 mr-6 mt-4'/>
         </div>
         {/* <div>

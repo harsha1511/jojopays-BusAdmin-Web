@@ -1,10 +1,16 @@
 import React,{useState} from 'react'
 import * as yup from "yup";
+import axios from 'axios';
 
 
 import CustomForm from "../../../components/Form";
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
+
+import { useDispatch } from "react-redux";
+import { LOGIN_SUCCESS } from "../../../store/reducers/auth.reducer";
+
+
 
 
 
@@ -21,49 +27,34 @@ const validateUser = yup.object().shape({
 
 
 interface CreateUSerProps {
-    jojoId:string
+    jojoUserId:any;
 }
 
 
-// interface NewUserProps {
-//   jojoId: string;
-//   password: string;
-//   confirmPassword: string;
-// }
+
+export const CreateUser = ({jojoUserId}:CreateUSerProps) => {
 
 
-export const CreateUser = ({jojoId}:CreateUSerProps) => {
+  const dispatch = useDispatch();
 
-// const newUser: NewUserProps = ({
-//     jojoId: jojoId,
-//     password:"",
-//     confirmPassword:"",
-//   })
   const defaultUserData = {
-    userId: jojoId,
+    jojoId: jojoUserId.data.jojoId,
     password: "",
     confirmPassword:"",
   }
 
+  console.log("jojo", jojoUserId);
+  
   
 
   const [isLoading, setIsLoading] = useState(false);
   const [newUser, setNewUser] = useState<any>(defaultUserData);
 
   const {
-    userId,
+    jojoId,
     password,
     confirmPassword,
   } = newUser
-
-
-  
-//   const CreateUser = async (data: NewUserProps) => {
-//     console.log(data.jojoId, "password");
-    // if(value.password === value.confirmPassword){
-    //   const Response = await axios.post("http://192.168.1.17:80/registerCreds", value)
-    // }   
-//   }
 
 
 const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -75,11 +66,21 @@ const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) 
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if(newUser.password === newUser.confirmPassword){
+    try{
+      if(newUser.password !== "" && newUser.password === newUser.confirmPassword){
         console.log("newUSERRR", newUser)
+        const SendLogin = await axios.post("http://192.168.1.17:80/registerCreds", newUser)
+        console.log(SendLogin);
+      }
     }
-    // setNewUser(defaultUserData); 
+    catch(err){
+      console.log(err)
+      setIsLoading(false);
+      
+    }
 };
+
+console.log(jojoUserId);
 
 
   return (
@@ -88,11 +89,15 @@ const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) 
       <div className="flex flex-col items-center mt-8 w-ful">
         <p className="text-greyText text-sm">Jojo pays User Id</p>
       <p className="flex justify-center py-2 text-black outline-none shadow-md w-96 mb-6 rounded-2xl font-semibold">
-        {jojoId}
+        {jojoUserId?.data.jojoId}
+      </p>
+        <p className="text-greyText text-sm">Jojo pays Company Id</p>
+      <p className="flex justify-center py-2 text-black outline-none shadow-md w-96 mb-6 rounded-2xl font-semibold">
+        {jojoUserId?.data.companyId}
       </p>
       <input
       type="text"
-      value={jojoId}
+      value={jojoUserId?.data.jojoId}
       className="hidden"
       id="jojoId" />
       <input

@@ -1,10 +1,12 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { MdDone, MdDoneAll } from "react-icons/md";
+import axios from "axios";
+import instance  from "../../../API/axios";
 
 import { classNames } from "../../../utils/helpers";
 
 interface ChatProps {
-  isYours: boolean;
+  isYours: string;
   message: string;
   status?: "delivered" | "seen" | "sent";
 }
@@ -22,17 +24,42 @@ const Chat = ({ isYours, message, status }: ChatProps) => {
     );
   }, [status]);
 
+
+  const [chat, setChat] = useState<any>();
+
+
+  useEffect(() => {
+  const getChatData = async () => {
+    try {
+      const response = await axios.get(`${instance}getChatData`);
+      // const response = await axios.get(instance.constants.auth.login);
+      console.log(response.data, "HELLO");
+      setChat(response.data) 
+    }
+    catch(err) {
+      console.log(err); 
+    }
+  }
+  getChatData(); 
+}, []);
+
+
+
+
   return (
+  
+  <div>
+    {chat?.map((c:any) => (
     <div
-      className={`flex flex-col ${classNames(
-        isYours,
-        "self-end",
-        "self-start"
-      )}`}
+      className={`flex flex-col  ${
+      c.senderId === "1001" ?
+        "w-[800px] ml-[520px]":
+        "justify-start"
+      }`}
     >
       <div
         className={`${classNames(
-          isYours,
+          c.senderId === "1001",
           "bg-quaternary rounded-bl-3xl rounded-md",
           "bg-primaryText rounded-br-3xl rounded-md"
         )} flex flex-col w-[400px] h-auto mt-2`}
@@ -48,7 +75,9 @@ const Chat = ({ isYours, message, status }: ChatProps) => {
           </h6>
         </div>
         <div>
-          <p className="p-3 pt-0 break-all whitespace-normal">{message}</p>
+          <p className="p-3 pt-0 break-all whitespace-normal">{
+          c.senderId === "1001" ? 
+          message : typeof undefined }</p>
         </div>
         {status && (
           <p className="p-3 break-all whitespace-normal self-end">
@@ -58,7 +87,7 @@ const Chat = ({ isYours, message, status }: ChatProps) => {
       </div>
       <p
         className={`${classNames(
-          isYours,
+          isYours === "",
           "self-end",
           "self-start"
         )} text-xs text-gray-500 mt-1`}
@@ -66,6 +95,8 @@ const Chat = ({ isYours, message, status }: ChatProps) => {
         08.00PM
       </p>
     </div>
+    ))}
+        </div>
   );
 };
 
