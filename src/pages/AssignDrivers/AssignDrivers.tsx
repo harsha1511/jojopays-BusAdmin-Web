@@ -43,7 +43,7 @@ const AssignDrivers = () => {
 
   return (
     <>
-      {console.log("envvv", process.env.REACT_APP_API_URL)}
+      {console.log("env file", process.env.REACT_APP_API_URL)}
       <div className="flex w-[96vw]">
         <section className="w-[65%] h-screen">
           {/* filter */}
