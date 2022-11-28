@@ -10,9 +10,12 @@ import { FiMoreVertical, FiSend } from "react-icons/fi";
 import { GrAttachment } from "react-icons/gr";
 import { IoIosContacts } from "react-icons/io";
 import { FaMoneyBill } from "react-icons/fa";
+import {MdClose} from 'react-icons/md'
+
 
 import { countReducer, nameShrinker } from "../../utils/helpers";
 import CustomForm from "../../components/Form";
+import Input from "../../components/Input"
 import { Form } from "formik";
 import Chat from "./components/Chat";
 import Overlay from "../../components/Overlay";
@@ -32,8 +35,8 @@ const messageSchema = yup.object().shape({
 
 const Chats = () => {
   const [showMoreOptions, setShowMoreOptions] = useState(false);
+  const [sendContact, setSendContact] = useState(false);
   const [openFeatures, setOpenFeatures] = useState(false);
-  const [chat, setChat] = useState<any>();
 
   const chatRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 
@@ -42,7 +45,11 @@ const Chats = () => {
     []
   );
 
-  const handleShowOptions = () => setShowMoreOptions(!showMoreOptions);
+  const handleShowOptions = () => {
+    setShowMoreOptions(!showMoreOptions);
+    setSendContact(false)
+  }
+  const handleContact = () => setSendContact(true);
   const handleOpenFeatures = () => setOpenFeatures(!openFeatures);
 
   const handleExpand = (e: React.ChangeEvent<any>) => {
@@ -56,26 +63,25 @@ const Chats = () => {
   };
 
   const handleSendMessage = (values: any) => {
-    console.log(values);
+    console.log(values, "MESSAGE");
   };
-
-useEffect(() => {
-  const getChatData = async () => {
-    try {
-      const response = await axios.get("http://192.168.1.17:80/getChatData");
-      console.log(response.data, "HELLO");
-      setChat(response.data) 
-    }
-    catch(err) {
-      console.log(err); 
-    }
-  }
-  getChatData(); 
-}, []);
 
 
   return (
-    <div className="grid grid-cols-6">
+    <>
+    <div className="relative grid grid-cols-6">
+    {sendContact && 
+      <div className="z-10 w-full h-full absolute flex justify-center items-center">
+        <div className="flex flex-col items-center w-[650px] h-[400px] bg-tertiary rounded-3xl">
+         <div className="flex w-full justify-end" onClick={handleShowOptions}>
+          <MdClose className='w-8 h-6 mr-6 mt-2 text-primaryText font-bold cursor-pointer' />
+          </div>
+          <div>
+            <p className="w-full text-lg font-semibold text-primaryText">Select Contact</p>
+          </div>
+        </div>
+      </div>
+    }
       <section className="h-screen overflow-y-auto overflow-x-hidden col-span-1 bg-quaternary rounded-r-2xl">
         <CustomForm
           initialValues={{ search: "" }}
@@ -83,8 +89,9 @@ useEffect(() => {
           onSubmit={handleSearch}
         >
           <div className="flex items-center border-2 border-primaryText my-6 mx-3 rounded-full px-3">
-            <input
+            <Input
               type="text"
+              name="search"
               placeholder="Search..."
               className="bg-transparent border-none py-2 px-4 text-white outline-none w-full"
             />
@@ -111,31 +118,8 @@ useEffect(() => {
       </section>
       <section className="col-span-4 flex flex-col h-screen">
         <div className="flex-90 overflow-y-auto overflow-x-hidden p-5 pt-7 flex flex-col">
-          {chat?.map((c:any) => (
-            <Chat
-            isYours={c?.senderID}
-            message={c?.message}
-            status="delivered"
+            <Chat 
             />
-            ))}
-          {/* <Chat
-            isYours={false}
-            message="sdjfhjk kjhfkjsdhfkj hksdhfkhskjabjhcvas ghvdchakjds ibdcuvsabiulvb iubdiocvuasbv iohnopvajfpo poijsd0ifj sdfkjhsdkfh kshdfkjhsdkfjhsdkfhskdjfhk hkjdfshkjdsfhkjfdhkj"
-          />
-          <Chat
-            isYours={true}
-            message="sdjfhjk kjhfkjsdhfkj hksdhfkhsdfkjhsdkfh kshdfkjhsdkfjhsdkfhskdjfhk hkjdfshkjdsfhkjfdhkj"
-            status="seen"
-          />
-          <Chat
-            isYours={false}
-            message="sdjfhjk kjhfkjsdhfkj hksdhfkhsdfkjhsdkfh kshdfkjhsdkfjhsdkfhskdjfhk hkjdfshkjdsfhkjfdhkj"
-          />
-          <Chat
-            isYours={true}
-            message="sdjfhjk kjhfkjsdhfkj hksdhfkhsdfkjhsdkfh kshdfkjhsdkfjhsdkfhskdjfhk hkjdfshkjdsfhkjfdhkj"
-            status="sent"
-          /> */}
           <div ref={chatRef}></div>
         </div>
         <div className="pt-3 flex-12">
@@ -145,13 +129,12 @@ useEffect(() => {
             validationSchema={messageSchema}
             onSubmit={handleSendMessage}
           >
-            <Form>
-              <div className="flex items-center px-4 gap-4">
-                <textarea
-                  onKeyDown={handleExpand}
-                  onChange={handleExpand}
+              <div className="flex px-4 gap-4">
+                <Input
+                  type="text"
+                  name="message"
                   placeholder="Type here"
-                  className="bg-transparent border-2 border-primaryText py-2 px-4 flex-1 outline-none resize-none h-12 rounded"
+                  className="w-[800px] bg-transparent border-2 border-primaryText focus-border-primaryText focus:border-2 py-2 px-4 flex-1 resize-none h-12 rounded"
                 />
                 <button
                   type="submit"
@@ -160,9 +143,12 @@ useEffect(() => {
                   <FiSend />
                 </button>
                 <div className="relative">
+                  
                   {showMoreOptions && (
                     <>
-                      <Overlay onClick={handleShowOptions} />
+                    <div className="z-20">
+                      <Overlay onClick={handleShowOptions}/>
+                    </div>
                       <div className="absolute -top-72 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-5">
                         <button
                           type="button"
@@ -184,6 +170,7 @@ useEffect(() => {
                         </button>
                         <button
                           type="button"
+                          onClick={handleContact}
                           className="bg-secondaryText rounded-full p-4 transform hover:scale-105 transition-all"
                         >
                           <IoIosContacts fontSize="1rem" />
@@ -206,7 +193,6 @@ useEffect(() => {
                   </button>
                 </div>
               </div>
-            </Form>
           </CustomForm>
         </div>
       </section>
@@ -257,6 +243,7 @@ useEffect(() => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

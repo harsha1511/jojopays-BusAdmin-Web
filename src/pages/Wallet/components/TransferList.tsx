@@ -59,12 +59,15 @@ export const TransferList = ({type}:TYPPP) => {
   return (
     <div>
         <div className='z-10 w-[510px] h-[468px] bg-secondary rounded-2xl overflow-y-auto overflow-x-hidden'>
+            {/* {names ? */}
+            <div>
                 {names?.map((data:any) => (
                     <div className='flex justify-between items-center mt-6 ml-6'>
                 <div className='flex items-center'>
                     <img src={data?.image}
                     alt=""
-                    className='w-12 h-12 rounded-full'
+                    // className='w-12 h-12 rounded-full'
+                    className={`w-12 h-12 rounded-full1 ${names.data.image ? "" : "animate-pulse"}`}
                     onClick={
                         () =>dispatch(isOpen(true))}
                         />
@@ -83,6 +86,14 @@ export const TransferList = ({type}:TYPPP) => {
                 </div>
                 </div>
                     ))}
+            </div>
+                {/* : 
+                <div>
+                    <p className='m-3'>
+                     Loading...
+                    </p>
+                </div>
+                } */}
         </div>
     </div>
   )

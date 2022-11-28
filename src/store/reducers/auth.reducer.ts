@@ -15,7 +15,7 @@ const authSlice = createSlice({
       return { ...auth, isLoggedIn: true, user: action.payload };
     },
     LOGIN_FAIL: (auth, action: PayloadAction<undefined | object>) => {
-      return { ...auth, isLoggedIn: false, user: {} };
+      return { ...auth, isLoggedIn: false, user: {}};
     },
     LOGOUT: (auth, action: PayloadAction<undefined | object>) => {
       return { isLoggedIn: false, user: {} };

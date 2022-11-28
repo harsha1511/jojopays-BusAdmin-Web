@@ -40,7 +40,7 @@ const TicketPrice = () => {
             {TicketFilter.map(({name}) => (
               <p 
               onClick={() => setTicketFIlter(name)}
-              className={`text-xl font-bold tracking-wider text-white pb-3 mt-4 ${ticketFilter === name ? "border-b-[4px] border-primaryText" : ""}`}>
+              className={`text-xl font-bold tracking-wider text-white pb-3 mt-4 cursor-pointer ${ticketFilter === name ? "border-b-[4px] border-primaryText" : ""}`}>
                 {name}
               </p>
             ))}

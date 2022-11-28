@@ -11,10 +11,10 @@ import {BsCalendarX} from "react-icons/bs";
 import {BsCircleFill} from "react-icons/bs";
 
 
-export const Busicon = () => {
+export const BusInfo = () => {
     return(
         <div className="flex justify-end w-[96vw] h-screen">
-    <div className="w-[22%] h-[60%] bg-black  rounded-2xl">
+    <div className="w-[22%] h-[60%] bg-white bg-opacity-50 backdrop-blur rounded-2xl">
         <div className="flex flex-col font-semibold w-full h-full m-4">
             <div className="flex flex-row m-2">
                 <div className="text-[25px]"><FaBusAlt/></div>
@@ -58,8 +58,6 @@ export const Busicon = () => {
             </div>
         </div>
     </div>
-    </div>
-         
+    </div>    
          );
         }
-export default Busicon;  

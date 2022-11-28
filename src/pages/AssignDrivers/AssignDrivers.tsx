@@ -7,7 +7,9 @@ import { nameShrinker } from "../../utils/helpers";
 
 import { TripBar } from "./components/TripBar";
 import { Link } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
+import axios from "../../API/axios"
+import constants from "../../API/constants";
 
 const AssignDrivers = () => {
   const [bus, setBus] = useState<object[]>();
@@ -26,12 +28,13 @@ const AssignDrivers = () => {
     getBusData();
   }, []);
 
+  console.log("CONstans", constants);
+  
+
   useEffect(() => {
     const getDriverData = async () => {
       try {
-        const response = await axios.get(
-          "http://192.168.1.17:80/getDriverData"
-        );
+        const response = await axios.get(constants.company.driver);
         console.log(response.data);
         setDriver(response.data);
       } catch (err) {

@@ -47,11 +47,12 @@ import Drivercomment from "../pages/Driver/components/Drivercomment";
 import Newbuscreate from "../pages/Bus/components/Newbuscreate";
 import Busviewdetails from "../pages/Bus/components/Busviewdetails";
 import Tripstatus from "../pages/Bus/components/Tripstatus";
-import Busicon from "../pages/Bus/components/Busicon";
+import { BusInfo } from "../pages/Bus/components/BusInfo";
 import Generateqr from "../pages/Bus/components/Generateqr";
 import Createnewqr from "../pages/Bus/components/Createnewqr";
 import Busqr from "../pages/Bus/components/Busqr";
 import Rfid from "../pages/Bus/components/Rfid";
+import BusSeats from "../pages/Bus/components/BusSeats";
 
 const routes: { path: string; Element: () => JSX.Element }[] = [
   { path: "/assign-drivers", Element: AssignDrivers },
@@ -105,12 +106,12 @@ const routes: { path: string; Element: () => JSX.Element }[] = [
   {path:"/Bus-newbuscreate", Element: Newbuscreate},
   {path:"/bus-viewdetails", Element: Busviewdetails},
   {path:"/bus-tripstatus", Element: Tripstatus},
-  {path:"/bus-icon", Element: Busicon},
+  {path:"/bus-icon", Element: BusInfo},
   {path:"/bus-generateqr", Element:Generateqr },
   {path:"/createnew-qr", Element: Createnewqr},
   {path:"/bus-detailsqr", Element: Busqr},
   {path:"/bus-rfidqr", Element:Rfid},
-  
+  {path:"/bus-seat", Element:BusSeats},
 ];
 
 export default routes;

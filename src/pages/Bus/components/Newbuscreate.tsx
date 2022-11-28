@@ -99,38 +99,14 @@ function Newbuscreate(){
                 
                 </div>
                 <div className="w-[20%] -mt-2 h-[30%]">
-                <button className="flex shadow-2xl justify-center items-center w-[180px] rounded-3xl
+                <Link 
+                to={'/bus-seat'}
+                className="flex shadow-2xl justify-center items-center w-[180px] rounded-3xl
                      text-[#50FF84] h-[50px] bg-[#2F3142] text-[35px] font-semibold ">Next
-                     </button>
+                     </Link>
                 </div>
-                
-                {/* <div className="flex flex-row">
-                <div className="flex justify-start">
-                <label className=' w-full text-primaryText -mt-6 text-sm font-bold'>Bus Document:</label>
-                    <button className="flex justify-start items-center w-[115px] rounded-tl-[15px] rounded-br-[15px] rounded-tr-[4px]
-                        rounded-bl-[4px] text-redText h-[35px] bg-[#2F3142] font-semibold ">Upload
-                     </button>
-                     </div>
-                     <div className="flex justify-end">
-                 <button className="flex justify-start items-center w-[115px] rounded-3xl
-                     text-redText h-[35px] bg-[#2F3142] font-semibold ">Next
-                     </button>
-                </div>
-                </div> */}
-               
             </div>
-          
-            </div>
-     
-           
-
-        
-       
-
-
-
-
-        
+            </div>  
     </div>
     </div>
     </div>
