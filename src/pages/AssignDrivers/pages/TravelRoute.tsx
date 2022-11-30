@@ -58,11 +58,11 @@ export const TravelRoute = () => {
                             <p className='ml-3 text-lg text-primaryText'>ETA</p>
                           </div> 
                           <div >
-                            <div className='flex items-center'>
+                            <div className='flex flex-col items-center ml-3'>
                               <p className='flex justify-center items-center w-28 h-8 bg-primary rounded-2xl'>09:30 pm</p>
                               <p className='ml-3 text-primaryText'>Start Time</p>
                             </div>
-                            <div className='flex items-center mt-2'>
+                            <div className='flex flex-col items-center mt-2 ml-3'>
                               <p className='flex justify-center items-center w-28 h-8 bg-primary rounded-2xl'>09:30 pm</p>
                               <p className='ml-3  text-primaryText'>ETA End Time</p>
                             </div>
@@ -70,7 +70,7 @@ export const TravelRoute = () => {
                         </div>
                         {/* Routes and pins */}
                         <form action="" className='w-[100%]'>
-                        <div className='h-[330px] mt-10 overflow-y-auto overflow-x-hidden' id='noScrollBar'>
+                        <div className='h-[220px] mt-10 overflow-y-auto overflow-x-hidden'>
                           <div className='flex justify-between items-center w-full h-12 ml-1 bg-quaternary rounded-2xl drop-shadow-md'>
                             <div className='w-[60%] flex items-center'>
                               <MdLocationPin className='scale-150 ml-4 text-redText' />
@@ -89,7 +89,7 @@ export const TravelRoute = () => {
                               className='w-[90%] h-8 ml-3 rounded-xl pl-3 bg-primary focus:border-none' 
                               type="text" name={`point${point}`} onChange={handleChange} id="" />
                             </div>
-                            <p className='mr-6 scale-150 text-redText' onClick={RemovePoint}><MdDeleteForever /></p>
+                            <p className='mr-6 scale-150 text-redText cursor-pointer' onClick={RemovePoint}><MdDeleteForever /></p>
                           </div>
                           ))}
                             {/* NEw Intermediate Point */}

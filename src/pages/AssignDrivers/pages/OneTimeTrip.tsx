@@ -28,7 +28,7 @@ export const OneTimeTrip = () => {
     <div>
         <div className='flex flex-col justify-start items-center w-[96vw] h-screen'>
             <div className='z-10 flex justify-center items-center w-[35%] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
-                <p className='text-xl font-bold tracking-wider text-primaryText'>One Time Trip</p>
+                <p className='text-2xl font-bold tracking-wider text-primaryText'>One Time Trip</p>
             </div>
             <div className='flex flex-col justify-start items-center w-[90%] h-[75%] bg-secondary -mt-8 rounded-3xl drop-shadow-xl'>
                 <div className='flex justify-end m-4 pr-8 w-full'><BackButton /></div>
@@ -93,9 +93,11 @@ export const OneTimeTrip = () => {
                     </section>
                 </div>
             </div>
-            <Link to={"/travel-route"} className="flex w-[45%]">
-            <button className=' mt-4 px-10 z-10 py-3 text-2xl font-semibold tracking-wider bg-secondary rounded-tl-3xl rounded-md rounded-br-3xl'>Next</button>
+            <div className='flex w-[45%]'>
+            <Link to={"/travel-route"}>
+            <button className='cursor-pointer mt-4 px-10 py-3 text-2xl font-semibold tracking-wider bg-secondary rounded-tl-3xl rounded-md rounded-br-3xl'>Next</button>
             </Link>
+            </div>
         </div>
     </div>
   )

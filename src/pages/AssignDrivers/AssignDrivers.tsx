@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "../../API/axios"
 import constants from "../../API/constants";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
+
 
 import { BsSearch } from "react-icons/bs";
 
@@ -8,6 +11,8 @@ import { nameShrinker } from "../../utils/helpers";
 
 import { TripBar } from "./components/TripBar";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {SUBMIT_FORM_ONE} from "../../store/reducers/form.reducer"
 
 
 interface FilterProps {
@@ -16,25 +21,29 @@ interface FilterProps {
   tripEndDate: string;
   tripEndTime: string;
   tripArrivalFrom: string;
-  tripDepatureTime: string;
+  tripDepatureTo: string;
   tripType: string;
 }
 
 const AssignDrivers = () => {
 
-
-  const [bus, setBus] = useState<object[]>();
-  const [driver, setDriver] = useState<object[]>();
-  const [assignedTrip, setAssignedTrip] = useState<boolean>(true);
-  const [filter, setFilter] = useState<FilterProps>({
+  const form = useSelector((state: RootState) => state.form);
+// 
+  const initialValue = {
     tripStartDate: "",
     tripStartTime: "",
     tripEndDate: "",
     tripEndTime: "",
     tripArrivalFrom: "",
-    tripDepatureTime: "",
-    tripType: "",
-  })
+    tripDepatureTo: "",
+    tripType: "",    
+  }
+
+  const dispatch = useDispatch()
+  const [bus, setBus] = useState<object[]>();
+  const [driver, setDriver] = useState<object[]>();
+  const [assignedTrip, setAssignedTrip] = useState<boolean>(true);
+  const [filter, setFilter] = useState<FilterProps>(initialValue);
 
   useEffect(() => {
     const getBusData = async () => {
@@ -49,7 +58,7 @@ const AssignDrivers = () => {
     getBusData();
   }, []);
 
-  console.log("Constans", constants);
+  const inputRef = useRef<HTMLInputElement>(null);
   
 
   useEffect(() => {
@@ -66,21 +75,21 @@ const AssignDrivers = () => {
   }, []);
   
   const handleChange = async (e:any) => {
-    e.preventDefault();
     try {
-    const {name, value} = e.target
-    setFilter({...filter, [name]: value})
-      // const PostFilter = await axios.post(constants.company.trip, filter)
-      // .then(resp => 
-      //   console.log(resp)
-      //   )
+      const {name, value} = e.target
+      setFilter({...filter, [name]: value})
     } catch(err){
       console.log(err);
-    }
-
-      
+    }   
   }
-console.log("FILTERSS", filter);
+  
+  useEffect(() => {
+    console.log("FILTERSS", filter);
+    const PostFilter = axios.post(constants.company.trip, filter )
+    //     .then(resp => 
+    //     console.log(resp)
+    //     )    
+  }, [filter])
 
  
   // console.log("env file", process.env.REACT_APP_API_URL)
@@ -110,12 +119,14 @@ console.log("FILTERSS", filter);
                         type="date"
                         className="pl-2 bg-tertiary ml-4 p-1 rounded-lg w-[65%] cursor-text focus:border-0 text-white"
                         name="tripStartDate"
+                        value={filter.tripStartDate}
                         onChange={handleChange}
                       />
                       <input
                         type="time"
                         className="pl-2 bg-tertiary ml-4 p-1 rounded-lg w-[35%] cursor-text focus:border-0"
                         name="tripStartTime"
+                        value={filter.tripStartTime}
                         onChange={handleChange}
                       />
                     </div>
@@ -125,12 +136,14 @@ console.log("FILTERSS", filter);
                         type="date"
                         className="pl-2 bg-tertiary ml-4 p-1 rounded-lg w-[65%] cursor-text focus:border-0 text-white"
                         name="tripEndDate"
+                        value={filter.tripEndDate}
                         onChange={handleChange}
                       />
                       <input
                         type="time"
                         className="pl-2 bg-tertiary ml-4 p-1 rounded-lg w-[35%] cursor-text focus:border-0"
                         name="tripEndTime"
+                        value={filter.tripEndTime}
                         onChange={handleChange}
                       />
                     </div>
@@ -147,8 +160,10 @@ console.log("FILTERSS", filter);
                     </label>
                     <input
                       type="text"
-                      name="tripDepatureTime"
+                      name="tripArrivalFrom"
+                      value={filter.tripArrivalFrom}
                       onChange={handleChange}
+                      // onChange={(e:any) => setFilter(e.target.value)}
                       className="bg-primary p-1 ml-2 w-[60%] rounded-lg drop-shadow-md focus:border-0 pl-4"
                     />
                   </div>
@@ -161,7 +176,8 @@ console.log("FILTERSS", filter);
                     </label>
                     <input
                       type="text"
-                      name="pointTwo"
+                      name="tripDepatureTo"
+                      value={filter.tripDepatureTo}
                       onChange={handleChange}
                       className="bg-primary p-1 ml-2 w-[60%] rounded-lg drop-shadow-md focus:border-0 pl-4"
                     />
@@ -175,13 +191,15 @@ console.log("FILTERSS", filter);
                     value="Casual Trip"
                     name="tripType"
                     readOnly={true}
-                    onClick={handleChange} />
+                    onClick={handleChange} 
+                    />
                     <input className={`w-[50%] border-greyText/50 border-l-2 bg-primary ml-2 pl-2 focus:border-none cursor-pointer
                     ${filter.tripType === "Pre Booked Trip" ? "text-white" : "text-primaryText"}`}
                     value="Pre Booked Trip"
                     name="tripType"
                     readOnly={true}
-                    onClick={handleChange} />
+                    onClick={handleChange}
+                     />
                   </div>
                   <div className="flex justify-around w-full py-2 bg-primary rounded-2xl mt-3 cursor-pointer">
                     <input className={`w-[50%] -mr-4 bg-primary  pl-8 focus:border-none cursor-pointer
@@ -189,13 +207,15 @@ console.log("FILTERSS", filter);
                     value="One Way Trip"
                     name="tripType"
                     readOnly={true}
-                    onClick={handleChange} />
+                    onClick={handleChange}
+                     />
                     <input className={`w-[45%] pl-4 bg-primary focus:border-none border-l-2 border-greyText/50 cursor-pointer
                     ${filter.tripType === "Round Trip" ? "text-white" : "text-primaryText"}`}
                     value="Round Trip"
                     name="tripType"
                     readOnly={true}
-                    onClick={handleChange} /> 
+                    onClick={handleChange} 
+                    /> 
                   </div>
                 </div>
               </form>

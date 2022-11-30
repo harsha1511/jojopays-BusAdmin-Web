@@ -12,7 +12,7 @@ const constants:any = {
         trip: "getTripData",
     },
     filters: {
-        tripFilter: ""
+        selectbus: "getBus"
     },
     transaction:{
         list: "getTransactionData",

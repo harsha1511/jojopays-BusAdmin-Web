@@ -35,7 +35,7 @@ const TicketPrice = () => {
             <p className="ml-10 mt-1 text-primaryText">Ticket / km</p>
           </div>
         </div>
-        <div className="flex flex-col items-center w-[94%] h-[510px] mt-2 rounded-t-3xl border-[1px] border-blueText">
+        <div className="flex flex-col items-center w-[94%] h-[70%] border-b-[0px] mt-2 rounded-t-3xl border-[1px] border-blueText">
           <div className="flex justify-around items-center w-[95%] h-14 mt-2 border-b-[1px] border-greyText/50">
             {TicketFilter.map(({name}) => (
               <p 
@@ -51,7 +51,7 @@ const TicketPrice = () => {
         </div>
       </div>
       <div className="flex flex-col items-center w-[27%] h-full">
-        <section className="w-full h-[55%] "></section>
+        <section className="w-full h-[55%]"></section>
         <section className="flex flex-col items-center w-full h-[45%]">
               <p className="flex justify-center items-center w-40 h-16 bg-secondary rounded-2xl text-xl font-bold">6.00$</p>
               <p className="text-primaryText font-semibold mt-2">Ticket / km</p>

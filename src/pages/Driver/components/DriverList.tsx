@@ -7,11 +7,11 @@ import { BsFillEyeFill } from "react-icons/bs";
 import { FiEdit2 } from "react-icons/fi";
 import { MdDeleteForever } from "react-icons/md";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios from "../../../API/axios";
 
 
 import Profile from "../../../assets/images/profile.png";
-
+import constants  from "../../../API/constants";
 
 const DriverList = () => {
   const [color, setcolor] = useState(true)
@@ -27,7 +27,7 @@ const DriverList = () => {
   useEffect(() => {
   const getDriverData = async () => {
     try {
-      const response = await axios.get("http://192.168.1.17:80/getDriverData");
+      const response = await axios.get(constants.company.driver);
       console.log(response.data);
       setDriver(response.data) 
     }

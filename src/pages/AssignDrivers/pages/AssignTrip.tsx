@@ -51,10 +51,12 @@ export const AssignTrip = () => {
   return (
     <div>
         <div className='flex flex-col justify-start items-center w-[96vw] h-screen'>
-            <div className='z-10 flex justify-center items-center w-[600px] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
-                <p className='text-xl font-bold tracking-wider text-primaryText' onClick={handleUpdate}>Assign Trip</p>
+            <div className='z-10 flex justify-center items-center w-[35%] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
+                <p className='text-2xl font-bold tracking-wider text-primaryText' onClick={handleUpdate}>
+                    Assign Trip
+                </p>
             </div>
-            <div className='flex flex-col justify-start items-center w-[1300px] h-[530px] bg-secondary -mt-8 rounded-3xl drop-shadow-xl'>
+            <div className='flex flex-col justify-start items-center w-[90%] h-[75%] bg-secondary -mt-8 rounded-3xl drop-shadow-xl'>
                 <div className='flex justify-end m-4 pr-8 w-full'><BackButton /></div>
                 <div className='flex w-full justify-between'>
                     <section className='ml-6'>
@@ -128,15 +130,10 @@ export const AssignTrip = () => {
                                     id='busStartTime'
                                     name='tripStartTime' />
                             </div>
-                            <Link to={"/travel-route"}>
-                            <button className='mt-40 ml-60 px-12 py-3 text-2xl font-semibold tracking-wider bg-secondary rounded-tl-3xl rounded-md rounded-br-3xl'>
-                                Next
-                            </button>
-                            </Link>
                         </form>
                     </section>
-                    <section>
-                        <div className='relative flex mr-14 w-[600px] h-[540px] bg-quaternary rounded-3xl bg-cover'>
+                    <section className='w-[90%] -mr-4'>
+                        <div className='relative flex mr-14  h-[460px] bg-quaternary rounded-3xl bg-cover'>
                             <img className='absolute justify-center items-center scale-75' src={jojopay} alt="" />
                         { busName && 
                         <div>
@@ -151,9 +148,8 @@ export const AssignTrip = () => {
                                     <p className='text-primaryText mt-1'>Bus Type:<span className='text-white font-semibold ml-2'>AC</span></p>
                                 </div>
                             </div>
-                                <div className='absolute top-60 ml-6 w-[90%] h-12'>
-                                    <div className='flex justify-between items-center'>
-                                        
+                                <div className='absolute top-60 ml-6 w-[95%] h-12'>
+                                    <div className='flex justify-around items-center'>
                                         <div className='flex items-center'>
                                             <img
                                             className='w-10 h-10 rounded-full ml-3' 
@@ -164,8 +160,8 @@ export const AssignTrip = () => {
                                         <p className='font-semibold'>254 8657 12358</p>
                                     </div>
                                 </div>
-                                <div className='absolute top-80 ml-6 w-[90%] h-12'>
-                                    <div className='flex justify-between items-center'>
+                                <div className='absolute top-80 ml-6 w-[95%] h-12'>
+                                    <div className='flex justify-around items-center'>
                                         
                                         <div className='flex items-center'>
                                             <img
@@ -183,6 +179,11 @@ export const AssignTrip = () => {
                     </section>
                 </div>
             </div>
+                <Link to={"/travel-route"} className="flex w-[45%]">
+                <button className='mt-4  px-10 py-3 text-2xl font-semibold tracking-wider bg-secondary rounded-tl-3xl rounded-md rounded-br-3xl'>
+                    Next
+                </button>
+                </Link>
         </div>
     </div>
   )

@@ -63,7 +63,7 @@ export const AutoPriceChange = () => {
             validationSchema={validationSchema}
             onSubmit={onSubmit}
             >
-            <div className='flex justify-between w-[900px] mt-4 h-24 bg-quaternary rounded-2xl'>
+            <div className='flex justify-center w-[95%] mt-4 h-24 bg-quaternary rounded-2xl'>
                 <div className='flex items-center h-full w-[65%]'>
                     <div className='flex flex-col items-center justify-center w-44  h-[80px]  rounded-xl shadow-inner bg-primary ml-8 my-2'>
                         <Input 
@@ -102,7 +102,7 @@ export const AutoPriceChange = () => {
             </CustomForm>
         ))
         }
-        <div className='w-[95%] mt-4 h-20 bg-quaternary rounded-2xl'>
+        <div className='w-[95%] -ml-8 mt-4 h-20 bg-quaternary rounded-2xl'>
             <div 
             onClick={() => setShowPrice(showPrice+1)}
             className='flex justify-center items-center w-[80%] h-16 m-2 rounded-2xl bg-primary cursor-pointer'>

@@ -24,20 +24,20 @@ export const TripBar = ({pageName}:DriverProps) => {
   const [trip, setTrip] = useState<any>()
 
   
-  useEffect(() => {
-  const getTripData = async () => {
-    try {
-      const response = await axios.get(constants.company.trip);
-      console.log(response.data , "TRIPPPP");
-      setTrip(response.data) 
-    }
-    catch(err) {
-      console.log(err);
+//   useEffect(() => {
+//   const getTripData = async () => {
+//     try {
+//       const response = await axios.get(constants.company.trip);
+//       console.log(response.data , "TRIPPPP");
+//       setTrip(response.data) 
+//     }
+//     catch(err) {
+//       console.log(err);
       
-    }
-  }
-  getTripData(); 
-}, []);
+//     }
+//   }
+//   getTripData(); 
+// }, []);
 
 
     const [openEdit, setOpenEdit] =useState<any>({

@@ -26,21 +26,16 @@ export const AssignTime = () => {
 
     const [months, setMonths] = useState<any>()
 
-    // const handleMonths = (e:any) => {
-    //     const selectedMonths = e.target.textContent;
-    //     console.log(selectedMonths);
-    //     setMonths([...months, selectedMonths]) 
-    // } 
-    // console.log(months);
-        
   return (
     <div className='flex'>
         <div className='flex flex-col justify-start items-center w-[96vw] h-screen'>
-            <div className='z-10 flex justify-center items-center w-[600px] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
-                <p className='text-xl font-bold tracking-wider text-primaryText'>Assign Trip</p>
+            <div className='z-10 flex justify-center items-center w-[35%] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
+                <p className='text-2xl font-bold tracking-wider text-primaryText'>Assign Trip</p>
             </div>
-            <div className='w-full flex justify-end mr-40 '><BackButton /></div>
+            <div className='w-full flex justify-end mr-40'><BackButton /></div>
             {/* Custome Days in a week */}
+            <div className='flex flex-col items-center w-[90%] h-[80%] mb-6 overflow-x-hidden overflow-y-auto' id="noScrollBar">
+
             <div className='flex justify-between items-center w-[55%] h-[65px] bg-secondary rounded-3xl mt-2 drop-shadow-lg'>
                 <p className='text-primaryText ml-6'>Daily/Random days in a week</p>
                 <div className='flex justify-around items-center h-10 w-[55%] bg-primary mr-14 rounded-2xl text-sm'>
@@ -97,6 +92,7 @@ export const AssignTime = () => {
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
   )

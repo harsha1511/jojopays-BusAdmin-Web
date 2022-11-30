@@ -22,6 +22,10 @@ export const EditAssignedTrip = () => {
 
   const [index, setIndex] = useState(0);
   const { month, days } = CustomDays[index];
+
+
+
+
   const checkNumber = (number: number) => {
     if (number > CustomDays.length - 1) {
       return 0;
@@ -31,13 +35,13 @@ export const EditAssignedTrip = () => {
     }
     return number;
   };
-  const nextPerson = () => {
+  const nextMonth = () => {
     setIndex((index) => {
       let newIndex = index + 1;
       return checkNumber(newIndex);
     });
   };
-  const prevPerson = () => {
+  const prevMonth = () => {
     setIndex((index) => {
       let newIndex = index - 1;
       return checkNumber(newIndex);
@@ -48,10 +52,10 @@ export const EditAssignedTrip = () => {
   return (
     <div>
         <div className='flex flex-col justify-start items-center w-[96vw] h-screen'>
-            <div className='z-10 flex justify-center items-center w-[600px] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
+            <div className='z-10 flex justify-center items-center w-[35%] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
                 <p className='text-xl font-bold tracking-wider text-primaryText'>Assign Trip</p>
             </div>
-            <div className='flex flex-col justify-start items-center w-[1300px] h-[530px] bg-secondary -mt-8 rounded-3xl drop-shadow-xl'>
+            <div className='flex flex-col justify-start items-center w-[90%] h-[530px] bg-secondary -mt-8 rounded-3xl drop-shadow-xl'>
                 <div className='flex justify-end m-4 pr-8 w-full'>
                   <div className='mr-3 mt-6'><Link to={'/assign-trip'}><EditButton isEdit={true}/></Link></div>
                   <div className='mr-6 mt-6'><DeleteButton /></div>
@@ -80,9 +84,9 @@ export const EditAssignedTrip = () => {
                         <p className='text-lg'>Jan-Dec</p>
                         <div className='ml-4'>
                           <div className='flex w-28 justify-between items-center'>
-                            <IoIosArrowForward className='rotate-180 scale-150 text-quaternaryText' onClick={prevPerson} />
+                            <IoIosArrowForward className='rotate-180 scale-150 text-quaternaryText cursor-pointer' onClick={prevMonth} />
                             <p className='text-lg bg-primary drop-shadow-lg p-[2px] px-4 rounded-lg'>{month}</p>
-                            <IoIosArrowForward  className='scale-150 text-quaternaryText' onClick={nextPerson}/>
+                            <IoIosArrowForward  className='scale-150 text-quaternaryText cursor-pointer' onClick={nextMonth}/>
                           </div>
                           <div className='-ml-48 mt-4 w-52 h-20 grid grid-cols-8 gap-8'>
                           {days.map((data,index) => (
@@ -96,9 +100,10 @@ export const EditAssignedTrip = () => {
                       </div>
                     </div>
                   </section>
-                  <section>
-                    <div className='relative mr-14 w-[600px] h-[540px] bg-quaternary rounded-3xl bg-cover pt-10'>
-                      <img className='absolute opacity-50 scale-75' src={jojopay} alt="" />
+                  <section className='w-[95%]'>
+                    <div className='flex justify-center items-center relative mr-12 h-[460px] bg-quaternary rounded-3xl bg-cover pt-10'>
+                      <img className='absolute opacity-50 scale-75 ' src={jojopay} alt="" />
+                      <div className='h-full w-full z-10'>
                       <p className='w-full flex justify-center text-2xl font-bold tracking-wider'>Route</p>
                             <div className='flex w-full h-12 items-center ml-6 mt-10'>
                               <div className='w-[66%] h-full flex items-center bg-secondary rounded-2xl'>
@@ -126,6 +131,7 @@ export const EditAssignedTrip = () => {
                               </div>
                               <p className='text-primaryText ml-4'>End Point</p>
                             </div>
+                      </div>
                     </div>
                   </section>
                 </div>
