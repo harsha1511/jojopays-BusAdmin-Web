@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {Link} from 'react-router-dom'
-import axios from 'axios'
+import axios from "../../../API/axios"
+import constants from '../../../API/constants'
 
 import {BiTimeFive} from "react-icons/bi"
 import {MdDeleteForever} from 'react-icons/md'
@@ -12,12 +13,11 @@ import { ToggleButton } from '../../../components/ToggleButton'
 
 
 interface DriverProps {
-    pilot?: string
-    copilot?: string
-    id?: number
-    pageName?: string
+    pageName: boolean
 }
-export const TripBar = ({pilot, copilot, id, pageName}:DriverProps) => {
+
+
+export const TripBar = ({pageName}:DriverProps) => {
 
     
     
@@ -27,7 +27,7 @@ export const TripBar = ({pilot, copilot, id, pageName}:DriverProps) => {
   useEffect(() => {
   const getTripData = async () => {
     try {
-      const response = await axios.get("http://192.168.1.17:80/getTripCompanyData");
+      const response = await axios.get(constants.company.trip);
       console.log(response.data , "TRIPPPP");
       setTrip(response.data) 
     }
@@ -40,29 +40,8 @@ export const TripBar = ({pilot, copilot, id, pageName}:DriverProps) => {
 }, []);
 
 
-    const DriverName =[
-        {
-            "pilot" : "harsha",
-            "coPilot" : "sugan",
-            "id": 1, 
-        },
-        {
-            "pilot" : "jones",
-            "coPilot" : "garwin",
-            "id": 2, 
-        },
-        {
-            "pilot" : "jones",
-            "coPilot" : "garwin",
-            "id": 3, 
-        },
-    ]
-
-    const [list, setList] = useState({
-        object: DriverName
-    })
     const [openEdit, setOpenEdit] =useState<any>({
-        list,
+        trip,
         activeLink: null,
         isOpen: false,
     })
@@ -73,10 +52,7 @@ export const TripBar = ({pilot, copilot, id, pageName}:DriverProps) => {
             console.log(openEdit);
             setOpenEdit({isOpen: true})        
         }
-        }
-
-
-        
+    }
 
   return (
     <div className='relative flex flex-col items-center w-full'>
@@ -84,10 +60,9 @@ export const TripBar = ({pilot, copilot, id, pageName}:DriverProps) => {
         <div className={`relative flex flex-col items-center w-full mb-6`}>
         <div className='z-10 flex justify-between items-center px-3 w-[93%] h-16 bg-quaternary rounded-2xl text-sm cursor-pointer'
         onClick={() => {handleOpen(item.jojoId);}}>
-            <Link to ={pageName === "AssignDriver" ?  "" : "/edit-assigned-trip"}><BiTimeFive className='w-8 h-8 text-primaryText ml-2' /></Link>
+            <Link to ={pageName?  "" : "/edit-assigned-trip"}><BiTimeFive className='w-8 h-8 text-primaryText ml-2' /></Link>
             <div className='h-[99%] w-48 bg-primary rounded-xl'>
                 <div className="flex justify-between items-center px-3 pt-1">
-                    {/* <p>{trip?.tripStartDate}</p> */}
                   <label htmlFor="" className="text-[10px] text-primaryText flex flex-col items-center">Day <span className='font-bold text-sm text-white'>12 <span className='ml-1 text-primaryText'>-</span></span></label>
                   <label htmlFor="" className="text-[10px] text-primaryText flex flex-col items-center">Month <span className='font-bold text-sm text-white'>10 <span className='ml-1 text-primaryText'>-</span></span></label>
                   <label htmlFor="" className="text-[10px] text-primaryText flex flex-col items-center">Year <span className='font-bold text-sm text-white'>2022<span className='ml-1 text-primaryText'>:</span></span></label>

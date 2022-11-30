@@ -124,17 +124,13 @@ const Chats = () => {
         </div>
         <div className="pt-3 flex-12">
           {/* The above class from index.css */}
-          <CustomForm
-            initialValues={{ message: "" }}
-            validationSchema={messageSchema}
-            onSubmit={handleSendMessage}
-          >
+          <form>
               <div className="flex px-4 gap-4">
-                <Input
+                <input
                   type="text"
                   name="message"
                   placeholder="Type here"
-                  className="w-[800px] bg-transparent border-2 border-primaryText focus-border-primaryText focus:border-2 py-2 px-4 flex-1 resize-none h-12 rounded"
+                  className="w-[85%] bg-transparent border-2 border-primaryText focus-border-primaryText focus:border-2 py-2 px-4 flex-1 resize-none h-12 rounded"
                 />
                 <button
                   type="submit"
@@ -193,7 +189,7 @@ const Chats = () => {
                   </button>
                 </div>
               </div>
-          </CustomForm>
+          </form>
         </div>
       </section>
       <section className="col-span-1 bg-quaternary p-2 py-4 rounded-l-2xl">

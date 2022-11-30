@@ -1,4 +1,6 @@
 import React,{useState} from 'react'
+import { useSelector } from "react-redux";
+import { RootState } from '../../../store';
 
 import BackButton from '../../../components/BackButton'
 
@@ -8,25 +10,40 @@ import {MdDeleteForever} from 'react-icons/md'
 import { Link } from 'react-router-dom'
 
 export const TravelRoute = () => {
+  
+  const formOne = useSelector((state:RootState) => state.form)
+
+  console.log("form", formOne);
+  
 
   const [point, setPoint] = useState<number>(0)
+  const [travelRoute, setTravelRoute] = useState({
+    tripArrivalFrom: "",
+    tripDepatureTo: "",
+  })
 
   const AddPoint = () => {
     setPoint(point + 1)
     console.log( point , "pointttt");
   }
-
   const RemovePoint = () => {
     setPoint(point - 1)
   }
 
+  const handleChange = (e:any) => {  
+    const {name, value} = e.target;
+    setTravelRoute({...travelRoute, [name]: value})
+  }
+
+  console.log("Routes", travelRoute);
+  
   return (
         <div>
           <div className='flex flex-col justify-start items-center w-[96vw] h-screen'>
-            <div className='z-10 flex justify-center items-center w-[600px] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
+            <div className='z-10 flex justify-center items-center w-[35%] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
                 <p className='text-xl font-bold tracking-wider text-primaryText'>Assign Trip</p>
             </div>
-            <div className='flex flex-col justify-start items-center w-[1300px] h-[530px] bg-secondary -mt-8 rounded-3xl drop-shadow-xl'>
+            <div className='flex flex-col justify-start items-center w-[90%] h-[75%] bg-secondary -mt-8 rounded-3xl drop-shadow-xl'>
                 <div className='flex justify-end m-4 pr-8 w-full'><BackButton /></div>
                 <div className='flex w-[100%] justify-between'>
                     <section className='ml-6 w-[50%]'>
@@ -59,7 +76,7 @@ export const TravelRoute = () => {
                               <MdLocationPin className='scale-150 ml-4 text-redText' />
                               <input
                               className='w-[90%] h-8 ml-3 rounded-xl pl-3 bg-primary focus:border-none' 
-                              type="text" name="" id="" />
+                              type="text" name="tripArrivalFrom" onChange={handleChange} id="" />
                             </div>
                             <p className='mr-4 text-primaryText'>Start Point</p>
                           </div>
@@ -70,7 +87,7 @@ export const TravelRoute = () => {
                               <MdLocationPin className='scale-150 ml-4 text-redText' />
                               <input
                               className='w-[90%] h-8 ml-3 rounded-xl pl-3 bg-primary focus:border-none' 
-                              type="text" name="" id="" />
+                              type="text" name={`point${point}`} onChange={handleChange} id="" />
                             </div>
                             <p className='mr-6 scale-150 text-redText' onClick={RemovePoint}><MdDeleteForever /></p>
                           </div>
@@ -87,23 +104,23 @@ export const TravelRoute = () => {
                               <MdLocationPin className='scale-150 ml-4 text-redText' />
                               <input
                               className='w-[90%] h-8 ml-3 rounded-xl pl-3 bg-primary focus:border-none' 
-                              type="text" name="" id="" />
+                              type="text" name="tripDepatureTo" onChange={handleChange} />
                             </div>
                             <p className='mr-4 text-primaryText'>End Point</p>
                           </div>
                         </div>
-                        <Link to={"/assign-time"}>
-                        <button className='mt-[44px] ml-64 px-12 py-3 text-2xl font-semibold tracking-wider bg-secondary rounded-tl-3xl rounded-md rounded-br-3xl'>Next</button>
-                        </Link>
 
                       </form>
                     </section>
-                    <section>
-                       <div className='w-[550px] h-[490px] bg-quaternary mr-6 rounded-3xl'>
+                    <section className='ml-10 w-[90%] -mr-4'>
+                       <div className='h-[460px] bg-quaternary rounded-3xl'>
                        </div>
                     </section>
                 </div>
             </div>
+                <Link to={"/assign-time"} className="flex w-[45%]">
+                <button className='mt-4 px-12 py-3 text-2xl font-semibold tracking-wider bg-secondary rounded-tl-3xl rounded-md rounded-br-3xl'>Next</button>
+                </Link>
           </div>
         </div>
   )

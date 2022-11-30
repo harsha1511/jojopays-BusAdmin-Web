@@ -11,13 +11,13 @@ import BankDetails from "./components/BankDetails";
 import {FaBusAlt, FaPhoneAlt } from "react-icons/fa"
 import {TbUserCircle} from "react-icons/tb"
 import {RiGroup2Fill, RiLoginBoxFill} from "react-icons/ri"
-import {BiLaptop} from "react-icons/bi"
 import {GrMail} from "react-icons/gr"
 
 import './profile.css'
 import { Card } from "../../components/Card";
 import { useDispatch, useSelector,RootStateOrAny } from "react-redux";
 import axios from "axios";
+import  constants  from "../../API/constants";
 
 
 const Profile = () => {
@@ -37,7 +37,7 @@ useEffect(() => {
   const GetProfileData = async () => {
     try{
       setIsLoading(true)
-      const response = await axios.get("http://192.168.1.17:80/getProfileData");
+      const response = await axios.get(constants.auth.profile);
       console.log(response);
       setProfileData(response.data.profile)
       setIsLoading(false)
@@ -48,6 +48,8 @@ useEffect(() => {
   };
   GetProfileData();
 },[] )
+
+
 
 console.log(profileData, "datass");
 

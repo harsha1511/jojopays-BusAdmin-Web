@@ -15,6 +15,7 @@ import { Attendance } from '../../../components/Attendance'
 import { DeleteButton } from '../../../components/DeleteButton'
 import EditButton from '../../../components/EditButton'
 import  {PowerButton}  from '../../../components/PowerButton'
+import constants from '../../../API/constants';
 
 
 
@@ -54,7 +55,7 @@ export const StaffProfile = () => {
       try{
         setSelectStaff(staff)
         console.log(selectStaff,"HHHH");
-        const SendData = await axios.post("http://192.168.1.17:80/getSingleStaffData", selectStaff)
+        const SendData = await axios.post(constants.auth.onDeskStaff, selectStaff)
         .then( resp => {
           console.log(resp.data);
           setSingleStaff(resp?.data)
@@ -63,12 +64,6 @@ export const StaffProfile = () => {
           console.log(err); 
         }
     }
-
-
-  const handleClick = (staff:any) => {
-    console.log("hello world");
-    
-  }
 
 
   return (

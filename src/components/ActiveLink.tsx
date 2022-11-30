@@ -20,7 +20,7 @@ const ActiveLink = ({ to, title, Icon, active }: ActiveLinkProps) => {
   return (
     <Link
       to={to}
-      className="flex items-center justify-between hover:text-primaryText text-tertiary"
+      className="flex items-center w-full mr-12 justify-end hover:text-primaryText text-tertiary"
     >
       <span
         className={`hidden group-hover:block  hover:text-primaryText group-hover:opacity-100 opacity-0 transition-opacity duration-700 ${classNames(
@@ -32,9 +32,9 @@ const ActiveLink = ({ to, title, Icon, active }: ActiveLinkProps) => {
         {title}
       </span>
       <span
-        className={`relative transform group-hover:translate-x-[1.1rem]  group-hover:p-3 rounded-l-full rounded-md ${classNames(
+        className={`relative transform group-hover:translate-x-[1.6rem]  group-hover:p-3 rounded-l-full rounded-md ${classNames(
           check,
-          "bg-secondary p-3 translate-x-2 text-primaryText"
+          "bg-secondary p-3 translate-x-6 hover:translate-x-12 text-primaryText"
         )}`}
         id={classNames(check, 'inverted-radius')}
       >

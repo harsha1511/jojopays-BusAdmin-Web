@@ -4,7 +4,6 @@ import * as yup from "yup"
 import Input from "../../../components/Input";
 import { ErrorMessage } from 'formik';
 
-
 import { MdDeleteForever } from 'react-icons/md'
 import { TiTick } from 'react-icons/ti'
 import { ToggleButton } from '../../../components/ToggleButton'
@@ -39,7 +38,6 @@ export const AutoPriceChange = () => {
         price: "",
     }
 
-
     const [showPrice, setShowPrice] = useState<number>(0)
     const [priceChange, setPriceChange] = useState<object>()
 
@@ -53,7 +51,7 @@ export const AutoPriceChange = () => {
     ]
 
     const onSubmit = (values:InitialProps) => {
-        setPriceChange(values)        
+        setPriceChange(values) 
     }
     console.log(priceChange, "INPUTTTTTT");
 

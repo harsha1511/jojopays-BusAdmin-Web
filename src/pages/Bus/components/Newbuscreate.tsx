@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { Link } from "react-router-dom";
 import BackButton from '../../../components/BackButton';
 import {FaBus} from 'react-icons/fa'
@@ -8,6 +8,19 @@ import {FaBus} from 'react-icons/fa'
 
 
 function Newbuscreate(){
+
+
+const commonlyUsed = [
+    {name: "Casual Trip"},
+    {name: "Pre-planned Trip"},
+    {name: "Round Trip"},
+]
+const [use, setUse] = useState<string>()
+console.log(use);
+
+
+
+
     return(
     <div className="flex flex-col justify-start items-center w-[96vw] h-screen">
     <div className='z-10 flex justify-center items-center w-[500px] h-[13%] bg-[#2F3142] rounded-b-3xl drop-shadow-2xl'>
@@ -54,17 +67,27 @@ function Newbuscreate(){
                 rounded-bl-[4px] text-redText h-[35px] font-semibold  bg-[#2F3142]">
                 <label>
                 <input className="hidden" type="file" /> 
-                <p className=' text-redText drop-shadow-lg' >Upload</p>
+                <p className=' text-redText drop-shadow-lg'>Upload</p>
                 </label>
              </div>
             </div>
             <div className='flex flex-row items-center mt-8'>
             <label className='flex justify-end w-40 text-primaryText -mt-6 text-sm font-bold'>Commonly Used for:</label>
-            <button className="flex items-center justify-center w-[120px] rounded-tl-[15px] rounded-br-[15px] rounded-tr-[4px]
+            {commonlyUsed.map((data) => (
+                <div className={`flex items-center justify-center rounded-tl-[15px] rounded-br-[15px] rounded-tr-[4px]
+                rounded-bl-[4px]  h-[33px] bg-[#2F3142] shadow-2xl font-semibold ml-[40px] cursor-pointer
+                ${use === data.name ? "text-primaryText" : "text-redText"}`}
+                onClick={() => setUse(data.name)}>
+                  <p className="px-6">{data.name}</p>
+                </div>
+            ))
+
+            }
+            {/* <button className="flex items-center justify-center w-[120px] rounded-tl-[15px] rounded-br-[15px] rounded-tr-[4px]
                 rounded-bl-[4px] text-redText h-[33px] bg-[#2F3142] shadow-2xl font-semibold ml-[40px]">Casual Trip </button>
                 <div className="h-[1px] w-[45px] bg-redText"></div>
             <button className="flex items-center justify-center w-[160px] rounded-tl-[15px] rounded-br-[15px] rounded-tr-[4px]
-                rounded-bl-[4px] text-redText h-[33px] bg-[#2F3142] shadow-2xl font-semibold">Pre-planned Trip</button>
+                rounded-bl-[4px] text-redText h-[33px] bg-[#2F3142] shadow-2xl font-semibold">Pre-planned Trip</button> */}
             </div>
             <div className='flex flex-row items-center mt-8'>
             <label className='flex justify-end w-40 text-primaryText -mt-6 text-sm font-bold'>Bus Type:</label>

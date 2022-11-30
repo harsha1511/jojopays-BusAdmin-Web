@@ -72,7 +72,7 @@ export const MyTransaction = () => {
         <div className="flex w-[90%] h-48 ml-8 bg-secondary rounded-b-md rounded-tr-3xl drop-shadow-xl">
           <div className="flex flex-col items-center w-[50%] h-full border-r-2 border-greyText/5">
             <div className=" flex justify-between items-center pl-4 w-full h-[33%]">
-              <label className="font-semibold text-lg text-redText">All Transaction:
+              <label className="font-semibold text-lg text-greyText">All Transaction:
                 <span className={`ml-3 font-normal  bg-primary py-1 px-3 rounded-md ${overall ? "text-primaryText" : "" }`}
                 onClick={handleOverall}>
                   Overall

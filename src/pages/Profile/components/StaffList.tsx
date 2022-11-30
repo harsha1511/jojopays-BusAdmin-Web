@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import {IoIosPersonAdd} from "react-icons/io"
 import axios from 'axios';
+import constants from '../../../API/constants';
 
 
 
@@ -22,7 +23,7 @@ const StaffList = () => {
     useEffect(()=> {
         const getStaffNames = async () => {
            try{               
-               const response = await axios.get("http://192.168.1.17:80/getProfileData")
+               const response = await axios.get(constants.auth.profile)
                console.log(response, "ress");
                setStaffNames(response.data.staff)
             }

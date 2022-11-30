@@ -1,5 +1,6 @@
 import React, {useState, useRef} from 'react'
 import axios from 'axios';
+import { useDispatch, useSelector } from "react-redux";
 
 
 import { FaPen } from "react-icons/fa"
@@ -10,6 +11,7 @@ import {GrMail} from "react-icons/gr"
 
 import BackButton from "../../../components/BackButton"
 import { EditLogin } from '../components/EditLogin'
+import { RootState } from '../../../store';
 
 
 
@@ -18,6 +20,7 @@ import { EditLogin } from '../components/EditLogin'
 export const EditProfile= () => {
 
     const imageRef = useRef<any>()
+    const dispatch = useDispatch();
     
     const defaultFormData = {
       companyName: "",
@@ -29,6 +32,7 @@ export const EditProfile= () => {
       mail: "",
       Personalmail: "",
     };
+
 
   const [picture, setPicture] = useState<FileList | any>();
 
@@ -64,9 +68,11 @@ export const EditProfile= () => {
     // console.log(result, "respppppp");   
 };
 
+const form = useSelector((state: RootState) => state.form)
+
+console.log("FORM", form);
 
 
-console.log("data",formData);
   return (
     <div className='realtive w-full h-[100vh]'>
 

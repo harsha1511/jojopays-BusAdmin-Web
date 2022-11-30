@@ -19,33 +19,17 @@ interface ListProps {
 
 
 export const TransferList = ({type}:TYPPP) => {
-    
-    const List:ListProps[] = [
-        {name: "jack" , amount: 56 , transcation:"all"},
-        {name: "Mervin" , amount: 52, transcation:"Rec"},
-        {name: "Joel" , amount: 33, transcation:"Sent"},
-        {name: "Leo" , amount: 5, transcation:"Sent"},
-        {name: "Mane" , amount: 12, transcation:"Rec"},
-        {name: "joa" , amount: 77, transcation:"Rec"},
-        {name: "Kroos" , amount: 2, transcation:"Sent"},
-        {name: "Oscar" , amount: 44, transcation:"Rec"},
-    ]
 
     const {isOpen} = useSelector((store:RootStateOrAny) => store.modal);
     const dispatch = useDispatch()
 
-    const [details, setDetails] = useState<any>({
-        List,
-        activeList: null,
-    })
     const [names, setName] = useState<any>()
 
-    // console.log(process.env);
     
 
     useEffect(() => {
         const getNames = async () => {
-            const response = await axios.get('http://192.168.1.17:80/getTransactionData');
+            const response = await axios.get(constants.transcation.list);
             console.log(response.data, "OBJECTTTT")
             setName(response.data)
         };

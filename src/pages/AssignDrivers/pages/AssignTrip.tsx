@@ -1,12 +1,32 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { SUBMIT_FORM_ONE } from '../../../store/reducers/form.reducer'
+
 import BackButton from '../../../components/BackButton'
 
 import jojopay from "../../../assets/images/jojopay.png"
-import { Link } from 'react-router-dom'
+
+
+interface TripDetailsProps {
+    busName: string;
+    driverName: string;
+    coPilotName: string;
+    tripType: string;
+    tripStartTime: string;
+}
 
 export const AssignTrip = () => {
 
+    const dispatch = useDispatch();
     const [busName, setBusName] = useState("5")
+    const [tripDetails, setTripDetails] = useState<TripDetailsProps>({
+        busName: "",
+        driverName: "",
+        coPilotName: "",
+        tripType: "",
+        tripStartTime: "",
+    })
 
     const BusName = [
         {name: "SRV" , pilot: "andrew" , copilot: "sugan"},
@@ -15,30 +35,35 @@ export const AssignTrip = () => {
     ]
 
     const handleChange = (e: any) => {
-        // if(e.target.key === "name"){
-            const bus = e.target.value
-            setBusName(bus)        
-        // }
-        // console.log(bus);
+        e.preventDefault();
+        const {name, value} = e.target
+        setTripDetails({...tripDetails, [name]: value})
     }
 
+    console.log("trip details", tripDetails);
+    
+    const handleUpdate = (e:any) => {
+        e.preventDefault();
+        dispatch(SUBMIT_FORM_ONE(tripDetails));
+        // window.location.href = "/travel-route"
+    }
 
   return (
     <div>
         <div className='flex flex-col justify-start items-center w-[96vw] h-screen'>
             <div className='z-10 flex justify-center items-center w-[600px] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
-                <p className='text-xl font-bold tracking-wider text-primaryText'>Assign Trip</p>
+                <p className='text-xl font-bold tracking-wider text-primaryText' onClick={handleUpdate}>Assign Trip</p>
             </div>
             <div className='flex flex-col justify-start items-center w-[1300px] h-[530px] bg-secondary -mt-8 rounded-3xl drop-shadow-xl'>
                 <div className='flex justify-end m-4 pr-8 w-full'><BackButton /></div>
                 <div className='flex w-full justify-between'>
                     <section className='ml-6'>
                         <form action="" className='ml-4'>
-                            <select name="Driver" id="clicking" 
+                            <select name="busName" id="clicking" 
                             onChange={handleChange}
                             required={true}
                             className='w-52 h-12 bg-quaternary pl-3 rounded-lg rounded-tr-[59px] focus:outline-none drop-shadow-2xl'>
-                                <option >Select a Bus..</option>
+                                <option>Select a Bus..</option>
                                 {BusName.map(({name}) => (
                                     <option className='pb-2' key={name} value={name}>{name}</option>
                                 ))}
@@ -46,7 +71,7 @@ export const AssignTrip = () => {
                             <div className='flex items-center mt-6'>
                                 <select
                                  onChange={handleChange}
-                                 name="Driver" id="clicking" 
+                                 name="driverName" id="clicking" 
                                  className='w-52 h-12 bg-quaternary pl-3 rounded-lg rounded-tr-[59px] focus:outline-none drop-shadow-2xl'>
                                     <option >Select a Pilot..</option>
                                     {BusName.map(({name, pilot, copilot}) => (
@@ -54,29 +79,59 @@ export const AssignTrip = () => {
                                     ))}
                                 </select>
                             <div className='w-40 h-[1px] -ml-4 bg-primaryText'></div>
-                            <select name="Driver" id="clicking" className='w-52 h-12 bg-quaternary pl-3 rounded-lg rounded-tr-[59px] focus:outline-none drop-shadow-2xl'>
+                            <select name="coPilotName" id="clicking" 
+                            onChange={handleChange}
+                            className='w-52 h-12 bg-quaternary pl-3 rounded-lg rounded-tr-[59px] focus:outline-none drop-shadow-2xl'>
                                 <option >Select a CoPilot..</option>
                                 {BusName.map(({name,pilot, copilot}) => (
                                     <option className='pb-2' value={copilot}>{copilot}</option>
                                 ))}
                             </select>
                             </div>
-                            <div className="mt-12 text-primaryText">
-                                <div>
-                                  <button className="bg-primary w-36 py-[6px] rounded-l-2xl">Casual Trip</button>
-                                  <button className="bg-primary w-36 py-[6px] border-l-2 border-greyText/[.5] rounded-r-2xl">Pre-booked Trip</button>
-                                </div>
-                                <div className="mt-3">
-                                  <button className="bg-primary w-36 py-[6px] rounded-l-2xl">One Way Trip</button>
-                                  <button className="bg-primary w-36 py-[6px] border-l-2 border-greyText/[0.5] rounded-r-2xl">Round Trip</button>
-                                </div>
+                            <div className="mt-12">
+                                    <input type="text" 
+                                    name="tripType"
+                                    onClick={handleChange}
+                                    value="Casual Trip"
+                                    readOnly
+                                    className={`w-40 bg-primary py-2 px-8 rounded-l-2xl border-r-2 border-greyText/50 focus:border-none
+                                    ${tripDetails.tripType === "Casual Trip" ? "text-white" : "text-primaryText"} `}/>
+                                    <input type="text" 
+                                    name="tripType"
+                                    onClick={handleChange}
+                                    readOnly
+                                    value="Pre Booked Trip"
+                                    className={`w-40 bg-primary py-2 pl-4 rounded-r-2xl focus:border-none
+                                    ${tripDetails.tripType === "Pre Booked Trip" ? "text-white" : "text-primaryText"}`}/>
+                            </div>
+                            <div className='mt-4'>
+                                <input type="text" 
+                                    name="tripType"
+                                    onClick={handleChange}
+                                    readOnly
+                                    value="One Time Trip"
+                                    className={`w-40 bg-primary py-2 px-8 rounded-l-2xl border-r-2 border-greyText/50 focus:border-none
+                                    ${tripDetails.tripType === "One Time Trip" ? "text-white" : "text-primaryText"}`}/>
+                                <input type="text" 
+                                    name="tripType"
+                                    onClick={handleChange}
+                                    readOnly
+                                    value="Round Trip"
+                                    className={`w-40 bg-primary py-2 px-8 rounded-r-2xl focus:border-none
+                                    ${tripDetails.tripType === "Round Trip" ? "text-white" : "text-primaryText"}`}/>
                             </div>
                             <div className='mt-10'>
                                     <label className='text-xl text-primaryText' htmlFor="">Starting Time:</label>
-                                    <input className='ml-4 bg-primary focus:border-none py-1 px-3 rounded-lg' type="time" id='busStartTime' />
+                                    <input className='ml-4 bg-primary focus:border-none py-1 px-3 rounded-lg'
+                                    type="time"
+                                    onChange={handleChange} 
+                                    id='busStartTime'
+                                    name='tripStartTime' />
                             </div>
                             <Link to={"/travel-route"}>
-                            <button className='mt-40 ml-60 px-12 py-3 text-2xl font-semibold tracking-wider bg-secondary rounded-tl-3xl rounded-md rounded-br-3xl'>Next</button>
+                            <button className='mt-40 ml-60 px-12 py-3 text-2xl font-semibold tracking-wider bg-secondary rounded-tl-3xl rounded-md rounded-br-3xl'>
+                                Next
+                            </button>
                             </Link>
                         </form>
                     </section>

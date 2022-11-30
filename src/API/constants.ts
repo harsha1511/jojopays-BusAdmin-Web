@@ -2,12 +2,20 @@ import axios from "axios";
 
 const constants:any = {
     auth: {
-        login:"login"
+        login:"login",
+        profile: "getProfileData",
+        onDeskStaff: "getSingleStaffData",
     },
-    Company: {
+    company: {
         driver: "getDriverData",
-        bus: "getBusData"
-
+        bus: "getBusData",
+        trip: "getTripData",
+    },
+    filters: {
+        tripFilter: ""
+    },
+    transaction:{
+        list: "getTransactionData",
     }   
 };
 

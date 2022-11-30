@@ -30,7 +30,7 @@ export const Card = ({
         <div className={`${styleResume} relative w-[870px] bg-quaternary rounded-t-2xl`}>
             <div className='absolute flex items-center w-full h-12 bg-primaryText rounded-t-2xl'>
                 <p className='w-full flex justify-center text-xl text-primary font-bold'>{title}</p>
-                < MdClose className='w-8 h-10 mr-4 skew-y-12 text-primary' onClick={() => {dispatch(closeModal(closeModal))}}/>
+                <MdClose className='w-8 h-10 mr-4 skew-y-12 text-primary' onClick={() => {dispatch(closeModal(closeModal))}}/>
             </div>
             {/* Image container */}
             { ifResume ? 
