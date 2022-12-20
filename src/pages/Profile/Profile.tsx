@@ -16,7 +16,7 @@ import {GrMail} from "react-icons/gr"
 import './profile.css'
 import { Card } from "../../components/Card";
 import { useDispatch, useSelector,RootStateOrAny } from "react-redux";
-import axios from "axios";
+import axios from "../../API/axios";
 import  constants  from "../../API/constants";
 
 
@@ -37,8 +37,8 @@ useEffect(() => {
   const GetProfileData = async () => {
     try{
       setIsLoading(true)
-      const response = await axios.get(constants.auth.profile);
-      console.log(response);
+      const response = await axios.get(constants.auth.profile)
+      console.log(response, "new");
       setProfileData(response.data.profile)
       setIsLoading(false)
     }
@@ -49,6 +49,29 @@ useEffect(() => {
   GetProfileData();
 },[] )
 
+useEffect(() => {
+  const getData = () => {
+    try {
+
+      let auth =  localStorage.getItem('token');
+      console.log("printed", auth);
+      return fetch("http://192.168.1.30:80/getDriverData", {
+        method: 'GET',
+        headers:{
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': "Bearer " + auth,
+        },
+      })
+      .then(res => {console.log(res, "vanthrichuu")}
+      )
+    } catch (err) {
+      console.log(err, "errorrrehhhh");
+      
+    }
+  }
+  getData()
+})
 
 
 console.log(profileData, "datass");
@@ -152,7 +175,7 @@ console.log(profileData, "datass");
           </div>
           </form>
         </div>
-        <div >
+        <div className="mb-20" >
            <BankDetails />
         </div>
         <div className="h-[60px] w-[20%]"></div>

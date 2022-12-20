@@ -17,7 +17,7 @@ export const EditLogin = () => {
   return (
       <div className='relative w-[80%]'>
         {openEdit && 
-        <div className='absolute  w-[580px] -right-12  h-[100%] rounded-3xl bg-primary z-10 opacity-50'>
+        <div className='absolute  w-[540px] -right-12  h-[100%] rounded-3xl bg-primary z-10 opacity-50'>
         </div>        
         }
         <form action="" className='relative flex flex-col items-center mt-10'>

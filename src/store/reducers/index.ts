@@ -9,6 +9,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   modal: modalReducer,
   form: formReducer,
+  // assignTrip: assignTripReducer,
   // notify: notifyReducer,
 });
 export default rootReducer;

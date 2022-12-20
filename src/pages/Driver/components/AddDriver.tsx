@@ -16,7 +16,7 @@ function AddDriver() {
   return (
 
     <div className="h-[100%] flex-grid  grid-flow-row w-[100%] p-0">
-      <div className=" flex fixed text-primaryText font-bold z-10 tracking-wider  text-4xl ml-[34%] items-center h-[70px] w-[33%] justify-around rounded-b-[40px] bg-[#2F3142] shadow-2xl">
+      <div className="flex fixed text-primaryText font-bold z-10 tracking-wider  text-4xl ml-[34%] items-center h-[70px] w-[33%] justify-around rounded-b-[40px] bg-[#2F3142] shadow-2xl">
             <h1>Add New Driver</h1>
         </div>
         <div className='flex justify-center items-center w-[96vw] h-screen'>
@@ -27,7 +27,7 @@ function AddDriver() {
      <form className="flex mr-60 items-end -mt-6" >
         <div className='w-[730px] text-right justify-start text-base ml-40 text-primaryText font-bold grid grid-flow-row gap-4 pb-2'>
          <label> Name: <input className="ml-3 w-[80%]  p-[4px]  leading-tight  bg-transparent  focus:outline-none focus:line focus:border-border-blue-500  text-white border-none" type="text"name="name"/> {" "}
-        </label> <label> Jopay ID: <input type="text"
+        </label><label>Jopay ID:<input type="text"
         className="ml-3 w-[80%]  p-[5px]  leading-tight  bg-transparent  focus:outline-none focus:line focus:border-border-blue-500  text-white border-none"
         name="Login"
         /> {" "}

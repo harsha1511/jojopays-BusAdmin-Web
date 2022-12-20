@@ -1,16 +1,14 @@
 import React,{useState, useEffect} from 'react'
-import CustomForm from '../../../components/Form'
-import * as yup from "yup"
-import Input from "../../../components/Input";
-import { ErrorMessage } from 'formik';
+import axios from '../../../API/axios';
+import constants from '../../../API/constants';
+import { nameShrinker } from "../../../utils/helpers";
 
 
 
 
 import { MdDeleteForever } from 'react-icons/md'
 import { TiTick } from 'react-icons/ti'
-import axios from 'axios';
-import constants from '../../../API/constants';
+
 
 
 interface CustomProps {
@@ -30,9 +28,9 @@ export const CustomPrice = () => {
     useEffect(() => {
       const getBus = async () => {
         const response = await axios.get(constants.filters.selectbus)
-        console.log("resp", response);
+        console.log("resp", response.data);
+        setSelectBus(response.data)
         
-        // setSelectBus(response)
       }
       getBus();
     }, [])
@@ -56,11 +54,13 @@ export const CustomPrice = () => {
                         <p className='ml-3 mr-4 text-primaryText'>Bus</p>
                         <select 
                         id="clicking"
-                        className='w-36 h-8 pl-4 focus:outline-none bg-primary ml-8 rounded-xl ' 
+                        className='w-36 h-8 pl-2 focus:outline-none bg-primary ml-8 rounded-xl ' 
                         name="bus"
                         onChange={handleChange}>
-                            <option value={customPrice.bus}>hii</option>
-                            <option value={customPrice.bus}>hello</option>
+                            <option value={customPrice.bus}>Select a Bus</option>
+                            {selectBus.map((data:string, index:number) => (
+                                <option className='text-sm' value={customPrice.bus}>{nameShrinker( data , 10)}</option>
+                            ))}
                         </select>
                     </div>
                     <p className='w-40 text-sm text-primaryText font-semibold'>You changed the Price at: 2.47am today</p>

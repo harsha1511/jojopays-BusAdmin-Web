@@ -32,12 +32,16 @@ export const MyTransaction = () => {
   const [received, setReceived] = useState<string>("")
   const [sent, setSent] = useState<string>("")
   const [date, setDate] =useState<number>(0)
-  const [sort, setSort] =useState<number>(1)
+  const [sort, setSort] =useState<string>("Ascending")
   const [transferType, setTransferType] = useState<string>("all")
-  const [dateFilter, setDateFilter] = useState()
-
-  console.log("REC", received)
-
+  const [dateFilter, setDateFilter] = useState<any>({
+    fromDate: "",
+    toDate: "",
+  })
+  
+  console.log("date", dateFilter);
+  
+  
   const handleOverall = () => {
     setReceived("")
     setSent("")
@@ -46,6 +50,8 @@ export const MyTransaction = () => {
     }
     setTransferType("all")
   }
+  
+  
   const handleReceived = (value:string) => {
     setReceived(value);
     setOverall(false);
@@ -67,6 +73,23 @@ export const MyTransaction = () => {
     setTransferType("Sent")
   }
 
+  const dateChange = (e:any) => {
+    const {name, value} = e.target;
+    setDateFilter({...dateFilter, [name]: value});
+
+  }
+  
+  const filterss = {
+    all: overall,
+    send: sent,
+    recc: received,
+    fromm: dateFilter.toDate,
+    tppp: dateFilter.fromDate, 
+    sortt: sort,
+  }
+
+  console.log("ALL FILTERS", filterss);
+  
   return (
     <div>
         <div className="flex w-[90%] h-48 ml-8 bg-secondary rounded-b-md rounded-tr-3xl drop-shadow-xl">
@@ -116,12 +139,16 @@ export const MyTransaction = () => {
             <div onClick={() => setDate(1)}>
                 <label className="relative font-semibold text-lg text-greyText pl-4">From:
                   <input type="date"  className="pl-2 bg-primary ml-4 p-1 rounded-lg w-[150px] cursor-pointer"
+                  name="fromDate"
+                  value={dateFilter.fromDate}
+                  onChange={dateChange}
                    />
                 </label>
                 <div className="w-[80%] h-[1px] my-3 ml-6 bg-greyText/50"></div>
                 <label className="relative font-semibold text-lg text-greyText pl-4">To:
                   <input type="date"  className="pl-2 bg-primary ml-4 p-1 rounded-lg w-[150px] cursor-pointer"
-                  onChange={(e:any) => setDateFilter(e.target.value)} />
+                  name="toDate"
+                  onChange={dateChange} />
                 </label>
             </div>
           </div>
@@ -133,12 +160,12 @@ export const MyTransaction = () => {
                 <TiArrowUnsorted className="mr-4 w-6 h-6 text-primaryText"/>
             </div>
             <div className="pl-6 pt-3">
-              <p className={`${sort === 1 ? "text-primaryText": "text-greyText"} flex justify-center items-center bg-primary w-36 h-10 rounded-lg`}
-              onClick={() => setSort(1)}>
+              <p className={`${sort === "Ascending" ? "text-primaryText": "text-greyText"} flex justify-center items-center bg-primary w-36 h-10 rounded-lg`}
+              onClick={() => setSort("Ascending")}>
                 Ascending
               </p>
-              <p className={`${sort === 2 ? "text-primaryText": "text-greyText"} flex justify-center items-center bg-primary w-36 h-10 rounded-lg mt-4`}
-              onClick={() => setSort(2)}>
+              <p className={`${sort === "Decending" ? "text-primaryText": "text-greyText"} flex justify-center items-center bg-primary w-36 h-10 rounded-lg mt-4`}
+              onClick={() => setSort("Decending")}>
                 Decending
               </p>
             </div>

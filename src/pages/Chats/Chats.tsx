@@ -138,8 +138,7 @@ const Chats = () => {
                 >
                   <FiSend />
                 </button>
-                <div className="relative">
-                  
+                <div className="relative">   
                   {showMoreOptions && (
                     <>
                     <div className="z-20">

@@ -5,7 +5,6 @@ import { countReducer, nameShrinker } from "../../../utils/helpers";
 import { BsSearch } from "react-icons/bs";
 
 import CustomForm from "../../../components/Form";
-import { StaffInformation } from '../components/StaffInformation';
 import BackButton from '../../../components/BackButton';
 import axios from 'axios';
 import { ToggleButton } from '../../../components/ToggleButton';
@@ -67,7 +66,7 @@ export const StaffProfile = () => {
 
 
   return (
-    <div className='flex w-screen'>
+    <div className='flex w-screen h-screen'>
         <section className='w-[20%] h-screen overflow-y-auto bg-secondary drop-shadow-2xl'>
             <CustomForm
               initialValues={{ search: "" }}
@@ -133,8 +132,8 @@ export const StaffProfile = () => {
             </div> */}
         </section>
             {/* informations and calendar */}
-            <section className='flex mt-10'>
-                <div className='w-[50%] mt-10'>
+            <section className='flex h-full mt-10 '>
+                <div className='flex flex-col h-[76%] mb-10 justify-between w-[50%]'>
                     <form className='tracking-wider ml-10'>
                         <div className='flex items-center'>
                             <label className='flex justify-end w-32 text-primaryText text-lg font-bold'>Jojopay ID:</label>
@@ -156,24 +155,19 @@ export const StaffProfile = () => {
                             <label className='flex justify-end w-32 text-primaryText text-lg font-bold'>Address:</label>
                             <p className='w-56 text-white text-sm font-light pl-4'>{singleStaff?.staffAddress}</p>
                         </div>
-
                     </form>
-                    <div className='flex items-center flex-col mt-8 pt-2 pb-4 mx-8 bg-secondary rounded-2xl'>
-                        <p className='text-primaryText font-bold'>Notes</p>
-                        <textarea name=""
-                        className='w-[90%] h-24 bg-tertiary pl-4 pt-2 mt-1 outline-none rounded-xl resize-none'>
-                        </textarea>
-                    </div>
-                    <div>
+                    <div className='flex items-start'>
+                      <div className=''>
                         <PowerButton status={singleStaff?.staffStatus} />
-                            <div className='ml-24 mt-4'>
-                                <Link to="/edit-staff-profile">
-                                    <EditButton isEdit={true} className=""/>
-                                </Link>
-                                <div className='ml-4 mt-2'>
-                                    <DeleteButton />
-                                </div>
-                            </div>
+                      </div>
+                      <div className='-ml-8'>
+                          <Link to="/edit-staff-profile">
+                              <EditButton isEdit={true} className=""/>
+                          </Link>
+                          <div className='ml-6 mt-2'>
+                              <DeleteButton />
+                          </div>
+                      </div>
                     </div>
                 </div>
                 <div className='w-[50%] z-10'>

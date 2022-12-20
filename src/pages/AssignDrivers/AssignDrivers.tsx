@@ -13,6 +13,8 @@ import { TripBar } from "./components/TripBar";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {SUBMIT_FORM_ONE} from "../../store/reducers/form.reducer"
+import { fetchData } from "../../API/apiCall";
+import instance from "../../API/axios";
 
 
 interface FilterProps {
@@ -60,7 +62,12 @@ const AssignDrivers = () => {
 
   const inputRef = useRef<HTMLInputElement>(null);
   
+  const token = localStorage.getItem("token")
 
+  console.log("TOKEN", token);
+  
+
+  
   useEffect(() => {
     const getDriverData = async () => {
       try {
@@ -86,9 +93,9 @@ const AssignDrivers = () => {
   useEffect(() => {
     console.log("FILTERSS", filter);
     const PostFilter = axios.post(constants.company.trip, filter )
-    //     .then(resp => 
-    //     console.log(resp)
-    //     )    
+        .then(resp => 
+        console.log(resp)
+        )    
   }, [filter])
 
  
@@ -317,8 +324,8 @@ const AssignDrivers = () => {
               <div className="flex items-center mt-6 ml-4 h-10 w-[80%]">
                 <img
                   className="w-10 h-10 rounded-full"
-                  src={d?.addPhoto}
-                  alt=""
+                  src={d?.displayPicture}
+                  alt="DriverPic"
                 />
                 <p className="ml-4 text-md text-greyText font-bold">
                   {d?.driverName}

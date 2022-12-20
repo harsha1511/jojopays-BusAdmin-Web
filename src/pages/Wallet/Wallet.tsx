@@ -21,7 +21,7 @@ const Wallet = () => {
        <MyTransaction />
       </section>
       {/* SIDE BAR */}
-      <section className="w-[20%]">
+      <section className="w-[20%] h-full">
         <WalletNavBar pageName="Wallet" />
       </section>
     </div>

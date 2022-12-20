@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { SUBMIT_FORM_ONE } from '../../../store/reducers/form.reducer'
+import axios from '../../../API/axios';
+import constants from '../../../API/constants';
 
 import BackButton from '../../../components/BackButton'
 
@@ -18,7 +18,6 @@ interface TripDetailsProps {
 
 export const AssignTrip = () => {
 
-    const dispatch = useDispatch();
     const [busName, setBusName] = useState("5")
     const [tripDetails, setTripDetails] = useState<TripDetailsProps>({
         busName: "",
@@ -27,6 +26,7 @@ export const AssignTrip = () => {
         tripType: "",
         tripStartTime: "",
     })
+    const [selectPilot, setSelectPilot] = useState<any>()
 
     const BusName = [
         {name: "SRV" , pilot: "andrew" , copilot: "sugan"},
@@ -44,9 +44,20 @@ export const AssignTrip = () => {
     
     const handleUpdate = (e:any) => {
         e.preventDefault();
-        dispatch(SUBMIT_FORM_ONE(tripDetails));
+        console.log(e, "jcvhjsavcjhv");
+        
         // window.location.href = "/travel-route"
     }
+
+    useEffect(() => {
+      const getPilot = async () => {
+        const response = await axios.get(constants.filters.selectpilot)
+        console.log("respppppp", response.data);
+        setSelectPilot(response.data)
+        
+      }
+      getPilot();
+    }, [])
 
   return (
     <div>
@@ -66,7 +77,7 @@ export const AssignTrip = () => {
                             required={true}
                             className='w-52 h-12 bg-quaternary pl-3 rounded-lg rounded-tr-[59px] focus:outline-none drop-shadow-2xl'>
                                 <option>Select a Bus..</option>
-                                {BusName.map(({name}) => (
+                                {BusName?.map(({name}) => (
                                     <option className='pb-2' key={name} value={name}>{name}</option>
                                 ))}
                             </select>
@@ -76,9 +87,9 @@ export const AssignTrip = () => {
                                  name="driverName" id="clicking" 
                                  className='w-52 h-12 bg-quaternary pl-3 rounded-lg rounded-tr-[59px] focus:outline-none drop-shadow-2xl'>
                                     <option >Select a Pilot..</option>
-                                    {BusName.map(({name, pilot, copilot}) => (
-                                        <option className='pb-2' value={pilot}>{pilot}</option>
-                                    ))}
+                                    {/* {selectPilot?.map((data:string) => (
+                                        <option className='pb-2'>{data}</option>
+                                    ))} */}
                                 </select>
                             <div className='w-40 h-[1px] -ml-4 bg-primaryText'></div>
                             <select name="coPilotName" id="clicking" 

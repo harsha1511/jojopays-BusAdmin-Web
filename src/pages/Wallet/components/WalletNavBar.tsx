@@ -17,8 +17,8 @@ export const WalletNavBar = (
 
   return (
     <div>
-        <div className='flex flex-col items-center bg-secondary drop-shadow-xl'>
-        <div className="flex items-center justify-center flex-col mt-10">
+        <div className='flex flex-col items-center h-screen bg-secondary drop-shadow-xl'>
+        <div className="flex items-center justify-center flex-col mt-4">
           <p className="mb-2 text-greyText font-semibold tracking-wide">Admin</p>
           <img
             src="https://blog-pixomatic.s3.appcnt.com/image/22/01/26/61f166dfdf8c4/_orig/photo-1507679799987-c73779587ccf-1024x683.jpeg"
@@ -26,8 +26,8 @@ export const WalletNavBar = (
             className="w-28 h-28 rounded-full border-2 border-primaryText border-dashed p-2"
           />
         </div>
-        <div className='flex flex-col items-center'>
-            <p className='mt-8 text-greyText font-semibold tracking-wide'>My Wallet Balance</p>
+        <div className='flex flex-col items-center h-[30%]'>
+            <p className='mt-6 text-greyText font-semibold tracking-wide'>My Wallet Balance</p>
             <p className='text-3xl tracking-wider mt-2'>12,566$</p>
             <Link to={'/topup-wallet'} className='relative mt-6 mr-40' 
             onMouseEnter={() => setHover(1)} 
@@ -54,7 +54,7 @@ export const WalletNavBar = (
                 </div>
             </Link>
         </div>
-        <div className='flex flex-col items-center pt-6 mt-20 w-[270px] h-[290px] mr-24 bg-quaternary rounded-xl'>
+        <div className='flex flex-col items-center pt-6 mt-20 w-[270px] h-[35%] mr-24 bg-quaternary rounded-xl'>
                 <Link to={'/send'} className={`flex justify-center  mb-2 w-[70%] pb-2 border-b-[2px] border-greyText/25 ${pageName === "Send" ? "text-primaryText" : ""}`}>Send</Link>
                 <Link to={'/wallet'} className={`flex justify-center  mb-2 w-[70%] pb-2 border-b-[2px] border-greyText/25 ${pageName === "Wallet" ? "text-primaryText" : ""} `}>My Transacctions</Link>
                 <Link to={'/pilots-transactions'} className={`flex justify-center  mb-2 w-[70%] pb-2 border-b-[2px] border-greyText/25 ${pageName === "Pilots" ? "text-primaryText" : ""}`}>Pilot's Transactions</Link>

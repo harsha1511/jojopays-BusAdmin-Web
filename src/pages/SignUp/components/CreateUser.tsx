@@ -1,6 +1,5 @@
 import React,{useState} from 'react'
 import * as yup from "yup";
-import axios from 'axios';
 
 
 import CustomForm from "../../../components/Form";
@@ -9,6 +8,9 @@ import Button from "../../../components/Button";
 
 import { useDispatch } from "react-redux";
 import { LOGIN_SUCCESS } from "../../../store/reducers/auth.reducer";
+import constants from '../../../API/constants';
+import axios from '../../../API/axios';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -27,7 +29,7 @@ const validateUser = yup.object().shape({
 
 
 interface CreateUSerProps {
-    jojoUserId:any;
+  jojoUserId:any;
 }
 
 
@@ -36,14 +38,15 @@ export const CreateUser = ({jojoUserId}:CreateUSerProps) => {
 
 
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const defaultUserData = {
     jojoId: jojoUserId.data.jojoId,
+    companyId: jojoUserId.data.companyId,
     password: "",
     confirmPassword:"",
   }
 
-  console.log("jojo", jojoUserId);
   
   
 
@@ -52,6 +55,7 @@ export const CreateUser = ({jojoUserId}:CreateUSerProps) => {
 
   const {
     jojoId,
+    companyId,
     password,
     confirmPassword,
   } = newUser
@@ -65,22 +69,27 @@ const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) 
   };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    if(newUser.password !== "" && newUser.password === newUser.confirmPassword){
     try{
-      if(newUser.password !== "" && newUser.password === newUser.confirmPassword){
+        setIsLoading(true)
         console.log("newUSERRR", newUser)
-        const SendLogin = await axios.post("http://192.168.1.17:80/registerCreds", newUser)
-        console.log(SendLogin);
+        const SendLogin = await axios.post(constants.auth.createuser, newUser)
+        .then(resp =>{
+          if(resp.data.status === "Successfull"){
+            console.log(resp.data.status);
+            setIsLoading(false)
+            window.location.href = "/sign-in"
+          }
+        })
       }
-    }
-    catch(err){
-      console.log(err)
-      setIsLoading(false);
-      
+      catch(err){
+        console.log(err)
+        setIsLoading(false);
+        
+      }
     }
 };
 
-console.log(jojoUserId);
 
 
   return (
@@ -92,14 +101,16 @@ console.log(jojoUserId);
         {jojoUserId?.data.jojoId}
       </p>
         <p className="text-greyText text-sm">Jojo pays Company Id</p>
-      <p className="flex justify-center py-2 text-black outline-none shadow-md w-96 mb-6 rounded-2xl font-semibold">
-        {jojoUserId?.data.companyId}
-      </p>
       <input
       type="text"
       value={jojoUserId?.data.jojoId}
       className="hidden"
       id="jojoId" />
+      <input
+      type="text"
+      value={jojoUserId?.data.companyId}
+      className="hidden"
+      id="companyId" />
       <input
       type="text"
       id="password"
@@ -119,9 +130,9 @@ console.log(jojoUserId);
       <button
         type="submit"
         title="Next"
-        // isLoading={isLoading}
+        disabled = {isLoading ? true : false}
         className="flex justify-center bg-secondaryText text-white p-2 px-9 w-36 m-auto mt-8 transform transition-all hover:scale-95 shadow rounded rounded-bl-3xl rounded-tr-3xl"
-        >Submit</button>
+        >Next</button>
         </div>
         </form>
     </div>

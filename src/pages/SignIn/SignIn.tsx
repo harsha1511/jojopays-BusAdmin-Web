@@ -9,7 +9,7 @@ import Button from "../../components/Button";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { LOGIN_SUCCESS } from "../../store/reducers/auth.reducer";
-import axios from "axios";
+import axios from "../../API/axios";
 import constants from "../../API/constants";
 
 const validationSchema = yup.object().shape({
@@ -40,14 +40,14 @@ const SignIn = () => {
     setIsLoading(true);
     console.log(values);
     try {
-      dispatch(LOGIN_SUCCESS(values));
-      const Response = await axios.post("http://192.168.1.17:80/login", values)
+      const Response = await axios.post(constants.auth.login, values)
       .then( resp => {
         const token = resp.data.token
         localStorage.setItem("token",token);
         console.log(token, "TOKENNNN");
-        
         if(token){
+          dispatch(LOGIN_SUCCESS(values));
+          console.log("Welcome to JOJOPAYS..!!!");
         }
       })
       setIsLoading(false)

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
-import axios from "axios";
+import constants from "../../API/constants";
 
 import logo from "../../assets/images/logo.svg";
 import heroImage from "../../assets/images/signup-hero-image.png";
@@ -13,6 +13,7 @@ import { LOGIN_SUCCESS } from "../../store/reducers/auth.reducer";
 
 import {BiUpload} from 'react-icons/bi'
 import { CreateUser } from "./components/CreateUser";
+import axios from "../../API/axios";
 
 const validationSchema = yup.object().shape({
   ownerName: yup
@@ -107,7 +108,8 @@ const SignUp = () => {
   const handleSubmit = async (values: SignUpProps) => {
     setIsLoading(true);
     console.log(values);
-    const Response = await axios.post("http://192.168.1.17:80/register", values)
+    // const Response = await axios.post(constants.auth.register, values)
+    const respose = await axios.post(constants.auth.register, values)
     .then( resp => {
       console.log(resp);
       setUserId(resp); 
