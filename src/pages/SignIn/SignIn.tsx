@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as yup from "yup";
 
 import logo from "../../assets/images/logo.svg";
@@ -36,11 +36,18 @@ const SignIn = () => {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const ClearData=localStorage.clear()
+    console.log(localStorage.getItem("token"), "jahsdvjhv");
+    
+  },[])
+
   const handleSubmit = async (values: SignInProps) => {
     setIsLoading(true);
     console.log(values);
     try {
-      const Response = await axios.post(constants.auth.login, values)
+      // const Response = await axios.post(constants.auth.login, values)
+      const Response = await axios.post("http://65.1.65.245/login", values)
       .then( resp => {
         const token = resp.data.token
         localStorage.setItem("token",token);
