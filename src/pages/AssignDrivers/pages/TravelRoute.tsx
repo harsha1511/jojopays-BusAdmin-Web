@@ -1,6 +1,4 @@
 import React,{useState} from 'react'
-import { useSelector } from "react-redux";
-import { RootState } from '../../../store';
 
 import BackButton from '../../../components/BackButton'
 
@@ -11,9 +9,7 @@ import { Link } from 'react-router-dom'
 
 export const TravelRoute = () => {
   
-  const formOne = useSelector((state:RootState) => state.form)
 
-  console.log("form", formOne);
   
 
   const [point, setPoint] = useState<number>(0)

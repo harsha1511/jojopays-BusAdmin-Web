@@ -46,8 +46,8 @@ const SignIn = () => {
     setIsLoading(true);
     console.log(values);
     try {
-      // const Response = await axios.post(constants.auth.login, values)
-      const Response = await axios.post("http://65.1.65.245/login", values)
+      const Response = await axios.post(constants.auth.login, values)
+      // const Response = await axios.post("http://65.1.65.245:80/login", values)
       .then( resp => {
         const token = resp.data.token
         localStorage.setItem("token",token);

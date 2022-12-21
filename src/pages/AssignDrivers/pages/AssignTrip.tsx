@@ -6,20 +6,15 @@ import constants from '../../../API/constants';
 import BackButton from '../../../components/BackButton'
 
 import jojopay from "../../../assets/images/jojopay.png"
+import { IAssignTrip } from '../../../store/reducers/assignTrip';
 
 
-interface TripDetailsProps {
-    busName: string;
-    driverName: string;
-    coPilotName: string;
-    tripType: string;
-    tripStartTime: string;
-}
+
 
 export const AssignTrip = () => {
 
     const [busName, setBusName] = useState("5")
-    const [tripDetails, setTripDetails] = useState<TripDetailsProps>({
+    const [tripDetails, setTripDetails] = useState<IAssignTrip>({
         busName: "",
         driverName: "",
         coPilotName: "",
