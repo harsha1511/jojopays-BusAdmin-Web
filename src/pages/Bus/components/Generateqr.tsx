@@ -154,7 +154,7 @@ function Generateqr(){
                                                 <p></p>
                                             </div>
                                         </div>
-                                                {/* </Link> */}
+                                        {/* </Link> */}
                                      </div>
                                         <p className="m-2 text-white font-semibold">bus 4</p>
                                 </div>

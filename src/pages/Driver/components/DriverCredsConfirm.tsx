@@ -14,11 +14,11 @@ export const  DriverCredsConfirm = () => {
 
     return (
     <div className="h-[100%] flex-grid  grid-flow-row w-[100%] p-0">
-      <div className=" flex fixed text-primaryText font-bold z-10  text-2xl ml-[34%] items-center h-20 w-[35%] justify-around rounded-b-[40px] bg-[#2F3142] shadow-xl">
+      <div className=" flex fixed text-primaryText font-bold z-10  text-2xl ml-[30%] items-center h-20 w-[35%] justify-around rounded-b-3xl drop-shadow-2xl bg-secondary">
             <h1>Edit Driver Details</h1>
         </div>
         <div className='flex justify-center items-center w-[96vw] h-screen'>
-        <div className='flex flex-col items-center w-[1300px] h-[600px] rounded-3xl bg-secondary bg-add-driver-cover bg-cover bg-center bg-no-repeat'>
+        <div className='flex flex-col items-center w-[1300px] h-[600px] rounded-3xl  bg-add-driver-cover bg-cover bg-center bg-no-repeat'>
             <div className="flex justify-end items-center pr-8 w-[100%] h-20">
                 <BackButton />
             </div>

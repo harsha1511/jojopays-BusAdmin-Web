@@ -10,9 +10,9 @@ function Driverdetail() {
   const [busName, setBusName] = useState()
 
   const BusName = [
-      {name: "SRV" , pilot: "andrew" , copilot: "Time of order-Ascending"},
-      {name: "Intrcity", pilot: "andrew" , copilot: "Time of order-Decending"},
-      {name: "Essar" , pilot: "andrew" , copilot: "Time of order-Seating Order"},
+      {copilot: "Time of order-Ascending"},
+      {copilot: "Time of order-Decending"},
+      {copilot: "Time of order-Seating Order"},
   ]
 
 
@@ -39,10 +39,10 @@ function Driverdetail() {
 
 
       <div className='flex justify-center items-center w-[96vw] h-screen'>
-        <div className='flex flex-col items-center w-[1300px] h-[630px] rounded-3xl bg-secondary   bg-no-repeat'>
-                                             {/* Top text  */}
+        <div className='flex flex-col items-center w-[100%] h-[630px] rounded-3xl bg-secondary   bg-no-repeat'>
+                                             {/* Top text   */}
           <div className="  items-center rounded-3xl    w-[100%] h-[20%]">
-            <div className="flex flex-col absolute left-0 top-0 h-16 sm:ml-[170px]   w-16  ">
+            <div className="flex flex-col absolute left-0 top-0 h-16 sm:ml-[80px]   w-16  ">
               <img src="https://www.shareicon.net/data/512x512/2015/09/18/103160_man_512x512.png" alt="" className="  w-[95px] h-[95px]  mt-[16px]  rounded-full "/>
               <p className=" text-[23px] font-bold text-primaryText">Daniel</p>
               <p className=" text-[14px] w-[180px] -ml-16 font-bold text-white">Co-pilot name:<span className="text-textblue"> Sam</span></p>
@@ -57,7 +57,7 @@ function Driverdetail() {
                 <p className="m-[15px] w-[70px] h-[22px]  text-center bg-primary text-primaryText rounded-lg">0$</p>
               </section>
             </div>
-            <div className="z-10 drop-shadow-lg flex justify-center ml-[45px] -mt-[80px] p-4 items-center w-[92%] ">
+            <div className="z-10 drop-shadow-lg flex justify-center ml-[10px] -mt-[80px] p-4 items-center w-[95%] ">
               <section className='flex p-[25px] font-semibold justify-between'>
                 <p className="m-[15px]">ID: <span className="text-textblue">PIL01236</span></p>
                 <p className="m-[15px] w-[70px] h-[22px]  text-center bg-quaternary rounded-2xl">DM</p>
@@ -76,7 +76,7 @@ function Driverdetail() {
           </div>
 
           <Driverbus/>
-                                          {/* center-boxs */}
+                                           {/* center-boxs  */}
         <div className='absolute left-0 top-0 ml-[480px] mt-[190px] pt-2 pb-4 w-[350px] h-[470px] bg-quaternary rounded-2xl'>
           
         <p className="  text-redText flex justify-center border-b-2  border-tertiary font-semibold">Passenger(s)</p>
@@ -89,12 +89,13 @@ function Driverdetail() {
               <p className="p-2 mt-8 text-primaryText font-semibold">End Time</p>
 
           </div>
-          <div>
-          {/* <div className='w-40 h-[1px] ml-8 bg-primaryText'></div> */}
-                            <select name="Driver" id="clicking" className='w-62 h-8 ml-[60px] bg-secondary text-textblue pl-3 rounded-lg rounded-tr-[10px] focus:outline-none drop-shadow-2xl'>
+          <div className="w-[95%] flex justify-center h-[8%]">
+           {/* <div className='w-40 h-[1px] ml-8 bg-primaryText'></div>  */}
+                            <select name="Driver" id="clicking" className='w-[90%] h-8 ml-[10px] bg-redText 
+                            text-textblue pl-2 rounded-lg rounded-tr-[10px] focus:outline-none drop-shadow-2xl'>
                                 <option >Seating order</option>
-                                {BusName.map(({name,pilot, copilot}) => (
-                                    <option className='pb-2' value={copilot}>{copilot}</option>
+                                {BusName.map(({ copilot}) => (
+                                    <option className="" value={copilot}>{copilot}</option>
                                 ))}
                             </select>
                             </div>
@@ -147,9 +148,9 @@ function Driverdetail() {
           <p className=" flex justify-center  bg-primary w-[100px] h-[23px] p-2 ml-[125px] text-center items-center rounded-lg text-textblue  font-semibold">00:31:54</p>
 
        
-            <div className='absolute left-0 top-0 ml-[346px] -mt-[60px] pt-2 pb-4 w-[165px] h-[220px] bg-redText rounded-2xl'>
+            <div className='absolute left-0 top-0 ml-[346px] -mt-[60px] pt-2 pb-4 w-[165px] h-[220px] bg-quaternary rounded-2xl'>
         
-            <div className='absolute left-0 top-0 -ml-[346px] mt-[245px] pt-2 pb-4 w-[510px] h-[280px] bg-redText rounded-2xl'>
+            <div className='absolute left-0 top-0 -ml-[346px] mt-[245px] pt-2 pb-4 w-[510px] h-[280px] bg-quaternary rounded-2xl'>
               </div>
             </div>
             </div>

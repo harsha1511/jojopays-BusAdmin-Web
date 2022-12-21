@@ -4,8 +4,10 @@ import BackButton from '../../../components/BackButton'
 import { Rating } from "../../Profile/components/Rating";
 import { DeleteButton } from '../../../components/DeleteButton'
 import EditButton from '../../../components/EditButton'
+ import Driverchart from "./Driverchart";
 
-  
+
+import {FiDownload} from 'react-icons/fi'
   
   import {FaUser} from 'react-icons/fa'
   
@@ -20,6 +22,16 @@ import EditButton from '../../../components/EditButton'
   
   
   function DriverInfo() {
+
+    const BusName = [
+        {copilot: "Day"},
+        {copilot: "Week"},
+        {copilot: "Year"},
+    ]
+
+
+
+
     return (
         <div>
   
@@ -48,7 +60,7 @@ import EditButton from '../../../components/EditButton'
         </div>
         
 
-        <img src="https://www.shareicon.net/data/512x512/2015/09/18/103160_man_512x512.png" alt="" className="absolute w-[110px] h-[110px]  mt-[80px] sm:ml-[180px] rounded-full "/>
+        <img src="https://www.shareicon.net/data/512x512/2015/09/18/103160_man_512x512.png" alt="" className="absolute w-[110px] h-[110px]  mt-[40px] sm:ml-[180px] rounded-full "/>
        
         </div>
         
@@ -61,17 +73,17 @@ import EditButton from '../../../components/EditButton'
         </div>
     
         </div>
-        {/* Login id and password */}
+        {/* Login id and password  */}
 
-        <div className='m-4 mr-2 -mt-8 h-22 w-[19%] ml-[47%] bg-quaternary rounded-xl drop-shadow-lg'>
+         {/* <div className='m-4 mr-2 -mt-8 h-22 w-[19%] ml-[47%] bg-quaternary rounded-xl drop-shadow-lg'>
                 <label className='flex items-center m-2 ml-6 pt-2 text-primaryText'>Login ID:
                 <p className='ml-2 w-40 py-1 pl-3 bg-secondary text-sm text-white font-semibold rounded-xl'>sugan</p>
                 </label>
                 <label className='flex m-4 mt-4 pb-4 text-primaryText'>Password:
                 <p className='ml-2 w-40 py-1 pl-3 bg-secondary text-sm text-white font-semibold rounded-xl'>********</p>
                 </label>
-            </div>
-            <section className='flex -mt-8'>
+            </div>  */}
+            <section className='flex '>
                 <div className='w-[50%] '>
                     <form className='tracking-wider ml-10'>
                         <div className='flex items-center'>
@@ -80,7 +92,7 @@ import EditButton from '../../../components/EditButton'
                         </div>
                         <div className='flex items-center mt-3'>
                             <label className='flex justify-end w-32 text-primaryText text-lg font-bold'>Email ID:</label>
-                            <p className='text-white text-sm font-light pl-4'>sugan@gmail.com</p>
+                            <p className='text-white text-sm font-light mailto:pl-4'>sugan@gmail.com</p>
                         </div>
                         <div className='flex items-center mt-3'>
                             <label className='flex justify-end w-32 text-primaryText text-lg font-bold'>Main ph, No.:</label>
@@ -103,8 +115,8 @@ import EditButton from '../../../components/EditButton'
                             <p className='text-white text-sm font-light pl-4'>14/06/98</p>
                         </div>
                         </form>
-                        <div className='flex items-center  flex-col ml-[290px] -mt-12 pt-2 pb-4 w-[375px] h-[220px] bg-secondary rounded-2xl'>
-                        <p className='text-primaryText  pt-2 pb-4 text-xl font-bold'>Scheduled Pays</p>
+                        <div className='flex   flex-col xl:w-[300px] ml-[280px] -mt-12 pt-2 pb-4 w-[375px] h-[220px] bg-secondary rounded-2xl'>
+                        <p className='text-primaryText ml-[70px] pt-2 pb-4 text-xl font-bold'>Scheduled Pays</p>
                         <p className='ml-2 w-[275px] h-[55px]  py-1 pl-3 border-2 border-primaryText text-sm text-primaryText font-semibold rounded-xl'>
                         <label className='flex items-row m-2 ml-[2px] -mt-[10px] pt-2 text-primaryText'>Bonus Day 
                 <p className='ml-[75px] w-[105px] h-[20px] text-center bg-primary text-xs text-white font-semibold rounded-xl'>Jan.20-08:00am</p>
@@ -133,12 +145,12 @@ import EditButton from '../../../components/EditButton'
 
 
 
-                         <div className='w-[24%] -ml-[75px] mt-2 z-10'>
+                         <div className='w-[24%] -ml-[150px] mt-[90px] z-10'>
                          <Attendance isDownload={false} />
                 </div> 
-                <div className="bg-redText w-[30%] flex flex-col">
+                <div className=" w-[30%] flex flex-col">
                     <div className="flex flex-row">
-                <div className='m-4 mr-2 flex flex-row-reverse  -mt-20 h-[220px] w-[110px] ml-[10px] bg-quaternary rounded-3xl drop-shadow-lg'>
+                <div className='m-4 mr-2 flex flex-row-reverse  -mt-10 h-[220px] w-[110px] ml-[10px] bg-quaternary rounded-3xl drop-shadow-lg'>
                
                 <p className='ml-2 mr-4 pr-2 mt-4 w-[80px] text-center  py-1 h-[50px] text-pinkText pl-3 bg-secondary text-sm font-semibold rounded-xl'>Assign <br/>Trip
                 <Link to="/Driver-upcomingtrip">
@@ -149,7 +161,7 @@ import EditButton from '../../../components/EditButton'
                 </Link>
                 </p>
                 </div>
-                <div className='m-4 mr-2 flex flex-row-reverse  -mt-20 h-[220px] w-[230px] ml-[20px] bg-quaternary rounded-3xl drop-shadow-lg'>
+                <div className='m-4 mr-2 flex flex-row-reverse  -mt-10 h-[220px] w-[230px] ml-[20px] bg-quaternary rounded-3xl drop-shadow-lg'>
                     <p className="mt-2 mr-6  font-bold text-sm text-primaryText">Our Driver/Co-Driver since
                     <p className='ml-8 w-[115px] mt-2 py-1 pl-[24px]  text-sm bg-secondary text-xs text-white font-semibold rounded-lg'>05.04.2020</p>
                     <p className=" ml-12 text-sm mb-2 font-bold text-primaryText">Total Trips</p>
@@ -167,11 +179,25 @@ import EditButton from '../../../components/EditButton'
                     
                 </div>
                 </div>
-                <div className="flex ml-4 w-full h-full">
-                <div className="flex w-[80%] h-[65%] bg-quaternary justify-center rounded-xl items-center">
+                <div className="flex flex-col items-center  w-full h-full">
+                <div className="flex w-[80%] h-[65%] bg-quaternary mr-14 justify-center rounded-xl items-center">
                     <div>
-                        
+                         <Driverchart/>    
                     </div>
+                    </div>
+                                {/* month Report  */}
+                    <div className="flex flex-row items-center w-[80%] mr-12 h-[12%] rounded-2xl mt-4 bg-quaternary">
+                    <div className="w-[40%] h-full flex justify-center items-center ml-4">
+                    <select name="Driver" id="clicking" className='w-[90%] h-8 ml-[10px] 
+                            text-textblue pl-2 rounded-lg rounded-tr-[10px] focus:outline-none drop-shadow-2xl'>
+                                <option >Month</option>
+                                {BusName.map(({ copilot}) => (
+                                    <option className="" value={copilot}>{copilot}</option>
+                                ))}
+                            </select>
+                    </div>
+                        <div className="flex flex-row w-[60%] h-full pt-2 pl-4 text-xl text-pinkText tracking-wider font-bold">Report.pdf<p className="ml-4 flex justify-center items-center w-12 rounded-2xl h-8  bg-pinkText"><FiDownload className="text-white text-2xl"/></p></div>
+                       
                     </div>
                 </div>
                 </div>
@@ -179,12 +205,12 @@ import EditButton from '../../../components/EditButton'
                         </section>
                        
                         <div>
-                        <div className="flex justify-row mt-[35px]">
+                        <div className="flex justify-row -mt-[50px]">
                         
-                        <PowerButton className="" />
+                        <PowerButton className="-mt-2" />
                         </div>
                         <Link to="/update-driver  ">
-                        <div className="ml-[85px] -mt-[115px]">
+                        <div className="ml-[85px] -mt-[135px]">
                         <EditButton isEdit={true} className=" "/>
                         </div>
                         </Link>

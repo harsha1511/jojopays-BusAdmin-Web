@@ -48,7 +48,7 @@ function Tripdetails() {
         <h1>1 August 2021 (Sunday)</h1>
       </div>
         
-                                             {/* Top text  */}
+                                              {/* Top text   */}
           <div className="  items-center rounded-3xl text-[15px]   w-[100%] h-[20%]">
           
             <div className="z-10 flex justify-center items-center w-[75%] ">
@@ -82,25 +82,26 @@ function Tripdetails() {
           </div>
 
          <Drivercomment/>
-                                          {/* center-boxs */}
+                                          {/* center-boxs  */}
         <div className='absolute left-0 top-0 ml-[480px] mt-[190px] pt-2 pb-4 w-[350px] h-[470px] bg-quaternary rounded-2xl'>
           
         <p className="  text-redText flex justify-center border-b-2 mx-[100px] pb-2 border-tertiary font-semibold">Passenger(s)</p>
         {/* <p className=" flex justify-center  bg-primary w-[90px] h-[30px] m-4 p-2 ml-[125px]
-         text-center items-center rounded-lg text-primaryText  font-semibold">50</p>         */}
+         text-center items-center rounded-lg text-primaryText  font-semibold">50</p>          */}
          <div className=" flex items-center border-b-2 mx-6 border-tertiary m-2 -mt-[6px] font-semibold ">
              
               <p className="p-2  flex justify-center  bg-primary w-[80px] h-[30px] m-4 p-2 ml-[25px]
               text-center items-center rounded-lg text-primaryText  font-semibold">150</p>
                <p className="  text-primaryText flex justify-center border-b-2 mt-10 border-primaryText ml-2 font-semibold">In this trip</p>
           </div>
-          <div>
-          {/* <div className='w-40 h-[1px] ml-8 bg-text-primaryText'></div> */}
-                            <select name="Driver" id="clicking" className='w-62 h-8 ml-[60px] bg-secondary text-primaryText pl-3 rounded-lg rounded-tr-[10px] focus:outline-none drop-shadow-2xl'>
+          <div className=" flex justify-center items-center w-84 h-[60px]">
+          {/* <div className='w-40 h-[1px] ml-8 bg-text-primaryText'></div>  */}
+          <select name="Driver" id="clicking" className='flex justify-center  items-center w-80 h-6 pl-14
+                            text-primaryText  rounded-lg rounded-tr-[10px] focus:outline-none drop-shadow-3xl'>
                                 
                                 {BusName.map(({name,pilot, copilot}) => (
                                   
-                                    <option className='pb-2' value={copilot}>{copilot}</option>
+                                    <option className='bg-primary' value={copilot}>{copilot}</option>
                                 ))}
                             </select>
                             </div>
@@ -156,9 +157,10 @@ function Tripdetails() {
               <p className="p-2 text-white font-semibold">10.42am</p>
             </div>
           <p className=" flex justify-center  bg-primary w-[100px] h-[23px] p-2 ml-[125px] text-center items-center rounded-lg text-primaryText  font-semibold">00:31:54</p>
-
+                         {/* map  */}
        
-            <div className='absolute left-0 top-0 ml-[346px] -mt-[60px] pt-2 pb-4 w-[165px] h-[220px] bg-white rounded-2xl'>
+            <div className='absolute left-0 top-0 ml-[346px] -mt-[60px] pt-2 pb-4 w-[165px] h-[220px] bg-quaternary rounded-2xl'>
+              
         
             <div  className=' absolute left-0 top-0 -ml-[346px] mt-[245px] pt-2 pb-4 w-[510px] h-[280px] bg-quaternary rounded-2xl'>
             <div className=" flex flex-row  items-start justify-between">

@@ -52,6 +52,9 @@ import Createnewqr from "../pages/Bus/components/Createnewqr";
 import Busqr from "../pages/Bus/components/Busqr";
 import Rfid from "../pages/Bus/components/Rfid";
 import BusSeats from "../pages/Bus/components/BusSeats";
+import DriverTask from "../pages/Driver/components/DriverTask";
+import CreateDriver from "../pages/Driver/components/CreateDriver";
+import Driverchart from "../pages/Driver/components/Driverchart";
 
 const routes: { path: string; Element: () => JSX.Element }[] = [
   { path: "/assign-drivers", Element: AssignDrivers },
@@ -110,6 +113,9 @@ const routes: { path: string; Element: () => JSX.Element }[] = [
   { path: "/bus-detailsqr", Element: Busqr },
   { path: "/bus-rfidqr", Element: Rfid },
   { path: "/bus-seat", Element: BusSeats },
+  { path: "/driver-task", Element: DriverTask },
+  { path: "/create-driver", Element: CreateDriver },
+  { path: "/driver-chart", Element: Driverchart },
 ];
 
 export default routes;

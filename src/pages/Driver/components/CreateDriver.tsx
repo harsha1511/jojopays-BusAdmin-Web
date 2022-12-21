@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import BackButton from "../../../components/BackButton";
 import { Link } from "react-router-dom";
 
-export const CreateLogin = () => {
+export const CreateDriver = () => {
 
     const [loading, setLoading] =useState(true);
     const Startloading = () => {
@@ -14,7 +14,7 @@ export const CreateLogin = () => {
     return (
     <div className="h-[100%] flex-grid  grid-flow-row w-[100%] p-0">
       <div className=" flex fixed text-primaryText font-bold z-10  text-2xl ml-[30%] items-center h-20 w-[35%] justify-around rounded-b-3xl drop-shadow-2xl  bg-secondary ">
-            <h1>Add New Login</h1>
+            <h1>Add New Driver</h1>
         </div>
         <div className='flex justify-center items-center w-[96vw] h-screen'>
         <div className='flex flex-col items-center w-[1300px] h-[600px] rounded-3xl  bg-add-driver-cover bg-cover bg-center bg-no-repeat'>
@@ -54,4 +54,4 @@ export const CreateLogin = () => {
   );
 }
 
-export default CreateLogin;
+export default CreateDriver;

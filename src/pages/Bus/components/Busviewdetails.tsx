@@ -218,7 +218,7 @@ function Busviewdetails(){
                             </Link>
                         </div>
                         <div className="w-[60%] h-full  flex items-center justify-center">
-                            <div className=" w-[58%] h-[93%] bg-white mt-2 mb-2 rounded-[20px]"></div>
+                            <div className=" w-[58%] h-[93%] bg-black mt-2 mb-2 rounded-[20px]"></div>
                         </div>
                     </div>
                     

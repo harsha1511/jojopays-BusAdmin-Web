@@ -7,7 +7,7 @@ import BusIcon from '../../../assets/images/BusIcon.png';
 import { ToggleButton } from "../../../components/ToggleButton";
 
 
-export const AssignTask = () => {
+export const DriverTask = () => {
 
 
   interface TaskProps {
@@ -51,7 +51,7 @@ export const AssignTask = () => {
                 <p className="mt-2 text-greyText">Eric</p>
               </div>
               <div className='z-10 flex justify-center items-center w-[35%] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
-                <p className="text-2xl text-primaryText font-bold tracking-widest">Add New Login</p>
+                <p className="text-2xl text-primaryText font-bold tracking-widest">Add New driver</p>
               </div>
               <div className="mt-16">
                 <BackButton />
@@ -73,7 +73,7 @@ export const AssignTask = () => {
                     }
                 </div>
                 <div className="flex justify-end w-full">
-                  <Link to={'/create-login'} className=" bg-primaryText -mb-4 mr-40 px-8 py-2 rounded-3xl text-xl font-semibold" >Next</Link>
+                  <Link to={'/create-driver'} className=" bg-primaryText -mb-4 mr-40 px-8 py-2 rounded-3xl text-xl font-semibold" >Next</Link>
                 </div>
                 </form>
               </div>
@@ -82,7 +82,7 @@ export const AssignTask = () => {
   );
 }
 
-export default AssignTask;
+export default DriverTask;
 
 
 
