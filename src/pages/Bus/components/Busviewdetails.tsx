@@ -10,11 +10,11 @@ import { DeleteButton } from "../../../components/DeleteButton";
 
 function Busviewdetails(){
     return(<div className="flex flex-col justify-start items-center w-[96vw] h-screen">
-    <div className='z-10 flex justify-center items-center w-[500px] h-[13%] bg-[#2F3142] rounded-b-3xl drop-shadow-2xl'>
-      <p className='font-bold tracking-wider text-3xl text-primaryText'>View Bus Details</p>
+    <div className='z-10 flex justify-center items-center w-[35%] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
+      <p className='font-bold tracking-wider text-2xl text-primaryText'>View Bus Details</p>
     </div>
     <div className='flex justify-center items-center w-[96vw] h-screen'>
-        <div className='flex flex-col items-center w-[1300px] -mt-16 h-[650px] rounded-3xl ml-4 bg-secondary bg-add-driver-cover bg-cover bg-center bg-no-repeat'>
+        <div className='flex flex-col items-center w-[1300px] -mt-16 h-[650px] rounded-3xl ml-4  bg-add-driver-cover bg-cover bg-center bg-no-repeat'>
         <div className="flex justify-start items-center  pr-8 w-[100%] h-20">
         <div className="flex justify-start items-center  pr-8 w-[100%] h-20">
                 <p className="flex w-[60px] ml-[70px] h-[60px] rounded-[60px] items-center justify-center bg-[#2F3142]"><BiBus className=" text-[#1E1E2C] text-[30px]"/>
@@ -133,7 +133,12 @@ function Busviewdetails(){
                 </div>
             </div>
             <div className="flex flex-col  w-[50%] h-full rounded-3xl">
-                <div className=" w-full h-[35%] bg-redText">haii</div>
+                            {/* bus  */}
+                <div className=" w-full h-[35%] ">
+                    {/* <div>hii</div>
+                    <div>hii</div>
+                    <div>hii</div> */}
+                </div>
                 <div className="flex flex-col w-[85%] h-[65%] ml-14 bg-[#2F3142] rounded-[30px]">
                     <div className=" w-[100%] h-[30%] border-b-2  border-tertiary  text-[14px]">   
                          <p className=" flex justify-center text-[13px] ml-[100px] mt-2 font-semibold">Status :<span className="ml-2 text-quaternaryText"> On Trip</span></p>
@@ -178,26 +183,26 @@ function Busviewdetails(){
                     <div  className=" flex flex-row w-full h-[50%] ">
                         <div className="w-[45%] h-full">
                         <div className="flex flex-row">
-                        <p className="m-[5px]  text-[#FF5050] font-semibold">Earning(s)  </p>
-                        <p className="flex items-center mt-2 justify-center text-textblue text-[12px] ml-2 rounded-lg w-[60px] h-[25px] bg-[#1E1E2C]">1000$</p>
+                        <p className="m-[5px] ml-6 text-[#FF5050] font-semibold">Earning(s)  </p>
+                        <p className="flex items-center mt-2 justify-center text-textblue text-[12px] ml-4 rounded-lg w-[60px] h-[25px] bg-[#1E1E2C]">1000$</p>
                        
                         </div>
-                        <div className="flex flex-row">
-                        <p className="m-[5px]  text-[#FF5050] font-semibold">Expenses</p>
+                        <div className="flex  flex-row">
+                        <p className="m-[5px] ml-8 text-[#FF5050] font-semibold">Expenses</p>
                         <p className="flex items-center mt-2 justify-center text-textblue text-[12px] ml-4 rounded-lg w-[60px] h-[25px] bg-[#1E1E2C]">100$</p>
                        
                         </div>
                         <div className="flex flex-row">
-                        <p className="m-[5px]  text-[#FF5050] font-semibold">Passenger(s)</p>
+                        <p className="m-[5px] ml-2 text-[#FF5050] font-semibold">Passenger(s)</p>
                        
                         </div>
                         <div className="flex flex-row">
-                        <p className="m-[5px] ml-12 text-white font-semibold">Expenses</p>
+                        <p className="m-[5px] ml-8 text-white font-semibold">Expenses</p>
                         <p className="flex items-center mt-2 justify-center text-textblue text-[12px] ml-4 rounded-lg w-[60px] h-[25px] bg-[#1E1E2C]">150</p>
                        
                         </div>
                         <div className="flex flex-row">
-                        <p className="m-[5px] ml-12 text-white font-semibold">Expenses</p>
+                        <p className="m-[5px] ml-8 text-white font-semibold">Expenses</p>
                         <p className="flex items-center mt-2 justify-center text-textblue text-[12px] ml-4 rounded-lg w-[60px] h-[25px] bg-[#1E1E2C]">50</p>
                        
                         </div>
@@ -235,4 +240,4 @@ function Busviewdetails(){
         
     );
 }
-export default Busviewdetails;  
+export default Busviewdetails; 

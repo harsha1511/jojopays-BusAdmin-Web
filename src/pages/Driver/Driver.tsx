@@ -23,7 +23,7 @@ const Driver = () => {
               <BsSearch className=""/>
             </div>
            
-            <div className="w-[90%] h-[580px] overflow-y-auto" id='noScrollBar'>
+            <div className="w-[90%] h-[510px] overflow-y-auto" id='noScrollBar'>
             <div className="bg-auto bg-no-repeat bg-center m-3 p-3">
               <DriverList />
               {/* <Driverrating/> */}

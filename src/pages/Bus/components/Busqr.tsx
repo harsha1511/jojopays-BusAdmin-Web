@@ -18,8 +18,8 @@ function Busqr(){
         {/* top div */}
 <div className="flex flex-row w-full h-[12%]">
 <div className="flex justify-center items-center w-full h-full ">
-<p className='z-10 flex justify-center items-center ml-[110px] font-bold bg-[#2F3142] drop-shadow-2xl tracking-[5px]
- rounded-b-[30px] w-[33%] h-full bg-white text-[37px] text-primaryText'>Generate QR</p>  
+<p className='z-10 flex justify-center items-center ml-[110px] font-bold bg-secondary rounded-b-3xl drop-shadow-2xl tracking-[5px]
+ w-[35%] h-20  text-2xl text-primaryText'>Generate QR</p>  
 </div>
 <div className="flex justify-end items-center  pr-14  w-[6%] h-full">
 <BackButton />
@@ -86,7 +86,7 @@ function Busqr(){
             <div className="absolute flex flex-col w-[1300px]  h-[600px] rounded-3xl ml-4">
                 <div className="flex flex-row w-full h-full">
                                         {/* left-bus-div */}
-                    <div className="h-full w-[42%]">hii</div>
+                    <div className="h-full w-[42%]"></div>
                                         {/* right-QR-BR div */}
                     <div className=" flex flex-col h-full w-[58%]">
                         <div className="h-[26%] w-full">
@@ -158,7 +158,6 @@ function Busqr(){
                     </div>
 
                 </div>
-                  
 
                     </div>
                   

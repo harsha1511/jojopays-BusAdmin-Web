@@ -6,6 +6,16 @@ import EditButton from "../../../components/EditButton";
 import { DeleteButton } from "../../../components/DeleteButton";
 import { RiFileExcel2Line } from 'react-icons/ri';
 import { IoMdDocument } from 'react-icons/io';
+import {ImQrcode} from "react-icons/im"
+
+
+
+const members = [
+    { name : "A1"},
+    { name : "b1"},
+    { name : "c1"},
+    
+]
 
 function Rfid(){
     return(
@@ -13,8 +23,8 @@ function Rfid(){
             {/* top div */}
             <div className="flex flex-row w-full h-[12%]">
 <div className="flex justify-center items-center w-full h-full ">
-<p className='z-10 flex justify-center items-center ml-[110px] font-bold bg-[#2F3142] drop-shadow-2xl tracking-[5px]
- rounded-b-[30px] w-[33%] h-full bg-white text-[37px] text-primaryText'>Generate QR</p>  
+<p className='z-10 flex justify-center items-center ml-[110px] font-bold bg-secondary rounded-b-3xl drop-shadow-2xl tracking-[5px]
+ w-[35%] h-20  text-2xl text-primaryText'>Generate  QR</p>  
 </div>
 <div className="flex flex-col justify-end  items-center mt-10 pr-8  w-[6%] h-full">
     <div className="">
@@ -36,7 +46,7 @@ function Rfid(){
                                     {/* top-div-bg */}
 <div className=" relative flex justify-center  items-center w-[96vw] h-screen">
                                         {/* start-QR, RFID CODE */}
-    <div className="flex justify-end -mt-14 w-[96vw] h-screen">
+    <div className="flex justify-end -mt-16 w-[96vw] h-screen">
 <div className="z-10 flex flex-col justify-end items-end mt-[120px] pr-8  w-[18%] h-[45%]">
     <div className="flex flex-row  rounded-tl-lg rounded-bl-lg rounded-tr-lg rounded-br-3xl w-[70%] mt-2 h-[18%] bg-[#2F3142]">
         <div className="flex justify-start w-full h-full items-center"><IoMdDocument className="text-3xl ml-2"/>
@@ -69,7 +79,8 @@ function Rfid(){
                     </div>
                     <div className="absolute justify-end flex w-[1300px] -mt-16 h-[600px] rounded-3xl ml-4 ">
                         <div className="flex flex-col  w-[15%] rounded-r-3xl bg-[#3973FF]">
-                            <div className=" flex justify-end items-center  w-full h-[78%]">
+                            <div className=" flex justify-center -center  w-full h-[78%]">
+                            <ImQrcode className="text-[#242636] mt-4 text-[110px]" />
                                 
                             </div>
                             <div className="flex justify-center opacity-80 mt-14 w-full  h-[30%]">
@@ -93,7 +104,24 @@ function Rfid(){
                             {/* left-div */}
                    <div className=" flex justify-center flex-col items-center h-full w-[35%]">
                     <p className="-mt-8 font-bold text-xl text-primaryText mb-2">RFID Code</p>
-                    <div className="w-[60%] h-[89%] rounded-3xl bg-[#1E1E2C]"></div>
+                    <div className=" flex justify-center w-[60%]  h-[89%] rounded-3xl bg-[#1E1E2C]">
+                        <div className="flex flex-col mt-6">
+                        <p className="p-2">dnsjnfihfuhijreijdfmdknk</p>
+                        <p className="p-2">dnsjnfihfuhijreijdfmdknk</p>
+                        <p className="p-2">dnsjnfihfuhijdfmdknk</p>
+                        <p className="p-2">dnsjnfihfuhijreijdfmdknk</p>
+                        <p className="p-2">dnsjnfihfuhijknk</p>
+                        <p className="p-2">dnsjnfihfuhijreijdfmdknk</p>
+                        <p className="p-2">dnsjnfihfijdfmdknk</p>
+                        <p className="p-2">dnsjnfihfuhijreijdfmdknk</p>
+                        <p className="p-2">dnsjnfjdfmdknk</p>
+                        <p className="p-2">dnsjnfihfuhijreijdfmdknk</p>
+                        <p className="p-2">dijdfmdknk</p>
+                        <p className="p-2">dijdfmccndinfurnfiondknk</p>
+                       
+                        </div>
+
+                    </div>
                     
                    </div>
                                 {/* right-div */}
@@ -130,9 +158,34 @@ function Rfid(){
                             </div> */}
                         {/* center box */}
                         <div className=" w-full h-full">
-                            <div className="w-[82%] h-[90%] rounded-3xl bg-[#1E1E2C]">
+                        {/* {members.slice(0, showList).map(({name}) => ( */}
+                            <div className="flex flex-col w-[82%] h-[90%] rounded-3xl bg-[#1E1E2C]">
+                                  {members.map(({name}) => ( 
+                                <div className="flex flex-row">
+                                <div className="flex flex-col">
+                            <ImQrcode className="text-white  ml-14 mt-6 text-[95px]" />
+                            <p className="ml-[75px] text-xs mt-2 text-primaryText font-semibold">Seate A1</p>
+                            </div>
+                            <div className="flex flex-col">
+                            <ImQrcode className="text-white  ml-12 mt-6 text-[90px]" />
+                            <p className="ml-[70px] text-xs mt-2 text-primaryText font-semibold">Seate B1</p>
+                            </div>
+                            <div className="flex flex-col">
+                            <ImQrcode className="text-white  ml-12 mt-6 text-[90px]" />
+                            <p className="ml-[70px] text-xs mt-2 text-primaryText font-semibold">Seate C1</p>
+                            </div>
+                            <div className="flex flex-col">
+                            <ImQrcode className="text-white  ml-12 mt-6 text-[90px]" />
+                            <p className="ml-[70px] text-xs mt-2 text-primaryText font-semibold">Seate D1</p>
+                            </div>
+                            
+
 
                             </div>
+                              ))} 
+                            </div>
+                            {/* ))} */}
+                            
 
                             
                         </div>
@@ -155,4 +208,4 @@ function Rfid(){
     
     );
 }
-export default Rfid;  
+export default Rfid;

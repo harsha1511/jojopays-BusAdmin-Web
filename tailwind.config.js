@@ -26,6 +26,8 @@ module.exports = {
         calendar: "url(./assets/images/calendar.png)",
         "driver-cover": "url(./assets/images/driver-cover.svg)",
         "add-driver-cover": "url(./assets/images/add-driver.png)",
+        "bus-qr-cover": "url(./assets/images/OBJECTS.png)",
+        "bus-cover": "url(./assets/images/BACKGROUND.png)",
       },
       screens: {
         "mb" : "500px"

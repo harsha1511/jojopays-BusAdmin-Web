@@ -14,7 +14,7 @@ export const  DriverCredsConfirm = () => {
 
     return (
     <div className="h-[100%] flex-grid  grid-flow-row w-[100%] p-0">
-      <div className=" flex fixed text-primaryText font-bold z-10  text-4xl ml-[34%] items-center h-[80px] w-[30%] justify-around rounded-b-[40px] bg-[#2F3142] shadow-xl">
+      <div className=" flex fixed text-primaryText font-bold z-10  text-2xl ml-[34%] items-center h-20 w-[35%] justify-around rounded-b-[40px] bg-[#2F3142] shadow-xl">
             <h1>Edit Driver Details</h1>
         </div>
         <div className='flex justify-center items-center w-[96vw] h-screen'>

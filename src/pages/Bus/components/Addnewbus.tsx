@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import{FaPlus} from "react-icons/fa"
+import {ImQrcode} from "react-icons/im"
 
 function Addnewbus(){
     return(
@@ -15,9 +16,12 @@ function Addnewbus(){
           </Link>
             <div className="flex justify-center text-primaryText mt-2 font-bold">Add New Bus</div>
             </section>
+
+
             <section className="flex flex-col items-center  justify-center  w-full h-[40%]">
             <Link to="/bus-generateqr">
-            <div className="w-40 h-40 bg-white rounded-[35px] realtive">
+            <div className="flex items-center justify-center w-40 h-40 bg-[#242636] rounded-[35px] realtive">
+            <ImQrcode className="text-[#3973FF] text-[110px]"/>
            
           </div>
           </Link>
@@ -27,4 +31,4 @@ function Addnewbus(){
 
     );
 }
-export default Addnewbus;  
+export default Addnewbus; 
