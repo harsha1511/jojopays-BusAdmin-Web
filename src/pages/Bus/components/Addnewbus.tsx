@@ -19,7 +19,7 @@ function Addnewbus(){
 
 
             <section className="flex flex-col items-center  justify-center  w-full h-[40%]">
-            <Link to="/bus-generateqr">
+            <Link to={"/bus-generateqr"}>
             <div className="flex items-center justify-center w-40 h-40 bg-[#242636] rounded-[35px] realtive">
             <ImQrcode className="text-[#3973FF] text-[110px]"/>
            

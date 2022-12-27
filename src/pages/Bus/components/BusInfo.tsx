@@ -1,7 +1,4 @@
-
 import React from "react";
-import { Link } from "react-router-dom";
-
 import { FaBusAlt} from "react-icons/fa";
 import { FaBus} from "react-icons/fa";
 import { SiCircleci} from "react-icons/si";

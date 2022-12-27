@@ -20,6 +20,9 @@ const constants: any = {
   transaction: {
     list: "getTransactionData",
   },
+  ticketPrice: {
+    autoPrice: "getAutoPriceChange",
+  },
 };
 
 export default constants;

@@ -7,6 +7,8 @@ import { ErrorMessage } from 'formik';
 import { MdDeleteForever } from 'react-icons/md'
 import { TiTick } from 'react-icons/ti'
 import { ToggleButton } from '../../../components/ToggleButton'
+import axios from '../../../API/axios';
+import constants from '../../../API/constants';
 
 
 
@@ -16,6 +18,7 @@ interface InitialProps {
     price: string;
 }
 export const AutoPriceChange = () => {
+
 
     const validationSchema = yup.object().shape({
         fromTime: yup
@@ -50,8 +53,12 @@ export const AutoPriceChange = () => {
         "toTime"
     ]
 
-    const onSubmit = (values:InitialProps) => {
+    const onSubmit = async (values:InitialProps) => {
         setPriceChange(values) 
+        console.log("nalla paarunga", priceChange);
+        
+        const response = await axios.post(constants.ticketPrice.autoPrice, priceChange).
+        then(resp => console.log("sent", resp));
     }
     console.log(priceChange, "INPUTTTTTT");
 

@@ -6,13 +6,21 @@ import constants from '../../../API/constants';
 import BackButton from '../../../components/BackButton'
 
 import jojopay from "../../../assets/images/jojopay.png"
-import { IAssignTrip } from '../../../store/reducers/assignTrip';
+import { ADD_BUS, IAssignTrip } from '../../../store/reducers/assignTrip';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../store';
+import Tripdetails from '../../Driver/components/Tripdetails';
 
 
 
 
 export const AssignTrip = () => {
 
+
+    
+    
+    
+    
     const [busName, setBusName] = useState("5")
     const [tripDetails, setTripDetails] = useState<IAssignTrip>({
         busName: "",
@@ -22,20 +30,20 @@ export const AssignTrip = () => {
         tripStartTime: "",
     })
     const [selectPilot, setSelectPilot] = useState<any>()
-
+    
     const BusName = [
         {name: "SRV" , pilot: "andrew" , copilot: "sugan"},
         {name: "Intrcity", pilot: "andrew" , copilot: "sugan"},
         {name: "Essar" , pilot: "andrew" , copilot: "sugan"},
     ]
-
+    
     const handleChange = (e: any) => {
         e.preventDefault();
         const {name, value} = e.target
         setTripDetails({...tripDetails, [name]: value})
     }
-
-    console.log("trip details", tripDetails);
+    
+    // console.log("trip details", tripDetails);
     
     const handleUpdate = (e:any) => {
         e.preventDefault();
@@ -43,13 +51,26 @@ export const AssignTrip = () => {
         
         // window.location.href = "/travel-route"
     }
+    
+    
+    const auth = useSelector((state: RootState) => state.assignTrip);
+    console.log("assign trip reducer", auth);
+    
+    const dispatch = useDispatch();
+    const NewBus = {
+        busName: "Essar",
+        driverName: "mani",
+        coPilotName: "kevin",
+        tripType: "sleeper",
+        tripStartTime: "09.50 pm",
+    }
 
     useEffect(() => {
       const getPilot = async () => {
-        const response = await axios.get(constants.filters.selectpilot)
-        console.log("respppppp", response.data);
-        setSelectPilot(response.data)
-        
+        // const response = await axios.get(constants.filters.selectpilot)
+        // console.log("respppppp", response.data);
+        // setSelectPilot(response.data)
+        dispatch(ADD_BUS(NewBus))
       }
       getPilot();
     }, [])

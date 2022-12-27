@@ -6,8 +6,13 @@ import {MdLocationPin} from "react-icons/md"
 import {MdDeleteForever} from 'react-icons/md'
 
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../store'
 
 export const TravelRoute = () => {
+  
+  const auth = useSelector((state: RootState) => state.assignTrip);
+  console.log("hdvakda", auth);
   
 
   

@@ -145,7 +145,7 @@ const Notifications = () => {
               <p
                 className={`hover:text-primaryText ${
                   showType === value
-                    ? "underline underline-offset-8 decoration-primaryText	"
+                    ? "underline underline-offset-8 decoration-primaryText"
                     : ""
                 }`}
                 onClick={() => setShowType(value)}
@@ -157,7 +157,6 @@ const Notifications = () => {
         </div>
         {renderNotificationTypes()}
       </section>
-      
     </div>
   );
 };

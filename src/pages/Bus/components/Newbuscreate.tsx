@@ -212,11 +212,11 @@ console.log(color,"bluee");
                 
                 </div>
                 <div className="w-[20%] -mt-2 h-[100%]">
-                <button 
+                <Link to= {"/bus-seat"} 
                 type="submit"
                 className="flex shadow-2xl justify-center items-center -ml-16 w-[140px] rounded-3xl
                      text-[#50FF84] h-[50px] bg-[#2F3142] text-[30px] font-semibold ">Next
-                     </button>
+                     </Link>
                 </div>
                 
                 {/* <div className="flex flex-row">
