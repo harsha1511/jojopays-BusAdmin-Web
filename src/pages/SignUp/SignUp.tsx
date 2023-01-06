@@ -14,6 +14,7 @@ import { LOGIN_SUCCESS } from "../../store/reducers/auth.reducer";
 import {BiUpload} from 'react-icons/bi'
 import { CreateUser } from "./components/CreateUser";
 import axios from "../../API/axios";
+import { ErrorMessage } from "formik";
 
 const validationSchema = yup.object().shape({
   ownerName: yup
@@ -29,7 +30,7 @@ const validationSchema = yup.object().shape({
     .required("Owner Phone Number is required")
     .label("Owner Phone"),
   ownerMail: yup
-    .string()
+    .string().email("Enter a Valid email Id")
     .required("Owner Mail Id is required")
     .label("Owner Mail"),
   companyName: yup  
@@ -45,7 +46,7 @@ const validationSchema = yup.object().shape({
     .required("Company Phone Number is required")
     .label("Company Phone"),
   companyMail: yup
-    .string()
+    .string().email("Enter a Valid email Id")
     .required("Company Mail Id is required")
     .label("Company Mail"),
   companyBio: yup
@@ -121,6 +122,23 @@ const SignUp = () => {
   };
 console.log("USERIID", userId);
 
+const SignupData = [
+  {name: "ownerName", placeholder:"Owner Name"},
+  {name: "ownerAddress", placeholder:"Owner Address"},
+  {name: "ownerMail", placeholder:"Owner Mail Id"},
+  {name: "ownerPhone", placeholder:"Owner Phone"},
+  {name: "companyName", placeholder:"Company Name"},
+  {name: "companyAddress", placeholder:"Company Name"},
+  {name: "companyMail", placeholder:"Company Mail Id"},
+  {name: "companyPhone", placeholder:"Company Phone"},
+  {name: "companyBio", placeholder:"Company Bio"},
+]
+
+ const renderError = (msg:string) => 
+      <div className='text-sm my-2 w-full'>
+        <p className='text-pinkText'>{msg}</p>
+      </div>
+
   
   return (
 
@@ -131,75 +149,25 @@ console.log("USERIID", userId);
             Welcome To JoJoPay Family
           </h5>
           {!login ?
-          <div className="w-[980px] h-[85%] bg-white px-4 py-8 rounded-lg rounded-tr-3xl shadow-md">
+          <div className="w-[980px] h-[85%] bg-white px-4 py-8 rounded-lg rounded-tr-3xl shadow-md  overflow-y-auto">
           <CustomForm
             initialValues={initialState}
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
             <div className="grid grid-cols-2 gap-1 ml-14">
-              <Input
-                type="text"
-                name="ownerName"
-                placeholder="Owner Name"
-                className="border-none text-black outline-none shadow-md w-96"
-                inputContainerClassName="mb-3"
-              />
-              <Input
-                type="text"
-                name="ownerAddress"
-                placeholder="Owner Address"
-                className="border-none text-black outline-none shadow-md w-96"
-                inputContainerClassName="mb-3"
-              />
-              <Input
-                type="email"
-                name="ownerMail"
-                placeholder="Owner Mail Id"
-                className="border-none text-black outline-none shadow-md w-96"
-                inputContainerClassName="mb-3"
-              />
-              <Input
-                type="string"
-                name="ownerPhone"
-                placeholder="Owner Phone Number"
-                className="border-none text-black outline-none shadow-md w-96"
-                inputContainerClassName="mb-3"
-              />
-              <Input
-                type="text"
-                name="companyName"
-                placeholder="Company Name"
-                className="border-none text-black outline-none shadow-md w-96"
-                inputContainerClassName="mb-3"
-              />
-              <Input
-                type="text"
-                name="companyAddress"
-                placeholder="Company Address"
-                className="border-none text-black outline-none shadow-md w-96"
-                inputContainerClassName="mb-3"
-              />
-              <Input
-                type="email"
-                name="companyMail"
-                placeholder="Company Mail Id"
-                className="border-none text-black outline-none shadow-md w-96"
-                inputContainerClassName="mb-3"
-              />
-              <Input
-                type="text"
-                name="companyPhone"
-                placeholder="Company Phone Number"
-                className="border-none text-black outline-none shadow-md w-96"
-                inputContainerClassName="mb-3"
-              />
-              <Input
-                type="text"
-                name="companyBio"
-                placeholder="Company Bio"
-                className="border-none text-black outline-none shadow-md w-96"
-              />
+                {SignupData.map((data) => (
+                  <div>
+                    <Input
+                    type="text"
+                    name={data.name}
+                    placeholder={data.placeholder}
+                    className="border-none text-black outline-none shadow-md w-96"
+                    inputContainerClassName="mb-3"
+                    />
+                    <ErrorMessage name={data.name} render={renderError}/>
+                </div>
+                  ))}
               <div className="flex items-center">
                 <label className="cursor-pointer">
                   <Input 
@@ -207,7 +175,9 @@ console.log("USERIID", userId);
                   type="file"
                   accept="image/*"
                   name="companyDocument" /> 
-                  <p className='flex flex-col items-center bg-tertiary shadow-md text-white py-2 px-4 rounded-2xl w-44'>company document<span><BiUpload /></span></p> 
+                  <p className='flex flex-col items-center bg-tertiary shadow-md text-white py-2 px-4 rounded-2xl w-44'>company document<span><BiUpload /></span></p>
+                    <ErrorMessage name="companyDocument" render={renderError}/>
+
                 </label>
                 <label className="cursor-pointer">
                   <Input 
@@ -216,6 +186,7 @@ console.log("USERIID", userId);
                   accept="image/*"
                   name="ownerIdProof" /> 
                   <p className='flex flex-col items-center bg-tertiary shadow-md text-white py-2 px-4 ml-6 rounded-2xl w-48'>Owner ID <span><BiUpload /></span></p> 
+                    <ErrorMessage name="ownerIdProof" render={renderError}/>
                 </label>
               </div>
             </div>

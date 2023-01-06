@@ -38,7 +38,6 @@ export const CreateUser = ({jojoUserId}:CreateUSerProps) => {
 
 
   const dispatch = useDispatch();
-  const navigate = useNavigate()
 
   const defaultUserData = {
     jojoId: jojoUserId.data.jojoId,
@@ -52,6 +51,7 @@ export const CreateUser = ({jojoUserId}:CreateUSerProps) => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [newUser, setNewUser] = useState<any>(defaultUserData);
+  const [error, setError] = useState<string>()
 
   const {
     jojoId,
@@ -68,73 +68,82 @@ const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) 
     }));
   };
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    if(newUser.password !== "" && newUser.password === newUser.confirmPassword){
+  const onSubmit = async () => {
+    if(newUser.password !== "" && newUser.confirmPassword !== "" && newUser.password === newUser.confirmPassword){
     try{
-        setIsLoading(true)
+      setIsLoading(true)
         console.log("newUSERRR", newUser)
         const SendLogin = await axios.post(constants.auth.createuser, newUser)
         .then(resp =>{
-          if(resp.data.status === "Successfull"){
+          if(resp.status === 200){
             console.log(resp.data.status);
             setIsLoading(false)
             window.location.href = "/sign-in"
           }
         })
+        console.log("newUSERRR")
+        setIsLoading(false);   
       }
       catch(err){
         console.log(err)
-        setIsLoading(false);
-        
       }
+    }else{
+      setError("Wrong Password")
+      // console.log("please enter a password");
+      
     }
 };
 
-
-
   return (
     <div>
-    <form action="submit" onClick={onSubmit}>
+    {/* <form action="submit" > */}
       <div className="flex flex-col items-center mt-8 w-ful">
         <p className="text-greyText text-sm">Jojo pays User Id</p>
       <p className="flex justify-center py-2 text-black outline-none shadow-md w-96 mb-6 rounded-2xl font-semibold">
         {jojoUserId?.data.jojoId}
       </p>
         <p className="text-greyText text-sm">Jojo pays Company Id</p>
+        <p className="flex justify-center py-2 text-black outline-none shadow-md w-96 mb-6 rounded-2xl font-semibold">
+        {jojoUserId?.data.companyId}
+      </p>
       <input
-      type="text"
+      type="password"
       value={jojoUserId?.data.jojoId}
+      onChange={onChange}
       className="hidden"
       id="jojoId" />
       <input
-      type="text"
+      type="password"
       value={jojoUserId?.data.companyId}
+      onChange={onChange}
       className="hidden"
       id="companyId" />
       <input
-      type="text"
+      type="password"
       id="password"
       value={password}
       placeholder="Password"
       onChange={onChange}
       className="border-none text-black outline-none shadow-md w-96 mt-8 px-6 py-2 rounded-2xl" />
       <input
-      type="text"
+      type="password"
       id="confirmPassword"
       value={confirmPassword}
       placeholder="Confirm Password"
       onChange={onChange}
       className="border-none text-black outline-none shadow-md w-96 mt-8 px-6 py-2 rounded-2xl" />
+      <p className='text-redText mt-2'>{error}</p>
       </div>
       <div className="flex justify-center w-full">
       <button
-        type="submit"
+      onClick={onSubmit}
+        // type="submit"
         title="Next"
         disabled = {isLoading ? true : false}
-        className="flex justify-center bg-secondaryText text-white p-2 px-9 w-36 m-auto mt-8 transform transition-all hover:scale-95 shadow rounded rounded-bl-3xl rounded-tr-3xl"
+        className="flex justify-center bg-secondaryText text-white p-2 px-9 w-36 m-auto mt-8 transform transition-all cursor-pointer hover:scale-95 shadow rounded rounded-bl-3xl rounded-tr-3xl"
         >Next</button>
         </div>
-        </form>
+        {/* </form> */}
     </div>
   )
 }

@@ -33,23 +33,21 @@ const SignIn = () => {
     keepMeLogin: false,
   };
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string>();
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const ClearData=localStorage.clear()
-    console.log(localStorage.getItem("token"), "jahsdvjhv");
-    
-  },[])
+  
 
   const handleSubmit = async (values: SignInProps) => {
     setIsLoading(true);
     console.log(values);
+    dispatch(LOGIN_SUCCESS(values));
     try {
-      dispatch(LOGIN_SUCCESS(values));
       const Response = await axios.post(constants.auth.login, values)
-      // const Response = await axios.post("http://65.1.65.254:5000/login", values)
       .then( resp => {
+        console.log("error message", resp.data.message);
+        setErrorMessage(resp.data.message);
         const token = resp.data.token
         localStorage.setItem("token",token);
         console.log(token, "TOKENNNN");
@@ -63,7 +61,6 @@ const SignIn = () => {
         console.log(err)
         setIsLoading(false)
       }
-    setIsLoading(false);
   };
 
   
@@ -111,6 +108,7 @@ const SignIn = () => {
                 placeholder="Password"
                 className="border-none text-black outline-none shadow-lg w-96"
               />
+              <p className="text-redText m-2">{errorMessage}</p>
             </div>
             <div className="flex flex-col gap-3 mt-5">
               <Button

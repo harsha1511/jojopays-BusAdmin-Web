@@ -207,9 +207,9 @@ export const AssignTrip = () => {
                 </div>
             </div>
                 <Link to={"/travel-route"} className="flex w-[45%]">
-                <button className='mt-4  px-10 py-3 text-2xl font-semibold tracking-wider bg-secondary rounded-tl-3xl rounded-md rounded-br-3xl'>
-                    Next
-                </button>
+                    <button className='mt-4  px-10 py-3 text-2xl font-semibold tracking-wider bg-secondary rounded-tl-3xl rounded-md rounded-br-3xl'>
+                        Next
+                    </button>
                 </Link>
         </div>
     </div>

@@ -12,9 +12,6 @@ import { nameShrinker } from "../../utils/helpers";
 import { TripBar } from "./components/TripBar";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {SUBMIT_FORM_ONE} from "../../store/reducers/form.reducer"
-import { fetchData } from "../../API/apiCall";
-import instance from "../../API/axios";
 
 
 interface FilterProps {
@@ -51,7 +48,7 @@ const AssignDrivers = () => {
     const getBusData = async () => {
       try {
         const response = await axios.get(constants.company.bus);
-        console.log(response.data);
+        console.log(response.data, "bus data");
         setBus(response.data);
       } catch (err) {
         console.log(err);
@@ -67,6 +64,9 @@ const AssignDrivers = () => {
   console.log("TOKEN", token);
   
 
+  const testBus = [
+    {busName: "shajbd", busPhoto: ""}
+  ]
   
   useEffect(() => {
     const getDriverData = async () => {
@@ -107,18 +107,16 @@ const AssignDrivers = () => {
       <div className="flex w-[96vw]">
         <section className="w-[65%] h-screen">
           {/* filter */}
-          <section className="h-48 bg-quaternary">
-            <form action="">
-              <div className="realtive ml-8 w-32 h-20">
+          <section className="flex items-center h-40 bg-quaternary">
+              {/* <div className="realtive ml-8 w-32 h-20">
                 <button className="absolute z-10 mt-2 w-28 h-10 bg-primary rounded-lg">
                   All Plan
                 </button>
                 <div className="absolute mt-2 w-28 h-10 bg-primaryText blur-sm rounded-lg"></div>
-              </div>
-              <div className="w-48 -mt-2 h-[1px] ml-2 bg-greyText"></div>
-              <form className="flex justify-around">
+              </div> */}
+              <form className="flex w-full justify-around">
                 {/* Date */}
-                <div className="w-[33%] h-[105px] mt-2 bg-primary rounded-2xl">
+                <div className="w-[30%] h-[105px] mt-2 bg-primary rounded-2xl">
                   <div className="pt-2 px-3 mt-1">
                     <div className="flex items-center">
                       <p className="text-primaryText">From</p>
@@ -129,13 +127,13 @@ const AssignDrivers = () => {
                         value={filter.tripStartDate}
                         onChange={handleChange}
                       />
-                      <input
+                      {/* <input
                         type="time"
                         className="pl-2 bg-tertiary ml-4 p-1 rounded-lg w-[35%] cursor-text focus:border-0"
                         name="tripStartTime"
                         value={filter.tripStartTime}
                         onChange={handleChange}
-                      />
+                      /> */}
                     </div>
                     <div className="flex items-center mt-3">
                       <p className="text-primaryText w-10">To</p>
@@ -146,25 +144,24 @@ const AssignDrivers = () => {
                         value={filter.tripEndDate}
                         onChange={handleChange}
                       />
-                      <input
+                      {/* <input
                         type="time"
                         className="pl-2 bg-tertiary ml-4 p-1 rounded-lg w-[35%] cursor-text focus:border-0"
                         name="tripEndTime"
                         value={filter.tripEndTime}
                         onChange={handleChange}
-                      />
+                      /> */}
                     </div>
                   </div>
                 </div>
                 {/* from to point */}
                 <div className="mt-4 w-[30%]">
-                  <div>
-                    <label
-                      htmlFor=""
-                      className="text-primaryText font-semibold"
+                  <div className="flex">
+                    <p
+                      className="text-primaryText font-semibold w-24"
                     >
-                      Point 1
-                    </label>
+                      Arrival
+                    </p>
                     <input
                       type="text"
                       name="tripArrivalFrom"
@@ -174,63 +171,35 @@ const AssignDrivers = () => {
                       className="bg-primary p-1 ml-2 w-[60%] rounded-lg drop-shadow-md focus:border-0 pl-4"
                     />
                   </div>
-                  <div className="mt-4">
-                    <label
-                      htmlFor=""
-                      className="text-primaryText font-semibold"
+                  <div className="mt-4 flex">
+                    <p
+                      className="text-primaryText font-semibold w-24"
                       >
-                      Point 2
-                    </label>
+                      Destination
+                    </p>
                     <input
                       type="text"
                       name="tripDepatureTo"
                       value={filter.tripDepatureTo}
                       onChange={handleChange}
-                      className="bg-primary p-1 ml-2 w-[60%] rounded-lg drop-shadow-md focus:border-0 pl-4"
+                      className="bg-primary p-1 ml-2 w-[60%] rounded-lg drop-shadow-md pl-4 focus:bg-primary"
                     />
                   </div>
                 </div>
                 {/* toggle button type from 4 types of trip */}
-                <div className="w-[32%] mt-2 cursor-pointer">
-                  <div className="flex justify-around w-full py-2 bg-primary rounded-2xl">
-                    <input className={`w-[40%] bg-primary pl-8 focus:border-none cursor-pointer
-                    ${filter.tripType === "Casual Trip" ? "text-white" : "text-primaryText"} `}
-                    value="Casual Trip"
-                    name="tripType"
-                    readOnly={true}
-                    onClick={handleChange} 
-                    />
-                    <input className={`w-[50%] border-greyText/50 border-l-2 bg-primary ml-2 pl-2 focus:border-none cursor-pointer
-                    ${filter.tripType === "Pre Booked Trip" ? "text-white" : "text-primaryText"}`}
-                    value="Pre Booked Trip"
-                    name="tripType"
-                    readOnly={true}
-                    onClick={handleChange}
-                     />
-                  </div>
-                  <div className="flex justify-around w-full py-2 bg-primary rounded-2xl mt-3 cursor-pointer">
-                    <input className={`w-[50%] -mr-4 bg-primary  pl-8 focus:border-none cursor-pointer
-                    ${filter.tripType === "One Way Trip" ? "text-white" : "text-primaryText"}`}
-                    value="One Way Trip"
-                    name="tripType"
-                    readOnly={true}
-                    onClick={handleChange}
-                     />
-                    <input className={`w-[45%] pl-4 bg-primary focus:border-none border-l-2 border-greyText/50 cursor-pointer
-                    ${filter.tripType === "Round Trip" ? "text-white" : "text-primaryText"}`}
-                    value="Round Trip"
-                    name="tripType"
-                    readOnly={true}
-                    onClick={handleChange} 
-                    /> 
-                  </div>
+                <div className="flex w-[32%] items-center">
+                    <select name="" id=""
+                    onChange={handleChange}
+                    className='w-52 h-12 bg-primary pl-3 rounded-lg focus:outline-none drop-shadow-2xl'>
+                      <option className="text-white" value="Casual Trip">Casual Trip</option>
+                      <option className="text-white" value="Pre Booked Trip">Pre Booked Trip</option>
+                      <option className="text-white" value="One Way Trip">One Way trip</option>
+                      <option className="text-white" value="Round Trip">Round Trip</option>
+                    </select>
                 </div>
               </form>
-            </form>
           </section>
-          {/* body */}
           <section className="h-full flex">
-            {/* Add New trip */}
             <div className="flex flex-col items-center w-[25%] h-full bg-secondary">
               <p className=" mt-10 text-lg font-bold tracking-wider text-primaryText">
                 Add New trip Plan
@@ -246,7 +215,6 @@ const AssignDrivers = () => {
                 </button>
               </Link>
               <div className="h-[1px] -ml-20 mt-8 w-60 bg-greyText/50"></div>
-              {/* <Link to="/assigned-trip"> */}
                 <button 
                 onClick={() => setAssignedTrip(!assignedTrip)}
                 className={`mt-6 -ml-14 w-56 h-12 bg-quaternary rounded-3xl drop-shadow-lg text-lg font-bold hover:text-white tracking-wide

@@ -9,8 +9,8 @@ const constants: any = {
     onDeskStaff: "getSingleStaffData",
   },
   company: {
-    driver: "getDriverData",
-    bus: "getBusData",
+    driver: "allDrivers",
+    bus: "allBus",
     trip: "getTripData",
   },
   filters: {

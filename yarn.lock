@@ -2200,10 +2200,17 @@
   dependencies:
     "@types/node" "*"
 
-"@types/history@*":
-  "integrity" "sha512-MUc6zSmU3tEVnkQ78q0peeEjKWPUADMlC/t++2bI8WnAG2tvYRPIgHG8lWkXwqc8MsUF6Z2MOf+Mh5sazOmhiQ=="
-  "resolved" "https://registry.npmjs.org/@types/history/-/history-4.7.9.tgz"
-  "version" "4.7.9"
+"@types/history@^4.7.11":
+  "integrity" "sha512-qjDJRrmvBMiTx+jyLxvLfJU7UznFuokDv4f3WRuriHKERccVpFU+8XMQUAbDzoiJCsmexxRExQeMwwCdamSKDA=="
+  "resolved" "https://registry.npmjs.org/@types/history/-/history-4.7.11.tgz"
+  "version" "4.7.11"
+
+"@types/history@^5.0.0":
+  "integrity" "sha512-hy8b7Y1J8OGe6LbAjj3xniQrj3v6lsivCcrmf4TzSgPzLkhIeKgc5IZnT7ReIqmEuodjfO8EYAuoFvIrHi/+jQ=="
+  "resolved" "https://registry.npmjs.org/@types/history/-/history-5.0.0.tgz"
+  "version" "5.0.0"
+  dependencies:
+    "history" "*"
 
 "@types/hoist-non-react-statics@^3.3.0":
   "integrity" "sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA=="
@@ -2336,27 +2343,18 @@
     "hoist-non-react-statics" "^3.3.0"
     "redux" "^4.0.0"
 
-"@types/react-router-dom@^5.3.2":
-  "integrity" "sha512-ELEYRUie2czuJzaZ5+ziIp9Hhw+juEw8b7C11YNA4QdLCVbQ3qLi2l4aq8XnlqM7V31LZX8dxUuFUCrzHm6sqQ=="
-  "resolved" "https://registry.npmjs.org/@types/react-router-dom/-/react-router-dom-5.3.2.tgz"
-  "version" "5.3.2"
+"@types/react-router@^5.1.20":
+  "integrity" "sha512-jGjmu/ZqS7FjSH6owMcD5qpq19+1RS9DeVRqfl1FeBMxTDQAGwlMWOcs52NDoXaNKyG3d1cYQFMs9rCrb88o9Q=="
+  "resolved" "https://registry.npmjs.org/@types/react-router/-/react-router-5.1.20.tgz"
+  "version" "5.1.20"
   dependencies:
-    "@types/history" "*"
-    "@types/react" "*"
-    "@types/react-router" "*"
-
-"@types/react-router@*":
-  "integrity" "sha512-RNSXOyb3VyRs/EOGmjBhhGKTbnN6fHWvy5FNLzWfOWOGjgVUKqJZXfpKzLmgoU8h6Hj8mpALj/mbXQASOb92wQ=="
-  "resolved" "https://registry.npmjs.org/@types/react-router/-/react-router-5.1.17.tgz"
-  "version" "5.1.17"
-  dependencies:
-    "@types/history" "*"
+    "@types/history" "^4.7.11"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^18.0.21":
-  "integrity" "sha512-7QUCOxvFgnD5Jk8ZKlUAhVcRj7GuJRjnjjiY/IUBWKgOlnvDvTMLD4RTF7NPyVmbRhNrbomZiOepg7M/2Kj1mA=="
-  "resolved" "https://registry.npmjs.org/@types/react/-/react-18.0.21.tgz"
-  "version" "18.0.21"
+"@types/react@*", "@types/react@^18.0.26":
+  "integrity" "sha512-hCR3PJQsAIXyxhTNSiDFY//LhnMZWpNNr5etoCqx/iUfGc5gXWtQR2Phl908jVR6uPXacojQWTg4qRpkxTuGug=="
+  "resolved" "https://registry.npmjs.org/@types/react/-/react-18.0.26.tgz"
+  "version" "18.0.26"
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -5426,7 +5424,7 @@
   "resolved" "https://registry.npmjs.org/he/-/he-1.2.0.tgz"
   "version" "1.2.0"
 
-"history@^5.1.0":
+"history@*", "history@^5.1.0":
   "integrity" "sha512-zPuQgPacm2vH2xdORvGGz1wQMuHSIB56yNAy5FnLuwOwgSYyPKptJtcMm6Ev+hRGeS+GzhbmRacHzvlESbFwDg=="
   "resolved" "https://registry.npmjs.org/history/-/history-5.1.0.tgz"
   "version" "5.1.0"

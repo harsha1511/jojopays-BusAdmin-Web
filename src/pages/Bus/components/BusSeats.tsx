@@ -1,12 +1,17 @@
 import React,{useState} from "react";
 import BackButton from "../../../components/BackButton";
-import axios from 'axios'
 import { Link } from "react-router-dom";
+import axios from "../../../API/axios";
+import { Seatings } from "./Seatings";
+import { RiSteering2Fill } from "react-icons/ri";
 
 
 const BusSeats = () => {
 
-  const Box = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90]
+  const BoxA = ["A1","A2","A3","A4","A5","A6","A7","A8","A9","A10","A11","A12","A13","A14","A15"];
+  const BoxB = ["B1","B2","B3","B4","B5","B6","B7","B8","B9","B10","B11","B12","B13","B14","B15"]
+  const BoxC = ["C1","C2","C3","C4","C5","C6","C7","C8","C9","C10","C11","C12","C13","C14","C15"]
+
 
 
   const SeatClass = [
@@ -20,6 +25,7 @@ const BusSeats = () => {
 
   const [boxValue, setBoxValue] = useState<number>(15)
   
+  const [rows, setRow] = useState<string>()
   const [addNormal, setAddNormal] = useState<number[]>([]);
   const [addBusiness, setAddBusiness] = useState<number[]>([])
   const [addVip, setAddVip] = useState<number[]>([])
@@ -27,6 +33,7 @@ const BusSeats = () => {
   const [type, setType] = useState<string>("Normal")
 
   
+  console.log(rows, "rowsss");
   
 
   const Conrtol = (i:any) => {
@@ -38,6 +45,14 @@ const BusSeats = () => {
       case "Business":
         return handleBusiness(i)
     }
+  };
+
+  const click = () => {
+    console.log("hiiii");
+  }
+  const clickkk = () => {
+    console.log("helloooo");
+    
   }
 
   const handleAdd = (i:any) => {
@@ -47,9 +62,6 @@ const BusSeats = () => {
         setAddNormal(addNormal => [...addNormal, i]);
       };
   }
-
-  
-
   const handleNewAdd = (i:any) => {
       if(addVip.includes(i) || addNormal.includes(i) || addBusiness?.includes(i)){
         setAddVip(addVip.filter((b:any) => b !== i ))
@@ -57,7 +69,6 @@ const BusSeats = () => {
           setAddVip(addVip => [...addVip, i])
         };
       } 
-
   const handleBusiness = (i:any) => {
     if(addBusiness.includes(i) || addVip.includes(i) || addNormal?.includes(i)){
         setAddBusiness(addBusiness.filter((c:any) => c !== i ))
@@ -75,23 +86,26 @@ const BusSeats = () => {
   console.log("ADDED BUSES", busSeats);
     
   const send =async () => {
-    const resp = await axios.post('http://192.168.1.11:80/summa', busSeats);
-    console.log(resp.status); 
-  }
+    const resp = await axios.post('http://192.168.1.9:81/getSeatsData', busSeats);
+    console.log(resp.status, "seat sended"); 
+  };
   
-  
+  const [statee, setStatee] = useState<string>()
 
   const changeColor = (i:any, type:any) => {
     let backgroundColor = ""
     switch(type){
       case "Normal":
-        return backgroundColor = (addNormal.includes(i) ? "bg-primaryText" : addVip.includes(i) ? "bg-yellowText" : addBusiness.includes(i) ? "bg-quaternaryText" : "bg-greyText hover:bg-primaryText");
+        return backgroundColor = 
+        (addNormal.includes(i) ? "bg-primaryText" : addVip.includes(i) ? "bg-yellowText" : addBusiness.includes(i) ? "bg-quaternaryText" : "bg-greyText hover:bg-primaryText");
       case "VIP":
         return backgroundColor = (addVip.includes(i) ? "bg-yellowText" : addNormal.includes(i) ? "bg-primaryText" : addBusiness.includes(i) ? "bg-quaternaryText" : "bg-greyText hover:bg-yellowText");
       case "Business":
         return backgroundColor = (addBusiness.includes(i) ? "bg-quaternaryText" : addNormal.includes(i) ? "bg-primaryText" : addVip.includes(i) ? "bg-yellowText" : "bg-greyText hover:bg-quaternaryText")
     }
   }
+
+  
 
 
 
@@ -119,14 +133,18 @@ const BusSeats = () => {
                 <div className="w-10 h-3 rounded-3xl bg-primary"></div>
                 <div className="w-10 h-3 rounded-3xl bg-primary"></div>
             </div>
-            <div className="w-[85%] h-[200px] bg-primary rounded-xl -mt-2 rounded-l-[60px] shadow-inner">
-              <div className="flex flex-col items-end ml-24 mt-6">
-                  <div className="flex-wrap w-[500px] h-40 flex gap-1 mr-4 -mt-2">
-                  {Box.map((i) => (
-                    <div className={`w-4 h-4 ${changeColor(i,type)} ml-3 mt-2 rounded-sm`}
-                    onClick={() => Conrtol(i)}>
-                    </div>
-                  ))}
+            <div className="flex justify-between relative w-[90%] h-[210px] bg-primary rounded-xl -mt-2 rounded-l-[60px] shadow-inner">
+              <div className="flex items-end absolute ml-16 h-full">
+                <RiSteering2Fill scale={30} className="-rotate-90 text-2xl text-pinkText mb-6" />
+              </div>
+              <div className="flex flex-col ml-32">
+                  <div className="">
+                    <Seatings data="i" typeOfSeats={type} boxName={BoxA} />
+                    <Seatings data="j" typeOfSeats={type} boxName={BoxB} />
+                    <Seatings data="k" typeOfSeats={type} boxName={BoxC} />
+                    <Seatings data="l" typeOfSeats={type} boxName={BoxC} />
+                    <Seatings data="m" typeOfSeats={type} boxName={BoxC} />
+                    <Seatings data="n" typeOfSeats={type} boxName={BoxC} />
                   </div>
               </div>
             </div>
@@ -143,7 +161,7 @@ const BusSeats = () => {
            <p className="text-primaryText font-semibold">No. of Seats</p>
           </div>
 
-          <Link to={''}
+          <Link to={''} onClick={send}
           className="flex shadow-2xl justify-center items-center w-44 mr-8 rounded-3xl
           text-[#50FF84] h-[50px] bg-[#2F3142] text-3xl font-semibold">
               Next
@@ -152,6 +170,7 @@ const BusSeats = () => {
         {boxValue}
       </div>
     </div>
+
   </div>;
 };
 
