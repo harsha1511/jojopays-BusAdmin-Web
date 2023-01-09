@@ -90,7 +90,6 @@ const BusSeats = () => {
     console.log(resp.status, "seat sended"); 
   };
   
-  const [statee, setStatee] = useState<string>()
 
   const changeColor = (i:any, type:any) => {
     let backgroundColor = ""

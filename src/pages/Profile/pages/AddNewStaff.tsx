@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BackButton from '../../../components/BackButton';
 import {FaBus} from 'react-icons/fa'
 import CustomForm from '../../../components/Form';
@@ -58,11 +58,10 @@ const validateStaff = yup.object().shape({
       StaffNumber: string;
       StaffDob: string;
       StaffAddress: string;
-      StaffLicense: string;
-      StaffResume: string;
-      StaffAddid: string;
-      StaffPhoto: string;
-
+      StaffLicense: any;
+      StaffResume: any;
+      StaffAddid: any;
+      StaffPhoto: any;
   }
 
 
@@ -84,8 +83,13 @@ export const AddNewStaff=()=> {
     StaffAddid: "",
     StaffPhoto: "",
 }
+
+const navigate = useNavigate()
 const handleSubmit = (values: staffDetailsProps) => {
-  console.log(values);
+  console.log(values, "SEE WHATS COMING");
+  if(values){
+    navigate("/assign-task")
+  }
   
 }
 
@@ -245,11 +249,11 @@ const handleSubmit = (values: staffDetailsProps) => {
               </div></div>
             </div>
             <div className='flex justify-end w-[90%]  -mt-[170px]  items-center h-[20%] '>
-            <Link to='/assign-task'>
+            {/* <Link to='/assign-task'> */}
               <button
               type='submit' 
               className='mr-[110px] w-[70%] items-center drop-shadow-3xl text-quaternaryText flex justify-center h-[70%] bg-[#2F3142] font-semibold text-[30px] rounded-3xl'>Next</button>
-            </Link>
+            {/* </Link> */}
             </div>
             </div>
             </CustomForm>
