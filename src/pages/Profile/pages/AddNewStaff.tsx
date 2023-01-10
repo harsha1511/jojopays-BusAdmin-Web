@@ -85,7 +85,7 @@ export const AddNewStaff=()=> {
     StaffPhoto: "",
 }
 const handleSubmit = (values: staffDetailsProps) => {
-  console.log(values);
+  console.log(values, "svavg");
   
 }
 
@@ -245,11 +245,11 @@ const handleSubmit = (values: staffDetailsProps) => {
               </div></div>
             </div>
             <div className='flex justify-end w-[90%]  -mt-[170px]  items-center h-[20%] '>
-            <Link to='/assign-task'>
+            {/* <Link to='/assign-task'> */}
               <button
               type='submit' 
               className='mr-[110px] w-[70%] items-center drop-shadow-3xl text-quaternaryText flex justify-center h-[70%] bg-[#2F3142] font-semibold text-[30px] rounded-3xl'>Next</button>
-            </Link>
+            {/* </Link> */}
             </div>
             </div>
             </CustomForm>
