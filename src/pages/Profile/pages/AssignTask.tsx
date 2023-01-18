@@ -5,11 +5,20 @@ import BackButton from "../../../components/BackButton";
 
 import BusIcon from '../../../assets/images/BusIcon.png';
 import { ToggleButton } from "../../../components/ToggleButton";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../store";
+import { ADD_BUS } from "../../../store/reducers/assignTrip";
 
 
 export const AssignTask = () => {
 
 
+
+
+  const dispatch = useDispatch()
+  const data = useSelector((state: RootState) => state.assignTrip);
+  console.log(data, "reducere is working");
+  
   interface TaskProps {
     name: string
     id: number
@@ -35,6 +44,7 @@ export const AssignTask = () => {
     }else {
       setAddTask(addTask => [...addTask, name])
     }
+    dispatch(ADD_BUS(addTask))
   }
 
   console.log("task assigned", addTask)
