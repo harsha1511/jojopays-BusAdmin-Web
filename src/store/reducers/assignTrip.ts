@@ -9,15 +9,9 @@ export interface IAssignTrip {
 }
 
 const initialState = {
-  tripData: {
-    busName: "",
-    driverName: "",
-    coPilotName: "",
-    tripType: "",
-    tripStartTime: "",
-    travelRoute: "",
-  },
-  travelRoute: [],
+  travelBus: {},
+  travelRoute: {},
+  travelTime: {},
 };
 
 const assignTripSlice = createSlice({
@@ -27,13 +21,24 @@ const assignTripSlice = createSlice({
     ADD_BUS: (assignTrip, action: PayloadAction<any>) => {
       return {
         ...assignTrip,
-        tripData: action.payload,
+        travelBus: action.payload,
+      };
+    },
+    ADD_ROUTE: (assignTrip, action: PayloadAction<any>) => {
+      return {
+        ...assignTrip,
         travelRoute: action.payload,
+      };
+    },
+    ADD_TIME: (assignTrip, action: PayloadAction<any>) => {
+      return {
+        ...assignTrip,
+        travelTime: action.payload,
       };
     },
   },
 });
 
-export const { ADD_BUS } = assignTripSlice.actions;
+export const { ADD_BUS, ADD_ROUTE, ADD_TIME } = assignTripSlice.actions;
 
 export default assignTripSlice.reducer;

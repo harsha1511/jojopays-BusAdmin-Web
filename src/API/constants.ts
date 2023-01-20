@@ -11,7 +11,7 @@ const constants: any = {
   company: {
     driver: "allDrivers",
     bus: "allBus",
-    trip: "getTripData",
+    trip: "upcommingTrips",
   },
   filters: {
     selectbus: "getBus",

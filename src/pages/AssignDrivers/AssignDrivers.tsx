@@ -40,10 +40,19 @@ const AssignDrivers = () => {
 
   const dispatch = useDispatch()
   const [bus, setBus] = useState<object[]>();
-  const [driver, setDriver] = useState<object[]>();
   const [assignedTrip, setAssignedTrip] = useState<boolean>(true);
   const [filter, setFilter] = useState<FilterProps>(initialValue);
+  
+  const [driver, setDriver] = useState<any>();
+  const [bussearch , setbussearch] = useState<any>()
+  const [driversearch , setdriversearch] = useState<any>()
 
+  const [filteredDrivers , setFilteredDrivers] = useState<any>(driver)
+  // const [searchbus, setSearchbus] = useState<any>()
+  // const onSearchbus = event => {
+  //   setSearchbus() = event.target.value
+  // } 
+  
   useEffect(() => {
     const getBusData = async () => {
       try {
@@ -57,7 +66,6 @@ const AssignDrivers = () => {
     getBusData();
   }, []);
 
-  const inputRef = useRef<HTMLInputElement>(null);
   
   const token = localStorage.getItem("token")
 
@@ -80,6 +88,13 @@ const AssignDrivers = () => {
     };
     getDriverData();
   }, []);
+ 
+  // useEffect(() => {
+  //   const filteredData = driver?.filter((value: string) => value.toLowerCase().includes(search.toLowerCase()))
+  //   setFilteredDrivers(filteredData);
+  // },[])
+  
+  console.log("Seacrhsaa", filteredDrivers);
   
   const handleChange = async (e:any) => {
     try {
@@ -89,6 +104,11 @@ const AssignDrivers = () => {
       console.log(err);
     }   
   }
+
+
+
+  console.log(bussearch,driversearch,"sarugaaaa");
+  
   
   useEffect(() => {
     console.log("FILTERSS", filter);
@@ -97,6 +117,11 @@ const AssignDrivers = () => {
         console.log(resp)
         )    
   }, [filter])
+
+  // const data = {
+  //   dataaa : driver,
+  //   searchField : "",
+  // }
 
  
   // console.log("env file", process.env.REACT_APP_API_URL)
@@ -224,7 +249,7 @@ const AssignDrivers = () => {
                 </button>
               {/* </Link> */}
             </div>
-            <div className="flex flex-col items-center mt-2 w-[75%] h-full">
+            <div className="flex flex-col items-center mt-2 w-[75%] h-[70%] overflow-y-auto overflow-x-hidden">
               <p className="text-greyText mb-4">
               { assignedTrip ? 
               "Upcoming Trips" : "Assigned Trips"}</p>
@@ -253,7 +278,7 @@ const AssignDrivers = () => {
                 </button>
               </div>
             </div>
-            <div className="mt-6">
+            <div className="h-[60%] overflow-x-hidden overflow-y-auto">
               {bus?.map((b: any) => (
                 <div className="flex items-center mt-6 ml-4 h-10 w-[80%]">
                   <img
@@ -280,6 +305,8 @@ const AssignDrivers = () => {
               <div className="flex items-center border-2 border-primaryText mb-6 mx-4 rounded-full px-3">
                 <input
                   type="text"
+                  onChange={(e) => setbussearch(e.target.value)}
+                  // value={search}
                   placeholder="Search..."
                   className="bg-transparent border-none py-2 px-4 text-white outline-none w-full"
                 />
@@ -288,6 +315,7 @@ const AssignDrivers = () => {
                 </button>
               </div>
             </div>
+            <div className="h-[60%] overflow-x-hidden overflow-y-auto">
             {driver?.map((d: any) => (
               <div className="flex items-center mt-6 ml-4 h-10 w-[80%]">
                 <img
@@ -300,6 +328,7 @@ const AssignDrivers = () => {
                 </p>
               </div>
             ))}
+          </div>
           </div>
         </section>
       </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from '../../../API/axios';
 import constants from '../../../API/constants';
 
@@ -29,7 +29,6 @@ export const AssignTrip = () => {
         tripType: "",
         tripStartTime: "",
     })
-    const [selectPilot, setSelectPilot] = useState<any>()
     
     const BusName = [
         {name: "SRV" , pilot: "andrew" , copilot: "sugan"},
@@ -43,43 +42,21 @@ export const AssignTrip = () => {
         setTripDetails({...tripDetails, [name]: value})
     }
     
-    // console.log("trip details", tripDetails);
-    
-    const handleUpdate = (e:any) => {
-        e.preventDefault();
-        console.log(e, "jcvhjsavcjhv");
-        
-        // window.location.href = "/travel-route"
-    }
-    
-    
-    const auth = useSelector((state: RootState) => state.assignTrip);
-    console.log("assign trip reducer", auth);
-    
     const dispatch = useDispatch();
-    const NewBus = {
-        busName: "Essar",
-        driverName: "mani",
-        coPilotName: "kevin",
-        tripType: "sleeper",
-        tripStartTime: "09.50 pm",
+    const navigate = useNavigate()
+    // const auth = useSelector((state: RootState) => state.assignTrip);
+    
+    const submitForm = () => {
+        console.log(tripDetails);
+        dispatch(ADD_BUS(tripDetails))
+        navigate("/travel-route")
     }
-
-    useEffect(() => {
-      const getPilot = async () => {
-        // const response = await axios.get(constants.filters.selectpilot)
-        // console.log("respppppp", response.data);
-        // setSelectPilot(response.data)
-        dispatch(ADD_BUS(NewBus))
-      }
-      getPilot();
-    }, [])
 
   return (
     <div>
         <div className='flex flex-col justify-start items-center w-[96vw] h-screen'>
             <div className='z-10 flex justify-center items-center w-[35%] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
-                <p className='text-2xl font-bold tracking-wider text-primaryText' onClick={handleUpdate}>
+                <p className='text-2xl font-bold tracking-wider text-primaryText'>
                     Assign Trip
                 </p>
             </div>
@@ -206,11 +183,13 @@ export const AssignTrip = () => {
                     </section>
                 </div>
             </div>
-                <Link to={"/travel-route"} className="flex w-[45%]">
-                    <button className='mt-4  px-10 py-3 text-2xl font-semibold tracking-wider bg-secondary rounded-tl-3xl rounded-md rounded-br-3xl'>
+                <div className="flex w-[45%]">
+                    <button
+                    onClick={submitForm}
+                    className='mt-4  px-10 py-3 text-2xl font-semibold tracking-wider bg-secondary rounded-tl-3xl rounded-md rounded-br-3xl'>
                         Next
                     </button>
-                </Link>
+                </div>
         </div>
     </div>
   )

@@ -11,6 +11,7 @@ import { ToggleButton } from '../../../components/ToggleButton'
 
 
 interface InitialProps {
+    type: string;
     fromTime: any;
     toTime: any;
     price: any;
@@ -42,6 +43,7 @@ export const AutoPriceRoutes = () => {
     })
 
     const initialState:InitialProps = {
+        type: "Auto Price Routes",
         fromTime: "",
         toTime: "",
         price: "",

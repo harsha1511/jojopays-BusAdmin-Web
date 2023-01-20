@@ -12,6 +12,7 @@ import { TiTick } from 'react-icons/ti'
 
 
 interface CustomProps {
+    type: string;
     bus: string;
     price: any;
 }
@@ -20,6 +21,7 @@ export const CustomPrice = () => {
 
     const [showPrice, setShowPrice] = useState<number>(0)
     const [customPrice, setCustomPrice] = useState<CustomProps>({
+        type: "Custom Price",
         bus: "",
         price:"",
     })

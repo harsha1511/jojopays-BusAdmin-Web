@@ -1,7 +1,13 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import axios from '../../../API/axios';
+import constants from '../../../API/constants';
 import BackButton from '../../../components/BackButton'
 
 import { Card } from '../../../components/Card';
+import { RootState } from '../../../store';
+import { ADD_TIME } from '../../../store/reducers/assignTrip';
 
 
 
@@ -19,12 +25,43 @@ const Month = [
    {month: "Nov", id:11},
    {month: "Dec", id:12},
 ]
+const DaysInWeek = [
+    {name: "Sun"},
+    {name: "Mon"},
+    {name: "Tue"},
+    {name: "Wed"},
+    {name: "Thu"},
+    {name: "Fri"},
+    {name: "Sat"},
+];
 const Days = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
 
 
 export const AssignTime = () => {
 
+    const auth = useSelector((state: RootState) => state.assignTrip);
+
+    
     const [months, setMonths] = useState<any>()
+    const [daysInWeek, setDaysInWeek] = useState<string[]>([])
+    
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const handleDaysInWeek = (name: string) => {
+        if(daysInWeek.includes(name)){
+            setDaysInWeek(daysInWeek.filter((n:string) => n !== name ))
+        } else {
+            setDaysInWeek((daysInWeek:any) => [...daysInWeek, name])
+        }
+    }
+    const submitForm = async () => {
+        dispatch(ADD_TIME(daysInWeek))
+        const postData = await axios.post(constants.company.trip, auth)
+        .then( resp => {
+            console.log(resp);            
+        })
+        // navigate("assign-drivers")
+    };
 
   return (
     <div className='flex'>
@@ -39,13 +76,13 @@ export const AssignTime = () => {
             <div className='flex justify-between items-center w-[55%] h-[65px] bg-secondary rounded-3xl mt-2 drop-shadow-lg'>
                 <p className='text-primaryText ml-6'>Daily/Random days in a week</p>
                 <div className='flex justify-around items-center h-10 w-[55%] bg-primary mr-14 rounded-2xl text-sm'>
-                    <p className='text-redText'>Sun</p>
-                    <p>Mon</p>
-                    <p>Tue</p>
-                    <p>Wed</p>
-                    <p>Thu</p>
-                    <p>Fri</p>
-                    <p>Sat</p>
+                    {DaysInWeek.map(({name}) => (
+                        <p 
+                        onClick={() => handleDaysInWeek(name)}
+                        className={daysInWeek.includes(name) ? "text-primaryText" : ""}>
+                            {name}
+                        </p>
+                    ))}
                 </div>
                 <div className='w-5 h-5 bg-primary border-2 border-primaryText rounded-full mr-5'>
                 </div>
@@ -88,7 +125,9 @@ export const AssignTime = () => {
                         <div className='flex flex-col items-center ml-4 mt-10 w-80 h-72 bg-secondary rounded-2xl'>
                             <p className='mt-4 text-lg font-semibold text-primaryText'>Selected Months</p>
                             <p>{months}</p>
-                            <button className='ml-[530px] mt-44 px-12 py-3 text-xl text-primaryText font-semibold tracking-wider bg-secondary rounded-tl-3xl rounded-md rounded-br-3xl'>Assign</button>
+                            <button 
+                            onClick={submitForm}
+                            className='ml-[530px] mt-44 px-12 py-3 text-xl text-primaryText font-semibold tracking-wider bg-secondary rounded-tl-3xl rounded-md rounded-br-3xl'>Assign</button>
                         </div>
                     </div>
                 </div>

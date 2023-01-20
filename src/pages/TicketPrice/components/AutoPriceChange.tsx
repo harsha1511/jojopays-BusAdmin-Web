@@ -13,6 +13,7 @@ import constants from '../../../API/constants';
 
 
 interface InitialProps {
+    type: string;
     fromTime: any;
     toTime: any;
     price: string;
@@ -36,6 +37,7 @@ export const AutoPriceChange = () => {
     })
 
     const initialState:InitialProps = {
+        type: "Auto Price Change",
         fromTime: "",
         toTime: "",
         price: "",
@@ -53,10 +55,11 @@ export const AutoPriceChange = () => {
         "toTime"
     ]
 
+    console.log("nalla paarunga", priceChange);
     const onSubmit = async (values:InitialProps) => {
-        setPriceChange(values) 
-        console.log("nalla paarunga", priceChange);
+        console.log(values, "seekabcdjhashgdv");
         
+        setPriceChange(values) 
         const response = await axios.post(constants.ticketPrice.autoPrice, priceChange).
         then(resp => console.log("sent", resp));
     }
@@ -77,6 +80,7 @@ export const AutoPriceChange = () => {
                         className='bg-secondary focus:border-none mt-1 mx-3 rounded-lg drop-shadow-lg' 
                         type="time" name="fromTime"
                         />
+                        {/* <Input className='hidden' type='text' name='type' /> */}
                         <p className='text-primaryText font-semibold'>From</p>
                     </div>
                     <div className='flex flex-col items-center justify-center w-36  h-[80px]  rounded-xl shadow-inner bg-primary ml-8'>

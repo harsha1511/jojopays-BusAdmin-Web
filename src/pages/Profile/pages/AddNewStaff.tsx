@@ -11,6 +11,8 @@ import { FaIdCard } from 'react-icons/fa'
 
 import { BsFillFileEarmarkPdfFill }from 'react-icons/bs'
 import { FaIdBadge } from 'react-icons/fa'
+import { useDispatch } from 'react-redux';
+import { ADD_BUS } from '../../../store/reducers/assignTrip';
 
 const validateStaff = yup.object().shape({
   StaffName: yup
@@ -85,12 +87,13 @@ export const AddNewStaff=()=> {
 }
 
 const navigate = useNavigate()
+const dispatch = useDispatch()
 const handleSubmit = (values: staffDetailsProps) => {
   console.log(values, "SEE WHATS COMING");
+  dispatch(ADD_BUS(values))
   if(values){
     navigate("/assign-task")
-  }
-  
+  } 
 }
 
 

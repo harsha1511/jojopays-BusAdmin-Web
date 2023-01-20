@@ -5,13 +5,16 @@ import BackButton from '../../../components/BackButton'
 import {MdLocationPin} from "react-icons/md"
 import {MdDeleteForever} from 'react-icons/md'
 
-import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../store'
+import { ADD_ROUTE } from '../../../store/reducers/assignTrip'
 
 export const TravelRoute = () => {
   
   const auth = useSelector((state: RootState) => state.assignTrip);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   console.log("hdvakda", auth);
   
 
@@ -36,6 +39,11 @@ export const TravelRoute = () => {
     setTravelRoute({...travelRoute, [name]: value})
   }
 
+  const submitForm = () => {
+    dispatch(ADD_ROUTE(travelRoute));
+    navigate("/assign-time")
+
+  }
   console.log("Routes", travelRoute);
   
   return (
@@ -119,9 +127,9 @@ export const TravelRoute = () => {
                     </section>
                 </div>
             </div>
-                <Link to={"/assign-time"} className="flex w-[45%]">
+                <div onClick={submitForm} className="flex w-[45%]">
                 <button className='mt-4 px-12 py-3 text-2xl font-semibold tracking-wider bg-secondary rounded-tl-3xl rounded-md rounded-br-3xl'>Next</button>
-                </Link>
+                </div>
           </div>
         </div>
   )
