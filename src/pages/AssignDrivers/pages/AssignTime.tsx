@@ -41,12 +41,13 @@ export const AssignTime = () => {
 
     const auth = useSelector((state: RootState) => state.assignTrip);
 
-    
     const [months, setMonths] = useState<any>()
     const [daysInWeek, setDaysInWeek] = useState<string[]>([])
     
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    
     const handleDaysInWeek = (name: string) => {
         if(daysInWeek.includes(name)){
             setDaysInWeek(daysInWeek.filter((n:string) => n !== name ))
@@ -56,7 +57,7 @@ export const AssignTime = () => {
     }
     const submitForm = async () => {
         dispatch(ADD_TIME(daysInWeek))
-        const postData = await axios.post(constants.company.trip, auth)
+        const postData = await axios.post(constants.company.assignTrip, auth)
         .then( resp => {
             console.log(resp);            
         })

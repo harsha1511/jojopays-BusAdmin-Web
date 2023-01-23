@@ -12,6 +12,8 @@ import { nameShrinker } from "../../utils/helpers";
 import { TripBar } from "./components/TripBar";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { AssignedTripBar } from "./components/assignedTripBar";
+import { GET_BUSES, GET_DRIVERS } from "../../store/reducers/busCompany";
 
 
 interface FilterProps {
@@ -26,8 +28,11 @@ interface FilterProps {
 
 const AssignDrivers = () => {
 
-  const form = useSelector((state: RootState) => state.form);
+  const busCompany = useSelector((state: RootState) => state.busCompany);
 // 
+
+console.log("bus company data,", busCompany);
+
   const initialValue = {
     tripStartDate: "",
     tripStartTime: "",
@@ -38,27 +43,19 @@ const AssignDrivers = () => {
     tripType: "",    
   }
 
-  const dispatch = useDispatch()
-  const [bus, setBus] = useState<object[]>();
+  const dispatch = useDispatch();
+
   const [assignedTrip, setAssignedTrip] = useState<boolean>(true);
   const [filter, setFilter] = useState<FilterProps>(initialValue);
   
   const [driver, setDriver] = useState<any>();
-  const [bussearch , setbussearch] = useState<any>()
-  const [driversearch , setdriversearch] = useState<any>()
-
-  const [filteredDrivers , setFilteredDrivers] = useState<any>(driver)
-  // const [searchbus, setSearchbus] = useState<any>()
-  // const onSearchbus = event => {
-  //   setSearchbus() = event.target.value
-  // } 
   
   useEffect(() => {
     const getBusData = async () => {
       try {
         const response = await axios.get(constants.company.bus);
         console.log(response.data, "bus data");
-        setBus(response.data);
+        dispatch(GET_BUSES(response.data))
       } catch (err) {
         console.log(err);
       }
@@ -67,21 +64,16 @@ const AssignDrivers = () => {
   }, []);
 
   
-  const token = localStorage.getItem("token")
-
-  console.log("TOKEN", token);
+  // const token = localStorage.getItem("token")
+  // console.log("TOKEN", token);
   
 
-  const testBus = [
-    {busName: "shajbd", busPhoto: ""}
-  ]
-  
   useEffect(() => {
     const getDriverData = async () => {
       try {
         const response = await axios.get(constants.company.driver);
         console.log(response.data);
-        setDriver(response.data);
+        dispatch(GET_DRIVERS(response.data))
       } catch (err) {
         console.log(err);
       }
@@ -89,13 +81,8 @@ const AssignDrivers = () => {
     getDriverData();
   }, []);
  
-  // useEffect(() => {
-  //   const filteredData = driver?.filter((value: string) => value.toLowerCase().includes(search.toLowerCase()))
-  //   setFilteredDrivers(filteredData);
-  // },[])
-  
-  console.log("Seacrhsaa", filteredDrivers);
-  
+
+    
   const handleChange = async (e:any) => {
     try {
       const {name, value} = e.target
@@ -107,25 +94,8 @@ const AssignDrivers = () => {
 
 
 
-  console.log(bussearch,driversearch,"sarugaaaa");
   
   
-  useEffect(() => {
-    console.log("FILTERSS", filter);
-    const PostFilter = axios.post(constants.company.trip, filter )
-        .then(resp => 
-        console.log(resp)
-        )    
-  }, [filter])
-
-  // const data = {
-  //   dataaa : driver,
-  //   searchField : "",
-  // }
-
- 
-  // console.log("env file", process.env.REACT_APP_API_URL)
-
 
   return (
     <>
@@ -253,7 +223,11 @@ const AssignDrivers = () => {
               <p className="text-greyText mb-4">
               { assignedTrip ? 
               "Upcoming Trips" : "Assigned Trips"}</p>
+              {assignedTrip ? 
               <TripBar pageName={assignedTrip} />
+              :
+              <AssignedTripBar /> 
+              }
             </div>
           </section>
         </section>
@@ -279,7 +253,7 @@ const AssignDrivers = () => {
               </div>
             </div>
             <div className="h-[60%] overflow-x-hidden overflow-y-auto">
-              {bus?.map((b: any) => (
+              {busCompany.allBuses?.map((b: any) => (
                 <div className="flex items-center mt-6 ml-4 h-10 w-[80%]">
                   <img
                     className="w-10 h-10 rounded-lg"
@@ -305,7 +279,6 @@ const AssignDrivers = () => {
               <div className="flex items-center border-2 border-primaryText mb-6 mx-4 rounded-full px-3">
                 <input
                   type="text"
-                  onChange={(e) => setbussearch(e.target.value)}
                   // value={search}
                   placeholder="Search..."
                   className="bg-transparent border-none py-2 px-4 text-white outline-none w-full"
@@ -316,7 +289,7 @@ const AssignDrivers = () => {
               </div>
             </div>
             <div className="h-[60%] overflow-x-hidden overflow-y-auto">
-            {driver?.map((d: any) => (
+            {busCompany.allDriver?.map((d: any) => (
               <div className="flex items-center mt-6 ml-4 h-10 w-[80%]">
                 <img
                   className="w-10 h-10 rounded-full"

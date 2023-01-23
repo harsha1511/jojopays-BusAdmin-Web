@@ -29,6 +29,17 @@ import {FiDownload} from 'react-icons/fi'
         {copilot: "Year"},
     ]
 
+    function makeid(length:any) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
+
 
 
 
@@ -41,9 +52,9 @@ import {FiDownload} from 'react-icons/fi'
         <div className="absolute flex items-center justify-between w-full h-full bg-primary opacity-70 rounded-b-3xl"></div>
         <div className="absolute flex items-center justify-between w-full h-full  rounded-b-3xl">
        
-        <p className="ml-[290px] mt-[50px] text-[60px] tracking-wider font-semibold">Daniel</p>
+        <p className="ml-[310px] mt-[50px] text-xl tracking-wider font-semibold">{makeid(10)}</p>
             < Link to="/Driver-detail"> 
-            <button className="p-[4px]  px-10 text-[19px] ml-2 mt-[50px]  rounded-3xl font-bold  hover:bg-quaternaryText  
+            <button className="p-[4px]  px-10 text-[19px] ml-2 mt-[50px]  font-bold  hover:bg-quaternaryText  
             hover:text-black shadow-md rounded-xl text-quaternaryText  bg-secondary">View Trip</button>
              </Link> 
           

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import CustomForm from '../../../components/Form'
 import * as yup from "yup"
 import Input from "../../../components/Input";
@@ -36,6 +36,15 @@ export const AutoPriceChange = () => {
             .label("price")
     })
 
+
+    useEffect(() => {
+        const getPrice = async () => {
+            const response = await axios.get(constants.ticketPrice.assignCost);
+            console.log(response, "price amount");
+            
+        };
+        getPrice()
+    } ,[])
     const initialState:InitialProps = {
         type: "Auto Price Change",
         fromTime: "",
@@ -46,19 +55,14 @@ export const AutoPriceChange = () => {
     const [showPrice, setShowPrice] = useState<number>(0)
     const [priceChange, setPriceChange] = useState<object>()
 
-    const renderError = (msg:string) => <div className='flex justify-center my-2 w-full'>
-        <p className='text-pinkText font-semibold py-3 px-5 bg-quaternary backdrop-blur rounded-xl'>{msg}</p>
+    const renderError = (msg:string) => 
+        <div className='flex justify-center my-2 w-full'>
+            <p className='text-pinkText font-semibold py-3 px-5 bg-quaternary backdrop-blur rounded-xl'>{msg}</p>
         </div>
-    const errorName = [
-        "price",
-        "fromTime",
-        "toTime"
-    ]
-
     console.log("nalla paarunga", priceChange);
+
     const onSubmit = async (values:InitialProps) => {
-        console.log(values, "seekabcdjhashgdv");
-        
+        console.log(values, "seekabcdjhashgdv"); 
         setPriceChange(values) 
         const response = await axios.post(constants.ticketPrice.autoPrice, priceChange).
         then(resp => console.log("sent", resp));

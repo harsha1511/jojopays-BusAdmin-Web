@@ -12,9 +12,15 @@ import axios from "../../../API/axios";
 
 import Profile from "../../../assets/images/profile.png";
 import constants  from "../../../API/constants";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
 
 const DriverList = () => {
+  
   const [color, setcolor] = useState(true)
+
+    const busCompany = useSelector((state: RootState) => state.busCompany);
+
   console.log(color,"greennnnnnnnnn");
 
 
@@ -24,26 +30,26 @@ const DriverList = () => {
   const [driver, setDriver] = useState<object[]>()
 
   
-  useEffect(() => {
-  const getDriverData = async () => {
-    try {
-      const response = await axios.get(constants.company.driver);
-      console.log(response.data);
-      setDriver(response.data) 
-    }
-    catch(err) {
-      console.log(err);
+//   useEffect(() => {
+//   const getDriverData = async () => {
+//     try {
+//       const response = await axios.get(constants.company.driver);
+//       console.log(response.data);
+//       setDriver(response.data) 
+//     }
+//     catch(err) {
+//       console.log(err);
       
-    }
-  }
-  getDriverData(); 
-}, []);
+//     }
+//   }
+//   getDriverData(); 
+// }, []);
 
   return (
    
      <div>
      
-      {driver?.map((d:any) => (
+      {busCompany.allDriver?.map((d:any) => (
      
          <section className="grid p-4 grid-cols-12 gap-4 rounded-tl-[20px] ">
       

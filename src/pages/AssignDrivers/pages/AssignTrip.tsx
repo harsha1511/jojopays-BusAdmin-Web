@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import axios from '../../../API/axios';
-import constants from '../../../API/constants';
+import { useNavigate } from 'react-router-dom'
 
 import BackButton from '../../../components/BackButton'
 
 import jojopay from "../../../assets/images/jojopay.png"
-import { ADD_BUS, IAssignTrip } from '../../../store/reducers/assignTrip';
+import { ADD_BUS } from '../../../store/reducers/assignTrip';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
-import Tripdetails from '../../Driver/components/Tripdetails';
 
 
 
@@ -17,12 +14,14 @@ import Tripdetails from '../../Driver/components/Tripdetails';
 export const AssignTrip = () => {
 
 
+
+    const busCompany = useSelector((state: RootState) => state.busCompany);
+    
+    console.log("kasgddajhs", busCompany.allBuses);
     
     
-    
-    
-    const [busName, setBusName] = useState("5")
-    const [tripDetails, setTripDetails] = useState<IAssignTrip>({
+    const [busName, setBusName] = useState<any>()
+    const [tripDetails, setTripDetails] = useState<any>({
         busName: "",
         driverName: "",
         coPilotName: "",
@@ -44,13 +43,15 @@ export const AssignTrip = () => {
     
     const dispatch = useDispatch();
     const navigate = useNavigate()
-    // const auth = useSelector((state: RootState) => state.assignTrip);
     
     const submitForm = () => {
         console.log(tripDetails);
         dispatch(ADD_BUS(tripDetails))
         navigate("/travel-route")
     }
+
+    console.log("BUSNAME", busName);
+    
 
   return (
     <div>
@@ -70,8 +71,8 @@ export const AssignTrip = () => {
                             required={true}
                             className='w-52 h-12 bg-quaternary pl-3 rounded-lg rounded-tr-[59px] focus:outline-none drop-shadow-2xl'>
                                 <option>Select a Bus..</option>
-                                {BusName?.map(({name}) => (
-                                    <option className='pb-2' key={name} value={name}>{name}</option>
+                                {busCompany.allBuses?.map((n:any) => (
+                                        <option className='pb-2 text-white' value={n?.busName}>{n?.busName}</option>
                                 ))}
                             </select>
                             <div className='flex items-center mt-6'>
@@ -80,17 +81,17 @@ export const AssignTrip = () => {
                                  name="driverName" id="clicking" 
                                  className='w-52 h-12 bg-quaternary pl-3 rounded-lg rounded-tr-[59px] focus:outline-none drop-shadow-2xl'>
                                     <option >Select a Pilot..</option>
-                                    {/* {selectPilot?.map((data:string) => (
-                                        <option className='pb-2'>{data}</option>
-                                    ))} */}
+                                    {busCompany.allDriver?.map((data:any) => (
+                                        <option className='pb-2' value={data?.driverName}>{data?.driverName}</option>
+                                    ))}
                                 </select>
                             <div className='w-40 h-[1px] -ml-4 bg-primaryText'></div>
                             <select name="coPilotName" id="clicking" 
                             onChange={handleChange}
                             className='w-52 h-12 bg-quaternary pl-3 rounded-lg rounded-tr-[59px] focus:outline-none drop-shadow-2xl'>
                                 <option >Select a CoPilot..</option>
-                                {BusName.map(({name,pilot, copilot}) => (
-                                    <option className='pb-2' value={copilot}>{copilot}</option>
+                                {busCompany.allDriver.map((data:any) => (
+                                    <option className='pt-4' value={data?.driverName}>{data?.driverName}</option>
                                 ))}
                             </select>
                             </div>
@@ -139,14 +140,14 @@ export const AssignTrip = () => {
                     <section className='w-[90%] -mr-4'>
                         <div className='relative flex mr-14  h-[460px] bg-quaternary rounded-3xl bg-cover'>
                             <img className='absolute justify-center items-center scale-75' src={jojopay} alt="" />
-                        { busName && 
+                        {tripDetails?.busName && 
                         <div>
                             <div className='m-8 justify-start items-start flex bg-quaternary'>
                                 <img 
                                 className='w-24 h-32 rounded-2xl '
                                 src="https://st.depositphotos.com/1019192/4338/i/950/depositphotos_43389909-stock-photo-tourist-bus-traveling-on-road.jpg" alt="BusImage" />
                                 <div className='ml-5'>
-                                    <p className='text-primaryText'>{busName}</p>
+                                    <p className='text-primaryText'>{tripDetails?.busName}</p>
                                     <p className='text-primaryText mt-1'>Seats:<span className='text-white font-semibold ml-2'>Semi Sleeper</span></p>
                                     <p className='text-primaryText mt-1'>No. of Seats:<span className='text-white font-semibold ml-2'>52</span></p>
                                     <p className='text-primaryText mt-1'>Bus Type:<span className='text-white font-semibold ml-2'>AC</span></p>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 
 import {IoFilterSharp} from 'react-icons/io5'
@@ -11,6 +11,8 @@ import {IoIosPeople} from 'react-icons/io'
 import { BsSearch } from "react-icons/bs";
 
 import { TransferList } from "./TransferList";
+import constants from "../../../API/constants";
+import axios from "../../../API/axios";
 
 
 export const MyTransaction = () => {
@@ -38,6 +40,7 @@ export const MyTransaction = () => {
     fromDate: "",
     toDate: "",
   })
+  const [walletPeople, setWalletPeople] = useState<any>()
   
   console.log("date", dateFilter);
   
@@ -76,8 +79,23 @@ export const MyTransaction = () => {
   const dateChange = (e:any) => {
     const {name, value} = e.target;
     setDateFilter({...dateFilter, [name]: value});
-
   }
+
+   useEffect(()=> {
+        const getStaffNames = async () => {
+           try{               
+              const response = await axios.get(constants.auth.allTransactors)
+              console.log(response.data, "staff");
+              setWalletPeople(response.data)
+            }
+            catch (err) {
+              console.log(err);
+            }
+        };
+        getStaffNames()
+    },[])
+    console.log("ajkdabs", walletPeople);
+    
   
   const filterss = {
     all: overall,
@@ -205,13 +223,15 @@ export const MyTransaction = () => {
                   <BsSearch className="text-primaryText" />
                 </button>
               </div>
-              <div className="flex items-center w-[83%]">
+                {walletPeople?.map((data:any) => (
+              <div className="flex items-center w-[83%] mb-6">
                 <img
                 className="w-10 h-10 rounded-full"
-                src="https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8&w=1000&q=80" alt=""
+                src={data?.image} alt=""
                 />
-                <p className="font-semibold tracking-wide ml-4">Name</p>
+                  <p className="font-semibold tracking-wide ml-4">{data?.name}</p>
               </div>
+                ))}
           </div>
         </div>
     </div>

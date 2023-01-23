@@ -13,6 +13,8 @@ import { BsCalendarX } from "react-icons/bs";
 import {BusInfo} from "./components/BusInfo";
 import { SiCircleci} from "react-icons/si";
 import { FaArrowAltCircleUp} from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 
 
@@ -29,10 +31,14 @@ const Bus = () => {
         { name : "bus1", type : "a"},
         { name : "bus2", type : "b"},
         { name : "bus3", type : "c"},
-        { name : "bus4", type : "b"},
-       
-       
+        { name : "bus4", type : "b"},  
     ]
+
+    const busCompany = useSelector((state: RootState) => state.busCompany);
+    console.log(busCompany.allBuses, "jshavhvdhvs");
+    
+
+    
     const[open, setOpen]=useState(false)
     console.log(open);
     
@@ -86,7 +92,8 @@ const Bus = () => {
         </section>
         
          <div className="grid grid-cols-2  border-b-2 border-tertiary gap-2 w-[100%] h-[100%]">  
-         {members?.map((data) => (      
+         {busCompany.allBuses?.map((data:any) => (
+          data?.status === "active" ?       
          <section className="flex flex-row  border-b-full border-tertiary w-[70%] h-[100%]">
               <Link to="/bus-viewdetails">
               <div className="w-[100%] h-full">
@@ -115,10 +122,11 @@ const Bus = () => {
                   </div>
                 
                 </div>
-               <p className=" flex start ml-[100px] text-pinkText font-bold">{data?.name}</p>
+               <p className=" flex start ml-[100px] text-pinkText font-bold">{data?.busName}</p>
               </div>
               </Link>
             </section>
+            : null
             ))}
             </div>  
       </div>
@@ -152,8 +160,9 @@ const Bus = () => {
           </div>
         </section>
         <div className="grid grid-cols-2 w-[100%] h-[100%]">  
-         {members?.map((data) => (      
-         <section className="flex flex-row  border-b-full border-tertiary w-[70%] h-[100%]">
+         {busCompany.allBuses?.map((data:any) => ( 
+          data?.status !== "active" ?      
+         <section className="flex flex-row border-b-full border-tertiary w-[70%] h-[50%]">
               <div className="w-[100%]">
                 <div className="flex flex-col items-center w-[75%] h-[60%]  ml-[60px]  rounded-[40px]  bg-white">
                   <div className="flex justify-center w-[100%]  h-[75%] rounded-[40px] bg-redText">
@@ -162,22 +171,22 @@ const Bus = () => {
                   <div className="text-black flex items-center flex-start w-full  mt-1 h-[25%] "> 
                   
                   <p className="text-white ml-4">
-                      { data.type === "a" ? <FaBusAlt className="text-pinkText"/> : <FaBus className="text-pinkText"/>} 
+                      { data?.type === "a" ? <FaBusAlt className="text-pinkText"/> : <FaBus className="text-pinkText"/>} 
                   </p>
                   <p className="text-white ml-2">
-                  {  data.type === "a" ? <BsCalendarCheck className="text-quaternaryText"/> :  <BsCalendarCheck className="text-quaternaryText"/>} 
+                  {  data?.type === "a" ? <BsCalendarCheck className="text-quaternaryText"/> :  <BsCalendarCheck className="text-quaternaryText"/>} 
                   </p>
                   <p className="text-white ml-2">
-                  {  data.type === "a" ? <SiCircleci className="text-black"/> : null} 
+                  {  data?.type === "a" ? <SiCircleci className="text-black"/> : null} 
                   </p>
                   <p className="text-white ml-2">
-                  {  data.type === "a" ? null : <FaArrowAltCircleUp className="text-black"/>} 
+                  {  data?.type === "a" ? null : <FaArrowAltCircleUp className="text-black"/>} 
                   </p>
                     </div>
                 </div>
-                  <p className=" flex start ml-[100px] text-redText font-bold">{data?.name}</p>
+                  <p className=" flex start ml-[100px] text-redText font-bold">{data?.busName}</p>
               </div>
-            </section>
+            </section> : null
             ))}
             </div>
        

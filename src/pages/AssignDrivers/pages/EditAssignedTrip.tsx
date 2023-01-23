@@ -69,7 +69,7 @@ export const EditAssignedTrip = () => {
                       <div className='flex mb-4'><label htmlFor="" className='flex justify-end w-32 mr-4 text-lg font-bold text-primaryText'>Driver:</label>
                         <p className='text-lg'>Driver</p>
                       </div>
-                      <div className='flex mb-4'><label htmlFor="" className='flex justify-end w-32 mr-4 text-lg font-bold text-primaryText'>Co-Driver:</label>
+                      <div className='flex mb-4 '><label htmlFor="" className='flex justify-end w-32 mr-4 text-lg font-bold text-primaryText'>Co-Driver:</label>
                         <p className='text-lg'>Name</p>
                       </div>
                       <div className='flex mb-4'><label htmlFor="" className='flex justify-end w-32 mr-4 text-lg font-bold text-primaryText'>Starting Time:</label>

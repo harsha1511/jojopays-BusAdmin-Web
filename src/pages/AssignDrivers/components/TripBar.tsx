@@ -24,10 +24,10 @@ export const TripBar = ({pageName}:DriverProps) => {
 
     
     
-  const [trip, setTrip] = useState<any>()
+  const [trip, setTrip] = useState<any[]>()
   const dispatch = useDispatch();
   const tripData = useSelector((state:RootState) => state.getTrip)
-  console.log(tripData.tripData, "reducer working");
+  console.log(trip, "reducer working");
   
   // useEffect(() => {
     // },[])
@@ -40,6 +40,7 @@ export const TripBar = ({pageName}:DriverProps) => {
         try {
           const response = await axios.get(constants.company.trip);
           dispatch(GET_TRIP(response.data))
+          setTrip(response.data) 
           // setTrip(tripData.tripData)
     }
     catch(err) {
@@ -75,13 +76,15 @@ export const TripBar = ({pageName}:DriverProps) => {
             }
         }}>
             <Link to ={pageName ?  "" : "/edit-assigned-trip"}><BiTimeFive className='w-8 h-8 text-primaryText ml-2' /></Link>
-            <div className='h-[99%] w-48 bg-primary rounded-xl'>
-                <div className="flex justify-between items-center px-3 pt-1">
-                  <label htmlFor="" className="text-[10px] text-primaryText flex flex-col items-center">Day <span className='font-bold text-sm text-white'>12 <span className='ml-1 text-primaryText'>-</span></span></label>
+            <div className='h-[99%] w-44 bg-primary rounded-xl'>
+                <div className="flex flex-col justify-center items-center mt-1 h-full">
+                  <p className='text-bold text-primaryText'>Trip Start Date :</p>
+                  <p className='ml-2'>{item?.tripStartTime}</p>
+                  {/* <label htmlFor="" className="text-[10px] text-primaryText flex flex-col items-center">Day <span className='font-bold text-sm text-white'>12 <span className='ml-1 text-primaryText'>-</span></span></label>
                   <label htmlFor="" className="text-[10px] text-primaryText flex flex-col items-center">Month <span className='font-bold text-sm text-white'>10 <span className='ml-1 text-primaryText'>-</span></span></label>
                   <label htmlFor="" className="text-[10px] text-primaryText flex flex-col items-center">Year <span className='font-bold text-sm text-white'>2022<span className='ml-1 text-primaryText'>:</span></span></label>
                   <label htmlFor="" className="text-[10px] text-primaryText flex flex-col items-center">hours <span className='font-bold text-sm text-white'>09<span className='ml-1 text-primaryText'>:</span></span></label>
-                  <label htmlFor="" className="text-[10px] text-primaryText flex flex-col items-center">Min <span className='font-bold text-sm text-white'>30</span></label>
+                  <label htmlFor="" className="text-[10px] text-primaryText flex flex-col items-center">Min <span className='font-bold text-sm text-white'>30</span></label> */}
                 </div>
             </div>
             <div className=''>

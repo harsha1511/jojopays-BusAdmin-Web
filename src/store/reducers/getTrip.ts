@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   tripData: {},
+  assignedTrip: [],
 };
 
 const getTripData = createSlice({
@@ -14,9 +15,15 @@ const getTripData = createSlice({
         tripData: action.payload,
       };
     },
+    GET_ASSIGNED_TRIPS: (assignTrip, action: PayloadAction<any>) => {
+      return {
+        ...assignTrip,
+        assignedTrip: action.payload,
+      };
+    },
   },
 });
 
-export const { GET_TRIP } = getTripData.actions;
+export const { GET_TRIP, GET_ASSIGNED_TRIPS } = getTripData.actions;
 
 export default getTripData.reducer;

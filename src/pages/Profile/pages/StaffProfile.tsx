@@ -6,7 +6,6 @@ import { BsSearch } from "react-icons/bs";
 
 import CustomForm from "../../../components/Form";
 import BackButton from '../../../components/BackButton';
-import axios from 'axios';
 import { ToggleButton } from '../../../components/ToggleButton';
 import { Link } from "react-router-dom";
 
@@ -15,6 +14,7 @@ import { DeleteButton } from '../../../components/DeleteButton'
 import EditButton from '../../../components/EditButton'
 import  {PowerButton}  from '../../../components/PowerButton'
 import constants from '../../../API/constants';
+import axios from '../../../API/axios';
 
 
 
@@ -23,7 +23,7 @@ export const StaffProfile = () => {
 
     const [selectStaff, setSelectStaff] =useState<any>();
     const [singleStaff, setSingleStaff] =useState<any>();
-    const [staffId, setStaffId] = useState<any>()
+    const [staffId, setStaffId] = useState<any>([])
     
 
 
@@ -38,9 +38,9 @@ export const StaffProfile = () => {
  useEffect(()=> {
         const getStaffNames = async () => {
            try{               
-              const response = await axios.get("http://192.168.1.17:80/getDeskStaffData")
+              const response = await axios.get(constants.auth.staffList)
               console.log(response, "staff");
-              setStaffId(response?.data)
+              setStaffId(response.data)
             }
             catch (err) {
               console.log(err);
@@ -63,6 +63,18 @@ export const StaffProfile = () => {
           console.log(err); 
         }
     }
+
+    function makeid(length:any) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
+console.log(makeid(5));
 
 
   return (
@@ -90,11 +102,11 @@ export const StaffProfile = () => {
               onClick={() => getStaffData(staff.addId)}>
                 <div className="flex items-center gap-2">
                   <img
-                    src={staff.addPhoto}
+                    src={staff.displayPicture}
                     alt="profile"
                     className="rounded-full bg-secondary w-10 h-10 object-cover overflow-hidden"
                     />
-                  <h2 className="truncate">{nameShrinker(staff.staffName, 12)}</h2>
+                  <h2 className="truncate">{nameShrinker(staff.driverName, 12)}</h2>
                 </div>
                 {staff.staffStatus !== null ? 
                   <div className='w-3 h-3 mr-4 rounded-full bg-quaternaryText'></div>
@@ -118,7 +130,7 @@ export const StaffProfile = () => {
                     <img src="https://media.istockphoto.com/photos/rendered-classic-sculpture-metaverse-avatar-with-network-of-lowpoly-picture-id1401980646?b=1&k=20&m=1401980646&s=170667a&w=0&h=KxgnhtW2_Q3LUOCwJXYlj27vVlkrfcBk789d-cNZURk=" 
                     alt=""
                     className="rounded-full bg-secondary w-24 h-24 mt-3 ml-20 object-cover overflow-hidden" />
-                    <p className='text-2xl font-semibold ml-6 tracking-[.3rem]'>{singleStaff?.staffName}</p>
+                    <p className='text-2xl font-semibold ml-6 tracking-[.3rem]'>{singleStaff?.driverName}</p>
                 </div>
             </div>
             {/* login ID and Password */}
@@ -137,23 +149,28 @@ export const StaffProfile = () => {
                     <form className='tracking-wider ml-10'>
                         <div className='flex items-center'>
                             <label className='flex justify-end w-32 text-primaryText text-lg font-bold'>Jojopay ID:</label>
-                            <p className='text-white text-sm font-light pl-4'>{singleStaff?.companyId}</p>
+                            {/* <p className='text-white text-sm font-light pl-4'>{singleStaff?.companyId}</p> */}
+                            <p className='text-white text-sm font-light pl-4'>{makeid(10)}</p>
                         </div>
                         <div className='flex items-center mt-3'>
                             <label className='flex justify-end w-32 text-primaryText text-lg font-bold'>Email ID:</label>
-                            <p className='text-white text-sm font-light pl-4'>{singleStaff?.staffEmailId}</p>
+                            {/* <p className='text-white text-sm font-light pl-4'>{singleStaff?.staffEmailId}</p> */}
+                            <p className='text-white text-sm font-light pl-4'>helloo@gmail.com</p>
                         </div>
                         <div className='flex items-center mt-3'>
                             <label className='flex justify-end w-32 text-primaryText text-lg font-bold'>Main ph, No.:</label>
-                            <p className='text-white text-sm font-light pl-4'>{singleStaff?.staffMobileNo}</p>
+                            {/* <p className='text-white text-sm font-light pl-4'>{singleStaff?.staffMobileNo}</p> */}
+                            <p className='text-white text-sm font-light pl-4'>65416846513</p>
                         </div>
                         <div className='flex items-center mt-3'>
                             <label className='flex justify-end w-32 text-primaryText text-lg font-bold'>Ph, No.:</label>
-                            <p className='text-white text-sm font-light pl-4'>{singleStaff?.staffSecMobileNo}</p>
+                            <p className='text-white text-sm font-light pl-4'>468698461</p>
+                            {/* <p className='text-white text-sm font-light pl-4'>{singleStaff?.staffSecMobileNo}</p> */}
                         </div>
                         <div className='flex mt-3'>
                             <label className='flex justify-end w-32 text-primaryText text-lg font-bold'>Address:</label>
-                            <p className='w-56 text-white text-sm font-light pl-4'>{singleStaff?.staffAddress}</p>
+                            {/* <p className='w-56 text-white text-sm font-light pl-4'>{singleStaff?.staffAddress}</p> */}
+                            <p className='w-56 text-white text-sm font-light pl-4'>north street, delhi</p>
                         </div>
                     </form>
                     <div className='flex items-start'>

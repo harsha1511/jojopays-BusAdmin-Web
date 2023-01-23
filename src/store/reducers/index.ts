@@ -6,6 +6,7 @@ import formReducer from "./form.reducer";
 import modalReducer from "./modal.reducer";
 import assignReducer from "./assignTrip";
 import getTrip from "./getTrip";
+import busCompany from "./busCompany";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   form: formReducer,
   assignTrip: assignReducer,
   getTrip: getTrip,
+  busCompany: busCompany,
   // notify: notifyReducer,
 });
 export default rootReducer;

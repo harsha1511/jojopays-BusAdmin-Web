@@ -38,8 +38,8 @@ useEffect(() => {
     try{
       setIsLoading(true)
       const response = await axios.get(constants.auth.profile)
-      console.log(response, "new");
-      setProfileData(response.data.profile)
+      console.log(profileData, "new");
+      setProfileData(response.data)
       setIsLoading(false)
     }
     catch (err) {

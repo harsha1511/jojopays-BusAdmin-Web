@@ -23,9 +23,9 @@ const StaffList = () => {
     useEffect(()=> {
         const getStaffNames = async () => {
            try{               
-               const response = await axios.get(constants.auth.profile)
+               const response = await axios.get(constants.auth.staffList)
                console.log(response, "ress");
-               setStaffNames(response.data.staff)
+               setStaffNames(response.data)
             }
             catch (err) {
                 console.log(err);
@@ -44,8 +44,8 @@ const StaffList = () => {
                 <div>
                     {staffNames?.slice(0, showList).map((i:any) => (
                             <div className='flex mt-4 mb-6 w-full items-center'>
-                                <img className="w-8 h-8 rounded-full ml-4" src={i?.displayPicture} alt="" />
-                                <p className='text-quinary font-bold ml-4'>{i?.staffName}</p>
+                                <img className="w-8 h-8 rounded-full ml-4" src={i?.displayPicture} alt="staff" />
+                                <p className='text-quinary font-bold ml-4'>{i?.driverName}</p>
                             </div>
                     ))}
                 </div>

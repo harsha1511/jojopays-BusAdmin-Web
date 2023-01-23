@@ -6,22 +6,28 @@ const constants: any = {
     profile: "getProfileData",
     register: "register",
     createuser: "registerCreds",
+    staffList: "allStaff",
     onDeskStaff: "getSingleStaffData",
+    allTransactors: "transactors",
   },
   company: {
+    allData: "allData",
     driver: "allDrivers",
     bus: "allBus",
     trip: "upcommingTrips",
+    assignedTrips: "assignedTrips",
+    assignTrip: "assignTrips",
   },
   filters: {
     selectbus: "getBus",
     selectpilot: "getPilot",
   },
   transaction: {
-    list: "getTransactionData",
+    list: "transactions",
   },
   ticketPrice: {
     autoPrice: "getAutoPriceChange",
+    assignCost: "assignCost",
   },
 };
 

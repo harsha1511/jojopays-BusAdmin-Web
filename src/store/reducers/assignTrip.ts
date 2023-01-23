@@ -1,13 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-export interface IAssignTrip {
-  busName: string;
-  driverName: string;
-  coPilotName: string;
-  tripType: string;
-  tripStartTime: string;
-}
-
 const initialState = {
   travelBus: {},
   travelRoute: {},
