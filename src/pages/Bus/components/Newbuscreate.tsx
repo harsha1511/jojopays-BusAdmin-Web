@@ -73,22 +73,21 @@ console.log(color,"bluee");
 
 
     return(
-    <div className="flex flex-col justify-start items-center w-[96vw] h-screen">
+    <div className="flex flex-col justify-start items-center w-[96vw]  h-screen">
    <div className='z-10 flex justify-center items-center w-[35%] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
    <p className='text-xl font-bold tracking-wider text-primaryText'>Add New Bus</p>
     </div>
-    <div className='flex justify-center items-center w-[96vw] -mt-2 h-screen'>
-        <div className='flex flex-col items-start w-[1300px] -mt-10 h-[620px] rounded-3xl ml-4  bg-add-driver-cover bg-cover bg-center bg-no-repeat'>
+        <div className='flex flex-col items-start w-[1200px] -mt-10 h-[620px] rounded-3xl ml-4  bg-add-driver-cover bg-cover bg-center bg-no-repeat'>
             <div className="flex justify-end items-center mt-4 pr-8 w-[100%] h-20">
                 <BackButton />
             </div>
-            <div className="w-[1288px] ml-2 h-full ">
+            <div className="w-[1190px] h-[620px] ">
             <CustomForm
             initialValues={initialState}
             validationSchema={validatebus}
             onSubmit={handleSubmit}>
 
-                <div className="w-full  h-[200px] -mt-10 ">
+                <div className="w-full  h-[200px]  -mt-10 ">
                 <div className='flex items-center'>
                     <label className='flex justify-end w-40 text-primaryText text-sm font-bold'>Bus Name:</label>
                     <Input 
@@ -135,7 +134,7 @@ console.log(color,"bluee");
                     focus:line focus:border-border-blue-500  text-white border-none" /> {" "}
                 </div>
             </div>
-            <div className="w-full mt-[20px] h-[374px] rounded-xl shadow-2xl">
+            <div className="w-[98%] mt-[20px] h-[350px] ml-4">
             <div className='flex flex-row items-center'>
             <label className='flex justify-end w-40 text-primaryText  text-sm font-bold'>Add Photo:</label>
             <div className="flex ml-6 w-[55px] h-[55px] shadow-2xl bg-[#2F3142] mt-6 rounded-[50%] justify-center text-[#1E1E2C] text-[30px] items-center"><FaBus/></div>
@@ -194,11 +193,11 @@ console.log(color,"bluee");
                     className="flex items-center justify-center w-[75px] rounded-tl-[15px] rounded-br-[15px] rounded-tr-[4px]
                         rounded-bl-[4px] text-redText h-[33px] bg-[#2F3142] font-semibold">Sleeper</button>
             </div>
-            <div className='flex flex-row shadow-xl  w-full mt-[30px] h-full items-center ml-6'>
+            <div className='flex flex-row w-full mt-[30px] h-[10%] items-center '>
                 <div className="w-[90%] h-[100%]">
-                <label className=' w-full text-primaryText  ml-[35px] text-sm font-bold'>Bus Document:</label>
+                <label className=' w-full text-primaryText  ml-[60px] text-sm font-bold'>Bus Document:</label>
                 <div className="flex shadow-2xl items-center justify-center -mt-[20px] w-[110px] rounded-tl-[20px] rounded-br-[20px] rounded-tr-[4px]
-                rounded-bl-[4px] text-redText h-[35px] font-semibold bg-[#2F3142] ml-[180px]">
+                rounded-bl-[4px] text-redText h-[35px] font-semibold bg-[#2F3142] ml-[22%]">
                 <label>
                 <Input
                 type="file"
@@ -248,7 +247,6 @@ console.log(color,"bluee");
     </CustomForm>
     </div>
  
-    </div>
     </div>
     </div>
 

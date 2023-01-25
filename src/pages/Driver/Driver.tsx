@@ -5,9 +5,13 @@ import Chart from "./components/Chats";
 import axios from "axios";
 
 import { BsSearch } from "react-icons/bs";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 
 const Driver = () => {
+
+    
 
   return (
     <div className="h-[100vh]  bg-driver-cover  bg-[length:60vw_100vh] bg-top  bg-no-repeat flex items-center justify-center ">

@@ -8,6 +8,9 @@ import { nameShrinker } from "../../../utils/helpers";
 
 import { MdDeleteForever } from 'react-icons/md'
 import { TiTick } from 'react-icons/ti'
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
+import { ToggleButton } from '../../../components/ToggleButton';
 
 
 
@@ -18,6 +21,9 @@ interface CustomProps {
 }
 
 export const CustomPrice = () => {
+
+    const busCompany = useSelector((state: RootState) => state.busCompany);
+
 
     const [showPrice, setShowPrice] = useState<number>(0)
     const [customPrice, setCustomPrice] = useState<CustomProps>({
@@ -48,7 +54,27 @@ export const CustomPrice = () => {
 
   return (
     <div className='flex flex-col items-center w-full h-full overflow-x-hidden overflow-y-auto'>
-        {[...Array(showPrice)].map((s, index) => (
+        <div className='flex justify-between w-[98%] mt-4 h-24 bg-quaternary rounded-2xl'>
+                <div className='flex items-center justify-around h-full w-[80%]'>
+                    <div className='flex items-center h-14 w-60 bg-secondary rounded-xl ml-2 mr-8'>
+                        <p className='ml-3 mr-4 text-primaryText'>Bus</p>
+                        <p className='flex justify-center w-28 py-[2px] bg-primary rounded-[10px] mx-4 shadow-lg '>
+                            hiii
+                        </p>
+                    </div>
+                    <p className='w-40 text-sm text-primaryText font-semibold'>You changed the Price at: 2.47am today</p>
+                    <div className='flex flex-col justify-center items-center w-36 h-[80px] rounded-xl shadow-inner ml-8 bg-primary'>
+                        <p className='flex justify-center w-28 py-[2px] bg-secondary rounded-[10px] mx-4 shadow-lg '>
+                            hiii
+                        </p>
+                        <p className='text-primaryText'>Price/Seat/Km</p>
+                    </div>
+                </div>
+                <div className='flex justify-center items-center h-full w-[20%] ml-2'>
+                    <ToggleButton className='' isBig={true} />
+                </div>
+            </div>
+        {[...Array(showPrice)]?.map((s, index) => (
             <form>
             <div className='flex justify-between w-[98%] mt-4 h-24 bg-quaternary rounded-2xl'>
                 <div className='flex items-center justify-around h-full w-[80%]'>
@@ -59,9 +85,9 @@ export const CustomPrice = () => {
                         className='w-36 h-8 pl-2 focus:outline-none bg-primary ml-8 rounded-xl ' 
                         name="bus"
                         onChange={handleChange}>
-                            <option value={customPrice.bus}>Select a Bus</option>
-                            {selectBus.map((data:string, index:number) => (
-                                <option className='text-sm' value={customPrice.bus}>{nameShrinker( data , 10)}</option>
+                            <option>Select a Bus</option>
+                            {busCompany.allBuses?.map((data:any) => (
+                                <option className='text-sm' value={data?.busName}>{nameShrinker( data?.busName , 10)}</option>
                             ))}
                         </select>
                     </div>

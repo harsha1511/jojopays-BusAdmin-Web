@@ -40,12 +40,15 @@ const Days = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,
 export const AssignTime = () => {
 
     const auth = useSelector((state: RootState) => state.assignTrip);
-
-    const [months, setMonths] = useState<any>()
-    const [daysInWeek, setDaysInWeek] = useState<string[]>([])
     
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+    
+    const [months, setMonths] = useState<any>([])
+    const [daysInWeek, setDaysInWeek] = useState<string[]>([])
+    const [days, setDays] = useState<string[]>([]);
+    
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
 
     
     const handleDaysInWeek = (name: string) => {
@@ -53,6 +56,27 @@ export const AssignTime = () => {
             setDaysInWeek(daysInWeek.filter((n:string) => n !== name ))
         } else {
             setDaysInWeek((daysInWeek:any) => [...daysInWeek, name])
+        }
+    };
+    const EveryDay = {
+        type: "every days",
+        days: daysInWeek,
+        month: ["jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    };
+
+    const CustomDays = {
+        type: "custom days",
+        days: [],
+        month: months,
+    }
+
+    console.log(CustomDays, "every day in a week");
+    
+    const handleMonths = (name: string) => {
+        if(months.includes(name)){
+            setMonths(months.filter((n:string) => n!== name))
+        } else {
+            setMonths((months:any) => [...months, name])
         }
     }
     const submitForm = async () => {
@@ -100,9 +124,7 @@ export const AssignTime = () => {
                         {Month.map(({month, id} , index) => (
                             <div>
                                 <p
-                                onClick={() => {
-                                    setMonths([...months, month])
-                                }}
+                                onClick={() => handleMonths(month)}
                                 className={`bg-primary p-1 ml-3 w-14 flex justify-center items-center rounded-xl drop-shadow-md`}>
                                     {month}
                                 </p>
@@ -119,7 +141,15 @@ export const AssignTime = () => {
                             </div>
                             <div className='ml-8 mt-4  grid grid-cols-7 gap-4'>
                                 {Days.map((day, index) => (
-                                    <p>{day}</p>
+                                    <p
+                                    onClick={() => {
+                                        // setDays([{
+                                        //     setDays: day
+                                        // }])
+                                    }}
+                                    >
+                                        {day}
+                                    </p>
                                     ))}
                             </div>
                         </div>

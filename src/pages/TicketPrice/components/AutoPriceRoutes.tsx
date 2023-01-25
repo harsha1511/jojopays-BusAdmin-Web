@@ -66,6 +66,45 @@ export const AutoPriceRoutes = () => {
 
   return (
     <div className='flex flex-col items-center  w-full h-full overflow-x-hidden overflow-y-auto'>
+        <div className='flex justify-between w-[800px] mt-4 h-24 bg-quaternary rounded-2xl'>
+                <div className='flex justify-around items-center h-full w-[65%]'>
+                    <div className='flex flex-col items-center justify-center w-32  h-[80px]  rounded-xl shadow-inner bg-primary ml-40'>
+                        <p className='flex justify-center w-28 py-2 bg-secondary rounded-[10px] mx-4 shadow-lg '>
+                                hiii
+                        </p>
+                        <p className='text-primaryText font-semibold mt-1'>From</p>
+                    </div>
+                    <div className='flex flex-col items-center justify-center w-36  h-[80px]  rounded-xl shadow-inner bg-primary ml-8'>
+                        <p className='flex justify-center w-28 py-2 bg-secondary rounded-[10px] mx-4 shadow-lg '>
+                                hiii
+                        </p>
+                        <p className='text-primaryText font-semibold mt-1'>To</p>
+                    </div>
+                    <div className='flex flex-col justify-center items-center w-36 h-[80px] rounded-xl shadow-inner ml-4 bg-primary'>
+                        <p className='flex justify-center w-28 py-2 bg-secondary rounded-[10px] mx-4 shadow-lg '>
+                            hiii
+                        </p>
+                        <p className='text-primaryText mx-4'>Price/Seat/Km</p>
+                    </div>
+                    <div className='flex flex-col ml-8'>
+                        <div className='flex bg-secondary p-2 rounded-lg'>
+                            <p className='w-10 text-primaryText'>From</p>
+                            <p className='flex justify-center w-28 py-[2px] bg-primary rounded-[10px] mx-4 shadow-lg '>
+                                hiii
+                            </p>
+                        </div>
+                        <div className='flex mt-1 bg-secondary p-2 rounded-lg'>
+                            <p className='w-10 text-primaryText'>To</p>
+                            <p className='flex justify-center w-28 py-[2px] bg-primary rounded-[10px] mx-4 shadow-lg '>
+                                hiii
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div className='flex justify-center items-center h-full w-[20%] ml-2'>
+                    <ToggleButton className='' isBig={true} />
+                </div>
+            </div>
         {[...Array(showPrice)].map((s, index) => (
         <CustomForm
         initialValues={initialState}

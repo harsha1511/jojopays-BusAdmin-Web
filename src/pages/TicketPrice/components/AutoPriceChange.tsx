@@ -40,7 +40,7 @@ export const AutoPriceChange = () => {
     useEffect(() => {
         const getPrice = async () => {
             const response = await axios.get(constants.ticketPrice.assignCost);
-            console.log(response, "price amount");
+            console.log(response, "price amount`");
             
         };
         getPrice()
@@ -71,6 +71,38 @@ export const AutoPriceChange = () => {
 
   return (
     <div className='flex flex-col items-center w-full h-full overflow-x-hidden overflow-y-auto'>
+         <div className='flex justify-center w-[95%] mt-4 h-24 bg-quaternary rounded-2xl'>
+                <div className='flex items-center h-full w-[65%]'>
+                    <div className='flex flex-col items-center justify-center w-44  h-[80px]  rounded-xl shadow-inner bg-primary ml-8 my-2'>
+                        <p className='flex justify-center w-28 py-2 bg-secondary rounded-[10px] mx-4 shadow-lg '>
+                            hiii
+                        </p> 
+                        {/* <Input 
+                        className='bg-secondary focus:border-none mt-1 mx-3 rounded-lg drop-shadow-lg' 
+                        type="time" name="fromTime"
+                        /> */}
+                        {/* <Input className='hidden' type='text' name='type' /> */}
+                        <p className='text-primaryText font-semibold'>From</p>
+                    </div>
+                    <div className='flex flex-col items-center justify-center w-36  h-[80px]  rounded-xl shadow-inner bg-primary ml-8'>
+                        <p className='flex justify-center w-28 py-2 bg-secondary rounded-[10px] mx-4 shadow-lg '>
+                                hiii
+                        </p> 
+                        {/* <Input
+                        className='bg-secondary focus:border-none mt-1 mx-3 rounded-lg drop-shadow-lg' type="time" name="toTime" /> */}
+                        <p className='text-primaryText font-semibold'>To</p>
+                    </div>
+                    <div className='flex flex-col justify-center items-center w-[200px] h-[80px] rounded-xl shadow-inner ml-8 bg-primary'>
+                            <p className='flex justify-center w-28 py-2 bg-secondary rounded-[10px] mx-4 shadow-lg '>
+                                hiii
+                            </p> 
+                        <p className='text-primaryText'>Price/Seat/Km</p>
+                    </div>
+                </div>
+                <div className='flex justify-center items-center h-full w-[30%] ml-8'>
+                    <ToggleButton className='' isBig={true} />
+                </div>
+            </div>
         {[...Array(showPrice)].map((s, index) => (
             <CustomForm
             initialValues={initialState}

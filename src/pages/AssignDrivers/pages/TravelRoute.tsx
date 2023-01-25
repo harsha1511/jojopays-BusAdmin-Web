@@ -41,7 +41,10 @@ export const TravelRoute = () => {
 
   const submitForm = () => {
     dispatch(ADD_ROUTE(travelRoute));
-    navigate("/assign-time")
+    if(auth.travelRoute !== null){
+      navigate("/assign-time")
+    }
+    // navigate("/assign-time")
 
   }
   console.log("Routes", travelRoute);

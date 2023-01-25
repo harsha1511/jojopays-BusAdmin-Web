@@ -50,7 +50,6 @@ const DriverList = () => {
      <div>
      
       {busCompany.allDriver?.map((d:any) => (
-     
          <section className="grid p-4 grid-cols-12 gap-4 rounded-tl-[20px] ">
       
       {/* profile details  */}

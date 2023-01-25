@@ -29,9 +29,7 @@ interface FilterProps {
 const AssignDrivers = () => {
 
   const busCompany = useSelector((state: RootState) => state.busCompany);
-// 
 
-console.log("bus company data,", busCompany);
 
   const initialValue = {
     tripStartDate: "",
