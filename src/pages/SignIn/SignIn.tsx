@@ -43,7 +43,6 @@ const SignIn = () => {
     setIsLoading(true);
     console.log(values);
     try {
-      dispatch(LOGIN_SUCCESS(values));
       const Response = await axios.post(constants.auth.login, values)
       .then( resp => {
         console.log("error message", resp.data.message);
@@ -52,6 +51,7 @@ const SignIn = () => {
         localStorage.setItem("token",token);
         console.log(token, "TOKENNNN");
         if(token){
+          dispatch(LOGIN_SUCCESS(values));
           console.log("Welcome to JOJOPAYS..!!!");
         }
       })
