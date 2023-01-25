@@ -59,13 +59,13 @@ export const CustomPrice = () => {
                     <div className='flex items-center h-14 w-60 bg-secondary rounded-xl ml-2 mr-8'>
                         <p className='ml-3 mr-4 text-primaryText'>Bus</p>
                         <p className='flex justify-center w-28 py-[2px] bg-primary rounded-[10px] mx-4 shadow-lg '>
-                            hiii
+                            Jhyio kim
                         </p>
                     </div>
                     <p className='w-40 text-sm text-primaryText font-semibold'>You changed the Price at: 2.47am today</p>
                     <div className='flex flex-col justify-center items-center w-36 h-[80px] rounded-xl shadow-inner ml-8 bg-primary'>
                         <p className='flex justify-center w-28 py-[2px] bg-secondary rounded-[10px] mx-4 shadow-lg '>
-                            hiii
+                            $4.2
                         </p>
                         <p className='text-primaryText'>Price/Seat/Km</p>
                     </div>

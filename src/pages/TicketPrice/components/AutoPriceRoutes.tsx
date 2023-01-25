@@ -70,19 +70,19 @@ export const AutoPriceRoutes = () => {
                 <div className='flex justify-around items-center h-full w-[65%]'>
                     <div className='flex flex-col items-center justify-center w-32  h-[80px]  rounded-xl shadow-inner bg-primary ml-40'>
                         <p className='flex justify-center w-28 py-2 bg-secondary rounded-[10px] mx-4 shadow-lg '>
-                                hiii
+                                11.00 am
                         </p>
                         <p className='text-primaryText font-semibold mt-1'>From</p>
                     </div>
                     <div className='flex flex-col items-center justify-center w-36  h-[80px]  rounded-xl shadow-inner bg-primary ml-8'>
                         <p className='flex justify-center w-28 py-2 bg-secondary rounded-[10px] mx-4 shadow-lg '>
-                                hiii
+                                1.00 pm
                         </p>
                         <p className='text-primaryText font-semibold mt-1'>To</p>
                     </div>
                     <div className='flex flex-col justify-center items-center w-36 h-[80px] rounded-xl shadow-inner ml-4 bg-primary'>
                         <p className='flex justify-center w-28 py-2 bg-secondary rounded-[10px] mx-4 shadow-lg '>
-                            hiii
+                        $10.5
                         </p>
                         <p className='text-primaryText mx-4'>Price/Seat/Km</p>
                     </div>
@@ -90,13 +90,13 @@ export const AutoPriceRoutes = () => {
                         <div className='flex bg-secondary p-2 rounded-lg'>
                             <p className='w-10 text-primaryText'>From</p>
                             <p className='flex justify-center w-28 py-[2px] bg-primary rounded-[10px] mx-4 shadow-lg '>
-                                hiii
+                                Region
                             </p>
                         </div>
                         <div className='flex mt-1 bg-secondary p-2 rounded-lg'>
                             <p className='w-10 text-primaryText'>To</p>
                             <p className='flex justify-center w-28 py-[2px] bg-primary rounded-[10px] mx-4 shadow-lg '>
-                                hiii
+                                North
                             </p>
                         </div>
                     </div>

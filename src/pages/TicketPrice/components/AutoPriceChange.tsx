@@ -75,7 +75,8 @@ export const AutoPriceChange = () => {
                 <div className='flex items-center h-full w-[65%]'>
                     <div className='flex flex-col items-center justify-center w-44  h-[80px]  rounded-xl shadow-inner bg-primary ml-8 my-2'>
                         <p className='flex justify-center w-28 py-2 bg-secondary rounded-[10px] mx-4 shadow-lg '>
-                            hiii
+                            2.00 pm 
+
                         </p> 
                         {/* <Input 
                         className='bg-secondary focus:border-none mt-1 mx-3 rounded-lg drop-shadow-lg' 
@@ -86,7 +87,7 @@ export const AutoPriceChange = () => {
                     </div>
                     <div className='flex flex-col items-center justify-center w-36  h-[80px]  rounded-xl shadow-inner bg-primary ml-8'>
                         <p className='flex justify-center w-28 py-2 bg-secondary rounded-[10px] mx-4 shadow-lg '>
-                                hiii
+                                03.20 pm
                         </p> 
                         {/* <Input
                         className='bg-secondary focus:border-none mt-1 mx-3 rounded-lg drop-shadow-lg' type="time" name="toTime" /> */}
@@ -94,7 +95,7 @@ export const AutoPriceChange = () => {
                     </div>
                     <div className='flex flex-col justify-center items-center w-[200px] h-[80px] rounded-xl shadow-inner ml-8 bg-primary'>
                             <p className='flex justify-center w-28 py-2 bg-secondary rounded-[10px] mx-4 shadow-lg '>
-                                hiii
+                                $50
                             </p> 
                         <p className='text-primaryText'>Price/Seat/Km</p>
                     </div>
