@@ -64,7 +64,6 @@ const SignIn = () => {
   };
 
   
-  
   return (
     <div className="bg-white w-screen h-screen bg-signin-cover bg-right bg-cover bg-no-repeat flex items-center justify-center">
       <div className="w-2/3 h-[500px] shadow rounded-xl grid grid-cols-2 overflow-hidden">

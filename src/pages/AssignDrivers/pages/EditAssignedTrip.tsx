@@ -13,10 +13,10 @@ import { Link } from 'react-router-dom'
 export const EditAssignedTrip = () => {
 
   const CustomDays = [
-    {"month":"Jan" , "days": [1,2,3,4,6,8,9,14,65]},
-    {"month":"Mar" , "days": [1,2,12,4,6,8,9,14,65,5,1,8,18,19,11,99,49]},
-    {"month":"Apr" , "days": [1,2,6,8,9,1,9,9,34,65]},
-    {"month":"Dec" , "days": [3,4,6,8,9,14,65]},
+    {month:"Jan" , days: [1,2,3,4,6,8,9,14,65]},
+    {month:"Mar" , days: [1,2,12,4,6,8,9,14,65,5,1,8,18,19,11,99,49]},
+    {month:"Apr" , days: [1,2,6,8,9,1,9,9,34,65]},
+    {month:"Dec" , days: [3,4,6,8,9,14,65]},
   ]
 
 
