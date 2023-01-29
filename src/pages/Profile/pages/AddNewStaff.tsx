@@ -96,16 +96,12 @@ const handleSubmit = (values: staffDetailsProps) => {
   } 
 }
 
-
-
-
-
-    return ( 
-      <div className="flex flex-col justify-start items-center w-[96vw] h-screen">
-      <div className='z-10 flex justify-center items-center w-[35%] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
-        <p className='font-bold tracking-wider text-2xl text-primaryText'>Add New login</p>
-      </div>
-      <div className='flex justify-center items-center w-[96vw] h-screen'>
+  return ( 
+    <div className="flex flex-col justify-start items-center w-[96vw] h-screen">
+    <div className='z-10 flex justify-center items-center w-[35%] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
+      <p className='font-bold tracking-wider text-2xl text-primaryText'>Add New login</p>
+    </div>
+    <div className='flex justify-center items-center w-[96vw] h-screen'>
           <div className='flex flex-col items-start w-[1300px] -mt-16 h-[600px] rounded-3xl ml-4  bg-add-driver-cover bg-cover bg-center bg-no-repeat'>
               <div className="flex justify-end items-center mt-4 pr-8 w-[100%] h-20">
                   <BackButton />

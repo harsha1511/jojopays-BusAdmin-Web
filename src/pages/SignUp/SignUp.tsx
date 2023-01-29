@@ -104,23 +104,43 @@ const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [login, setLogin] = useState(false);
   const [userId, setUserId] = useState<any>()
+  const [storeValue, setStoreValue] = useState<any>()
+  const [error, setError] = useState<string>("error")
   
 
+  // useEffect(() => {
+  //   const checkUpload = async (values: SignUpProps) => {
+  //     setStoreValue(values)
+  //     }
+  //     // checkUpload();
+  //     }, [])
+      
   const handleSubmit = async (values: SignUpProps) => {
-    setIsLoading(true);
-    console.log(values);
-    // const Response = await axios.post(constants.auth.register, values)
-    const respose = await axios.post(constants.auth.register, values)
-    .then( resp => {
-      console.log(resp);
-      setUserId(resp); 
-      if(resp.status === 200){
-        setLogin(true)
-      }
-    });
-    setIsLoading(false);
+      setIsLoading(true);
+      console.log(values);
+      try{
+        // const Response = await axios.post(constants.auth.register, values)
+        const respose = await axios.post(constants.auth.register, values)
+        .then( resp => {
+          if(resp?.status === 200 && resp?.data?.error){
+            setError(resp?.data?.error)
+            console.log(error, "not worked")
+          }
+          else {
+            setLogin(true);
+            setUserId(resp); 
+            setError("error");
+            console.log("worked");    
+          }
+        });
+        setIsLoading(false);
+    }catch(err){
+      // console.log(err,"hiii");
+      setIsLoading(false)
+    }
+
   };
-console.log("USERIID", userId);
+console.log("USERIID", userId?.data);
 
 const SignupData = [
   {name: "ownerName", placeholder:"Owner Name"},
@@ -128,7 +148,7 @@ const SignupData = [
   {name: "ownerMail", placeholder:"Owner Mail Id"},
   {name: "ownerPhone", placeholder:"Owner Phone"},
   {name: "companyName", placeholder:"Company Name"},
-  {name: "companyAddress", placeholder:"Company Name"},
+  {name: "companyAddress", placeholder:"Company Address"},
   {name: "companyMail", placeholder:"Company Mail Id"},
   {name: "companyPhone", placeholder:"Company Phone"},
   {name: "companyBio", placeholder:"Company Bio"},
@@ -174,8 +194,9 @@ const SignupData = [
                   className="hidden ml-20" 
                   type="file"
                   accept="image/*"
-                  name="companyDocument" /> 
-                  <p className='flex flex-col items-center bg-tertiary shadow-md text-white py-2 px-4 rounded-2xl w-44'>company document<span><BiUpload /></span></p>
+                  name="companyDocument"
+                  /> 
+                  <p className={`flex flex-col items-center bg-pinkText shadow-md text-white py-2 px-4 rounded-2xl w-44`}>company document<span><BiUpload /></span></p>
                     <ErrorMessage name="companyDocument" render={renderError}/>
 
                 </label>
@@ -184,8 +205,9 @@ const SignupData = [
                   className="hidden" 
                   type="file"
                   accept="image/*"
+                  value= "ownerIdProof"
                   name="ownerIdProof" /> 
-                  <p className='flex flex-col items-center bg-tertiary shadow-md text-white py-2 px-4 ml-6 rounded-2xl w-48'>Owner ID <span><BiUpload /></span></p> 
+                  <p className='flex flex-col items-center bg-tertiary shadow-md text-white py-2 px-4 ml-6 rounded-2xl w-48'>{storeValue?.ownerIdProof === null ? "upload here" : "uploaded"} <span><BiUpload /></span></p> 
                     <ErrorMessage name="ownerIdProof" render={renderError}/>
                 </label>
               </div>
@@ -199,6 +221,11 @@ const SignupData = [
               />
             </div>
           </CustomForm>
+          {error === "error" ?  
+          null
+          : 
+          <p className="text-redText w-full text-center mt-2">{`${error} already exist`}</p>
+        }
             </div>
           :
           <div className="w-[500px] h-[500px] bg-white rounded-lg shadow-md">
