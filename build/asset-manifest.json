@@ -1,21 +1,27 @@
 {
   "files": {
+<<<<<<< HEAD
     "main.css": "/static/css/main.eaa1118e.css",
     "main.js": "/static/js/main.42921608.js",
+=======
+    "main.css": "/static/css/main.cc0709ec.css",
+    "main.js": "/static/js/main.43e1ba4b.js",
+>>>>>>> fedbf09f9023771488315f219c42bcbf0fe684ca
     "static/js/787.57998f13.chunk.js": "/static/js/787.57998f13.chunk.js",
     "static/media/signin-cover.png": "/static/media/signin-cover.520383d19742969ebb61.png",
     "static/media/OBJECTS.png": "/static/media/OBJECTS.19c54bc21021a429f823.png",
     "static/media/signup-cover.svg": "/static/media/signup-cover.d7c780004ae2ca2d3926.svg",
     "static/media/signin-hero-image.png": "/static/media/signin-hero-image.7e3f46d06ddf264ed4cb.png",
     "static/media/add-driver.png": "/static/media/add-driver.83152cf7cf062e0164d0.png",
-    "static/media/driver-cover.svg": "/static/media/driver-cover.48c3bb238d76838a7a31.svg",
+    "static/media/driver-cover.svg": "/static/media/driver-cover.a95d1ee43976f9c39005.svg",
     "static/media/BusIcon.png": "/static/media/BusIcon.7491ab991410fef2ccf3.png",
     "static/media/profile.png": "/static/media/profile.200fd7b157aba954fcba.png",
     "static/media/jojopay.png": "/static/media/jojopay.54e99ef0b4159d12b961.png",
     "static/media/BACKGROUND.png": "/static/media/BACKGROUND.a5c42b5ab5ffa3086421.png",
-    "static/media/add-button.svg": "/static/media/add-button.1bd5a2e195140a4b671f1af5a2374289.svg",
-    "static/media/logo.svg": "/static/media/logo.60238d87e338850fe052ec918864cc2e.svg",
+    "static/media/add-button.svg": "/static/media/add-button.b04a64318cd9c8fd96624776bdcbe699.svg",
+    "static/media/logo.svg": "/static/media/logo.c90afd61dd2f47f1ba286e0b4de2a0ad.svg",
     "index.html": "/index.html",
+<<<<<<< HEAD
     "main.eaa1118e.css.map": "/static/css/main.eaa1118e.css.map",
     "main.42921608.js.map": "/static/js/main.42921608.js.map",
     "787.57998f13.chunk.js.map": "/static/js/787.57998f13.chunk.js.map"
@@ -23,5 +29,14 @@
   "entrypoints": [
     "static/css/main.eaa1118e.css",
     "static/js/main.42921608.js"
+=======
+    "main.cc0709ec.css.map": "/static/css/main.cc0709ec.css.map",
+    "main.43e1ba4b.js.map": "/static/js/main.43e1ba4b.js.map",
+    "787.57998f13.chunk.js.map": "/static/js/787.57998f13.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cc0709ec.css",
+    "static/js/main.43e1ba4b.js"
+>>>>>>> fedbf09f9023771488315f219c42bcbf0fe684ca
   ]
 }
