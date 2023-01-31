@@ -16,6 +16,7 @@ import { CreateUser } from "./components/CreateUser";
 import axios from "../../API/axios";
 import { ErrorMessage } from "formik";
 
+
 const validationSchema = yup.object().shape({
   ownerName: yup
     .string()
@@ -47,6 +48,18 @@ const validationSchema = yup.object().shape({
     .label("Company Phone"),
   companyMail: yup
     .string().email("Enter a Valid email Id")
+    // .test(
+    //     'email check',
+    //     'email déjà utiliser',
+    //     async (value) =>
+    //       await fetch('http:localhost:8000/users/check_email', {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify({ email: value })
+    //       }).then((res) => res.json())
+    //   )
     .required("Company Mail Id is required")
     .label("Company Mail"),
   companyBio: yup
@@ -62,7 +75,6 @@ const validationSchema = yup.object().shape({
     .required("Owner Id Proof is required")
     .label("Owner Id Proof")
 });
-
 
 interface SignUpProps {
   ownerName: string;
@@ -104,23 +116,14 @@ const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [login, setLogin] = useState(false);
   const [userId, setUserId] = useState<any>()
-  const [storeValue, setStoreValue] = useState<any>()
   const [error, setError] = useState<string>("error")
   
 
-  // useEffect(() => {
-  //   const checkUpload = async (values: SignUpProps) => {
-  //     setStoreValue(values)
-  //     }
-  //     // checkUpload();
-  //     }, [])
-      
   const handleSubmit = async (values: SignUpProps) => {
       setIsLoading(true);
       console.log(values);
       try{
-        // const Response = await axios.post(constants.auth.register, values)
-        const respose = await axios.post(constants.auth.register, values)
+        const Respose = await axios.post(constants.auth.register, values)
         .then( resp => {
           if(resp?.status === 200 && resp?.data?.error){
             setError(resp?.data?.error)
@@ -174,6 +177,7 @@ const SignupData = [
             initialValues={initialState}
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
+            validationOnChange={true}
           >
             <div className="grid grid-cols-2 gap-1 ml-14">
                 {SignupData.map((data) => (
@@ -196,7 +200,7 @@ const SignupData = [
                   accept="image/*"
                   name="companyDocument"
                   /> 
-                  <p className={`flex flex-col items-center bg-pinkText shadow-md text-white py-2 px-4 rounded-2xl w-44`}>company document<span><BiUpload /></span></p>
+                  <p className={`flex flex-col items-center bg-tertiary shadow-md text-white py-2 px-4 rounded-2xl w-44`}>company document<span><BiUpload /></span></p>
                     <ErrorMessage name="companyDocument" render={renderError}/>
 
                 </label>
@@ -207,7 +211,7 @@ const SignupData = [
                   accept="image/*"
                   value= "ownerIdProof"
                   name="ownerIdProof" /> 
-                  <p className='flex flex-col items-center bg-tertiary shadow-md text-white py-2 px-4 ml-6 rounded-2xl w-48'>{storeValue?.ownerIdProof === null ? "upload here" : "uploaded"} <span><BiUpload /></span></p> 
+                  <p className='flex flex-col items-center bg-tertiary shadow-md text-white py-2 px-4 ml-6 rounded-2xl w-48'>Owner ID Proof <span><BiUpload /></span></p> 
                     <ErrorMessage name="ownerIdProof" render={renderError}/>
                 </label>
               </div>

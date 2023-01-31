@@ -6,6 +6,7 @@ interface FormProps {
   validationSchema: object;
   onSubmit: any;
   children: React.ReactNode;
+  validationOnChange?: any;
 }
 
 const CustomForm = ({
@@ -13,6 +14,7 @@ const CustomForm = ({
   validationSchema,
   onSubmit,
   children,
+  validationOnChange,
 }: FormProps) => {
 
   return (
@@ -20,6 +22,7 @@ const CustomForm = ({
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
+      validateOnChange={validationOnChange}
     >
       {() => <Form>{children}</Form>}
     </Formik>
