@@ -42,7 +42,6 @@ const SignIn = () => {
   const handleSubmit = async (values: SignInProps) => {
     setIsLoading(true);
     console.log(values);
-    dispatch(LOGIN_SUCCESS(values));
     try {
       const Response = await axios.post(constants.auth.login, values)
       .then( resp => {
@@ -53,6 +52,7 @@ const SignIn = () => {
         console.log(token, "TOKENNNN");
         if(token){
           console.log("Welcome to JOJOPAYS..!!!");
+          dispatch(LOGIN_SUCCESS(values));
         }
       })
       setIsLoading(false)
