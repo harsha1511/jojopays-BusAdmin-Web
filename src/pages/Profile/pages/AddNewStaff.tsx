@@ -13,40 +13,53 @@ import { BsFillFileEarmarkPdfFill }from 'react-icons/bs'
 import { FaIdBadge } from 'react-icons/fa'
 import { useDispatch } from 'react-redux';
 import { ADD_BUS } from '../../../store/reducers/assignTrip';
+import { ErrorMessage } from 'formik';
+import Button from '../../../components/Button';
 
 const validateStaff = yup.object().shape({
   StaffName: yup
       .string()
+      .required("fill every field to continue")
       .label("StaffName"),
   StaffId: yup
       .string()
+      .required("fill every field to continue")
       .label("StaffId"),
   StaffNumber: yup 
       .string()
+      .required("fill every field to continue")
       .label("StaffNumber"),
   StaffMain: yup  
       .string()
+      .required("fill every field to continue")
       .label("StaffMain"),
   StaffLicence: yup
       .string()
+      .required("fill every field to continue")
       .label("StaffLicence"),
   StaffResume: yup  
       .string()
+      .required("fill every field to continue")
       .label("StaffResume"),
   StaffPhoto: yup  
       .string()
+      .required("fill every field to continue")
       .label("StaffPhoto "),
   StaffAddid: yup  
       .string()
+      .required("fill every field to continue")
       .label("StaffAddid"),
   StaffAddress:yup
       .string()
+      .required("fill every field to continue")
       .label("StaffAddress") ,
   StaffDob: yup
       .string()
+      .required("fill every field to continue")
       .label("StaffDob"),
   StaffMail: yup
       .string()
+      .required("fill every field to continue")
       .label("StaffMail"),    
 
                        
@@ -86,17 +99,35 @@ export const AddNewStaff=()=> {
     StaffPhoto: "",
 }
 
+const staffInput = [
+  {name: "staffName", title: "Name", placeholder: "Name"},
+  {name: "staffId", title: "Login Id", placeholder: "Login Id"},
+  {name: "staffMail", title: "Email Id", placeholder: "Email id"},
+  {name: "staffMain", title: "Main Ph, No", placeholder: "Phone No"},
+  {name: "staffNumber", title: "Ph, No.2", placeholder: "Phone No"},
+  {name: "staffDob", title: "Address", placeholder: "Address"},
+  {name: "staffAddress", title: "DOB3", placeholder: "DOB"},
+]
+
 const navigate = useNavigate()
 const dispatch = useDispatch()
+
+
 const handleSubmit = (values: staffDetailsProps) => {
   console.log(values, "SEE WHATS COMING");
   dispatch(ADD_BUS(values))
   if(values){
-    navigate("/assign-task")
+    // navigate("/assign-task")
   } 
 }
+ const renderError = (msg:string) => 
+      <div className='text-sm my-2 w-full'>
+        <p className='text-pinkText'>{msg}</p>
+      </div>
+
 
   return ( 
+    <>
     <div className="flex flex-col justify-start items-center w-[96vw] h-screen">
     <div className='z-10 flex justify-center items-center w-[35%] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
       <p className='font-bold tracking-wider text-2xl text-primaryText'>Add New login</p>
@@ -177,8 +208,7 @@ const handleSubmit = (values: staffDetailsProps) => {
              type="date" 
              name="StaffDob"
              placeholder='login DOB'
-
-              className="birthday ml-6 rounded-sm h-[30px] -mt-2 focus:outline-none bg-[#1E1E2C] "  
+            className="birthday ml-6 rounded-sm h-[30px] -mt-2 focus:outline-none bg-[#1E1E2C] "  
                 />
               </div>
               <div className='flex flex-row   mt-[35px] items-center'>
@@ -245,13 +275,18 @@ const handleSubmit = (values: staffDetailsProps) => {
                   <p className=' text-redText drop-shadow-lg' >Upload</p>
                   </label>
                </div>
-              </div></div>
+              </div>
+              <ErrorMessage name='StaffName' render={renderError} />
+              </div>
             </div>
-            <div className='flex justify-end w-[90%]  -mt-[170px]  items-center h-[20%] '>
+            <div className='flex justify-end  -mt-[170px]  items-center h-[20%] '>
             {/* <Link to='/assign-task'> */}
-              <button
+              <Button
+              isLoading={false}
+              title="Next"
               type='submit' 
-              className='mr-[110px] w-[70%] items-center drop-shadow-3xl text-quaternaryText flex justify-center h-[70%] bg-[#2F3142] font-semibold text-[30px] rounded-3xl'>Next</button>
+              className='mr-[110px] w-36 items-center drop-shadow-3xl text-quaternaryText flex justify-center h-[60%] bg-[#2F3142] font-semibold text-[30px] rounded-3xl'
+              />
             {/* </Link> */}
             </div>
             </div>
@@ -262,10 +297,37 @@ const handleSubmit = (values: staffDetailsProps) => {
           </div>
         </div>
       
-
-    
-                 
+    {/* <div className='flex flex-col items-center w-[96vw] h-screen'>
+      <div className='flex justify-center items-center w-[35rem] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
+         <p className='font-bold tracking-wider text-2xl text-primaryText'>Add New login</p>
+      </div>
+      <div className='flex flex-col items-center w-[80%] h-[80%] bg-add-driver-cover bg-cover bg-center bg-no-repeat rounded-3xl'>
+        <CustomForm
+        initialValues={initialState}
+        validationSchema={validateStaff}
+        onSubmit={handleSubmit}
+        >
+        {staffInput.map((data) => (
+          <div className='flex w-[72rem] mt-20 items-center'>
+          <label className='flex justify-end w-40 text-primaryText text-sm font-bold'>{data?.placeholder}</label>
+          <Input
+          type="text"
+          name={data?.name}
+          placeholder={data?.placeholder} 
+          className="ml-3 w-[30rem] rounded-sm p-[8px] bg-red-300 leading-tight  bg-transparent  focus:outline-none 
+          focus:line focus:border-border-blue-500  text-white border-none"
+          />
+          <ErrorMessage name={data?.name} render={renderError} />
+        </div>
+          ))}   
+        </CustomForm>
+      </div>
+    </div> */}
+    </>             
     );
 }
 
 export default AddNewStaff;
+
+
+

@@ -8,6 +8,7 @@ import assignReducer from "./assignTrip";
 import getTrip from "./getTrip";
 import busCompany from "./busCompany";
 import registerUser from "./registerUser";
+import addDeskStaff from "./addDeskStaff";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   getTrip: getTrip,
   busCompany: busCompany,
   register: registerUser,
+  deskStaff: addDeskStaff,
   // notify: notifyReducer,
 });
 export default rootReducer;

@@ -50,18 +50,6 @@ const validationSchema = yup.object().shape({
     .label("Company Phone"),
   companyMail: yup
     .string().email("Enter a Valid email Id")
-    // .test(
-    //     'email check',
-    //     'email déjà utiliser',
-    //     async (value) =>
-    //       await fetch('http:localhost:8000/users/check_email', {
-    //         method: 'POST',
-    //         headers: {
-    //           'Content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify({ email: value })
-    //       }).then((res) => res.json())
-    //   )
     .required("Company Mail Id is required")
     .label("Company Mail"),
   companyBio: yup
@@ -117,9 +105,6 @@ const SignUp = () => {
   console.log(register);
   
 
-
-
-  
   const [isLoading, setIsLoading] = useState(false);
   const [login, setLogin] = useState(false);
   const [userId, setUserId] = useState<any>()
