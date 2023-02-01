@@ -8,13 +8,15 @@ import heroImage from "../../assets/images/signup-hero-image.png";
 import Button from "../../components/Button";
 import CustomForm from "../../components/Form";
 import Input from "../../components/Input";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { LOGIN_SUCCESS } from "../../store/reducers/auth.reducer";
 
 import {BiUpload} from 'react-icons/bi'
 import { CreateUser } from "./components/CreateUser";
 import axios from "../../API/axios";
 import { ErrorMessage } from "formik";
+import { REGISTER_USER } from "../../store/reducers/registerUser";
+import { RootState } from "../../store";
 
 
 const validationSchema = yup.object().shape({
@@ -110,6 +112,11 @@ const initialState: SignUpProps = ({
 const SignUp = () => {
 
   const dispatch = useDispatch();
+  const register = useSelector((state: RootState) => state.register);
+
+  console.log(register);
+  
+
 
 
   
@@ -130,10 +137,10 @@ const SignUp = () => {
             console.log(error, "not worked")
           }
           else {
-            setLogin(true);
-            setUserId(resp); 
+            dispatch(REGISTER_USER(resp.data))
             setError("error");
-            console.log("worked");    
+            console.log("worked", resp.data);    
+            setLogin(true);
           }
         });
         setIsLoading(false);
@@ -233,7 +240,7 @@ const SignupData = [
             </div>
           :
           <div className="w-[500px] h-[500px] bg-white rounded-lg shadow-md">
-            <CreateUser jojoUserId={userId} />
+            <CreateUser  />
           </div>  
           }
         </div>

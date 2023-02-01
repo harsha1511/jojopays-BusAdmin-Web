@@ -7,6 +7,7 @@ import modalReducer from "./modal.reducer";
 import assignReducer from "./assignTrip";
 import getTrip from "./getTrip";
 import busCompany from "./busCompany";
+import registerUser from "./registerUser";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   assignTrip: assignReducer,
   getTrip: getTrip,
   busCompany: busCompany,
+  register: registerUser,
   // notify: notifyReducer,
 });
 export default rootReducer;
