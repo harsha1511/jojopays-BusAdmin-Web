@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { LOGIN_SUCCESS } from "../../store/reducers/auth.reducer";
 import axios from "../../API/axios";
 import constants from "../../API/constants";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 const validationSchema = yup.object().shape({
   jojoId: yup.string().label("user id"),
@@ -62,7 +63,7 @@ const SignIn = () => {
         setIsLoading(false)
       }
   };
-
+  const[viewCPassword,setViewCPassword]=useState(false);
   
   return (
     <div className="bg-white w-screen h-screen bg-signin-cover bg-right bg-cover bg-no-repeat flex items-center justify-center">
@@ -101,12 +102,24 @@ const SignIn = () => {
                 className="border-none text-black outline-none shadow-lg w-96"
                 inputContainerClassName="mb-3"
               />
+                <div className="flex flex-row">
               <Input
-                type="password"
+                 type={viewCPassword ? "text" : "password"}
+                // type="password"
                 name="password"
                 placeholder="Password"
                 className="border-none text-black outline-none shadow-lg w-96"
               />
+              {viewCPassword ?
+                <AiFillEyeInvisible className='text-black -ml-10 mt-3 scale-125 cursor-pointer'
+                onClick={() => setViewCPassword(!viewCPassword)} 
+                />
+                :
+                <AiFillEye className='text-black -ml-10 mt-3 scale-125 cursor-pointer' 
+                onClick={() => setViewCPassword(!viewCPassword)}
+                /> 
+              }
+</div>
               <p className="text-redText m-2">{errorMessage}</p>
             </div>
             <div className="flex flex-col gap-3 mt-5">
