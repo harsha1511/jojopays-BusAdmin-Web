@@ -272,7 +272,7 @@ const handleSubmit = (values: staffDetailsProps) => {
                   name="StaffAddId"
                   placeholder='Login Addid' 
                   className="hidden"  /> 
-                  <p className=' text-redText drop-shadow-lg' >Upload</p>
+                  <p className=' text-redText drop-shadow-lg'>Upload</p>
                   </label>
                </div>
               </div>
@@ -296,33 +296,6 @@ const handleSubmit = (values: staffDetailsProps) => {
             </div>
           </div>
         </div>
-      
-    {/* <div className='flex flex-col items-center w-[96vw] h-screen'>
-      <div className='flex justify-center items-center w-[35rem] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
-         <p className='font-bold tracking-wider text-2xl text-primaryText'>Add New login</p>
-      </div>
-      <div className='flex flex-col items-center w-[80%] h-[80%] bg-add-driver-cover bg-cover bg-center bg-no-repeat rounded-3xl'>
-        <CustomForm
-        initialValues={initialState}
-        validationSchema={validateStaff}
-        onSubmit={handleSubmit}
-        >
-        {staffInput.map((data) => (
-          <div className='flex w-[72rem] mt-20 items-center'>
-          <label className='flex justify-end w-40 text-primaryText text-sm font-bold'>{data?.placeholder}</label>
-          <Input
-          type="text"
-          name={data?.name}
-          placeholder={data?.placeholder} 
-          className="ml-3 w-[30rem] rounded-sm p-[8px] bg-red-300 leading-tight  bg-transparent  focus:outline-none 
-          focus:line focus:border-border-blue-500  text-white border-none"
-          />
-          <ErrorMessage name={data?.name} render={renderError} />
-        </div>
-          ))}   
-        </CustomForm>
-      </div>
-    </div> */}
     </>             
     );
 }
