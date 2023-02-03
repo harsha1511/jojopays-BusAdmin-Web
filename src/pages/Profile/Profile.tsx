@@ -111,7 +111,7 @@ console.log(profileData, "datass");
             <p className="font-bold text-lg mb:text-2xl  tracking-wider text-primaryText">This is <span className="text-white">
               {profileData?.ownerName}
             </span></p>
-            <p className="flex justify-end text-sm font-bold">@john_1587</p>
+            <p className="flex justify-end text-sm font-bold">{profileData?.ownerMail}</p>
           </div> 
         </div>
           <div className="mr-36">

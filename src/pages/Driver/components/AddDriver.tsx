@@ -1,266 +1,249 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import BackButton from '../../../components/BackButton'
-
-
-import {FaUser} from 'react-icons/fa'
-
-import { FaIdCard } from 'react-icons/fa'
-
-import { BsFillFileEarmarkPdfFill }from 'react-icons/bs'
-import { FaIdBadge } from 'react-icons/fa'
+import React, { ChangeEvent, useRef, useState } from 'react'
+import { useNavigate } from "react-router-dom";
+import BackButton from '../../../components/BackButton';
 import CustomForm from '../../../components/Form';
 import Input from '../../../components/Input';
 import * as yup from "yup";
 
+import { FaIdCard } from 'react-icons/fa'
 
-// import "./AddDriver.css"
+import { useDispatch, useSelector } from 'react-redux';
+import { ErrorMessage } from 'formik';
+import Button from '../../../components/Button';
+import { RootState } from '../../../store';
+import constants from '../../../API/constants';
+import axios from '../../../API/axios';
 
 const validateDriver = yup.object().shape({
-    DriverName: yup
-        .string()
-        .label("DriverName"),
-    DriverId: yup
-        .string()
-        .label("DriverId"),
-    DriverNumber: yup 
-        .string()
-        .label("DriverNumber"),
-    DriverMain: yup  
-        .string()
-        .label("DriverMain"),
-    DriverLicence: yup
-        .string()
-        .label("DriverLicence"),
-    DriverResume: yup  
-        .string()
-        .label("DriverResume"),
-    DriverPhoto: yup  
-        .string()
-        .label("DriverPhoto "),
-    DriverAddid: yup  
-        .string()
-        .label("DriverAddid"),
-    DriverAddress:yup
-        .string()
-        .label("DriverAddress") ,
-    DriverDob: yup
-        .string()
-        .label("LoginDob"),
-    DriverMail: yup
-        .string()
-        .label("DriverMail"),    
+  driverName: yup
+      .string()
+      .required("fill every field to continue")
+      .label("driverName"),
+  driverMail: yup
+      .string()
+      .required("fill every field to continue")
+      .label("driverMail"),
+  driverAddress: yup 
+      .string()
+      .required("fill every field to continue")
+      .label("driverAddress"),
+  driverPhone: yup  
+      .string()
+      .required("fill every field to continue")
+      .label("driverPhone"),
+  // staffLicense: yup
+  //     .string()
+  //     .required("fill every field to continue")
+  //     .label("staffLicense"),
+  // staffResume: yup  
+  //     .string()
+  //     .required("fill every field to continue")
+  //     .label("staffResume"),
+  // staffPhoto: yup  
+  //     .string()
+  //     .required("fill every field to continue")
+  //     .label("staffPhoto "),
+  // staffAddid: yup  
+  //     .string()
+  //     .required("fill every field to continue")
+  //     .label("staffAddid"),
+  driverBloodGroup:yup
+      .string()
+      .required("fill every field to continue")
+      .label("driverBloodGroup") ,
+  driverDob: yup
+      .string()
+      .required("fill every field to continue")
+      .label("driverDob"),
+  driverMainPhone: yup
+      .string()
+      .required("fill every field to continue")
+      .label("driverMainPhone"),    
+  })
   
-                         
-    })
-    
-    interface driverDetailsProps{
-        DriverName: string;
-        DriverId: string;
-        DriverMail: string;
-        DriverMain: string;
-        DriverNumber: string;
-        DriverDob: string;
-        DriverAddress: string;
-        DriverLicense: string;
-        DriverResume: string;
-        DriverAddid: string;
-        DriverPhoto: string;
+  interface driverProps{
+      driverName: string;
+      driverMail: string;
+      driverMainPhone: string;
+      driverPhone: string;
+      driverAddress: string;
+      driverDob: string;
+      driverBloodGroup: string;
+      // staffLicense: any;
+      // staffResume: any;
+      // staffAddid: any;
+      // staffPhoto: any;
+  }
+
+
   
-    }
 
-function AddDriver() {
 
-    const initialState: driverDetailsProps = {
-        DriverName: "",
-        DriverId: "",
-        DriverMail: "",
-        DriverMain: "",
-        DriverNumber: "",
-        DriverDob: "",
-        DriverAddress: "",
-        DriverLicense: "",
-        DriverResume: "",
-        DriverAddid: "",
-        DriverPhoto: "",
-    }
-    const handleSubmit = (values: driverDetailsProps) => {
-      console.log(values);
-      
-    }
-    
-    
-  return (
+export const AddNewStaff=()=> {
 
-    <div className="flex flex-col justify-start items-center w-[96vw] h-screen">
-       <div className='z-10 flex justify-center items-center w-[35%] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
-       <p className='text-xl font-bold tracking-wider text-primaryText'>Add New Driver</p>
+  const auth = useSelector((state: RootState) => state.deskStaff);
+  console.log(auth, "autheddd");
+  
+
+
+
+
+  const initialState: driverProps = {
+    driverName: "",
+    driverMail: "",
+    driverMainPhone: "",
+    driverPhone: "",
+    driverAddress: "",
+    driverDob: "",
+    driverBloodGroup: "",
+    // staffLicense: "",
+    // staffResume: "",
+    // staffAddid: "",
+    // staffPhoto: "",
+}
+
+const staffInput = [
+  {name: "driverName", title: "Name", placeholder: "Name"},
+  {name: "driverMail", title: "Mail ID", placeholder: "Mail Id"},
+  {name: "driverMainPhone", title: "Main Ph, No", placeholder: "Phone No"},
+  {name: "driverPhone", title: "Ph, No.2", placeholder: "Phone No"},
+  {name: "driverAddress", title: "Address", placeholder: "Address"},
+  {name: "driverBloodGroup", title: "Blood Group", placeholder: "Blood Group"},
+  {name: "driverDob", title: "DOB", placeholder: "DOB"},
+]
+
+
+const navigate = useNavigate()
+const dispatch = useDispatch()
+
+
+const handleSubmit = async (values: driverProps) => {
+  console.log(values, "SEE WHATS COMING");
+  try{
+    const driverData = {...values, "staffLicense": file1?.name, "staffResume": file2?.name, "staffAddid": file3?.name, "staffPhoto": file4?.name}
+    console.log("driverrr", driverData);
+    const response = await axios.post(constants.company.createDriver, values)
+    .then(resp => console.log(resp, "responded"))
+  } catch (err) {
+    console.log(err, "error");
+  }
+    // navigate("/-task")
+}
+ const renderError = (msg:string) => 
+      <div className='text-sm my-2 w-full'>
+        <p className='text-pinkText'>{msg}</p>
       </div>
-      <div className='flex justify-center items-center w-[96vw] h-screen'>
-          <div className='flex flex-col items-start w-[1300px] -mt-16 h-[600px] rounded-3xl ml-4  bg-add-driver-cover bg-cover bg-center bg-no-repeat'>
-              <div className="flex justify-end items-center mt-4 pr-8 w-[100%] h-20">
-                  <BackButton />
-              </div>
-            <div className='w-[1288px] ml-[80px] h-full'>
-            <CustomForm
+
+  const [file1, setFile] = useState<File>();
+  const [file2, setFile2] = useState<File>();
+  const [file3, setFile3] = useState<File>();
+  const [file4, setFile4] = useState<File>();
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  console.log(file3, "filesss");
+  
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
+    setFile(e.target.files[0]);
+  };
+  const handleFileChange2 = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
+    setFile2(e.target.files[0]);
+  };
+  const handleFileChange3 = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
+    setFile3(e.target.files[0]);
+  };
+  const handleFileChange4 = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
+    setFile4(e.target.files[0]);
+  };
+
+  const staffFormInput = [
+  {name: "staffLicense", title: "Add License", function: handleFileChange},
+  {name: "staffResume", title: "Add Resume", function: handleFileChange2},
+  {name: "staffAddid", title: "Add Id", function: handleFileChange3},
+  {name: "staffPhoto", title: "Add Photo", function: handleFileChange4},
+]
+
+  return ( 
+    <>
+    <div className='flex flex-col items-center w-[96vw] h-screen'>
+        <div className='z-10 flex justify-center items-center w-[35rem] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
+          <p className='font-bold tracking-wider text-2xl text-primaryText'>Add New Driver</p>
+        </div>
+        <div className='flex flex-col items-center pt-14 w-[80%] -mt-10 h-[90%] rounded-3xl ml-4  bg-add-driver-cover bg-cover bg-center bg-no-repeat'>
+          <div className='w-[90%] flex justify-end'>
+            <BackButton />
+          </div>
+          <div className='w-[90%] ml-20'>
+          <CustomForm
             initialValues={initialState}
             validationSchema={validateDriver}
             onSubmit={handleSubmit}>
-
-              <div className="w-full h-[246px]  ">
-                  <div className='flex items-center -mt-2'>
-                      <label className='flex justify-end w-40 text-primaryText text-sm font-bold'>Name:</label>
-                      <Input 
-                      type="text"
-                      name="DriverName"
-                      placeholder='Driver Name' 
-                      className="ml-3 w-[100%] rounded-sm p-[8px]  leading-tight  bg-transparent  focus:outline-none 
-                      focus:line focus:border-border-blue-500  text-white border-none" /> {" "}
-                  </div>
-                   <div className='flex items-center '>
-                      <label className='flex justify-end w-40 text-primaryText text-sm font-bold'>Login ID:</label>
-                      <Input 
-                      type="text"
-                      name="DriverId"
-                      placeholder='Driver Id' 
-                      className="ml-3 w-[100%] rounded-sm  p-[7px]  leading-tight  bg-transparent  focus:outline-none 
-                      focus:line focus:border-border-blue-500  text-white border-none" /> {" "}
-                  </div>
-                  <div className='flex items-center mt-2'>
-                      <label className='flex justify-end w-40 text-primaryText text-sm font-bold'>Email ID:</label>
-                      <Input 
-                      type="text"
-                      name="DriverMail" 
-                      placeholder='Driver Mail'
-                      className="ml-3 w-[100%] rounded-sm p-[7px]  leading-tight  bg-transparent  focus:outline-none 
-                      focus:line focus:border-border-blue-500  text-white border-none" /> {" "}
-                  </div>
-                  <div className='flex items-center mt-2'>
-                      <label className='flex justify-end w-40 text-primaryText text-sm font-bold'>Main Ph, No:</label>
-                      <Input 
-                      type="text"
-                      name="DriverMainNo"
-                      placeholder=' Driver Main Number'
-                      className="ml-2 w-[100%] rounded-sm p-[7px]  leading-tight  bg-transparent  focus:outline-none 
-                      focus:line focus:border-border-blue-500  text-white border-none"/> {" "}
-                  </div>
-                  <div className='flex items-center mt-2'>
-                      <label className='flex justify-end w-40 text-primaryText text-sm font-bold'>Ph, No.2:</label>
-                      <Input 
-                      type="text"
-                      name="DriverNumber"
-                      placeholder='Driver number' 
-                      className="ml-3 w-[100%] rounded-sm  p-[7px]  leading-tight  bg-transparent  focus:outline-none 
-                      focus:line focus:border-border-blue-500  text-white border-none" /> {" "}
-                  </div>
-                  <div className='flex items-center mt-2'>
-                      <label className='flex justify-end w-40 text-primaryText text-sm font-bold'>Address:</label>
-                      <Input 
-                      type="text"
-                      name="DriverAddress"
-                      placeholder='Driver address' 
-                      className="ml-3 w-[100%] rounded-sm  p-[7px]  leading-tight  bg-transparent  focus:outline-none 
-                      focus:line focus:border-border-blue-500  text-white border-none" /> {" "}
-                  </div>
-                </div>
-              <div className="w-[100%] flex flex-col  h-[300px]  ">
-                <div className='w-full flex flex-row h-full'>
-               <div className='w-[35%] h-[60%] '>
-                <div className='flex flex-row mt-6 items-center'>
-              <label className='flex justify-end w-40 text-primaryText -mt-6 text-sm font-bold'>DOB:</label>
+              {staffInput.map((data:any) => (
+              <div className='flex items-center mb-3'>
+              <p className="w-24 text-primaryText text-sm font-bold">{data?.title}</p>
               <Input 
-             type="date" 
-             name="DriverDob"
-             placeholder='Driver DOB'
-
-              className="birthday ml-6 rounded-sm h-[30px] -mt-2 focus:outline-none bg-[#1E1E2C] "  
-                />
+                type="text"
+                name={data.name} 
+                placeholder={data.placeholder}
+                className="ml-3 w-[30rem] rounded-sm p-[7px]  leading-tight  bg-transparent  focus:outline-none 
+                focus:line focus:border-border-blue-500  text-white border-none" />
+              <ErrorMessage name={data.name} render={renderError} />    
               </div>
-              <div className='flex flex-row   mt-[35px] items-center'>
-              <label className='flex justify-end w-40 text-primaryText -mt-6 text-sm font-bold'>Add Photo:</label>
-              <div className="flex ml-6 w-[55px] h-[55px] shadow-2xl bg-[#2F3142] rounded-[50%] justify-center text-[#1E1E2C] text-[30px] items-center"><FaUser/></div>
-              <div className="h-[1px] w-[45px] bg-redText"></div>
-              <div className="flex items-center justify-center w-[110px] rounded-tl-[20px] rounded-br-[20px] rounded-tr-[4px]
-                  rounded-bl-[4px] text-redText h-[35px] font-semibold  bg-[#2F3142]">
-                  <label>
-                  <Input
-                  type="file"
-                  name="DriverPhoto"
-                  placeholder='Driver addphoto' 
-                  className="hidden"/> 
-                  <p className=' text-redText drop-shadow-lg' >Upload</p>
-                  </label>
-               </div>
+              ))}
+              <div className='w-[60rem] flex flex-wrap gap-4'>
+              {staffFormInput.map((data:any)=> (
+              <div className='flex justify-start items-center'>
+              <label className='flex w-24 text-primaryText -mt-6 text-sm font-bold'>{data.title}</label>
+               <div className="flex ml-6 w-[55px] h-[55px] shadow-2xl bg-[#2F3142] rounded-[50%] justify-center text-[#1E1E2C] text-[30px] items-center"><FaIdCard/></div>
+               <div className="h-[1px] w-[45px] bg-redText"></div>
+               <div className="flex items-center justify-center w-[110px] rounded-tl-[20px] rounded-br-[20px] rounded-tr-[4px]
+                   rounded-bl-[4px] text-redText h-[35px] font-semibold  bg-[#2F3142]">
+                   <label>
+                   <input
+                  //  name={data?.name}
+                   type="file"
+                   onChange={data?.function}
+                   ref={inputRef}
+                   className="hidden" /> 
+                   <p className=' text-redText drop-shadow-lg cursor-pointer' >Upload</p>
+                </label>
+                </div>
+                </div>
+              ))}
               </div>
-              <div className='flex flex-row mt-[20px] items-center'>
-              <label className='flex justify-end w-40 text-primaryText -mt-6 text-sm font-bold'>Add License:</label>
-              <div className="flex ml-6 w-[55px] h-[55px] shadow-2xl bg-[#2F3142] rounded-[50%] justify-center text-[#1E1E2C] text-[30px] items-center"><FaIdCard/></div>
-              <div className="h-[1px] w-[45px] bg-redText"></div>
-              <div className="flex items-center justify-center w-[110px] rounded-tl-[20px] rounded-br-[20px] rounded-tr-[4px]
-                  rounded-bl-[4px] text-redText h-[35px] font-semibold  bg-[#2F3142]">
-                  <label>
-                  <Input
-                  type="file"
-                  name="DriverLicense"
-                  placeholder='Driver Addlicense'  
-                  className="hidden" /> 
-                  <p className=' text-redText drop-shadow-lg' >Upload</p>
-                  </label>
-               </div>
-              </div></div>
-                <div className='w-[50%] flex-col h-[50%] '>
-                <div className='flex flex-row mt-[75px] items-center'>
-              <label className='flex justify-end w-30 text-primaryText -mt-6 text-sm font-bold'>Add Resume:</label>
-              <div className="flex ml-6 w-[55px] h-[55px] shadow-2xl bg-[#2F3142] rounded-[50%] justify-center text-[#1E1E2C] text-[30px] items-center"><BsFillFileEarmarkPdfFill /></div>
-              <div className="h-[1px] w-[45px] bg-redText"></div>
-              <div className="flex items-center justify-center w-[110px] rounded-tl-[20px] rounded-br-[20px] rounded-tr-[4px]
-                  rounded-bl-[4px] text-redText h-[35px] font-semibold  bg-[#2F3142]">
-                  <label>
-                  <Input
-                  type="file"
-                  name="DriverResume"
-                  placeholder='Driver Addresume' 
-                  className="hidden"/> 
-                  <p className=' text-redText drop-shadow-lg' >Upload</p>
-                  </label>
-               </div>
+              <div className='w-[90%] flex justify-end'>
+              <Button
+              type='submit'
+              title='Next'
+              className='bg-primaryText px-8 py-[7px]'
+              />
               </div>
-              <div className='flex flex-row ml-[38px] mt-[30px] items-center'>
-              <label className='flex justify-end w-30 text-primaryText -mt-6 text-sm font-bold'>Add ID:</label>
-              <div className="flex ml-6 w-[55px] h-[55px] shadow-2xl bg-[#2F3142] rounded-[50%] justify-center text-[#1E1E2C] text-[30px] items-center"><FaIdBadge/></div>
-              <div className="h-[1px] w-[45px] bg-redText"></div>
-              <div className="flex items-center justify-center w-[110px] rounded-tl-[20px] rounded-br-[20px] rounded-tr-[4px]
-                  rounded-bl-[4px] text-redText h-[35px] font-semibold  bg-[#2F3142]">
-                  <label>
-                  <Input
-                  type="file"
-                  name="DriverAddId"
-                  placeholder='Driver Addid' 
-                  className="hidden"  /> 
-                  <p className=' text-redText drop-shadow-lg' >Upload</p>
-                  </label>
-               </div>
-              </div></div>
-            </div>
-            <div className='flex justify-end w-[85%]  -mt-[70px] items-center h-[20%] '>
-            <Link to='/driver-task'>
-              <button
-              type='submit' 
-              className=' w-[70%] mr-[140px] items-center drop-shadow-3xl text-quaternaryText flex justify-center h-[70%] bg-[#2F3142] font-semibold text-[30px] rounded-3xl'>Next</button>
-            </Link>
-            </div>
-            </div>
-            </CustomForm>
-          
-            </div>
-            </div>
+          </CustomForm>
           </div>
+
         </div>
-      
-                 
-
-
+    </div>
+    </>             
     );
 }
 
-export default AddDriver;
+export default AddNewStaff;
+
+
+
+function useCustomFetchHook(file: any) {
+  throw new Error('Function not implemented.');
+}
+

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { BsFillVolumeUpFill, BsSearch, BsVolumeMuteFill } from "react-icons/bs";
 import { AiOutlineFilePdf } from "react-icons/ai";
 import { RiFileExcel2Fill } from "react-icons/ri";
@@ -10,6 +10,8 @@ import Logins from "./components/Logins";
 import Pilots from "./components/Pilots";
 import AllNotifications from "./components/AllNotifications";
 import Money from "./components/Money";
+import constants from "../../API/constants";
+import axios from "../../API/axios";
 
 const dayFilter = [
   {
@@ -45,6 +47,14 @@ const Notifications = () => {
   const handleSearch = (values: any) => {
     console.log(values);
   };
+
+  useEffect(() => {
+     const getNotification = async () => {
+      const response = await axios.get(constants.notification.getNotification)
+      console.log(response, "notifications");
+     }
+     getNotification(); 
+  },[])
 
   const renderNotificationTypes = useCallback(() => {
     switch (showType) {

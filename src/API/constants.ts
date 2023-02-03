@@ -17,6 +17,7 @@ const constants: any = {
     trip: "upcommingTrips",
     assignedTrips: "assignedTrips",
     assignTrip: "assignTrips",
+    createDriver: "createDriver",
   },
   filters: {
     selectbus: "getBus",
@@ -28,6 +29,9 @@ const constants: any = {
   ticketPrice: {
     autoPrice: "getAutoPriceChange",
     assignCost: "assignCost",
+  },
+  notification: {
+    getNotification: "notifications",
   },
 };
 

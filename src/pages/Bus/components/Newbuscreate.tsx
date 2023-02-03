@@ -6,6 +6,7 @@ import {FaBus} from 'react-icons/fa'
 import CustomForm from "../../../components/Form";
 import Input from "../../../components/Input";
 import * as yup from "yup";
+import Button from "../../../components/Button";
 
 const validatebus = yup.object().shape({
 busName: yup
@@ -211,11 +212,11 @@ console.log(color,"bluee");
                 
                 </div>
                 <div className="w-[20%] -mt-2 h-[100%]">
-                <Link to= {"/bus-seat"} 
+                <Button 
                 type="submit"
+                title="Next"
                 className="flex shadow-2xl justify-center items-center -ml-16 w-[140px] rounded-3xl
-                     text-[#50FF84] h-[50px] bg-[#2F3142] text-[30px] font-semibold ">Next
-                     </Link>
+                     text-[#50FF84] h-[50px] bg-[#2F3142] text-[30px] font-semibold " />
                 </div>
                 
                 {/* <div className="flex flex-row">

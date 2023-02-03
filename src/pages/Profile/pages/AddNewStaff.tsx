@@ -5,78 +5,75 @@ import {FaBus} from 'react-icons/fa'
 import CustomForm from '../../../components/Form';
 import Input from '../../../components/Input';
 import * as yup from "yup";
-import {FaUser} from 'react-icons/fa'
 
 import { FaIdCard } from 'react-icons/fa'
 
-import { BsFillFileEarmarkPdfFill }from 'react-icons/bs'
-import { FaIdBadge } from 'react-icons/fa'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ADD_BUS } from '../../../store/reducers/assignTrip';
 import { ErrorMessage } from 'formik';
 import Button from '../../../components/Button';
+import { RootState } from '../../../store';
+import { PROFILE_DETAILS } from '../../../store/reducers/addDeskStaff';
 
 const validateStaff = yup.object().shape({
-  StaffName: yup
+  staffName: yup
       .string()
       .required("fill every field to continue")
-      .label("StaffName"),
-  StaffId: yup
+      .label("staffName"),
+  staffId: yup
       .string()
       .required("fill every field to continue")
-      .label("StaffId"),
-  StaffNumber: yup 
+      .label("staffId"),
+  staffNumber: yup 
       .string()
       .required("fill every field to continue")
-      .label("StaffNumber"),
-  StaffMain: yup  
+      .label("staffNumber"),
+  staffMain: yup  
       .string()
       .required("fill every field to continue")
-      .label("StaffMain"),
-  StaffLicence: yup
+      .label("staffMain"),
+  // staffLicense: yup
+  //     .string()
+  //     .required("fill every field to continue")
+  //     .label("staffLicense"),
+  // staffResume: yup  
+  //     .string()
+  //     .required("fill every field to continue")
+  //     .label("staffResume"),
+  // staffPhoto: yup  
+  //     .string()
+  //     .required("fill every field to continue")
+  //     .label("staffPhoto "),
+  // staffAddid: yup  
+  //     .string()
+  //     .required("fill every field to continue")
+  //     .label("staffAddid"),
+  staffAddress:yup
       .string()
       .required("fill every field to continue")
-      .label("StaffLicence"),
-  StaffResume: yup  
+      .label("staffAddress") ,
+  staffDob: yup
       .string()
       .required("fill every field to continue")
-      .label("StaffResume"),
-  StaffPhoto: yup  
+      .label("staffDob"),
+  staffMail: yup
       .string()
       .required("fill every field to continue")
-      .label("StaffPhoto "),
-  StaffAddid: yup  
-      .string()
-      .required("fill every field to continue")
-      .label("StaffAddid"),
-  StaffAddress:yup
-      .string()
-      .required("fill every field to continue")
-      .label("StaffAddress") ,
-  StaffDob: yup
-      .string()
-      .required("fill every field to continue")
-      .label("StaffDob"),
-  StaffMail: yup
-      .string()
-      .required("fill every field to continue")
-      .label("StaffMail"),    
-
-                       
+      .label("staffMail"),    
   })
   
   interface staffDetailsProps{
-      Staffname: string;
-      StaffId: string;
-      StaffMail: string;
-      StaffMain: string;
-      StaffNumber: string;
-      StaffDob: string;
-      StaffAddress: string;
-      StaffLicense: any;
-      StaffResume: any;
-      StaffAddid: any;
-      StaffPhoto: any;
+      staffName: string;
+      staffId: string;
+      staffMail: string;
+      staffMain: string;
+      staffNumber: string;
+      staffDob: string;
+      staffAddress: string;
+      // staffLicense: any;
+      // staffResume: any;
+      // staffAddid: any;
+      // staffPhoto: any;
   }
 
 
@@ -85,18 +82,25 @@ const validateStaff = yup.object().shape({
 
 export const AddNewStaff=()=> {
 
+  const auth = useSelector((state: RootState) => state.deskStaff);
+  console.log(auth, "autheddd");
+  
+
+
+
+
   const initialState: staffDetailsProps = {
-    Staffname: "",
-    StaffId: "",
-    StaffMail: "",
-    StaffMain: "",
-    StaffNumber: "",
-    StaffDob: "",
-    StaffAddress: "",
-    StaffLicense: "",
-    StaffResume: "",
-    StaffAddid: "",
-    StaffPhoto: "",
+    staffName: "",
+    staffId: "",
+    staffMail: "",
+    staffMain: "",
+    staffNumber: "",
+    staffDob: "",
+    staffAddress: "",
+    // staffLicense: "",
+    // staffResume: "",
+    // staffAddid: "",
+    // staffPhoto: "",
 }
 
 const staffInput = [
@@ -106,7 +110,13 @@ const staffInput = [
   {name: "staffMain", title: "Main Ph, No", placeholder: "Phone No"},
   {name: "staffNumber", title: "Ph, No.2", placeholder: "Phone No"},
   {name: "staffDob", title: "Address", placeholder: "Address"},
-  {name: "staffAddress", title: "DOB3", placeholder: "DOB"},
+  {name: "staffAddress", title: "DOB", placeholder: "DOB"},
+]
+const staffFormInput = [
+  {name: "staffLicense", title: "Add License"},
+  {name: "staffResume", title: "Add Resume"},
+  {name: "staffAddid", title: "Add Id"},
+  {name: "staffPhoto", title: "Add Photo"},
 ]
 
 const navigate = useNavigate()
@@ -115,9 +125,9 @@ const dispatch = useDispatch()
 
 const handleSubmit = (values: staffDetailsProps) => {
   console.log(values, "SEE WHATS COMING");
-  dispatch(ADD_BUS(values))
+  dispatch(PROFILE_DETAILS(values))
   if(values){
-    // navigate("/assign-task")
+    navigate("/assign-task")
   } 
 }
  const renderError = (msg:string) => 
@@ -128,174 +138,62 @@ const handleSubmit = (values: staffDetailsProps) => {
 
   return ( 
     <>
-    <div className="flex flex-col justify-start items-center w-[96vw] h-screen">
-    <div className='z-10 flex justify-center items-center w-[35%] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
-      <p className='font-bold tracking-wider text-2xl text-primaryText'>Add New login</p>
-    </div>
-    <div className='flex justify-center items-center w-[96vw] h-screen'>
-          <div className='flex flex-col items-start w-[1300px] -mt-16 h-[600px] rounded-3xl ml-4  bg-add-driver-cover bg-cover bg-center bg-no-repeat'>
-              <div className="flex justify-end items-center mt-4 pr-8 w-[100%] h-20">
-                  <BackButton />
-              </div>
-            <div className='w-[1288px] ml-2 h-full'>
-            <CustomForm
+    <div className='flex flex-col items-center w-[96vw] h-screen'>
+        <div className='z-10 flex justify-center items-center w-[35rem] h-20 bg-secondary rounded-b-3xl drop-shadow-2xl'>
+          <p className='font-bold tracking-wider text-2xl text-primaryText'>Add New login</p>
+        </div>
+        <div className='flex flex-col items-center pt-14 w-[80%] -mt-10 h-[90%] rounded-3xl ml-4  bg-add-driver-cover bg-cover bg-center bg-no-repeat'>
+          <div className='w-[90%] flex justify-end'>
+            <BackButton />
+          </div>
+          <div className='w-[90%] ml-20'>
+          <CustomForm
             initialValues={initialState}
             validationSchema={validateStaff}
             onSubmit={handleSubmit}>
-
-              <div className="w-full  h-[246px] ml-[50px] ">
-                  <div className='flex items-center -mt-2'>
-                      <label className='flex justify-end w-40 text-primaryText text-sm font-bold'>Name:</label>
-                      <Input 
-                      type="text"
-                      name="StaffName"
-                      placeholder='Login Name' 
-                      className="ml-3 w-[100%] rounded-sm p-[8px]  leading-tight  bg-transparent  focus:outline-none 
-                      focus:line focus:border-border-blue-500  text-white border-none" /> {" "}
-                  </div>
-                   <div className='flex items-center '>
-                      <label className='flex justify-end w-40 text-primaryText text-sm font-bold'>Login ID:</label>
-                      <Input 
-                      type="text"
-                      name="StaffId"
-                      placeholder='Login Id' 
-                      className="ml-3 w-[100%] rounded-sm  p-[7px]  leading-tight  bg-transparent  focus:outline-none 
-                      focus:line focus:border-border-blue-500  text-white border-none" /> {" "}
-                  </div>
-                  <div className='flex items-center mt-2'>
-                      <label className='flex justify-end w-40 text-primaryText text-sm font-bold'>Email ID:</label>
-                      <Input 
-                      type="text"
-                      name="StaffMail" 
-                      placeholder='Login Mail'
-                      className="ml-3 w-[100%] rounded-sm p-[7px]  leading-tight  bg-transparent  focus:outline-none 
-                      focus:line focus:border-border-blue-500  text-white border-none" /> {" "}
-                  </div>
-                  <div className='flex items-center mt-2'>
-                      <label className='flex justify-end w-40 text-primaryText text-sm font-bold'>Main Ph, No:</label>
-                      <Input 
-                      type="text"
-                      name="StaffMainNo"
-                      placeholder=' Login Main Number'
-                      className="ml-2 w-[100%] rounded-sm p-[7px]  leading-tight  bg-transparent  focus:outline-none 
-                      focus:line focus:border-border-blue-500  text-white border-none"/> {" "}
-                  </div>
-                  <div className='flex items-center mt-2'>
-                      <label className='flex justify-end w-40 text-primaryText text-sm font-bold'>Ph, No.2:</label>
-                      <Input 
-                      type="text"
-                      name="StaffNumber"
-                      placeholder='Login number' 
-                      className="ml-3 w-[100%] rounded-sm  p-[7px]  leading-tight  bg-transparent  focus:outline-none 
-                      focus:line focus:border-border-blue-500  text-white border-none" /> {" "}
-                  </div>
-                  <div className='flex items-center mt-2'>
-                      <label className='flex justify-end w-40 text-primaryText text-sm font-bold'>Address:</label>
-                      <Input 
-                      type="text"
-                      name="StaffAddress" 
-                      placeholder='Login address' 
-                      className="ml-3 w-[100%] rounded-sm  p-[7px]  leading-tight  bg-transparent  focus:outline-none 
-                      focus:line focus:border-border-blue-500  text-white border-none" /> {" "}
-                  </div>
-                </div>
-              <div className="w-full flex flex-col  h-[400px]  shadow-2xl">
-                <div className='w-full flex flex-row h-full'>
-               <div className='w-[35%] h-[60%] ml-[50px] '>
-                <div className='flex flex-row mt-6 items-center'>
-              <label className='flex justify-end w-40 text-primaryText -mt-6 text-sm font-bold'>DOB:</label>
+              {staffInput.map((data:any) => (
+              <div className='flex items-center mb-3'>
+              <p className="w-24 text-primaryText text-sm font-bold">{data?.title}</p>
               <Input 
-             type="date" 
-             name="StaffDob"
-             placeholder='login DOB'
-            className="birthday ml-6 rounded-sm h-[30px] -mt-2 focus:outline-none bg-[#1E1E2C] "  
-                />
+                type="text"
+                name={data.name} 
+                placeholder={data.placeholder}
+                className="ml-3 w-[30rem] rounded-sm p-[7px]  leading-tight  bg-transparent  focus:outline-none 
+                focus:line focus:border-border-blue-500  text-white border-none" />
+              <ErrorMessage name={data.name} render={renderError} />    
               </div>
-              <div className='flex flex-row   mt-[35px] items-center'>
-              <label className='flex justify-end w-40 text-primaryText -mt-6 text-sm font-bold'>Add Photo:</label>
-              <div className="flex ml-6 w-[55px] h-[55px] shadow-2xl bg-[#2F3142] rounded-[50%] justify-center text-[#1E1E2C] text-[30px] items-center"><FaUser/></div>
-              <div className="h-[1px] w-[45px] bg-redText"></div>
-              <div className="flex items-center justify-center w-[110px] rounded-tl-[20px] rounded-br-[20px] rounded-tr-[4px]
-                  rounded-bl-[4px] text-redText h-[35px] font-semibold  bg-[#2F3142]">
-                  <label>
-                  <Input
-                  type="file"
-                  name="StaffPhoto"
-                  placeholder='Login addphoto' 
-                  className="hidden"/> 
-                  <p className=' text-redText drop-shadow-lg' >Upload</p>
-                  </label>
-               </div>
+              ))}
+              <div className='w-[60rem] flex flex-wrap gap-4'>
+              {staffFormInput.map((data:any)=> (
+              <div className='flex justify-start items-center'>
+              <label className='flex w-24 text-primaryText -mt-6 text-sm font-bold'>{data.title}</label>
+               <div className="flex ml-6 w-[55px] h-[55px] shadow-2xl bg-[#2F3142] rounded-[50%] justify-center text-[#1E1E2C] text-[30px] items-center"><FaIdCard/></div>
+               <div className="h-[1px] w-[45px] bg-redText"></div>
+               <div className="flex items-center justify-center w-[110px] rounded-tl-[20px] rounded-br-[20px] rounded-tr-[4px]
+                   rounded-bl-[4px] text-redText h-[35px] font-semibold  bg-[#2F3142]">
+                   <label>
+                   <input
+                   type="file"
+                   name={data.name}
+                   className="hidden" /> 
+                   <p className=' text-redText drop-shadow-lg cursor-pointer' >Upload</p>
+                </label>
+                </div>
+                </div>
+              ))}
               </div>
-              <div className='flex flex-row mt-[20px] items-center'>
-              <label className='flex justify-end w-40 text-primaryText -mt-6 text-sm font-bold'>Add License:</label>
-              <div className="flex ml-6 w-[55px] h-[55px] shadow-2xl bg-[#2F3142] rounded-[50%] justify-center text-[#1E1E2C] text-[30px] items-center"><FaIdCard/></div>
-              <div className="h-[1px] w-[45px] bg-redText"></div>
-              <div className="flex items-center justify-center w-[110px] rounded-tl-[20px] rounded-br-[20px] rounded-tr-[4px]
-                  rounded-bl-[4px] text-redText h-[35px] font-semibold  bg-[#2F3142]">
-                  <label>
-                  <Input
-                  type="file"
-                  name="StaffLicense"
-                  placeholder='Login Addlicense'  
-                  className="hidden" /> 
-                  <p className=' text-redText drop-shadow-lg' >Upload</p>
-                  </label>
-               </div>
-              </div></div>
-                <div className='w-[50%] flex-col h-[50%] '>
-                <div className='flex flex-row mt-[75px] items-center'>
-              <label className='flex justify-end w-30 text-primaryText -mt-6 text-sm font-bold'>Add Resume:</label>
-              <div className="flex ml-6 w-[55px] h-[55px] shadow-2xl bg-[#2F3142] rounded-[50%] justify-center text-[#1E1E2C] text-[30px] items-center"><BsFillFileEarmarkPdfFill /></div>
-              <div className="h-[1px] w-[45px] bg-redText"></div>
-              <div className="flex items-center justify-center w-[110px] rounded-tl-[20px] rounded-br-[20px] rounded-tr-[4px]
-                  rounded-bl-[4px] text-redText h-[35px] font-semibold  bg-[#2F3142]">
-                  <label>
-                  <Input
-                  type="file"
-                  name="StaffResume"
-                  placeholder='Login Addresume' 
-                  className="hidden"/> 
-                  <p className=' text-redText drop-shadow-lg' >Upload</p>
-                  </label>
-               </div>
-              </div>
-              <div className='flex flex-row ml-[38px] mt-[30px] items-center'>
-              <label className='flex justify-end w-30 text-primaryText -mt-6 text-sm font-bold'>Add ID:</label>
-              <div className="flex ml-6 w-[55px] h-[55px] shadow-2xl bg-[#2F3142] rounded-[50%] justify-center text-[#1E1E2C] text-[30px] items-center"><FaIdBadge/></div>
-              <div className="h-[1px] w-[45px] bg-redText"></div>
-              <div className="flex items-center justify-center w-[110px] rounded-tl-[20px] rounded-br-[20px] rounded-tr-[4px]
-                  rounded-bl-[4px] text-redText h-[35px] font-semibold  bg-[#2F3142]">
-                  <label>
-                  <Input
-                  type="file"
-                  name="StaffAddId"
-                  placeholder='Login Addid' 
-                  className="hidden"  /> 
-                  <p className=' text-redText drop-shadow-lg'>Upload</p>
-                  </label>
-               </div>
-              </div>
-              <ErrorMessage name='StaffName' render={renderError} />
-              </div>
-            </div>
-            <div className='flex justify-end  -mt-[170px]  items-center h-[20%] '>
-            {/* <Link to='/assign-task'> */}
+              <div className='w-[90%] flex justify-end'>
               <Button
-              isLoading={false}
-              title="Next"
-              type='submit' 
-              className='mr-[110px] w-36 items-center drop-shadow-3xl text-quaternaryText flex justify-center h-[60%] bg-[#2F3142] font-semibold text-[30px] rounded-3xl'
+              type='submit'
+              title='Next'
+              className='bg-primaryText px-8 py-[7px]'
               />
-            {/* </Link> */}
-            </div>
-            </div>
-            </CustomForm>
-          
-            </div>
-            </div>
+              </div>
+          </CustomForm>
           </div>
+
         </div>
+    </div>
     </>             
     );
 }

@@ -1,8 +1,15 @@
 import React,{useState} from "react";
 import BackButton from "../../../components/BackButton";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
 
 export const CreateLogin = () => {
+
+
+    const data = useSelector((state: RootState) => state.deskStaff);
+    console.log(data, "reducere");
+  
 
     const [loading, setLoading] =useState(true);
     const Startloading = () => {

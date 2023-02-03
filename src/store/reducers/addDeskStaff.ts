@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   profileDetails: {},
-  assignTask: {},
+  assignTask: [],
   staffCreds: {},
 };
 

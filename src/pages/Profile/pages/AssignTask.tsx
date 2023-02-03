@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BackButton from "../../../components/BackButton";
 
 import BusIcon from '../../../assets/images/BusIcon.png';
@@ -8,15 +8,15 @@ import { ToggleButton } from "../../../components/ToggleButton";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { ADD_BUS } from "../../../store/reducers/assignTrip";
+import { ASSIGN_TASK } from "../../../store/reducers/addDeskStaff";
 
 
 export const AssignTask = () => {
 
 
-
-
   const dispatch = useDispatch()
-  const data = useSelector((state: RootState) => state.assignTrip);
+  const navigate = useNavigate()
+  const data = useSelector((state: RootState) => state.deskStaff);
   console.log(data, "reducere is working");
   
   interface TaskProps {
@@ -46,6 +46,19 @@ export const AssignTask = () => {
     }
     dispatch(ADD_BUS(addTask))
   }
+
+  const handleSubmit = async () => {
+    dispatch(ASSIGN_TASK(addTask))
+    const dataOne = data?.profileDetails;
+    const dataa = {...dataOne, "assignTask": data?.assignTask}
+    console.log(dataa, "added array");
+    // navigate("/create-login")
+  }
+
+  const dataOne = data?.profileDetails;
+  const dataTwo = data?.assignTask;
+  
+  
 
   console.log("task assigned", addTask)
   
@@ -83,7 +96,9 @@ export const AssignTask = () => {
                     }
                 </div>
                 <div className="flex justify-end w-full">
-                  <Link to={'/create-login'} className=" bg-primaryText -mb-4 mr-40 px-8 py-2 rounded-3xl text-xl font-semibold" >Next</Link>
+                  <div onClick={handleSubmit} className=" bg-primaryText -mb-4 mr-40 px-8 py-2 rounded-3xl text-xl font-semibold">
+                    Next
+                  </div>
                 </div>
                 </form>
               </div>
