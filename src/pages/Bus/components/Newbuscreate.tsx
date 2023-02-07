@@ -5,25 +5,39 @@ import BackButton from '../../../components/BackButton';
 import {FaBus} from 'react-icons/fa'
 import CustomForm from "../../../components/Form";
 import Input from "../../../components/Input";
+import constants from '../../../API/constants';
+import axios from '../../../API/axios';
 import * as yup from "yup";
 import Button from "../../../components/Button";
+import { FiFilter } from "react-icons/fi";
+
+const Seat=[
+    {name:"Normal"},
+    {name:"Semi Sleeper"},
+    {name:"Sleeper"},
+]
+const Trip=[
+    {name:"Casual Trip "},
+    {name:"Pre-planned Trip"},
+   ]
+
+   const BusType=[
+    {name:"A/C"},
+    {name:"Non A/C"},
+   
+]
+
 
 const validatebus = yup.object().shape({
 busName: yup
     .string()
     .label("busName"),
-busId: yup
-    .string()
-    .label("busId"),
 busNo: yup 
     .string()
     .label(" busNo"),
 busRegno: yup  
     .string()
     .label("busRegno"),
-busLicence: yup
-    .string()
-    .label("busLicence"),
 busDescription: yup  
     .string()
     .label("busDescription"),
@@ -38,10 +52,8 @@ busDocument: yup
 
 interface BusDetailsProps {
     busName: string;
-    busId: string;
     busNo: string;
     busRegno: string;
-    busLicence: string;
     busDescription: string;
     busAddPhoto: string;
     busDocument: string;
@@ -52,26 +64,31 @@ export const Newbuscreate = () => {
 
     const initialState: BusDetailsProps = {
         busName: "",
-        busId: "",
         busNo: "",
         busRegno: "",
-        busLicence: "",
         busDescription:"",
         busAddPhoto:"",
         busDocument:"",
-      
-}
+    }
     
-const handleSubmit = (values: BusDetailsProps) => {
-    console.log(values);
+    
+
+
+// const [color, setcolor] = useState(true)
+// console.log(color,"bluee");
+
+const [state, setState]=useState<string>();
+const [state1, setState1]=useState<string>();
+const [state2, setState2]=useState<string>();
+
+const handleSubmit = async (values: BusDetailsProps) => {
+    const apiData = {...values,tripType:state,busSeat:state2,busType:state1};
+    console.log(apiData,"Vlues");
+    const postData = await axios.post(constants.company.newBus, apiData)
+    
+    // const overallData = {...values, " busName": state, "A/C":state, }  
     
 }
-
-const [color, setcolor] = useState(true)
-console.log(color,"bluee");
-
-
-
 
     return(
     <div className="flex flex-col justify-start items-center w-[96vw]  h-screen">
@@ -152,48 +169,68 @@ console.log(color,"bluee");
                 </label>
              </div>
             </div>
-            <div className='flex flex-row items-center mt-8'>
-            <label className='flex justify-end w-40 text-primaryText -mt-6 text-sm font-bold'>Commonly Used for:</label>
-            <button
-            type="submit"
-           
-            className={`flex items-center justify-center w-[120px] rounded-tl-[15px] rounded-br-[15px] rounded-tr-[4px]
-                rounded-bl-[4px] text-redText h-[33px] bg-[#2F3142] shadow-2xl font-semibold ml-[40px] ${color ? "text-[#0095E2]": "text-redText" }`} onClick={() => setcolor(!color)}>Casual Trip </button>
-                <div className="h-[1px] w-[45px] bg-redText"></div>
-            <button
-              type="submit"  
-            className={`flex items-center justify-center w-[160px] rounded-tl-[15px] rounded-br-[15px] rounded-tr-[4px]
-                rounded-bl-[4px] text-redText h-[33px] bg-[#2F3142] shadow-2xl font-semibold  ${color ? "text-[#0095E2]": "text-redText" }`}onClick={() => setcolor(!color)}>Pre-planned Trip</button>
-            </div>
-            <div className='flex flex-row items-center mt-8'>
-            <label className='flex justify-end w-40 text-primaryText -mt-6 text-sm font-bold'>Bus Type:</label>
-            <button
-             type="submit" 
-            className={`flex items-center justify-center w-[56px] rounded-tl-[15px] rounded-br-[15px] rounded-tr-[4px]
-                rounded-bl-[4px] text-redText h-[33px] bg-[#2F3142] shadow-2xl font-semibold ml-[40px] ${color ? "text-[#0095E2]": "text-redText"}`}onClick={() => setcolor(!color)}>A/C </button>
-                <div className="h-[1px] w-[45px] bg-redText"></div>
-            <button
-            type="submit"  
-            className="flex items-center justify-center w-[90px] rounded-tl-[15px] rounded-br-[15px] rounded-tr-[4px]
-                rounded-bl-[4px] text-redText h-[33px] bg-[#2F3142] shadow-2xl  font-semibold">Non A/C</button>
-            </div>
-            <div className='flex flex-row items-center mt-8'>
-                <label className='flex justify-end w-40 text-primaryText -mt-6 text-sm font-bold'>Seat Type:</label>
-                    <button
-                    type="submit"  
-                    className="flex items-center justify-center w-[80px] rounded-tl-[15px] rounded-br-[15px] rounded-tr-[4px]
-                        rounded-bl-[4px] text-redText h-[33px] bg-[#2F3142] font-semibold ml-[40px]">Normal </button>
-                       <div className="h-[1px] w-[45px] bg-redText"></div>
-                    <button
-                    type="submit"  
-                    className="flex items-center justify-center w-[115px] rounded-tl-[15px] rounded-br-[15px] rounded-tr-[4px]
-                        rounded-bl-[4px] text-redText h-[33px] bg-[#2F3142] font-semibold">Semi Sleeper</button>
-                        <div className="h-[1px] w-[45px] bg-redText"></div>
-                    <button
-                    type="submit"  
-                    className="flex items-center justify-center w-[75px] rounded-tl-[15px] rounded-br-[15px] rounded-tr-[4px]
-                        rounded-bl-[4px] text-redText h-[33px] bg-[#2F3142] font-semibold">Sleeper</button>
-            </div>
+            <div className="flex flex-row items-center mt-8">
+                  <div className="flex justify-end w-40 text-primaryText -mt-6 text-sm font-bold">Commonly Used for:</div>
+                  {
+                   Trip.map((data) =>(
+                    
+                  <button 
+                  onClick={(e) =>{
+                    e.preventDefault();
+                    console.log(data.name,"appuser")
+                    setState(data.name)
+                }}
+                  className={`flex items-center ml-10  justify-center w-[160px] rounded-tl-[15px] rounded-br-[15px] rounded-tr-[4px]
+                  rounded-bl-[4px] text-redText h-[33px] bg-[#2F3142] shadow-2xl font-semibold 
+                  ${data.name ===state? "text-[#0095E2]": "text-redText"} `}>
+                    
+                    {data.name}</button>
+                    )) 
+                }
+                </div> 
+
+            <div className="flex flex-row items-center mt-8">
+                  <div className="flex justify-end w-40 text-primaryText -mt-6 text-sm font-bold">Bus Type:</div>
+                  {
+                   BusType.map((data) =>(
+                    
+                  <button 
+                  onClick={(e) =>{
+                    e.preventDefault();
+                    console.log(data.name,"appuser")
+                    setState1(data.name)
+                }}
+                  className={`flex items-center justify-center w-[90px] rounded-tl-[15px] ml-10 rounded-br-[15px] rounded-tr-[4px]
+                  rounded-bl-[4px] text-redText h-[33px] bg-[#2F3142] shadow-2xl  font-semibold
+                  ${data.name ===state1? "text-[#0095E2]": "text-redText"} `}>
+                    
+                    {data.name}</button>
+                    )) 
+                }
+                </div> 
+          
+                <div className="flex flex-row items-center mt-8">
+                  <div className="flex justify-end w-40 text-primaryText -mt-6 text-sm font-bold">Seat Type:</div>
+                  {
+                   Seat.map((data) =>(
+                    
+                  <button 
+                  onClick={(e) =>{
+                    e.preventDefault();
+                    setState2(data.name)
+                }}
+                  className={`flex items-center ml-10  justify-center w-[160px] rounded-tl-[15px] rounded-br-[15px] rounded-tr-[4px]
+                  rounded-bl-[4px] text-redText h-[33px] bg-[#2F3142] shadow-2xl font-semibold 
+                  ${data.name ===state2? "text-[#0095E2]": "text-redText"} `}>
+                    
+                    {data.name}</button>
+                    )) 
+                }
+                </div> 
+
+
+
+
             <div className='flex flex-row w-full mt-[30px] h-[10%] items-center '>
                 <div className="w-[90%] h-[100%]">
                 <label className=' w-full text-primaryText  ml-[60px] text-sm font-bold'>Bus Document:</label>
@@ -213,38 +250,15 @@ console.log(color,"bluee");
                 </div>
                 <div className="w-[20%] -mt-2 h-[100%]">
                 <Button 
+                 title="Next"              
                 type="submit"
-                title="Next"
                 className="flex shadow-2xl justify-center items-center -ml-16 w-[140px] rounded-3xl
-                     text-[#50FF84] h-[50px] bg-[#2F3142] text-[30px] font-semibold " />
+                     text-[#50FF84] h-[50px] bg-[#2F3142] text-[30px] font-semibold "/>
                 </div>
-                
-                {/* <div className="flex flex-row">
-                <div className="flex justify-start">
-                <label className=' w-full text-primaryText -mt-6 text-sm font-bold'>Bus Document:</label>
-                    <button className="flex justify-start items-center w-[115px] rounded-tl-[15px] rounded-br-[15px] rounded-tr-[4px]
-                        rounded-bl-[4px] text-redText h-[35px] bg-[#2F3142] font-semibold ">Upload
-                     </button>
-                     </div>
-                     <div className="flex justify-end">
-                 <button className="flex justify-start items-center w-[115px] rounded-3xl
-                     text-redText h-[35px] bg-[#2F3142] font-semibold ">Next
-                     </button>
-                </div>
-                </div> */}
-               
+                     
             </div>
           
             </div>
-     
-           
-
-        
-       
-
-
-
-
     </CustomForm>
     </div>
  
