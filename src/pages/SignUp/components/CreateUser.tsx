@@ -69,7 +69,7 @@ export const CreateUser = () => {
   
 
 
-
+  
   const handleSubmit = async (value:any) => {
     const registerUser = Object.assign(value, userr);
     console.log(registerUser, "passwordssakdbjkh");
@@ -77,8 +77,10 @@ export const CreateUser = () => {
       setIsLoading(true);
       const SendLogin = await axios.post(constants.auth.createuser, registerUser)
       .then(resp =>{
+        console.log(resp.data, "dataaaa");
+        
         if(resp.status === 200){
-          window.location.href = "/sign-in"
+          // window.location.href = "/sign-in"
           setIsLoading(false)
           console.log("success");
           setIsLoading(false);

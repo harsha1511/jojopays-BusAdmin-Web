@@ -24,7 +24,7 @@ const StaffList = () => {
         const getStaffNames = async () => {
            try{               
                const response = await axios.get(constants.auth.staffList)
-               console.log(response, "ress");
+               console.log(response.data, "stafflist");
                setStaffNames(response.data)
             }
             catch (err) {

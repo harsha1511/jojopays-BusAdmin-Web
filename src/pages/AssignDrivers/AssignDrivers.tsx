@@ -70,7 +70,7 @@ const AssignDrivers = () => {
     const getDriverData = async () => {
       try {
         const response = await axios.get(constants.company.driver);
-        console.log(response.data);
+        console.log(response.data, "driver data");
         dispatch(GET_DRIVERS(response.data))
       } catch (err) {
         console.log(err);

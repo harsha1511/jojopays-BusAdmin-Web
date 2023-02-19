@@ -39,6 +39,7 @@ export const TripBar = ({pageName}:DriverProps) => {
       const getTripData = async () => {
         try {
           const response = await axios.get(constants.company.trip);
+          console.log(response?.data, 'tripss');
           dispatch(GET_TRIP(response.data))
           setTrip(response.data) 
           // setTrip(tripData.tripData)

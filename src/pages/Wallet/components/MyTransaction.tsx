@@ -85,7 +85,7 @@ export const MyTransaction = () => {
         const getStaffNames = async () => {
            try{               
               const response = await axios.get(constants.auth.allTransactors)
-              console.log(response.data, "staff");
+              console.log(response.data, "wallet staff");
               setWalletPeople(response.data)
             }
             catch (err) {

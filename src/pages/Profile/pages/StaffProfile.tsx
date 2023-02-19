@@ -73,8 +73,7 @@ export const StaffProfile = () => {
     }
     return result;
 }
-
-console.log(makeid(5));
+console.log(selectStaff, "selectStaff");
 
 
   return (

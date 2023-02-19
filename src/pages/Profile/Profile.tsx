@@ -66,15 +66,14 @@ useEffect(() => {
       .then(res => {console.log(res, "vanthrichuu")}
       )
     } catch (err) {
-      console.log(err, "errorrrehhhh");
-      
+      console.log(err, "errorrrehhhh"); 
     }
   }
   getData()
 })
 
 
-console.log(profileData, "datass");
+console.log(profileData, "datasss");
 
 
 

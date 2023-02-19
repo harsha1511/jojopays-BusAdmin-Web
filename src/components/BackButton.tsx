@@ -17,7 +17,7 @@ const BackButton = (className:BackButtonProps) => {
            <button onClick={GoBack}><MdArrowBack  className="scale-125"/></button>
         </div>
     )
-}
+};
 
 
 export default BackButton;
